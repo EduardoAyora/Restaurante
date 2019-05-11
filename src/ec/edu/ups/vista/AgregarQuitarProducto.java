@@ -9,12 +9,12 @@ package ec.edu.ups.vista;
  *
  * @author Eduardo Ayora
  */
-public class AgregarProducto extends javax.swing.JInternalFrame {
+public class AgregarQuitarProducto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AgregarProducto
      */
-    public AgregarProducto() {
+    public AgregarQuitarProducto() {
         initComponents();
     }
 
