@@ -69,62 +69,77 @@ public class EscogerMesa extends javax.swing.JInternalFrame {
 
         jButton17.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton17.setText("Mesa 1");
+        jButton17.setEnabled(false);
         jPanel5.add(jButton17);
 
         jButton23.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton23.setText("Mesa 2");
+        jButton23.setEnabled(false);
         jPanel5.add(jButton23);
 
         jButton26.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton26.setText("Mesa 3");
+        jButton26.setEnabled(false);
         jPanel5.add(jButton26);
 
         jButton25.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton25.setText("Mesa 4");
+        jButton25.setEnabled(false);
         jPanel5.add(jButton25);
 
         jButton31.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton31.setText("Mesa 5");
+        jButton31.setEnabled(false);
         jPanel5.add(jButton31);
 
         jButton24.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton24.setText("Mesa 6");
+        jButton24.setEnabled(false);
         jPanel5.add(jButton24);
 
         jButton18.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton18.setText("Mesa 7");
+        jButton18.setEnabled(false);
         jPanel5.add(jButton18);
 
         jButton20.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton20.setText("Mesa 8");
+        jButton20.setEnabled(false);
         jPanel5.add(jButton20);
 
         jButton29.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton29.setText("Mesa 9");
+        jButton29.setEnabled(false);
         jPanel5.add(jButton29);
 
         jButton28.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton28.setText("Mesa 10");
+        jButton28.setEnabled(false);
         jPanel5.add(jButton28);
 
         jButton30.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton30.setText("Mesa 11");
+        jButton30.setEnabled(false);
         jPanel5.add(jButton30);
 
         jButton27.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton27.setText("Mesa 12");
+        jButton27.setEnabled(false);
         jPanel5.add(jButton27);
 
         jButton19.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton19.setText("Mesa 13");
+        jButton19.setEnabled(false);
         jPanel5.add(jButton19);
 
         jButton21.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton21.setText("Mesa 14");
+        jButton21.setEnabled(false);
         jPanel5.add(jButton21);
 
         jButton22.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton22.setText("Mesa 15");
+        jButton22.setEnabled(false);
         jPanel5.add(jButton22);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
