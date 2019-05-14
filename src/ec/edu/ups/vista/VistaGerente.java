@@ -48,6 +48,9 @@ public class VistaGerente extends javax.swing.JInternalFrame {
         opListCa = new javax.swing.JMenuItem();
 
         setClosable(true);
+        setMaximizable(true);
+        setAlignmentX(CENTER_ALIGNMENT);
+        setAlignmentY(CENTER_ALIGNMENT);
 
         menMesero.setText("Mesero");
 

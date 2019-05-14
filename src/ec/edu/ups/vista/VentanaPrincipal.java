@@ -5,6 +5,10 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.clases.ImagenFondo;
+import javax.swing.ImageIcon;
+import sun.awt.AppContext;
+
 /**
  *
  * @author DELL
@@ -16,6 +20,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        desktopPane.setBorder(new ImagenFondo());
+        //this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
     }
 
     /**
@@ -35,6 +41,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         opCaja = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1000, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         menIniciar.setMnemonic('f');
         menIniciar.setText("Iniciar");
@@ -73,18 +81,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1579, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void opMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opMeseroActionPerformed
-        // TODO add your handling code here:
+        EscogerMesero visMesero = new EscogerMesero();
+        visMesero.setVisible(true);
+        desktopPane.add(visMesero);
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
@@ -94,6 +108,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
         VistaGerente visGerente = new VistaGerente();
         visGerente.setVisible(true);
+        
         desktopPane.add(visGerente);
     }//GEN-LAST:event_opGerenteActionPerformed
 

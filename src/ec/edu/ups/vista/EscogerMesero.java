@@ -43,6 +43,9 @@ public class EscogerMesero extends javax.swing.JInternalFrame {
         jButton8 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
+        setClosable(true);
+        setResizable(true);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Escoja la opción con su nombre:");
 
@@ -83,7 +86,7 @@ public class EscogerMesero extends javax.swing.JInternalFrame {
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton8.setText("Aceptar");
