@@ -6,6 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.clases.ImagenFondo;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import sun.awt.AppContext;
 
@@ -21,7 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         desktopPane.setBorder(new ImagenFondo());
-        //this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
+        this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
     }
 
     /**
@@ -94,11 +95,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void opMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opMeseroActionPerformed
         EscogerMesero visMesero = new EscogerMesero();
         visMesero.setVisible(true);
         desktopPane.add(visMesero);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = visMesero.getSize();
+        visMesero.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
@@ -108,8 +112,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
         VistaGerente visGerente = new VistaGerente();
         visGerente.setVisible(true);
-        
         desktopPane.add(visGerente);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = visGerente.getSize();
+        visGerente.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_opGerenteActionPerformed
 
     /**
