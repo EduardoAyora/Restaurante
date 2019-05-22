@@ -17,9 +17,16 @@ public class Mesero extends Persona{
     private List<Mesa> mesas;
     
     public Mesero(){
-        //mesas = controladorMesa.getLista();
     }
 
+    public void abrirMesa(Mesa mesa){
+        mesas.add(mesa);
+    }
+    
+    public void cerrarMesa(Mesa mesa){
+        mesas.remove(mesa);
+    }
+    
     public String getContraseña() {
         return contraseña;
     }

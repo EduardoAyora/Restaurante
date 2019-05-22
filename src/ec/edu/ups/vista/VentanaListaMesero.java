@@ -6,7 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.modelo.Mesero;
-//import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.controlador.ControladorMesero;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL
  */
 public class VentanaListaMesero extends javax.swing.JInternalFrame {
-    //ControladorMesero controladorMesero;
+    ControladorMesero controladorMesero;
     /**
      * Creates new form VentanaListaMesero
      */
@@ -23,7 +23,7 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    /*public void llenarDatos() {
+    public void llenarDatos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaMesero.getModel();
         Set<Mesero> lista = controladorMesero.getLista();
         for (Mesero mesero : lista) {
@@ -33,7 +33,7 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
             };
             modelo.addRow(datos);
         }
-    }*/
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
