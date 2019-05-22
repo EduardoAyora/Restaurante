@@ -9,6 +9,7 @@ import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.vista.mesero.EscogerMesero;
 import ec.edu.ups.modelo.ImagenFondo;
+import ec.edu.ups.vista.mesero.VistaMesero;
 import java.awt.Dimension;
 
 /**
@@ -19,6 +20,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
+    private VistaMesero vistaMesero;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -26,6 +28,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         desktopPane.setBorder(new ImagenFondo());
         this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
+        controladorMesa = new ControladorMesa();
+        controladorProducto = new ControladorProducto();
     }
 
     /**
@@ -100,7 +104,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void opMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opMeseroActionPerformed
-        EscogerMesero visMesero = new EscogerMesero();
+        VistaMesero visMesero = new VistaMesero(controladorMesa);
         visMesero.setVisible(true);
         desktopPane.add(visMesero);
         Dimension desktopSize = desktopPane.getSize();
