@@ -1,6 +1,6 @@
-package ec.edu.ups.controladores;
+package ec.edu.ups.controlador;
 
-import ec.edu.ups.clases.Mesero;
+import ec.edu.ups.modelo.Mesero;
 import java.util.HashSet;
 import java.util.Set;
 

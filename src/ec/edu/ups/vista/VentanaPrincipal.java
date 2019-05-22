@@ -5,7 +5,6 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.vista.mesero.EscogerMesero;
 import ec.edu.ups.modelo.ImagenFondo;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
@@ -98,7 +97,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void opMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opMeseroActionPerformed
-        EscogerMesero visMesero = new EscogerMesero();
+        VistaMesero visMesero = new VistaMesero();
         visMesero.setVisible(true);
         desktopPane.add(visMesero);
         Dimension desktopSize = desktopPane.getSize();
@@ -107,7 +106,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
-        
+
     }//GEN-LAST:event_opCajaActionPerformed
 
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
