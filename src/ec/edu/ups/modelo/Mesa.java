@@ -13,6 +13,22 @@ public class Mesa {
     
     private int numeroMesa;
     private int numeroPersonas;
+
+    public int getNumeroMesa() {
+        return numeroMesa;
+    }
+
+    public void setNumeroMesa(int numeroMesa) {
+        this.numeroMesa = numeroMesa;
+    }
+
+    public int getNumeroPersonas() {
+        return numeroPersonas;
+    }
+
+    public void setNumeroPersonas(int numeroPersonas) {
+        this.numeroPersonas = numeroPersonas;
+    }
     
     
     

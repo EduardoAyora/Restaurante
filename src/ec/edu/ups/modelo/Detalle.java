@@ -23,7 +23,6 @@ public class Detalle implements Comparable<Detalle>{
     public Detalle(double precio, int cantidad, Producto producto) {
         this.precio = precio;
         this.cantidad = cantidad;
-        this.subtotal = subtotal;
         this.producto = producto;
     }
 
@@ -98,7 +97,5 @@ public class Detalle implements Comparable<Detalle>{
     public int compareTo(Detalle o) {
         return this.codigo - o.getCodigo();
     }
-    
-    
     
 }
