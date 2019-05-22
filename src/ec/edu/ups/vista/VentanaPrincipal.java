@@ -5,13 +5,9 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.controlador.ControladorMesa;
-import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.vista.mesero.EscogerMesero;
 import ec.edu.ups.modelo.ImagenFondo;
-import ec.edu.ups.modelo.Mesa;
 import java.awt.Dimension;
-import java.util.List;
 import javax.swing.ImageIcon;
 import sun.awt.AppContext;
 
@@ -21,8 +17,6 @@ import sun.awt.AppContext;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private ControladorMesa controladorMesa;
-    private ControladorProducto controladorProducto;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -96,7 +90,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -113,7 +107,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_opCajaActionPerformed
 
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
