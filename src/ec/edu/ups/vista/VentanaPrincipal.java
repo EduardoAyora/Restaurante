@@ -113,7 +113,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
-        
+
     }//GEN-LAST:event_opCajaActionPerformed
 
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
