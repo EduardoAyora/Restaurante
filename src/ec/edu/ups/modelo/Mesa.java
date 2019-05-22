@@ -13,6 +13,8 @@ public class Mesa {
     
     private int numeroMesa;
     private int numeroPersonas;
+    private int capacidad;
+    private boolean mesaAbierta;
 
     public int getNumeroMesa() {
         return numeroMesa;
@@ -28,6 +30,22 @@ public class Mesa {
 
     public void setNumeroPersonas(int numeroPersonas) {
         this.numeroPersonas = numeroPersonas;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public boolean isMesaAbierta() {
+        return mesaAbierta;
+    }
+
+    public void setMesaAbierta(boolean mesaAbierta) {
+        this.mesaAbierta = mesaAbierta;
     }
     
     

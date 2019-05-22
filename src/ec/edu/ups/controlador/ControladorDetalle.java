@@ -7,15 +7,22 @@ package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.Detalle;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  *
  * @author Eduardo Ayora
  */
-public class ControladorDetalles {
+public class ControladorDetalle {
     
     private int contador;
     private SortedSet<Detalle> lista;
+
+    public ControladorDetalle() {
+        contador = 1;
+        lista = new TreeSet<>();
+    }
+    
     
     public void createFacturaDetalle(Detalle detalle){
         detalle.setCodigo(contador);

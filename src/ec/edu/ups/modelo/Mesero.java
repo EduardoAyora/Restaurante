@@ -15,6 +15,10 @@ public class Mesero extends Persona{
     
     private String contraseña;
     private List<Mesa> mesas;
+    
+    public Mesero(){
+        //mesas = controladorMesa.getLista();
+    }
 
     public String getContraseña() {
         return contraseña;

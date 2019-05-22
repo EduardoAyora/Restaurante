@@ -21,11 +21,18 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int codigo, String nombre, int precio, String marca, String detalle) {
-        this.codigoProducto = codigo;
+    public Producto(String nombre, int precio, String marca, String descripcion) {
         this.nombre = nombre;
         this.precio = precio;
-        this.descripcion = detalle;
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public int getCodigoProducto() {

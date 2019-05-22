@@ -5,9 +5,13 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.vista.mesero.EscogerMesero;
 import ec.edu.ups.modelo.ImagenFondo;
+import ec.edu.ups.modelo.Mesa;
 import java.awt.Dimension;
+import java.util.List;
 import javax.swing.ImageIcon;
 import sun.awt.AppContext;
 
@@ -17,6 +21,8 @@ import sun.awt.AppContext;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    private ControladorMesa controladorMesa;
+    private ControladorProducto controladorProducto;
     /**
      * Creates new form VentanaPrincipal
      */
