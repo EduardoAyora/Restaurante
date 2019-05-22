@@ -139,12 +139,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opCajaActionPerformed
 
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
-        VistaGerente visGerente = new VistaGerente();
-        visGerente.setVisible(true);
-        desktopPane.add(visGerente);
-        Dimension desktopSize = desktopPane.getSize();
-        Dimension FrameSize = visGerente.getSize();
-        visGerente.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+         Contrasenia cont= new Contrasenia();
+             cont.setVisible(true);
+             desktopPane.add(cont);
     }//GEN-LAST:event_opGerenteActionPerformed
 
     /**
