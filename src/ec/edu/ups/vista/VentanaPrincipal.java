@@ -6,7 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.vista.mesero.EscogerMesero;
-import ec.edu.ups.clases.ImagenFondo;
+import ec.edu.ups.modelo.ImagenFondo;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import sun.awt.AppContext;
