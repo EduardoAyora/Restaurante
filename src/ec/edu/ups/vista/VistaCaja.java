@@ -5,17 +5,25 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.modelo.ImagenFondoCaja;
+
 /**
  *
  * @author DELL
  */
 public class VistaCaja extends javax.swing.JInternalFrame {
-
+    VentanaCrearCliente crearCliente;
+    VentanaBuscarCliente buscarCliente;
+    VentanaEditarCliente editarCliente;
+    VentanaEliminarCliente eliminarCliente;
+    VentanaListaCliente listaCliente;
+    
     /**
      * Creates new form VistaCaja
      */
     public VistaCaja() {
         initComponents();
+        jDesktopPane1.setBorder(new ImagenFondoCaja());
     }
 
     /**
@@ -27,6 +35,7 @@ public class VistaCaja extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menMesero1 = new javax.swing.JMenu();
         opCrearCli = new javax.swing.JMenuItem();
@@ -41,7 +50,20 @@ public class VistaCaja extends javax.swing.JInternalFrame {
         opListFac = new javax.swing.JMenuItem();
 
         setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Gestión de Caja");
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 485, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 326, Short.MAX_VALUE)
+        );
 
         menMesero1.setText("Cliente");
 
@@ -54,6 +76,11 @@ public class VistaCaja extends javax.swing.JInternalFrame {
         menMesero1.add(opCrearCli);
 
         opReadCli.setText("Buscar");
+        opReadCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opReadCliActionPerformed(evt);
+            }
+        });
         menMesero1.add(opReadCli);
 
         opUpdateCli.setText("Editar");
@@ -65,9 +92,19 @@ public class VistaCaja extends javax.swing.JInternalFrame {
         menMesero1.add(opUpdateCli);
 
         opDeleteCli.setText("Eliminar");
+        opDeleteCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opDeleteCliActionPerformed(evt);
+            }
+        });
         menMesero1.add(opDeleteCli);
 
         opListCli.setText("Lista");
+        opListCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opListCliActionPerformed(evt);
+            }
+        });
         menMesero1.add(opListCli);
 
         jMenuBar1.add(menMesero1);
@@ -104,18 +141,20 @@ public class VistaCaja extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 251, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void opCrearCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearCliActionPerformed
-        // TODO add your handling code here:
+        crearCliente = new VentanaCrearCliente();
+        jDesktopPane1.add(crearCliente);
+        crearCliente.setVisible(true);
     }//GEN-LAST:event_opCrearCliActionPerformed
 
     private void opCrearFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearFacActionPerformed
@@ -123,15 +162,36 @@ public class VistaCaja extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_opCrearFacActionPerformed
 
     private void opUpdateCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateCliActionPerformed
-        // TODO add your handling code here:
+        editarCliente = new VentanaEditarCliente();
+        jDesktopPane1.add(editarCliente);
+        editarCliente.setVisible(true);
     }//GEN-LAST:event_opUpdateCliActionPerformed
 
     private void opAnularFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opAnularFacActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_opAnularFacActionPerformed
 
+    private void opReadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadCliActionPerformed
+        buscarCliente = new VentanaBuscarCliente();
+        jDesktopPane1.add(buscarCliente);
+        buscarCliente.setVisible(true);
+    }//GEN-LAST:event_opReadCliActionPerformed
+
+    private void opDeleteCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteCliActionPerformed
+        eliminarCliente = new VentanaEliminarCliente();
+        jDesktopPane1.add(eliminarCliente);
+        eliminarCliente.setVisible(true);
+    }//GEN-LAST:event_opDeleteCliActionPerformed
+
+    private void opListCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListCliActionPerformed
+        listaCliente = new VentanaListaCliente();
+        jDesktopPane1.add(listaCliente);
+        listaCliente.setVisible(true);
+    }//GEN-LAST:event_opListCliActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menMesero1;
     private javax.swing.JMenu menMesero2;

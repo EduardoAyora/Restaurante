@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.modelo.ImagenFondoGerente;
+
 /**
  *
  * @author DELL
@@ -16,6 +18,7 @@ public class VistaGerente extends javax.swing.JInternalFrame {
      */
     public VistaGerente() {
         initComponents();
+        jDesktopPane1.setBorder(new ImagenFondoGerente());
     }
 
     /**
@@ -27,6 +30,7 @@ public class VistaGerente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menMesero = new javax.swing.JMenu();
         opCrearMe = new javax.swing.JMenuItem();
@@ -55,8 +59,21 @@ public class VistaGerente extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setMaximizable(true);
+        setResizable(true);
+        setTitle("Gestión de Gerente");
         setAlignmentX(CENTER_ALIGNMENT);
         setAlignmentY(CENTER_ALIGNMENT);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 498, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 301, Short.MAX_VALUE)
+        );
 
         menMesero.setText("Mesero");
 
@@ -160,11 +177,11 @@ public class VistaGerente extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 251, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -188,6 +205,7 @@ public class VistaGerente extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menCategoria;
     private javax.swing.JMenu menMesa;

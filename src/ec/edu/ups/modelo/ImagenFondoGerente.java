@@ -17,14 +17,14 @@ import javax.swing.border.Border;
  *
  * @author DELL
  */
-public class ImagenFondo implements Border {
+public class ImagenFondoGerente implements Border {
 
-    private BufferedImage fondo;
+    private BufferedImage fondoGe;
 
-    public ImagenFondo() {
+    public ImagenFondoGerente() {
         try {
-            URL imagePath = new URL(getClass().getResource("/ec/edu/ups/imagenes/backrestaurant1.jpg").toString());
-            fondo = ImageIO.read(imagePath);
+            URL imagePath = new URL(getClass().getResource("/ec/edu/ups/imagenes/gerencia.jpg").toString());
+            fondoGe = ImageIO.read(imagePath);
         } catch (Exception ex) {
 
         }
@@ -32,8 +32,8 @@ public class ImagenFondo implements Border {
 
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        if (fondo != null) {
-            g.drawImage(fondo, 0, 0, width, height, null);
+        if (fondoGe != null) {
+            g.drawImage(fondoGe, 0, 0, width, height, null);
         }
     }
 

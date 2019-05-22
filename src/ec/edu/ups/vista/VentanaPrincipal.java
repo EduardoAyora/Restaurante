@@ -8,7 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.vista.mesero.EscogerMesero;
-import ec.edu.ups.modelo.ImagenFondo;
+import ec.edu.ups.modelo.ImagenFondoMain;
 import ec.edu.ups.vista.mesero.VistaMesero;
 import java.awt.Dimension;
 
@@ -21,12 +21,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
     private VistaMesero vistaMesero;
+
     /**
-     * Creates new form VentanaPrincipal MODIGICSACION DFEFJEJRF 
+     * Creates new form VentanaPrincipal MODIGICSACION DFEFJEJRF
      */
     public VentanaPrincipal() {
         initComponents();
-        desktopPane.setBorder(new ImagenFondo());
+        desktopPane.setBorder(new ImagenFondoMain());
         this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
         controladorMesa = new ControladorMesa();
         controladorProducto = new ControladorProducto();
@@ -51,6 +52,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Restaurante");
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
@@ -122,7 +124,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
-
+        VistaCaja visCaja = new VistaCaja();
+        visCaja.setVisible(true);
+        desktopPane.add(visCaja);
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension FrameSize = visCaja.getSize();
+        visCaja.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_opCajaActionPerformed
 
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
