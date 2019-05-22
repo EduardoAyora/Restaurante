@@ -22,7 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControladorProducto controladorProducto;
     private VistaMesero vistaMesero;
     /**
-     * Creates new form VentanaPrincipal MODIGICSACION DFEFJEJRF 
+     * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
