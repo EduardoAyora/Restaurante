@@ -38,6 +38,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         opGerente = new javax.swing.JMenuItem();
         opMesero = new javax.swing.JMenuItem();
         opCaja = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 600));
@@ -73,6 +75,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menIniciar.add(opCaja);
 
         menuBar.add(menIniciar);
+
+        jMenu1.setText("Ajustes");
+
+        jMenuItem1.setText("Ayuda");
+        jMenu1.add(jMenuItem1);
+
+        menuBar.add(jMenu1);
 
         setJMenuBar(menuBar);
 
@@ -153,6 +162,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menIniciar;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem opCaja;
