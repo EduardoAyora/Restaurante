@@ -126,7 +126,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = visMesero.getSize();
         visMesero.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        
+
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
@@ -139,9 +139,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opCajaActionPerformed
 
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
-         Contrasenia cont= new Contrasenia();
-             cont.setVisible(true);
-             desktopPane.add(cont);
+        Contrasenia cont = new Contrasenia();
+        cont.setVisible(true);
+        desktopPane.add(cont);
     }//GEN-LAST:event_opGerenteActionPerformed
 
     /**
