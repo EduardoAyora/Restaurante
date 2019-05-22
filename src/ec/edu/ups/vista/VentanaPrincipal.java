@@ -7,8 +7,6 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.modelo.ImagenFondo;
 import java.awt.Dimension;
-import javax.swing.ImageIcon;
-import sun.awt.AppContext;
 
 /**
  *
