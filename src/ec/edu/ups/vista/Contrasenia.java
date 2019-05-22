@@ -75,29 +75,23 @@ public class Contrasenia extends javax.swing.JInternalFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-        char clave[]= JpassClave.getPassword();
-        String clavedef=new String(clave);
-        
-        
+        char clave[] = JpassClave.getPassword();
+        String clavedef = new String(clave);
 
-        if(txtUsuario.getText().equals("wilmer")&& clavedef.equals("1998")){
+        if (txtUsuario.getText().equals("wilmer") && clavedef.equals("1998")) {
 
             this.dispose();
-            
-
-            JOptionPane.showMessageDialog(null, "bienvenido","mensaje si",JOptionPane.INFORMATION_MESSAGE);
-            
+            JOptionPane.showMessageDialog(null, "bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
             VistaGerente visGerente = new VistaGerente();
             VentanaPrincipal.desktopPane.add(visGerente);
             visGerente.toFront();
             visGerente.setVisible(true);
             Dimension desktopSize = desktopPane.getSize();
             Dimension FrameSize = visGerente.getSize();
-        visGerente.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        
+            visGerente.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
 
-        }else{
-            JOptionPane.showMessageDialog(null, "Error de clave","mensaje no",JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnIngresarActionPerformed
