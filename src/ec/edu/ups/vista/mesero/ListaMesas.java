@@ -6,6 +6,10 @@
 package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.modelo.Mesa;
+import java.util.List;
+import java.util.Set;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,11 +25,24 @@ public class ListaMesas extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public ListaMesas(ControladorMesa controladorMesa){
+    public ControladorMesa getControladorMesa() {
+        return controladorMesa;
+    }
+
+    public void setControladorMesa(ControladorMesa controladorMesa) {
         this.controladorMesa = controladorMesa;
+        listarMesas();
     }
     
-    
+    public void listarMesas(){
+        DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
+        List<Mesa> lista = controladorMesa.getLista();
+        for (Mesa mesa : lista) {
+            Object[] datos = {mesa.getNumeroMesa()};
+            modelo.addRow(datos);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,11 +53,11 @@ public class ListaMesas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMesas = new javax.swing.JTable();
 
         setClosable(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -48,7 +65,7 @@ public class ListaMesas extends javax.swing.JInternalFrame {
                 "Mesas Disponibles"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblMesas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,6 +90,6 @@ public class ListaMesas extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblMesas;
     // End of variables declaration//GEN-END:variables
 }

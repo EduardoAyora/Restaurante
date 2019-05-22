@@ -5,11 +5,10 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.vista.mesero.VistaMesero;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorProducto;
-import ec.edu.ups.vista.mesero.EscogerMesero;
 import ec.edu.ups.modelo.ImagenFondoMain;
-import ec.edu.ups.vista.mesero.VistaMesero;
 import java.awt.Dimension;
 
 /**
@@ -54,7 +53,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Restaurante");
         setMinimumSize(new java.awt.Dimension(1000, 600));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
+
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+        );
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 579, Short.MAX_VALUE)
+        );
 
         menIniciar.setMnemonic('f');
         menIniciar.setText("Iniciar");
@@ -100,15 +109,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1579, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(desktopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(desktopPane)
         );
 
         pack();
@@ -121,6 +126,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = visMesero.getSize();
         visMesero.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
@@ -177,7 +183,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktopPane;
+    public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menIniciar;

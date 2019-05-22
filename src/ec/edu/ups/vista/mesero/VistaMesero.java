@@ -6,6 +6,10 @@
 package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.vista.VentanaPrincipal;
+import java.awt.Desktop;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +19,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
 
     private ControladorMesa controladorMesa;
     private ListaMesas listaMesas;
+
     /**
      * Creates new form EscogerMesa
      */
@@ -102,9 +107,16 @@ public class VistaMesero extends javax.swing.JInternalFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         if (listaMesas == null || listaMesas.isVisible() == false) {
-            listaMesas = new ListaMesas(controladorMesa);
+            listaMesas = new ListaMesas();
+            VentanaPrincipal.desktopPane.add(listaMesas);
+            listaMesas.setControladorMesa(controladorMesa);
+            listaMesas.toFront();
             listaMesas.setVisible(true);
+            listaMesas.setLocation(40, 60);
         }
+        
+        
+        
     }//GEN-LAST:event_btnNuevoActionPerformed
 
 
