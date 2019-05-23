@@ -6,6 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.modelo.ImagenFondoGerente;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -60,6 +61,11 @@ public class VistaGerente extends javax.swing.JFrame {
         opListCa = new javax.swing.JMenuItem();
 
         setTitle("Gestión de Gerente");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -199,6 +205,12 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opReadMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMesaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_opReadMesaActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

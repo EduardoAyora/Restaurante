@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.vista;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
@@ -38,6 +39,18 @@ public class Contrasenia extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
+
+        JpassClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JpassClaveKeyPressed(evt);
+            }
+        });
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +122,32 @@ public class Contrasenia extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void JpassClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JpassClaveKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            char clave[] = JpassClave.getPassword();
+            String clavedef = new String(clave);
+
+            if (txtUsuario.getText().equals("wilmer") && clavedef.equals("1998")) {
+
+                this.dispose();
+                JOptionPane.showMessageDialog(null, "Bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
+                vistaGerente = new VistaGerente();
+                vistaGerente.toFront();
+                vistaGerente.setVisible(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
+    }//GEN-LAST:event_JpassClaveKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

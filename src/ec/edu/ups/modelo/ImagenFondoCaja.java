@@ -23,7 +23,7 @@ public class ImagenFondoCaja implements Border {
 
     public ImagenFondoCaja() {
         try {
-            URL imagePath = new URL(getClass().getResource("/ec/edu/ups/imagenes/cajares.jpg").toString());
+            URL imagePath = new URL(getClass().getResource("/ec/edu/ups/imagenes/cajaR.jpg").toString());
             fondoCaja = ImageIO.read(imagePath);
         } catch (Exception ex) {
 

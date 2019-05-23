@@ -6,6 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.modelo.ImagenFondoCaja;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -52,6 +53,11 @@ public class VistaCaja extends javax.swing.JFrame {
         opListFac = new javax.swing.JMenuItem();
 
         setTitle("Gestión de Caja");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -187,6 +193,12 @@ public class VistaCaja extends javax.swing.JFrame {
         jDesktopPane1.add(listaCliente);
         listaCliente.setVisible(true);
     }//GEN-LAST:event_opListCliActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

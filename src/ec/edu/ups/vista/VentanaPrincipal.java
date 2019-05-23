@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.vista.mesero.VistaMesero;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorProducto;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 /**
@@ -44,14 +45,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bGerente = new javax.swing.JButton();
         bCaja = new javax.swing.JButton();
         bMesero = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lGerente = new javax.swing.JLabel();
+        lCaja = new javax.swing.JLabel();
+        lMesero = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        opPass = new javax.swing.JMenuItem();
+        opAyuda = new javax.swing.JMenuItem();
+        opSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Restaurante");
@@ -78,31 +79,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Gerente");
+        lGerente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lGerente.setText("Gerente");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setText("Caja");
+        lCaja.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lCaja.setText("Caja");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setText("Mesero");
+        lMesero.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lMesero.setText("Mesero");
 
         jMenu1.setText("Ajustes");
 
-        jMenuItem2.setText("Administrar contraseñas");
-        jMenu1.add(jMenuItem2);
+        opPass.setText("Administrar contraseñas");
+        jMenu1.add(opPass);
 
-        jMenuItem1.setText("Ayuda");
-        jMenu1.add(jMenuItem1);
+        opAyuda.setText("Ayuda");
+        jMenu1.add(opAyuda);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
-        jMenuItem3.setText("Salir");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        opSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        opSalir.setText("Salir");
+        opSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                opSalirActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(opSalir);
 
         menuBar.add(jMenu1);
 
@@ -122,11 +123,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(8, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel1)
+                .addComponent(lGerente)
                 .addGap(88, 88, 88)
-                .addComponent(jLabel2)
+                .addComponent(lCaja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(lMesero)
                 .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
@@ -139,9 +140,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(bMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(lGerente)
+                    .addComponent(lCaja)
+                    .addComponent(lMesero))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -172,9 +173,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bMeseroActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void opSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opSalirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_opSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,14 +216,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bCaja;
     private javax.swing.JButton bGerente;
     private javax.swing.JButton bMesero;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JLabel lCaja;
+    private javax.swing.JLabel lGerente;
+    private javax.swing.JLabel lMesero;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem opAyuda;
+    private javax.swing.JMenuItem opPass;
+    private javax.swing.JMenuItem opSalir;
     // End of variables declaration//GEN-END:variables
 
 }
