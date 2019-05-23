@@ -79,6 +79,12 @@ public class VistaGerente extends javax.swing.JFrame {
             }
         });
 
+        jDesktopPane1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDesktopPane1KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
@@ -396,6 +402,12 @@ public class VistaGerente extends javax.swing.JFrame {
             vlp.toFront();
         }
     }//GEN-LAST:event_opListPActionPerformed
+
+    private void jDesktopPane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDesktopPane1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jDesktopPane1KeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

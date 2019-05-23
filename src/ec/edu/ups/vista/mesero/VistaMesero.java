@@ -8,6 +8,7 @@ package ec.edu.ups.vista.mesero;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.vista.VentanaPrincipal;
 import java.awt.Desktop;
+import java.awt.event.KeyEvent;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -42,6 +43,12 @@ public class VistaMesero extends javax.swing.JFrame {
         btnNuevo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnNuevo.setText("Mesa nueva");
@@ -112,6 +119,12 @@ public class VistaMesero extends javax.swing.JFrame {
             listaMesas.setVisible(true);
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

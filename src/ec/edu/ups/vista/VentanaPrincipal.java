@@ -154,6 +154,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             contrasenia = new Contrasenia();
             contrasenia.toFront();
             contrasenia.setVisible(true);
+        } else {
+            contrasenia.toFront();
         }
     }//GEN-LAST:event_bGerenteActionPerformed
 
@@ -162,6 +164,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             vistaCaja = new VistaCaja();
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
+        } else {
+            vistaCaja.toFront();
         }
     }//GEN-LAST:event_bCajaActionPerformed
 
@@ -170,6 +174,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             vistaMesero = new VistaMesero(controladorMesa);
             vistaMesero.toFront();
             vistaMesero.setVisible(true);
+        } else {
+            vistaMesero.toFront();
         }
     }//GEN-LAST:event_bMeseroActionPerformed
 

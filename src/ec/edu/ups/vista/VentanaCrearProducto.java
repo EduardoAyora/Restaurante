@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author DELL
@@ -16,7 +18,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
      */
     public VentanaCrearProducto() {
         initComponents();
-        
+
     }
 
     /**
@@ -43,6 +45,11 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Crear producto");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         tCodigo.setEditable(false);
 
@@ -139,8 +146,14 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDescripcionActionPerformed
 
     private void tNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNombreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_tNombreActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
