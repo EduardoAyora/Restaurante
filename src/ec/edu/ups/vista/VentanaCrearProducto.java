@@ -16,6 +16,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
      */
     public VentanaCrearProducto() {
         initComponents();
+        
     }
 
     /**

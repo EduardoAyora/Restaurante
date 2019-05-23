@@ -6,6 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.modelo.ImagenFondoGerente;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 
 /**
@@ -14,6 +15,17 @@ import java.awt.event.KeyEvent;
  */
 public class VistaGerente extends javax.swing.JFrame {
 
+    private VentanaCrearMesero vcm;
+    private VentanaEditarMesero vem;
+    private VentanaBuscarMesero vbm;
+    private VentanaEliminarMesero vem1;
+    private VentanaListaMesero vlm;
+    private VentanaCrearProducto vcp;
+    private VentanaBuscarProducto vbp;
+    private VentanaEditarProducto vep;
+    private VentanaEliminarProducto vep1;
+    private VentanaListaProducto vlp;
+
     /**
      * Creates new form VistaGerente
      */
@@ -21,7 +33,7 @@ public class VistaGerente extends javax.swing.JFrame {
         initComponents();
         jDesktopPane1.setBorder(new ImagenFondoGerente());
         this.setExtendedState(VistaGerente.MAXIMIZED_BOTH);
-        
+
     }
 
     /**
@@ -89,15 +101,35 @@ public class VistaGerente extends javax.swing.JFrame {
         menMesero.add(opCrearMe);
 
         opReadMe.setText("Buscar");
+        opReadMe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opReadMeActionPerformed(evt);
+            }
+        });
         menMesero.add(opReadMe);
 
         opUpdateMe.setText("Editar");
+        opUpdateMe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opUpdateMeActionPerformed(evt);
+            }
+        });
         menMesero.add(opUpdateMe);
 
         opDeleteMe.setText("Eliminar");
+        opDeleteMe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opDeleteMeActionPerformed(evt);
+            }
+        });
         menMesero.add(opDeleteMe);
 
         opListMe.setText("Lista");
+        opListMe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opListMeActionPerformed(evt);
+            }
+        });
         menMesero.add(opListMe);
 
         jMenuBar1.add(menMesero);
@@ -129,6 +161,11 @@ public class VistaGerente extends javax.swing.JFrame {
         menProduct.setText("Producto");
 
         opCrearP.setText("Nuevo");
+        opCrearP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opCrearPActionPerformed(evt);
+            }
+        });
         menProduct.add(opCrearP);
 
         opReadP.setText("Buscar");
@@ -140,12 +177,27 @@ public class VistaGerente extends javax.swing.JFrame {
         menProduct.add(opReadP);
 
         opUpdateP.setText("Editar");
+        opUpdateP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opUpdatePActionPerformed(evt);
+            }
+        });
         menProduct.add(opUpdateP);
 
         opDeleteP.setText("Eliminar");
+        opDeleteP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opDeletePActionPerformed(evt);
+            }
+        });
         menProduct.add(opDeleteP);
 
         opListP.setText("Lista");
+        opListP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opListPActionPerformed(evt);
+            }
+        });
         menProduct.add(opListP);
 
         jMenuBar1.add(menProduct);
@@ -191,26 +243,159 @@ public class VistaGerente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void opCrearMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearMeActionPerformed
-        // TODO add your handling code here:
+        if (vcm == null || vcm.isVisible() == false) {
+            vcm = new VentanaCrearMesero();
+            vcm.toFront();
+            vcm.setVisible(true);
+            jDesktopPane1.add(vcm);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vcm.getSize();
+            vcm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vcm.toFront();
+        }
     }//GEN-LAST:event_opCrearMeActionPerformed
 
     private void opReadPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadPActionPerformed
-        // TODO add your handling code here:
+        if (vbp == null || vbp.isVisible() == false) {
+            vbp = new VentanaBuscarProducto();
+            vbp.toFront();
+            vbp.setVisible(true);
+            jDesktopPane1.add(vbp);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vbp.getSize();
+            vbp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vbp.toFront();
+        }
     }//GEN-LAST:event_opReadPActionPerformed
 
     private void opReadCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadCaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_opReadCaActionPerformed
 
     private void opReadMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMesaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_opReadMesaActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void opReadMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMeActionPerformed
+        if (vbm == null || vbm.isVisible() == false) {
+            vbm = new VentanaBuscarMesero();
+            vbm.toFront();
+            vbm.setVisible(true);
+            jDesktopPane1.add(vbm);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vbm.getSize();
+            vbm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vbm.toFront();
+        }
+    }//GEN-LAST:event_opReadMeActionPerformed
+
+    private void opUpdateMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateMeActionPerformed
+        if (vem == null || vem.isVisible() == false) {
+            vem = new VentanaEditarMesero();
+            vem.toFront();
+            vem.setVisible(true);
+            jDesktopPane1.add(vem);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vem.getSize();
+            vem.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vem.toFront();
+        }
+    }//GEN-LAST:event_opUpdateMeActionPerformed
+
+    private void opDeleteMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteMeActionPerformed
+        if (vem1 == null || vem1.isVisible() == false) {
+            vem1 = new VentanaEliminarMesero();
+            vem1.toFront();
+            vem1.setVisible(true);
+            jDesktopPane1.add(vem1);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vem1.getSize();
+            vem1.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vem1.toFront();
+        }
+    }//GEN-LAST:event_opDeleteMeActionPerformed
+
+    private void opListMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListMeActionPerformed
+        if (vlm == null || vlm.isVisible() == false) {
+            vlm = new VentanaListaMesero();
+            vlm.toFront();
+            vlm.setVisible(true);
+            jDesktopPane1.add(vlm);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vlm.getSize();
+            vlm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vlm.toFront();
+        }
+    }//GEN-LAST:event_opListMeActionPerformed
+
+    private void opCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearPActionPerformed
+        if (vcp == null || vcp.isVisible() == false) {
+            vcp = new VentanaCrearProducto();
+            vcp.toFront();
+            vcp.setVisible(true);
+            jDesktopPane1.add(vcp);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vcp.getSize();
+            vcp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vcp.toFront();
+        }
+
+    }//GEN-LAST:event_opCrearPActionPerformed
+
+    private void opUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdatePActionPerformed
+        if (vep == null || vep.isVisible() == false) {
+            vep = new VentanaEditarProducto();
+            vep.toFront();
+            vep.setVisible(true);
+            jDesktopPane1.add(vep);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vep.getSize();
+            vep.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vep.toFront();
+        }
+    }//GEN-LAST:event_opUpdatePActionPerformed
+
+    private void opDeletePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeletePActionPerformed
+        if (vep1 == null || vep1.isVisible() == false) {
+            vep1 = new VentanaEliminarProducto();
+            vep1.toFront();
+            vep1.setVisible(true);
+            jDesktopPane1.add(vep1);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vep1.getSize();
+            vep1.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vep1.toFront();
+        }
+    }//GEN-LAST:event_opDeletePActionPerformed
+
+    private void opListPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListPActionPerformed
+        if (vlp == null || vlp.isVisible() == false) {
+            vlp = new VentanaListaProducto();
+            vlp.toFront();
+            vlp.setVisible(true);
+            jDesktopPane1.add(vlp);
+            Dimension desktopSize = jDesktopPane1.getSize();
+            Dimension frameSize = vlp.getSize();
+            vlp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        } else {
+            vlp.toFront();
+        }
+    }//GEN-LAST:event_opListPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
