@@ -8,8 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.vista.mesero.VistaMesero;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorProducto;
-import ec.edu.ups.modelo.ImagenFondoMain;
-import java.awt.Dimension;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -49,32 +48,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        menIniciar = new javax.swing.JMenu();
-        opGerente = new javax.swing.JMenuItem();
-        opMesero = new javax.swing.JMenuItem();
-        opCaja = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Restaurante");
-        setMinimumSize(new java.awt.Dimension(1000, 600));
+        setResizable(false);
 
-        bGerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/gerenteR.png"))); // NOI18N
+        bGerente.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\ProyectosProgra\\Restaurant\\src\\ec\\edu\\ups\\imagenes\\gerenteR.png")); // NOI18N
         bGerente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bGerenteActionPerformed(evt);
             }
         });
 
-        bCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/cajaR.png"))); // NOI18N
+        bCaja.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\ProyectosProgra\\Restaurant\\src\\ec\\edu\\ups\\imagenes\\cajaR.png")); // NOI18N
         bCaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCajaActionPerformed(evt);
             }
         });
 
-        bMesero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/meseroR.png"))); // NOI18N
+        bMesero.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\ProyectosProgra\\Restaurant\\src\\ec\\edu\\ups\\imagenes\\meseroR.png")); // NOI18N
         bMesero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bMeseroActionPerformed(evt);
@@ -90,41 +87,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("Mesero");
 
-        menIniciar.setMnemonic('f');
-        menIniciar.setText("Iniciar");
-
-        opGerente.setMnemonic('o');
-        opGerente.setText("Gerente");
-        opGerente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opGerenteActionPerformed(evt);
-            }
-        });
-        menIniciar.add(opGerente);
-
-        opMesero.setMnemonic('s');
-        opMesero.setText("Mesero");
-        opMesero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opMeseroActionPerformed(evt);
-            }
-        });
-        menIniciar.add(opMesero);
-
-        opCaja.setText("Caja");
-        opCaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opCajaActionPerformed(evt);
-            }
-        });
-        menIniciar.add(opCaja);
-
-        menuBar.add(menIniciar);
-
         jMenu1.setText("Ajustes");
+
+        jMenuItem2.setText("Administrar contraseñas");
+        jMenu1.add(jMenuItem2);
 
         jMenuItem1.setText("Ayuda");
         jMenu1.add(jMenuItem1);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        jMenuItem3.setText("Salir");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
 
         menuBar.add(jMenu1);
 
@@ -170,22 +148,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void opMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opMeseroActionPerformed
-
-
-    }//GEN-LAST:event_opMeseroActionPerformed
-
-    private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
-
-
-    }//GEN-LAST:event_opCajaActionPerformed
-
-    private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
-        Contrasenia cont = new Contrasenia();
-        cont.setVisible(true);
-
-    }//GEN-LAST:event_opGerenteActionPerformed
-
     private void bGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGerenteActionPerformed
         if (contrasenia == null || contrasenia.isVisible() == false) {
             contrasenia = new Contrasenia();
@@ -209,6 +171,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             vistaMesero.setVisible(true);
         }
     }//GEN-LAST:event_bMeseroActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,11 +220,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenu menIniciar;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem opCaja;
-    private javax.swing.JMenuItem opGerente;
-    private javax.swing.JMenuItem opMesero;
     // End of variables declaration//GEN-END:variables
 
 }

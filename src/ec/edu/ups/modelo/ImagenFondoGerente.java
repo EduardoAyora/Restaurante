@@ -23,7 +23,7 @@ public class ImagenFondoGerente implements Border {
 
     public ImagenFondoGerente() {
         try {
-            URL imagePath = new URL(getClass().getResource("/ec/edu/ups/imagenes/gerencia.jpg").toString());
+            URL imagePath = new URL(getClass().getResource("/ec/edu/ups/imagenes/backrestaurant2.jpg").toString());
             fondoGe = ImageIO.read(imagePath);
         } catch (Exception ex) {
 
