@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Eduardo Ayora
  */
-public class VistaMesero extends javax.swing.JInternalFrame {
+public class VistaMesero extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
     private ListaMesas listaMesas;
@@ -25,6 +25,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
      */
     public VistaMesero(ControladorMesa controladorMesa) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.controladorMesa = controladorMesa;
     }
 
@@ -41,8 +42,6 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         btnNuevo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-
-        setClosable(true);
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnNuevo.setText("Mesa nueva");
@@ -108,15 +107,10 @@ public class VistaMesero extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (listaMesas == null || listaMesas.isVisible() == false) {
             listaMesas = new ListaMesas();
-            VentanaPrincipal.desktopPane.add(listaMesas);
             listaMesas.setControladorMesa(controladorMesa);
             listaMesas.toFront();
             listaMesas.setVisible(true);
-            listaMesas.setLocation(40, 60);
         }
-        
-        
-        
     }//GEN-LAST:event_btnNuevoActionPerformed
 
 

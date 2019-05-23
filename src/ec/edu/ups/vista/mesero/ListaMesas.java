@@ -15,26 +15,28 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Karen
  */
-public class ListaMesas extends javax.swing.JInternalFrame {
-
+public class ListaMesas extends javax.swing.JFrame {
+    
     private ControladorMesa controladorMesa;
+
     /**
      * Creates new form ListaMesas
      */
     public ListaMesas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
-
+    
     public ControladorMesa getControladorMesa() {
         return controladorMesa;
     }
-
+    
     public void setControladorMesa(ControladorMesa controladorMesa) {
         this.controladorMesa = controladorMesa;
         listarMesas();
     }
     
-    public void listarMesas(){
+    public void listarMesas() {
         DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
         List<Mesa> lista = controladorMesa.getLista();
         for (Mesa mesa : lista) {
@@ -54,8 +56,6 @@ public class ListaMesas extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMesas = new javax.swing.JTable();
-
-        setClosable(true);
 
         tblMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

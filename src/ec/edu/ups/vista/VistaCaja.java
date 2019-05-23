@@ -11,7 +11,7 @@ import ec.edu.ups.modelo.ImagenFondoCaja;
  *
  * @author DELL
  */
-public class VistaCaja extends javax.swing.JInternalFrame {
+public class VistaCaja extends javax.swing.JFrame {
     VentanaCrearCliente crearCliente;
     VentanaBuscarCliente buscarCliente;
     VentanaEditarCliente editarCliente;
@@ -24,6 +24,8 @@ public class VistaCaja extends javax.swing.JInternalFrame {
     public VistaCaja() {
         initComponents();
         jDesktopPane1.setBorder(new ImagenFondoCaja());
+        this.setExtendedState(VistaCaja.MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -49,9 +51,6 @@ public class VistaCaja extends javax.swing.JInternalFrame {
         opAnularFac = new javax.swing.JMenuItem();
         opListFac = new javax.swing.JMenuItem();
 
-        setClosable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Gestión de Caja");
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);

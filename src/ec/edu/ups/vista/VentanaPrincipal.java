@@ -20,14 +20,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
     private VistaMesero vistaMesero;
+    private Contrasenia contrasenia;
+    private VistaCaja vistaCaja;
 
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
-        desktopPane.setBorder(new ImagenFondoMain());
-        this.setExtendedState(VentanaPrincipal.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
         controladorMesa = new ControladorMesa();
         controladorProducto = new ControladorProducto();
     }
@@ -41,7 +42,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktopPane = new javax.swing.JDesktopPane();
+        bGerente = new javax.swing.JButton();
+        bCaja = new javax.swing.JButton();
+        bMesero = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menIniciar = new javax.swing.JMenu();
         opGerente = new javax.swing.JMenuItem();
@@ -54,16 +60,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("Restaurante");
         setMinimumSize(new java.awt.Dimension(1000, 600));
 
-        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
-        desktopPane.setLayout(desktopPaneLayout);
-        desktopPaneLayout.setHorizontalGroup(
-            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
-        );
-        desktopPaneLayout.setVerticalGroup(
-            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 579, Short.MAX_VALUE)
-        );
+        bGerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/gerenteR.png"))); // NOI18N
+        bGerente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGerenteActionPerformed(evt);
+            }
+        });
+
+        bCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/cajaR.png"))); // NOI18N
+        bCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCajaActionPerformed(evt);
+            }
+        });
+
+        bMesero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/meseroR.png"))); // NOI18N
+        bMesero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMeseroActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setText("Gerente");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setText("Caja");
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setText("Mesero");
 
         menIniciar.setMnemonic('f');
         menIniciar.setText("Iniciar");
@@ -109,40 +134,81 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addGap(88, 88, 88)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void opMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opMeseroActionPerformed
-        VistaMesero visMesero = new VistaMesero(controladorMesa);
-        visMesero.setVisible(true);
-        desktopPane.add(visMesero);
-        Dimension desktopSize = desktopPane.getSize();
-        Dimension FrameSize = visMesero.getSize();
-        visMesero.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
 
     }//GEN-LAST:event_opMeseroActionPerformed
 
     private void opCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCajaActionPerformed
-        VistaCaja visCaja = new VistaCaja();
-        visCaja.setVisible(true);
-        desktopPane.add(visCaja);
-        Dimension desktopSize = desktopPane.getSize();
-        Dimension FrameSize = visCaja.getSize();
-        visCaja.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+
+
     }//GEN-LAST:event_opCajaActionPerformed
 
     private void opGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opGerenteActionPerformed
         Contrasenia cont = new Contrasenia();
         cont.setVisible(true);
-        desktopPane.add(cont);
+
     }//GEN-LAST:event_opGerenteActionPerformed
+
+    private void bGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGerenteActionPerformed
+        if (contrasenia == null || contrasenia.isVisible() == false) {
+            contrasenia = new Contrasenia();
+            contrasenia.toFront();
+            contrasenia.setVisible(true);
+        }
+    }//GEN-LAST:event_bGerenteActionPerformed
+
+    private void bCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCajaActionPerformed
+        if (vistaCaja == null || vistaCaja.isVisible() == false) {
+            vistaCaja = new VistaCaja();
+            vistaCaja.toFront();
+            vistaCaja.setVisible(true);
+        }
+    }//GEN-LAST:event_bCajaActionPerformed
+
+    private void bMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMeseroActionPerformed
+        if (vistaMesero == null || vistaMesero.isVisible() == false) {
+            vistaMesero = new VistaMesero(controladorMesa);
+            vistaMesero.toFront();
+            vistaMesero.setVisible(true);
+        }
+    }//GEN-LAST:event_bMeseroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,7 +246,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JButton bCaja;
+    private javax.swing.JButton bGerente;
+    private javax.swing.JButton bMesero;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menIniciar;

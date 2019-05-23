@@ -18,10 +18,10 @@ public class ControladorMesero {
         cod = 0;
     }
 
-    public void create(Mesero objeto) {
+    public void create(Mesero mesero) {
         cod++;
-        objeto.setCodigo(cod);
-        listaMesero.add(objeto);
+        mesero.setCodigo(cod);
+        listaMesero.add(mesero);
     }
 
     public Mesero read(int codigo) {
@@ -38,10 +38,10 @@ public class ControladorMesero {
      *
      * @param objeto objeto del mesero
      */
-    public void update(Mesero objeto) {
-        if (listaMesero.contains(objeto)) {
-            listaMesero.remove(objeto);
-            listaMesero.add(objeto);
+    public void update(Mesero mesero) {
+        if (listaMesero.contains(mesero)) {
+            listaMesero.remove(mesero);
+            listaMesero.add(mesero);
         }
     }
 

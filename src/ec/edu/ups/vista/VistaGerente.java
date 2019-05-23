@@ -11,7 +11,7 @@ import ec.edu.ups.modelo.ImagenFondoGerente;
  *
  * @author DELL
  */
-public class VistaGerente extends javax.swing.JInternalFrame {
+public class VistaGerente extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaGerente
@@ -19,6 +19,8 @@ public class VistaGerente extends javax.swing.JInternalFrame {
     public VistaGerente() {
         initComponents();
         jDesktopPane1.setBorder(new ImagenFondoGerente());
+        this.setExtendedState(VistaGerente.MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -57,12 +59,7 @@ public class VistaGerente extends javax.swing.JInternalFrame {
         opDeleteCa = new javax.swing.JMenuItem();
         opListCa = new javax.swing.JMenuItem();
 
-        setClosable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Gestión de Gerente");
-        setAlignmentX(CENTER_ALIGNMENT);
-        setAlignmentY(CENTER_ALIGNMENT);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
