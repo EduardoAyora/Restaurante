@@ -16,6 +16,10 @@ public class Mesa {
     private int capacidad;
     private boolean mesaAbierta;
 
+    public Mesa() {
+        mesaAbierta = true;
+    }
+    
     public int getNumeroMesa() {
         return numeroMesa;
     }
@@ -47,7 +51,5 @@ public class Mesa {
     public void setMesaAbierta(boolean mesaAbierta) {
         this.mesaAbierta = mesaAbierta;
     }
-    
-    
     
 }

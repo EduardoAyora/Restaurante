@@ -7,6 +7,7 @@ package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,28 +35,33 @@ public class ListaMesas extends javax.swing.JFrame {
     public void setMesas(ControladorMesa controladorMesa, List<Mesa> mesas) {
         this.controladorMesa = controladorMesa;
         this.mesas = mesas;
-        //--------------------------------------------------------------------------------------------
-        Mesa mesa = new Mesa();
-        controladorMesa.create(mesa);
-        controladorMesa.create(mesa);
+        System.out.println(controladorMesa.read(1).isMesaAbierta() + "    " + controladorMesa.read(2).isMesaAbierta());
         agregarBotones();
-        //---------------------------------------------------------------------------------------------
     }
     
     public void agregarBotones(){
+        Font fuente = new Font("arial", Font.PLAIN, 50);
         for(int i = 1; i < controladorMesa.getContador(); i++){
-            JButton btn = new JButton("Mesa " + Integer.toString(controladorMesa.getLista().get(i - 1).getNumeroMesa()));
+            if(controladorMesa.getLista().get(i - 1).isMesaAbierta()){
+                JButton btn = new JButton(Integer.toString(controladorMesa.getLista().get(i - 1).getNumeroMesa()));
+                btn.setFont(fuente);
             btn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("boton");
+                    String texto = btn.getText();
+                    texto = texto.substring(texto.length() - 1, texto.length());
+                    int numero = Integer.parseInt(texto);
+                    Mesa mesa = controladorMesa.read(numero);
+                    mesa.setMesaAbierta(false);
+                    mesas.add(mesa);
+                    dispose();
                 }
             });
             panel.add(btn);
             botones.add(btn);
-            panel.updateUI();
+            }
         }
-        
+        panel.updateUI();
     }
     
     /**
@@ -70,9 +76,9 @@ public class ListaMesas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         panel = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        panel.setLayout(new java.awt.GridLayout(8, 1));
+        panel.setLayout(new java.awt.GridLayout(2, 1));
         jScrollPane1.setViewportView(panel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -81,14 +87,14 @@ public class ListaMesas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

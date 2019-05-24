@@ -10,6 +10,7 @@ import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.vista.VentanaPrincipal;
 import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -31,6 +32,26 @@ public class VistaMesero extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.controladorMesa = controladorMesa;
+        mesas = new ArrayList<>();
+        //Para pruebas
+        //--------------------------------------------------------------------------------------------
+        Mesa mesa = new Mesa();
+        controladorMesa.create(mesa);
+        Mesa mesa2 = new Mesa();
+        controladorMesa.create(mesa2);
+        Mesa mesa3 = new Mesa();
+        controladorMesa.create(mesa3);
+        Mesa mesa4 = new Mesa();
+        controladorMesa.create(mesa4);
+        Mesa mesa5 = new Mesa();
+        controladorMesa.create(mesa5);
+        Mesa mesa6 = new Mesa();
+        controladorMesa.create(mesa6);
+        Mesa mesa7 = new Mesa();
+        controladorMesa.create(mesa7);
+        Mesa mesa8 = new Mesa();
+        controladorMesa.create(mesa8);
+        //---------------------------------------------------------------------------------------------
     }
 
     /**
