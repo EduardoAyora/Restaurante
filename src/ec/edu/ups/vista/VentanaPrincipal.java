@@ -7,8 +7,11 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.vista.mesero.VistaMesero;
 import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Mesa;
+import ec.edu.ups.modelo.Mesero;
+import ec.edu.ups.vista.mesero.UsuarioMesero;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
@@ -20,7 +23,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
-    private VistaMesero vistaMesero;
+    private ControladorMesero controladorMesero;
+    private UsuarioMesero usuarioMesero;
     private Contrasenia contrasenia;
     private VistaCaja vistaCaja;
 
@@ -32,6 +36,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         controladorMesa = new ControladorMesa();
         controladorProducto = new ControladorProducto();
+        controladorMesero = new ControladorMesero();
+        
         //Para pruebas
         //--------------------------------------------------------------------------------------------
         Mesa mesa = new Mesa();
@@ -50,6 +56,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorMesa.create(mesa7);
         Mesa mesa8 = new Mesa();
         controladorMesa.create(mesa8);
+        Mesero mesero1 = new Mesero();
+        controladorMesero.create(mesero1);
+        Mesero mesero2 = new Mesero();
+        controladorMesero.create(mesero2);
         //---------------------------------------------------------------------------------------------
     }
 
@@ -190,12 +200,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bCajaActionPerformed
 
     private void bMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMeseroActionPerformed
-        if (vistaMesero == null || vistaMesero.isVisible() == false) {
-            vistaMesero = new VistaMesero(controladorMesa);
-            vistaMesero.toFront();
-            vistaMesero.setVisible(true);
+        if (usuarioMesero == null || usuarioMesero.isVisible() == false) {
+            usuarioMesero = new UsuarioMesero(controladorMesero, controladorMesa);
+            usuarioMesero.toFront();
+            usuarioMesero.setVisible(true);
         } else {
-            vistaMesero.toFront();
+            usuarioMesero.toFront();
         }
     }//GEN-LAST:event_bMeseroActionPerformed
 

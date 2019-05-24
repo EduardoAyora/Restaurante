@@ -7,6 +7,7 @@ package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
+import ec.edu.ups.modelo.Mesero;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,24 +19,24 @@ import javax.swing.JButton;
  *
  * @author Eduardo Ayora
  */
-public class ListaMesas extends javax.swing.JFrame {
+public class AbrirMesa extends javax.swing.JFrame {
 
     private List<JButton> botones;
     private ControladorMesa controladorMesa;
-    private List<Mesa> mesas;
+    private Mesero mesero;
 
     /**
      * Creates new form ListaMesa
      */
-    public ListaMesas() {
+    public AbrirMesa() {
         initComponents();
         this.setLocationRelativeTo(null);
         botones = new ArrayList<>();
     }
 
-    public void setMesas(ControladorMesa controladorMesa, List<Mesa> mesas) {
+    public void setMesas(ControladorMesa controladorMesa, Mesero mesero) {
         this.controladorMesa = controladorMesa;
-        this.mesas = mesas;
+        this.mesero = mesero;
         agregarBotones();
     }
 
@@ -53,7 +54,7 @@ public class ListaMesas extends javax.swing.JFrame {
                         int numero = Integer.parseInt(texto);
                         Mesa mesa = controladorMesa.read(numero);
                         mesa.setMesaAbierta(false);
-                        mesas.add(mesa);
+                        mesero.getMesas().add(mesa);
                         dispose();
                     }
                 });

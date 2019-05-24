@@ -7,6 +7,7 @@ package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
+import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Render;
 import ec.edu.ups.vista.VentanaPrincipal;
 import java.awt.Desktop;
@@ -26,17 +27,17 @@ import javax.swing.table.DefaultTableModel;
 public class VistaMesero extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
-    private ListaMesas listaMesas;
-    private List<Mesa> mesas;
+    private AbrirMesa abrirMesa;
+    private Mesero mesero;
 
     /**
      * Creates new form EscogerMesa
      */
-    public VistaMesero(ControladorMesa controladorMesa) {
+    public VistaMesero(Mesero mesero, ControladorMesa controladorMesa) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.controladorMesa = controladorMesa;
-        mesas = new ArrayList<>();
+        this.mesero = mesero;
         llenarTabla();
     }
     
@@ -46,6 +47,7 @@ public class VistaMesero extends javax.swing.JFrame {
         JButton boton1 = new JButton("Ver");
         JButton boton2 = new JButton("Cerrar");
         
+        List<Mesa> mesas = mesero.getMesas();
         DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
         for (Mesa mesa : mesas) {
             Object[] datos = {"Mesa: " + mesa.getNumeroMesa(),
@@ -152,11 +154,11 @@ public class VistaMesero extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        if (listaMesas == null || listaMesas.isVisible() == false) {
-            listaMesas = new ListaMesas();
-            listaMesas.setMesas(controladorMesa, mesas);
-            listaMesas.toFront();
-            listaMesas.setVisible(true);
+        if (abrirMesa == null || abrirMesa.isVisible() == false) {
+            abrirMesa = new AbrirMesa();
+            abrirMesa.setMesas(controladorMesa, mesero);
+            abrirMesa.toFront();
+            abrirMesa.setVisible(true);
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
