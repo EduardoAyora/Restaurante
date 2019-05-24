@@ -6,6 +6,7 @@
 package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Render;
@@ -27,38 +28,41 @@ import javax.swing.table.DefaultTableModel;
 public class VistaMesero extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
+    private ControladorProducto controladorProducto;
     private AbrirMesa abrirMesa;
     private Mesero mesero;
+    private VistaMesa vistaMesa;
 
     /**
      * Creates new form EscogerMesa
      */
-    public VistaMesero(Mesero mesero, ControladorMesa controladorMesa) {
+    public VistaMesero(Mesero mesero, ControladorMesa controladorMesa, ControladorProducto controladorProducto) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.controladorMesa = controladorMesa;
+        this.controladorProducto = controladorProducto;
         this.mesero = mesero;
         llenarTabla();
     }
-    
-    public void llenarTabla(){
-        
+
+    public void llenarTabla() {
+
         tblMesas.setDefaultRenderer(Object.class, new Render());
         JButton btnVer = new JButton("Ver");
         JButton btnCerrar = new JButton("Cerrar");
-        
+
         List<Mesa> mesas = mesero.getMesas();
         DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
+        modelo.setRowCount(0);
         for (Mesa mesa : mesas) {
             Object[] datos = {"Mesa: " + mesa.getNumeroMesa(),
                 btnVer,
                 btnCerrar};
             modelo.addRow(datos);
         }
-        
+
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,7 +160,7 @@ public class VistaMesero extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (abrirMesa == null || abrirMesa.isVisible() == false) {
             abrirMesa = new AbrirMesa();
-            abrirMesa.setMesas(controladorMesa, mesero);
+            abrirMesa.setMesas(controladorMesa, mesero, controladorProducto);
             abrirMesa.toFront();
             abrirMesa.setVisible(true);
             this.dispose();
@@ -172,17 +176,23 @@ public class VistaMesero extends javax.swing.JFrame {
     private void tblMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMesasMouseClicked
         // TODO add your handling code here:
         int columna = tblMesas.getColumnModel().getColumnIndexAtX(evt.getX());
-        int fila = evt.getY()/tblMesas.getRowHeight();
-        
-        if(fila < tblMesas.getRowCount() && fila >= 0 && columna < tblMesas.getColumnCount() && columna >= 0){
+        int fila = evt.getY() / tblMesas.getRowHeight();
+
+        if (fila < tblMesas.getRowCount() && fila >= 0 && columna < tblMesas.getColumnCount() && columna >= 0) {
             Object value = tblMesas.getValueAt(fila, columna);
-            if(value instanceof JButton){
+            if (value instanceof JButton) {
                 ((JButton) value).doClick();
                 JButton boton = (JButton) value;
-                if(boton.getText().equals("Ver")){
-                    System.out.println("Ver");
-                }else{
-                    System.out.println("Cerrar");
+                int numMesa = evt.getY() / tblMesas.getRowHeight();
+                Mesa auxMesa = mesero.getMesas().get(numMesa);
+                if (boton.getText().equals("Ver")) {
+                    vistaMesa = new VistaMesa(auxMesa, mesero, controladorMesa, controladorProducto);
+                    vistaMesa.setVisible(true);
+                    dispose();
+                } else {
+                    auxMesa.setMesaAbierta(true);
+                    mesero.cerrarMesa(auxMesa);
+                    llenarTabla();
                 }
             }
         }

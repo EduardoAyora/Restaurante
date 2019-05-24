@@ -11,6 +11,7 @@ import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
+import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.vista.mesero.UsuarioMesero;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
@@ -60,6 +61,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorMesero.create(mesero1);
         Mesero mesero2 = new Mesero();
         controladorMesero.create(mesero2);
+        Producto producto = new Producto();
+        producto.setNombre("arroz");
+        producto.setPrecio(10);
+        controladorProducto.create(producto);
+        Producto producto1 = new Producto();
+        producto1.setNombre("Atun");
+        producto1.setPrecio(2);
+        controladorProducto.create(producto1);
+        Producto producto2 = new Producto();
+        producto2.setNombre("Sandia");
+        producto2.setPrecio(4);
+        controladorProducto.create(producto2);
         //---------------------------------------------------------------------------------------------
     }
 
@@ -201,7 +214,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void bMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMeseroActionPerformed
         if (usuarioMesero == null || usuarioMesero.isVisible() == false) {
-            usuarioMesero = new UsuarioMesero(controladorMesero, controladorMesa);
+            usuarioMesero = new UsuarioMesero(controladorMesero, controladorMesa, controladorProducto);
             usuarioMesero.toFront();
             usuarioMesero.setVisible(true);
         } else {

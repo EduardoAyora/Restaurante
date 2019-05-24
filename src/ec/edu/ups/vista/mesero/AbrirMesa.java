@@ -6,6 +6,7 @@
 package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import java.awt.Font;
@@ -24,6 +25,7 @@ public class AbrirMesa extends javax.swing.JFrame {
     private List<JButton> botones;
     private ControladorMesa controladorMesa;
     private Mesero mesero;
+    private ControladorProducto controladorProducto;
 
     /**
      * Creates new form ListaMesa
@@ -34,9 +36,10 @@ public class AbrirMesa extends javax.swing.JFrame {
         botones = new ArrayList<>();
     }
 
-    public void setMesas(ControladorMesa controladorMesa, Mesero mesero) {
+    public void setMesas(ControladorMesa controladorMesa, Mesero mesero, ControladorProducto controladorProducto) {
         this.controladorMesa = controladorMesa;
         this.mesero = mesero;
+        this.controladorProducto = controladorProducto;
         agregarBotones();
     }
 
@@ -55,7 +58,7 @@ public class AbrirMesa extends javax.swing.JFrame {
                         Mesa mesa = controladorMesa.read(numero);
                         mesa.setMesaAbierta(false);
                         mesero.getMesas().add(mesa);
-                        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa);
+                        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto);
                         vistaMesero.setVisible(true);
                         dispose();
                     }
@@ -78,11 +81,20 @@ public class AbrirMesa extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         panel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panel.setLayout(new java.awt.GridLayout(2, 1));
         jScrollPane1.setViewportView(panel);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,23 +104,37 @@ public class AbrirMesa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(300, 300, 300))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto);
+        vistaMesero.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables

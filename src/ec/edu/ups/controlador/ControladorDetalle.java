@@ -22,7 +22,10 @@ public class ControladorDetalle {
         contador = 1;
         lista = new TreeSet<>();
     }
-    
+
+    public SortedSet<Detalle> getLista() {
+        return lista;
+    }
     
     public void createFacturaDetalle(Detalle detalle){
         detalle.setCodigo(contador);

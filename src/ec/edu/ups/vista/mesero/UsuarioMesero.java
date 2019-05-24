@@ -7,6 +7,7 @@ package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Mesero;
 
 /**
@@ -17,14 +18,16 @@ public class UsuarioMesero extends javax.swing.JFrame {
 
     private ControladorMesero controladorMesero;
     private ControladorMesa controladorMesa;
+    private ControladorProducto controladorProducto;
     private VistaMesero vistaMesero;
     /**
      * Creates new form EscogerMesero
      */
-    public UsuarioMesero(ControladorMesero controladorMesero, ControladorMesa controladorMesa) {
+    public UsuarioMesero(ControladorMesero controladorMesero, ControladorMesa controladorMesa, ControladorProducto controladorProducto) {
         initComponents();
         this.controladorMesa = controladorMesa;
         this.controladorMesero = controladorMesero;
+        this.controladorProducto = controladorProducto;
         setLocationRelativeTo(null);
     }
 
@@ -113,7 +116,7 @@ public class UsuarioMesero extends javax.swing.JFrame {
         // TODO add your handling code here:
         int codigo = Integer.parseInt(txtCodigo.getText());
         Mesero mesero = controladorMesero.read(codigo);
-        vistaMesero = new VistaMesero(mesero, controladorMesa);
+        vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto);
         vistaMesero.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
