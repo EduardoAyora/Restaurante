@@ -7,44 +7,57 @@ package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
 /**
  *
- * @author Karen
+ * @author Eduardo Ayora
  */
 public class ListaMesas extends javax.swing.JFrame {
-    
-    private ControladorMesa controladorMesa;
 
+    private List<JButton> botones;
+    private ControladorMesa controladorMesa;
+    private List<Mesa> mesas;
     /**
-     * Creates new form ListaMesas
+     * Creates new form ListaMesa
      */
     public ListaMesas() {
         initComponents();
         this.setLocationRelativeTo(null);
-    }
-    
-    public ControladorMesa getControladorMesa() {
-        return controladorMesa;
-    }
-    
-    public void setControladorMesa(ControladorMesa controladorMesa) {
-        this.controladorMesa = controladorMesa;
-        listarMesas();
-    }
-    
-    public void listarMesas() {
-        DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
-        List<Mesa> lista = controladorMesa.getLista();
-        for (Mesa mesa : lista) {
-            Object[] datos = {mesa.getNumeroMesa()};
-            modelo.addRow(datos);
-        }
+        botones = new ArrayList<>();
     }
 
+    public void setMesas(ControladorMesa controladorMesa, List<Mesa> mesas) {
+        this.controladorMesa = controladorMesa;
+        this.mesas = mesas;
+        //--------------------------------------------------------------------------------------------
+        Mesa mesa = new Mesa();
+        controladorMesa.create(mesa);
+        controladorMesa.create(mesa);
+        agregarBotones();
+        //---------------------------------------------------------------------------------------------
+    }
+    
+    public void agregarBotones(){
+        for(int i = 1; i < controladorMesa.getContador(); i++){
+            JButton btn = new JButton("Mesa " + Integer.toString(controladorMesa.getLista().get(i - 1).getNumeroMesa()));
+            btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("boton");
+                }
+            });
+            panel.add(btn);
+            botones.add(btn);
+            panel.updateUI();
+        }
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,41 +68,39 @@ public class ListaMesas extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMesas = new javax.swing.JTable();
+        panel = new javax.swing.JPanel();
 
-        tblMesas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-            },
-            new String [] {
-                "Mesas Disponibles"
-            }
-        ));
-        jScrollPane1.setViewportView(tblMesas);
+        panel.setLayout(new java.awt.GridLayout(8, 1));
+        jScrollPane1.setViewportView(panel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblMesas;
+    private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

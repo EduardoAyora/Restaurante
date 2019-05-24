@@ -6,9 +6,11 @@
 package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.vista.VentanaPrincipal;
 import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -20,6 +22,7 @@ public class VistaMesero extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
     private ListaMesas listaMesas;
+    private List<Mesa> mesas;
 
     /**
      * Creates new form EscogerMesa
@@ -114,7 +117,7 @@ public class VistaMesero extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (listaMesas == null || listaMesas.isVisible() == false) {
             listaMesas = new ListaMesas();
-            listaMesas.setControladorMesa(controladorMesa);
+            listaMesas.setMesas(controladorMesa, mesas);
             listaMesas.toFront();
             listaMesas.setVisible(true);
         }
