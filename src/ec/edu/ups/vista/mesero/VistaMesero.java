@@ -7,13 +7,17 @@ package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
+import ec.edu.ups.modelo.Render;
 import ec.edu.ups.vista.VentanaPrincipal;
 import java.awt.Desktop;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,27 +37,26 @@ public class VistaMesero extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.controladorMesa = controladorMesa;
         mesas = new ArrayList<>();
-        //Para pruebas
-        //--------------------------------------------------------------------------------------------
-        Mesa mesa = new Mesa();
-        controladorMesa.create(mesa);
-        Mesa mesa2 = new Mesa();
-        controladorMesa.create(mesa2);
-        Mesa mesa3 = new Mesa();
-        controladorMesa.create(mesa3);
-        Mesa mesa4 = new Mesa();
-        controladorMesa.create(mesa4);
-        Mesa mesa5 = new Mesa();
-        controladorMesa.create(mesa5);
-        Mesa mesa6 = new Mesa();
-        controladorMesa.create(mesa6);
-        Mesa mesa7 = new Mesa();
-        controladorMesa.create(mesa7);
-        Mesa mesa8 = new Mesa();
-        controladorMesa.create(mesa8);
-        //---------------------------------------------------------------------------------------------
+        llenarTabla();
     }
-
+    
+    public void llenarTabla(){
+        
+        tblMesas.setDefaultRenderer(Object.class, new Render());
+        JButton boton1 = new JButton("Ver");
+        JButton boton2 = new JButton("Cerrar");
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
+        for (Mesa mesa : mesas) {
+            Object[] datos = {"Mesa: " + mesa.getNumeroMesa(),
+                boton1,
+                boton2};
+            modelo.addRow(datos);
+        }
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +69,7 @@ public class VistaMesero extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMesas = new javax.swing.JTable();
 
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -98,15 +101,28 @@ public class VistaMesero extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Mesa", "Ver", "Cerrar"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMesas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMesasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblMesas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,11 +166,26 @@ public class VistaMesero extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyPressed
 
+    private void tblMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMesasMouseClicked
+        // TODO add your handling code here:
+        int columna = tblMesas.getColumnModel().getColumnIndexAtX(evt.getX());
+        int fila = evt.getY()/tblMesas.getRowHeight();
+        
+        if(fila < tblMesas.getRowCount() && fila >= 0 && columna < tblMesas.getColumnCount() && columna >= 0){
+            Object value = tblMesas.getValueAt(fila, columna);
+            if(value instanceof JButton){
+                ((JButton) value).doClick();
+                JButton boton = (JButton) value;
+                System.out.println("11");
+            }
+        }
+    }//GEN-LAST:event_tblMesasMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblMesas;
     // End of variables declaration//GEN-END:variables
 }

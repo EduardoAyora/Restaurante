@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.vista.mesero.VistaMesero;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Mesa;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
@@ -31,6 +32,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         controladorMesa = new ControladorMesa();
         controladorProducto = new ControladorProducto();
+        //Para pruebas
+        //--------------------------------------------------------------------------------------------
+        Mesa mesa = new Mesa();
+        controladorMesa.create(mesa);
+        Mesa mesa2 = new Mesa();
+        controladorMesa.create(mesa2);
+        Mesa mesa3 = new Mesa();
+        controladorMesa.create(mesa3);
+        Mesa mesa4 = new Mesa();
+        controladorMesa.create(mesa4);
+        Mesa mesa5 = new Mesa();
+        controladorMesa.create(mesa5);
+        Mesa mesa6 = new Mesa();
+        controladorMesa.create(mesa6);
+        Mesa mesa7 = new Mesa();
+        controladorMesa.create(mesa7);
+        Mesa mesa8 = new Mesa();
+        controladorMesa.create(mesa8);
+        //---------------------------------------------------------------------------------------------
     }
 
     /**

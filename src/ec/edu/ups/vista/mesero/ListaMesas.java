@@ -23,6 +23,7 @@ public class ListaMesas extends javax.swing.JFrame {
     private List<JButton> botones;
     private ControladorMesa controladorMesa;
     private List<Mesa> mesas;
+
     /**
      * Creates new form ListaMesa
      */
@@ -35,35 +36,34 @@ public class ListaMesas extends javax.swing.JFrame {
     public void setMesas(ControladorMesa controladorMesa, List<Mesa> mesas) {
         this.controladorMesa = controladorMesa;
         this.mesas = mesas;
-        System.out.println(controladorMesa.read(1).isMesaAbierta() + "    " + controladorMesa.read(2).isMesaAbierta());
         agregarBotones();
     }
-    
-    public void agregarBotones(){
+
+    public void agregarBotones() {
         Font fuente = new Font("arial", Font.PLAIN, 50);
-        for(int i = 1; i < controladorMesa.getContador(); i++){
-            if(controladorMesa.getLista().get(i - 1).isMesaAbierta()){
+        for (int i = 1; i < controladorMesa.getContador(); i++) {
+            if (controladorMesa.getLista().get(i - 1).isMesaAbierta()) {
                 JButton btn = new JButton(Integer.toString(controladorMesa.getLista().get(i - 1).getNumeroMesa()));
                 btn.setFont(fuente);
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String texto = btn.getText();
-                    texto = texto.substring(texto.length() - 1, texto.length());
-                    int numero = Integer.parseInt(texto);
-                    Mesa mesa = controladorMesa.read(numero);
-                    mesa.setMesaAbierta(false);
-                    mesas.add(mesa);
-                    dispose();
-                }
-            });
-            panel.add(btn);
-            botones.add(btn);
+                btn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String texto = btn.getText();
+                        texto = texto.substring(texto.length() - 1, texto.length());
+                        int numero = Integer.parseInt(texto);
+                        Mesa mesa = controladorMesa.read(numero);
+                        mesa.setMesaAbierta(false);
+                        mesas.add(mesa);
+                        dispose();
+                    }
+                });
+                panel.add(btn);
+                botones.add(btn);
             }
         }
         panel.updateUI();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
