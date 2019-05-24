@@ -25,6 +25,7 @@ public class UsuarioMesero extends javax.swing.JFrame {
         initComponents();
         this.controladorMesa = controladorMesa;
         this.controladorMesero = controladorMesero;
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -114,6 +115,7 @@ public class UsuarioMesero extends javax.swing.JFrame {
         Mesero mesero = controladorMesero.read(codigo);
         vistaMesero = new VistaMesero(mesero, controladorMesa);
         vistaMesero.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
 

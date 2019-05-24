@@ -41,20 +41,22 @@ public class AbrirMesa extends javax.swing.JFrame {
     }
 
     public void agregarBotones() {
-        Font fuente = new Font("arial", Font.PLAIN, 50);
+        Font fuente = new Font("arial", Font.PLAIN, 35);
         for (int i = 1; i < controladorMesa.getContador(); i++) {
             if (controladorMesa.getLista().get(i - 1).isMesaAbierta()) {
-                JButton btn = new JButton(Integer.toString(controladorMesa.getLista().get(i - 1).getNumeroMesa()));
+                JButton btn = new JButton("Mesa " + Integer.toString(controladorMesa.getLista().get(i - 1).getNumeroMesa()));
+                btn.setName(Integer.toString(i));
                 btn.setFont(fuente);
                 btn.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        String texto = btn.getText();
-                        texto = texto.substring(texto.length() - 1, texto.length());
+                        String texto = btn.getName();
                         int numero = Integer.parseInt(texto);
                         Mesa mesa = controladorMesa.read(numero);
                         mesa.setMesaAbierta(false);
                         mesero.getMesas().add(mesa);
+                        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa);
+                        vistaMesero.setVisible(true);
                         dispose();
                     }
                 });

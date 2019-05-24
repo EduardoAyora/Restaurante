@@ -44,15 +44,15 @@ public class VistaMesero extends javax.swing.JFrame {
     public void llenarTabla(){
         
         tblMesas.setDefaultRenderer(Object.class, new Render());
-        JButton boton1 = new JButton("Ver");
-        JButton boton2 = new JButton("Cerrar");
+        JButton btnVer = new JButton("Ver");
+        JButton btnCerrar = new JButton("Cerrar");
         
         List<Mesa> mesas = mesero.getMesas();
         DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
         for (Mesa mesa : mesas) {
             Object[] datos = {"Mesa: " + mesa.getNumeroMesa(),
-                boton1,
-                boton2};
+                btnVer,
+                btnCerrar};
             modelo.addRow(datos);
         }
         
@@ -159,6 +159,7 @@ public class VistaMesero extends javax.swing.JFrame {
             abrirMesa.setMesas(controladorMesa, mesero);
             abrirMesa.toFront();
             abrirMesa.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
@@ -178,7 +179,11 @@ public class VistaMesero extends javax.swing.JFrame {
             if(value instanceof JButton){
                 ((JButton) value).doClick();
                 JButton boton = (JButton) value;
-                System.out.println("11");
+                if(boton.getText().equals("Ver")){
+                    System.out.println("Ver");
+                }else{
+                    System.out.println("Cerrar");
+                }
             }
         }
     }//GEN-LAST:event_tblMesasMouseClicked
