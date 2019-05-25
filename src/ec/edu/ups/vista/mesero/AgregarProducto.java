@@ -67,10 +67,8 @@ public class AgregarProducto extends javax.swing.JFrame {
     }
 
     private int posicionProducto(int numProducto) {
-        System.out.println(numProducto);
         int contador = 0;
         int acierto = 0;
-        //En caso de eliminar producto posible error.
         for (int i = 0; i < controladorProducto.getLista().size(); i++) {
 
             if (!controladorProducto.getLista().get(i).getCategoria().getNombre().equals(nombreCategoria)) {
@@ -82,7 +80,6 @@ public class AgregarProducto extends javax.swing.JFrame {
             }
             contador++;
         }
-        System.out.println(contador);
         return contador;
     }
 

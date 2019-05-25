@@ -62,6 +62,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorMesero.create(mesero1);
         Mesero mesero2 = new Mesero();
         controladorMesero.create(mesero2);
+        Mesero mesero3 = new Mesero();
+        controladorMesero.create(mesero3);
         
         controladorMesa.delete(3);
         
