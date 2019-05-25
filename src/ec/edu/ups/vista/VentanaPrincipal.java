@@ -64,10 +64,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Mesa mesa8 = new Mesa();
         controladorMesa.create(mesa8);
         Mesero mesero1 = new Mesero();
+        mesero1.setNombre("Carlos");
         controladorMesero.create(mesero1);
         Mesero mesero2 = new Mesero();
+        mesero2.setNombre("Pedro");
         controladorMesero.create(mesero2);
         Mesero mesero3 = new Mesero();
+        mesero3.setNombre("Alex");
         controladorMesero.create(mesero3);
         
         controladorMesa.delete(3);
