@@ -27,6 +27,7 @@ public class VistaCaja extends javax.swing.JFrame {
     private ControladorMesa controladorMesa;
     private CrearFactura crearFactura;
     private Cliente cliente;
+    private ListarFacturas listarFacturas;
     
     /**
      * Creates new form VistaCaja
@@ -154,6 +155,11 @@ public class VistaCaja extends javax.swing.JFrame {
         menMesero2.add(opAnularFac);
 
         opListFac.setText("Lista");
+        opListFac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opListFacActionPerformed(evt);
+            }
+        });
         menMesero2.add(opListFac);
 
         jMenuBar1.add(menMesero2);
@@ -220,6 +226,13 @@ public class VistaCaja extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void opListFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListFacActionPerformed
+        // TODO add your handling code here:
+        listarFacturas = new ListarFacturas(controladorFactura);
+        jDesktopPane1.add(listarFacturas);
+        listarFacturas.setVisible(true);
+    }//GEN-LAST:event_opListFacActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

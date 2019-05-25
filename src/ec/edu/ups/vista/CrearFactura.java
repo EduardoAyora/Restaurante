@@ -356,25 +356,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Date date = new Date();
         factura.setFecha(date);
-        
         controladorFactura.create(factura);
-        factura = new Factura();
-        llenarTabla();
-        vaciarCajasTexto();
-        txtNumeroFactura.setText(Integer.toString(controladorFactura.getCodigo()));
         JOptionPane.showMessageDialog(this, "Factura creada exitosamente", "Crear factura", JOptionPane.OK_OPTION);
+        dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    public void vaciarCajasTexto() {
-        txtCedula.setText("");
-        txtCodigo.setText("");
-        txtNombre.setText("");
-        txtFecha.setText("");
-        txtTelefono.setText("");
-        txtDireccion.setText("");
-        txtSubtotal.setText("");
-        txtTotal.setText("");
-    }
 
     private void txtSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalActionPerformed
         // TODO add your handling code here:
