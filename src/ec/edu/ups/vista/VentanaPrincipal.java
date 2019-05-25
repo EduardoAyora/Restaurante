@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.vista.mesero.VistaMesero;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorMesero;
@@ -26,6 +28,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
     private ControladorMesero controladorMesero;
+    private ControladorFactura controladorFactura;
+    private ControladorCliente controladorCliente;
     private UsuarioMesero usuarioMesero;
     private Contrasenia contrasenia;
     private VistaCaja vistaCaja;
@@ -39,7 +43,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorMesa = new ControladorMesa();
         controladorProducto = new ControladorProducto();
         controladorMesero = new ControladorMesero();
-        
+        controladorFactura = new ControladorFactura();
+        controladorCliente = new ControladorCliente();
         //Para pruebas
         //--------------------------------------------------------------------------------------------
         Mesa mesa = new Mesa();
@@ -224,7 +229,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void bCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCajaActionPerformed
         if (vistaCaja == null || vistaCaja.isVisible() == false) {
-            vistaCaja = new VistaCaja();
+            vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
         } else {

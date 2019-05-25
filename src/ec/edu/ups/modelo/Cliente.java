@@ -12,6 +12,7 @@ package ec.edu.ups.modelo;
 public class Cliente extends Persona{
     
     private String correo;
+    private Mesa mesa;
 
     public String getCorreo() {
         return correo;
@@ -20,7 +21,13 @@ public class Cliente extends Persona{
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
     
 }
