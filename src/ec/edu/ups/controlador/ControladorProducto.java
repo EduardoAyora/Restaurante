@@ -6,7 +6,9 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.Producto;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,7 +17,7 @@ import java.util.Set;
  */
 public class ControladorProducto {
     
-    private Set<Producto> lista;
+    private List<Producto> lista;
     private int codigo;
 
     public int getCodigo() {
@@ -23,7 +25,7 @@ public class ControladorProducto {
     }
     
     public ControladorProducto() {
-        lista = new HashSet<>();
+        lista = new ArrayList<>();
         codigo = 1;
     }
     
@@ -57,14 +59,8 @@ public class ControladorProducto {
             }
         }
     }
-    
-    public void imprimir(){
-        for (Producto producto : lista) {
-            System.out.println(producto.getNombre());
-        }
-    }
 
-    public Set<Producto> getLista() {
+    public List<Producto> getLista() {
         return lista;
     }
     

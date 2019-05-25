@@ -11,8 +11,6 @@ import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Render;
-import java.text.DecimalFormat;
-import java.util.List;
 import java.util.SortedSet;
 import javax.swing.JButton;
 import javax.swing.event.TableModelEvent;

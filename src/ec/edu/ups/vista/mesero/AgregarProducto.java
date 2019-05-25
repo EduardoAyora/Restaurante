@@ -12,6 +12,7 @@ import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.Render;
+import java.util.List;
 import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +27,8 @@ public class AgregarProducto extends javax.swing.JFrame {
     private Mesa mesa;
     private Mesero mesero;
     private ControladorMesa controladorMesa;
+    private String nombreCategoria;
+
     /**
      * Creates new form AgregarProducto
      */
@@ -35,30 +38,54 @@ public class AgregarProducto extends javax.swing.JFrame {
         this.mesero = mesero;
         this.controladorMesa = controladorMesa;
         this.controladorProducto = controladorProducto;
+        nombreCategoria = "Platos";
         setLocationRelativeTo(null);
         llenarDatos();
         tblProductos.setRowHeight(60);
     }
 
-    public void llenarDatos(){
+    public void llenarDatos() {
+        nombreCategoria = "Plato";
         tblProductos.setDefaultRenderer(Object.class, new Render());
         JButton btnSeleccionar = new JButton("Seleccionar");
 
-        Set<Producto> productos = controladorProducto.getLista();
+        List<Producto> productos = controladorProducto.getLista();
         DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
         modelo.setRowCount(0);
         for (Producto producto : productos) {
-            Object[] datos = {producto.getCodigoProducto(),
-                producto.getNombre(),
-                producto.getDescripcion(),
-                producto.getPrecio(),
-                producto.getPrecio(),
-                btnSeleccionar
-            };
-            modelo.addRow(datos);
+            if (producto.getCategoria().getNombre().equals("Plato")) {
+                Object[] datos = {producto.getCodigoProducto(),
+                    producto.getNombre(),
+                    producto.getDescripcion(),
+                    producto.getPrecio(),
+                    producto.getPrecio(),
+                    btnSeleccionar
+                };
+                modelo.addRow(datos);
+            }
         }
     }
-    
+
+    private int posicionProducto(int numProducto) {
+        System.out.println(numProducto);
+        int contador = 0;
+        int acierto = 0;
+        //En caso de eliminar producto posible error.
+        for (int i = 0; i < controladorProducto.getLista().size(); i++) {
+
+            if (!controladorProducto.getLista().get(i).getCategoria().getNombre().equals(nombreCategoria)) {
+            } else {
+                acierto++;
+            }
+            if (acierto == numProducto) {
+                break;
+            }
+            contador++;
+        }
+        System.out.println(contador);
+        return contador;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,14 +108,29 @@ public class AgregarProducto extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton1.setText("Entradas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton4.setText("Platos Fuertes");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton2.setText("Bebidas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -166,9 +208,10 @@ public class AgregarProducto extends javax.swing.JFrame {
             if (value instanceof JButton) {
                 ((JButton) value).doClick();
                 JButton boton = (JButton) value;
-                int numProducto = evt.getY() / tblProductos.getRowHeight() + 1;
-                Producto auxProducto = controladorProducto.read(numProducto);
-                if(boton.isEnabled()){
+                int numProducto = evt.getY() / tblProductos.getRowHeight();
+                int auxNumProducto = posicionProducto(numProducto + 1);
+                Producto auxProducto = controladorProducto.getLista().get(auxNumProducto);
+                if (boton.isEnabled()) {
                     Detalle detalle = new Detalle();
                     detalle.setCantidad(1);
                     detalle.setPrecio(auxProducto.getPrecio());
@@ -186,6 +229,57 @@ public class AgregarProducto extends javax.swing.JFrame {
         vistaMesa.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnListoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        nombreCategoria = "Plato";
+        tblProductos.setDefaultRenderer(Object.class, new Render());
+        JButton btnSeleccionar = new JButton("Seleccionar");
+
+        List<Producto> productos = controladorProducto.getLista();
+        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
+        modelo.setRowCount(0);
+        for (Producto producto : productos) {
+            if (producto.getCategoria().getNombre().equals("Plato")) {
+                Object[] datos = {producto.getCodigoProducto(),
+                    producto.getNombre(),
+                    producto.getDescripcion(),
+                    producto.getPrecio(),
+                    producto.getPrecio(),
+                    btnSeleccionar
+                };
+                modelo.addRow(datos);
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        nombreCategoria = "Bebida";
+        tblProductos.setDefaultRenderer(Object.class, new Render());
+        JButton btnSeleccionar = new JButton("Seleccionar");
+
+        List<Producto> productos = controladorProducto.getLista();
+        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
+        modelo.setRowCount(0);
+        for (Producto producto : productos) {
+            if (producto.getCategoria().getNombre().equals("Bebida")) {
+                Object[] datos = {producto.getCodigoProducto(),
+                    producto.getNombre(),
+                    producto.getDescripcion(),
+                    producto.getPrecio(),
+                    producto.getPrecio(),
+                    btnSeleccionar
+                };
+                modelo.addRow(datos);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
