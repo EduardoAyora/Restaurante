@@ -347,7 +347,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         Date date = new Date();
         factura.setFecha(date);
         controladorFactura.create(factura);
+        //Hacemos que el mesero cierre la mesa que atendia.
+        cliente.getMesa().getMesero().cerrarMesa(cliente.getMesa());
         cliente.getMesa().setMesaAbierta(true);
+        //Vaciamos los detalles de la mesa.
         cliente.getMesa().setControladorDetalle(new ControladorDetalle());
         JOptionPane.showMessageDialog(this, "Factura creada exitosamente", "Crear factura", JOptionPane.OK_OPTION);
         dispose();

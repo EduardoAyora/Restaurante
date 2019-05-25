@@ -58,6 +58,7 @@ public class AbrirMesa extends javax.swing.JFrame {
                         Mesa mesa = controladorMesa.getLista().get(numero);
                         mesa.setMesaAbierta(false);
                         mesero.getMesas().add(mesa);
+                        mesa.setMesero(mesero);
                         VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto);
                         vistaMesero.setVisible(true);
                         dispose();

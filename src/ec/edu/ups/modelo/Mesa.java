@@ -17,6 +17,7 @@ public class Mesa {
     private int numeroPersonas;
     private int capacidad;
     private boolean mesaAbierta;
+    private Mesero mesero;
     private ControladorDetalle controladorDetalle;
 
     public Mesa() {
@@ -56,6 +57,14 @@ public class Mesa {
         this.mesaAbierta = mesaAbierta;
     }
 
+    public Mesero getMesero() {
+        return mesero;
+    }
+
+    public void setMesero(Mesero mesero) {
+        this.mesero = mesero;
+    }
+    
     public ControladorDetalle getControladorDetalle() {
         return controladorDetalle;
     }
