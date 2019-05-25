@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.modelo;
 
+import ec.edu.ups.controlador.ControladorDetalle;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,9 +26,11 @@ public class Factura {
     private double iva;
     private double total;
     private int contadorDetalles;
+    private ControladorDetalle controladorDetalle;
 
     public Factura() {
         fecha = new Date();
+        controladorDetalle = new ControladorDetalle();
         contadorDetalles = 1;
     }
 
@@ -90,6 +93,14 @@ public class Factura {
         this.total = total;
     }
 
+    public ControladorDetalle getControladorDetalle() {
+        return controladorDetalle;
+    }
+
+    public void setControladorDetalle(ControladorDetalle controladorDetalle) {
+        this.controladorDetalle = controladorDetalle;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

@@ -6,6 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorDetalle;
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Cliente;
@@ -46,6 +47,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         factura = new Factura();
         this.cliente = cliente;
         factura.setCliente(cliente);
+        factura.setControladorDetalle(cliente.getMesa().getControladorDetalle());
         txtNumeroFactura.setText(Integer.toString(this.controladorFactura.getCodigo()));
         llenarDatosCliente();
         llenarTabla();
@@ -53,7 +55,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     public void llenarTabla(){
         DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
-        Set<Detalle> lista = cliente.getMesa().getControladorDetalle().getLista();
+        Set<Detalle> lista = factura.getControladorDetalle().getLista();
         for (Detalle detalle : lista) {
             Object[] datos = {detalle.getProducto().getCodigoProducto(),
                 detalle.getProducto().getNombre(),
@@ -122,10 +124,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JTextField();
         lblTotal = new javax.swing.JLabel();
         btnCrear = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
+
+        txtCedula.setEditable(false);
 
         lblCedula.setText("Cedula de Cliente:");
 
@@ -204,13 +207,6 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             }
         });
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -258,23 +254,18 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnBuscar)
-                                        .addGap(344, 344, 344))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(lblDireccion)
-                                                .addGap(34, 34, 34))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(lblTelefono)
-                                                .addGap(36, 36, 36)))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(153, 153, 153))
-                                            .addComponent(txtDireccion)))))
+                                        .addComponent(lblDireccion)
+                                        .addGap(34, 34, 34))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblTelefono)
+                                        .addGap(36, 36, 36)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(153, 153, 153))
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1))))
                 .addGap(19, 19, 19))
         );
@@ -285,11 +276,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumero)
                     .addComponent(txtNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -357,6 +347,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         Date date = new Date();
         factura.setFecha(date);
         controladorFactura.create(factura);
+        cliente.getMesa().setMesaAbierta(true);
+        cliente.getMesa().setControladorDetalle(new ControladorDetalle());
         JOptionPane.showMessageDialog(this, "Factura creada exitosamente", "Crear factura", JOptionPane.OK_OPTION);
         dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
@@ -370,25 +362,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroFacturaActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-
-        Date date = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaTexto = formato.format(date.getTime());
-
-        Cliente cliente = controladorCliente.readCedula(txtCedula.getText());
-        txtCodigo.setText(Integer.toString(cliente.getCodigo()));
-        txtNombre.setText(cliente.getNombre());
-        txtFecha.setText(fechaTexto);
-        txtTelefono.setText(cliente.getTelefono());
-        txtDireccion.setText(cliente.getDireccion());
-
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCrear;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

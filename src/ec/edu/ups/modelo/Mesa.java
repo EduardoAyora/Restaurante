@@ -59,5 +59,8 @@ public class Mesa {
     public ControladorDetalle getControladorDetalle() {
         return controladorDetalle;
     }
-    
+
+    public void setControladorDetalle(ControladorDetalle controladorDetalle) {
+        this.controladorDetalle = controladorDetalle;
+    }
 }
