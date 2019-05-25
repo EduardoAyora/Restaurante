@@ -11,6 +11,7 @@ import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Render;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.SortedSet;
 import javax.swing.JButton;
@@ -53,7 +54,6 @@ public class VistaMesa extends javax.swing.JFrame {
             public void tableChanged(TableModelEvent e) {
                 if (e.getType() == TableModelEvent.UPDATE) {
                     if(Integer.parseInt((String) modelo.getValueAt(e.getFirstRow(), e.getColumn())) != 0){
-                        System.out.println(e.getFirstRow());
                         Detalle detalle = mesa.getControladorDetalle().buscarPosicion(e.getFirstRow());
                         detalle.setCantidad(Integer.parseInt((String) modelo.getValueAt(e.getFirstRow(), 2)));
                         mesa.getControladorDetalle().updateDetalle(detalle);
@@ -99,7 +99,7 @@ public class VistaMesa extends javax.swing.JFrame {
 
     public void calcularIva() {
         double iva = Double.parseDouble(txtSubtotal.getText()) * 0.12;
-        txtIva.setText(Double.toString(iva));
+        txtIva.setText(String.format("%.2f", iva));
     }
     
     public void calcularTotal() {
