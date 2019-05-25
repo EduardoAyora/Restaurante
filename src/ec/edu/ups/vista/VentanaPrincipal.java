@@ -63,6 +63,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Mesero mesero2 = new Mesero();
         controladorMesero.create(mesero2);
         
+        controladorMesa.delete(3);
+        
         Categoria categoria = new Categoria();
         categoria.setNombre("Plato");
         Categoria categoria1 = new Categoria();

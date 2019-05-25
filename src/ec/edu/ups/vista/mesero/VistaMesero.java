@@ -56,7 +56,7 @@ public class VistaMesero extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
         modelo.setRowCount(0);
         for (Mesa mesa : mesas) {
-            Object[] datos = {"Mesa: " + mesa.getNumeroMesa(),
+            Object[] datos = {"Mesa " + mesa.getNumeroMesa(),
                 btnVer,
                 btnCerrar};
             modelo.addRow(datos);

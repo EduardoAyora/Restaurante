@@ -45,9 +45,9 @@ public class AbrirMesa extends javax.swing.JFrame {
 
     public void agregarBotones() {
         Font fuente = new Font("arial", Font.PLAIN, 35);
-        for (int i = 1; i < controladorMesa.getContador(); i++) {
-            if (controladorMesa.getLista().get(i - 1).isMesaAbierta()) {
-                JButton btn = new JButton("Mesa " + Integer.toString(controladorMesa.getLista().get(i - 1).getNumeroMesa()));
+        for (int i = 0; i < controladorMesa.getLista().size(); i++) {
+            if (controladorMesa.getLista().get(i).isMesaAbierta()) {
+                JButton btn = new JButton("Mesa " + Integer.toString(controladorMesa.getLista().get(i).getNumeroMesa()));
                 btn.setName(Integer.toString(i));
                 btn.setFont(fuente);
                 btn.addActionListener(new ActionListener() {
@@ -55,7 +55,7 @@ public class AbrirMesa extends javax.swing.JFrame {
                     public void actionPerformed(ActionEvent e) {
                         String texto = btn.getName();
                         int numero = Integer.parseInt(texto);
-                        Mesa mesa = controladorMesa.read(numero);
+                        Mesa mesa = controladorMesa.getLista().get(numero);
                         mesa.setMesaAbierta(false);
                         mesero.getMesas().add(mesa);
                         VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto);
