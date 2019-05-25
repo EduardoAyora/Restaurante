@@ -43,6 +43,7 @@ public class VistaMesero extends javax.swing.JFrame {
         this.controladorProducto = controladorProducto;
         this.mesero = mesero;
         llenarTabla();
+        tblMesas.setRowHeight(60);
     }
 
     public void llenarTabla() {

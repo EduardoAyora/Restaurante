@@ -6,6 +6,8 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.Detalle;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -57,5 +59,21 @@ public class ControladorDetalle {
             }
         }
     }
+    
+    public void quitarDetalle(Detalle detalle){
+        lista.remove(detalle);
+    }
+    
+    public Detalle buscarPosicion(int posicion){
+        int i = 0;
+        for(Detalle detalle : lista){
+            if(i == posicion){
+                return detalle;
+            }
+            i++;
+        }
+        return null;
+    }
+    
     
 }

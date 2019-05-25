@@ -37,6 +37,7 @@ public class AgregarProducto extends javax.swing.JFrame {
         this.controladorProducto = controladorProducto;
         setLocationRelativeTo(null);
         llenarDatos();
+        tblProductos.setRowHeight(60);
     }
 
     public void llenarDatos(){

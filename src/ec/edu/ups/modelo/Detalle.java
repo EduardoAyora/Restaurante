@@ -9,7 +9,7 @@ package ec.edu.ups.modelo;
  *
  * @author Eduardo Ayora
  */
-public class Detalle implements Comparable<Detalle>{
+public class Detalle  implements Comparable<Detalle>{
     
     private int codigo;
     private double precio;
@@ -17,7 +17,7 @@ public class Detalle implements Comparable<Detalle>{
     private double subtotal;
     private Producto producto;
 
-    public Detalle() {
+    public Detalle(){
     }
 
     public Detalle(double precio, int cantidad, Producto producto) {
@@ -51,7 +51,7 @@ public class Detalle implements Comparable<Detalle>{
     }
 
     public double getSubtotal() {
-        return subtotal;
+        return cantidad * precio;
     }
 
     public void setSubtotal(double subtotal) {
@@ -66,12 +66,10 @@ public class Detalle implements Comparable<Detalle>{
         this.producto = producto;
     }
 
-    
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 11 * hash + this.codigo;
-        System.out.println("igual");
+        int hash = 7;
+        hash = 41 * hash + this.codigo;
         return hash;
     }
 
@@ -92,7 +90,7 @@ public class Detalle implements Comparable<Detalle>{
         }
         return true;
     }
-
+    
     @Override
     public int compareTo(Detalle o) {
         return this.codigo - o.getCodigo();
