@@ -38,14 +38,17 @@ public class AgregarProducto extends javax.swing.JFrame {
         this.mesero = mesero;
         this.controladorMesa = controladorMesa;
         this.controladorProducto = controladorProducto;
-        nombreCategoria = "Platos";
+        nombreCategoria = "Plato";
         setLocationRelativeTo(null);
         llenarDatos();
         tblProductos.setRowHeight(60);
     }
 
+    /**
+     * llenarDatos muestra los productos en la tabla separando por categoria
+     * y omitiendo los que ya han sido seleccionados.
+     */
     public void llenarDatos() {
-        nombreCategoria = "Plato";
         tblProductos.setDefaultRenderer(Object.class, new Render());
         JButton btnSeleccionar = new JButton("Seleccionar");
 
@@ -53,7 +56,15 @@ public class AgregarProducto extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
         modelo.setRowCount(0);
         for (Producto producto : productos) {
-            if (producto.getCategoria().getNombre().equals("Plato")) {
+            //Encuentra los productos ya seleccionado para no tomarlos en cuenta.
+            boolean bandera = true;
+            for (Detalle detalle : mesa.getControladorDetalle().getLista()) {
+                if (detalle.getProducto().equals(producto)) {
+                    bandera = false;
+                    break;
+                }
+            }
+            if (producto.getCategoria().getNombre().equals(nombreCategoria) && bandera) {
                 Object[] datos = {producto.getCodigoProducto(),
                     producto.getNombre(),
                     producto.getDescripcion(),
@@ -66,19 +77,38 @@ public class AgregarProducto extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * posicionProducto Busca un producto seleccionado por el mesero,
+     * discriminando categoría y si ya fue seleccionado anteriormente.
+     *
+     * @param numProducto
+     * @return la posición del producto seleccionado.
+     */
     private int posicionProducto(int numProducto) {
         int contador = 0;
         int acierto = 0;
         for (int i = 0; i < controladorProducto.getLista().size(); i++) {
-
-            if (!controladorProducto.getLista().get(i).getCategoria().getNombre().equals(nombreCategoria)) {
+            //Descarta de la cuenta a los productos ya seleccionados
+            boolean bandera = true;
+            for (Detalle detalle : mesa.getControladorDetalle().getLista()) {
+                if (detalle.getProducto().equals(controladorProducto.getLista().get(i))) {
+                    bandera = false;
+                    break;
+                }
+            }
+            if (bandera) {
+                //Descarta de la cuenta a los productos que no son de la categoria.
+                if (!controladorProducto.getLista().get(i).getCategoria().getNombre().equals(nombreCategoria)) {
+                } else {
+                    acierto++;
+                }
+                if (acierto == numProducto) {
+                    break;
+                }
+                contador++;
             } else {
-                acierto++;
+                contador++;
             }
-            if (acierto == numProducto) {
-                break;
-            }
-            contador++;
         }
         return contador;
     }
@@ -132,6 +162,11 @@ public class AgregarProducto extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton3.setText("Postres");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -215,6 +250,8 @@ public class AgregarProducto extends javax.swing.JFrame {
                     detalle.setSubtotal(auxProducto.getPrecio());
                     detalle.setProducto(auxProducto);
                     mesa.getControladorDetalle().createFacturaDetalle(detalle);
+                    //Refrescamos los datos de la tabla
+                    llenarDatos();
                 }
             }
         }
@@ -229,54 +266,27 @@ public class AgregarProducto extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        nombreCategoria = "Entrada";
+        llenarDatos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         nombreCategoria = "Plato";
-        tblProductos.setDefaultRenderer(Object.class, new Render());
-        JButton btnSeleccionar = new JButton("Seleccionar");
-
-        List<Producto> productos = controladorProducto.getLista();
-        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
-        modelo.setRowCount(0);
-        for (Producto producto : productos) {
-            if (producto.getCategoria().getNombre().equals("Plato")) {
-                Object[] datos = {producto.getCodigoProducto(),
-                    producto.getNombre(),
-                    producto.getDescripcion(),
-                    producto.getPrecio(),
-                    producto.getPrecio(),
-                    btnSeleccionar
-                };
-                modelo.addRow(datos);
-            }
-        }
+        llenarDatos();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         nombreCategoria = "Bebida";
-        tblProductos.setDefaultRenderer(Object.class, new Render());
-        JButton btnSeleccionar = new JButton("Seleccionar");
-
-        List<Producto> productos = controladorProducto.getLista();
-        DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
-        modelo.setRowCount(0);
-        for (Producto producto : productos) {
-            if (producto.getCategoria().getNombre().equals("Bebida")) {
-                Object[] datos = {producto.getCodigoProducto(),
-                    producto.getNombre(),
-                    producto.getDescripcion(),
-                    producto.getPrecio(),
-                    producto.getPrecio(),
-                    btnSeleccionar
-                };
-                modelo.addRow(datos);
-            }
-        }
+        llenarDatos();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        nombreCategoria = "Postre";
+        llenarDatos();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

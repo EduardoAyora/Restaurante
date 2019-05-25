@@ -82,7 +82,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         producto1.setPrecio(2);
         producto1.setCategoria(categoria);
         controladorProducto.create(producto1);
-        controladorProducto.delete(2);
+        //controladorProducto.delete(2);
         Producto producto2 = new Producto();
         producto2.setNombre("Sandia");
         producto2.setPrecio(4);
