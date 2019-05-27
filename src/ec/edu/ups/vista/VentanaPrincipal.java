@@ -58,21 +58,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("Restaurante");
         setResizable(false);
 
-        bGerente.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\ProyectosProgra\\Restaurant\\src\\ec\\edu\\ups\\imagenes\\gerenteR.png")); // NOI18N
+        bGerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/gerenteR.png"))); // NOI18N
         bGerente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bGerenteActionPerformed(evt);
             }
         });
 
-        bCaja.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\ProyectosProgra\\Restaurant\\src\\ec\\edu\\ups\\imagenes\\cajaR.png")); // NOI18N
+        bCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/cajaR.png"))); // NOI18N
         bCaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCajaActionPerformed(evt);
             }
         });
 
-        bMesero.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\ProyectosProgra\\Restaurant\\src\\ec\\edu\\ups\\imagenes\\meseroR.png")); // NOI18N
+        bMesero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/meseroR.png"))); // NOI18N
         bMesero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bMeseroActionPerformed(evt);

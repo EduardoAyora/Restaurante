@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.ImagenFondoGerente;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -25,7 +26,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private VentanaEditarProducto vep;
     private VentanaEliminarProducto vep1;
     private VentanaListaProducto vlp;
-
+    private ControladorProducto cp;
     /**
      * Creates new form VistaGerente
      */
@@ -264,7 +265,7 @@ public class VistaGerente extends javax.swing.JFrame {
 
     private void opReadPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadPActionPerformed
         if (vbp == null || vbp.isVisible() == false) {
-            vbp = new VentanaBuscarProducto();
+            vbp = new VentanaBuscarProducto(cp);
             vbp.toFront();
             vbp.setVisible(true);
             jDesktopPane1.add(vbp);
@@ -348,7 +349,7 @@ public class VistaGerente extends javax.swing.JFrame {
 
     private void opCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearPActionPerformed
         if (vcp == null || vcp.isVisible() == false) {
-            vcp = new VentanaCrearProducto();
+            vcp = new VentanaCrearProducto(cp);
             vcp.toFront();
             vcp.setVisible(true);
             jDesktopPane1.add(vcp);
@@ -391,7 +392,7 @@ public class VistaGerente extends javax.swing.JFrame {
 
     private void opListPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListPActionPerformed
         if (vlp == null || vlp.isVisible() == false) {
-            vlp = new VentanaListaProducto();
+            vlp = new VentanaListaProducto(cp);
             vlp.toFront();
             vlp.setVisible(true);
             jDesktopPane1.add(vlp);

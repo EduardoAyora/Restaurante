@@ -5,19 +5,37 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Producto;
+import java.util.Set;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
  */
 public class VentanaListaProducto extends javax.swing.JInternalFrame {
-
+    ControladorProducto controladorProducto;
     /**
      * Creates new form VentanaListaProducto
      */
-    public VentanaListaProducto() {
+    public VentanaListaProducto(ControladorProducto controladorProducto) {
         initComponents();
+        this.controladorProducto = controladorProducto;
+        llenarDatos();
     }
 
+    public void llenarDatos(){
+        DefaultTableModel modelo = (DefaultTableModel) tbProducto.getModel();
+        Set<Producto> lista = controladorProducto.getLista();
+        for (Producto producto : lista){
+          Object[] datos = {producto.getCodigoProducto(),
+              producto.getNombre(), producto.getPrecio(),
+              producto.getDescripcion()
+          };
+          modelo.addRow(datos);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,14 +45,15 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        scroller = new javax.swing.JScrollPane();
+        tbProducto = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
         setTitle("Lista de productos");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbProducto.setAutoCreateRowSorter(true);
+        tbProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -50,7 +69,7 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        scroller.setViewportView(tbProducto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,14 +77,14 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addComponent(scroller, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scroller, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -74,7 +93,7 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane scroller;
+    private javax.swing.JTable tbProducto;
     // End of variables declaration//GEN-END:variables
 }

@@ -104,7 +104,7 @@
     <Component class="javax.swing.JButton" name="bGerente">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Documents\ProyectosProgra\Restaurant\src\ec\edu\ups\imagenes\gerenteR.png"/>
+          <Image iconType="3" name="/ec/edu/ups/imagenes/gerenteR.png"/>
         </Property>
       </Properties>
       <Events>
@@ -114,7 +114,7 @@
     <Component class="javax.swing.JButton" name="bCaja">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Documents\ProyectosProgra\Restaurant\src\ec\edu\ups\imagenes\cajaR.png"/>
+          <Image iconType="3" name="/ec/edu/ups/imagenes/cajaR.png"/>
         </Property>
       </Properties>
       <Events>
@@ -124,7 +124,7 @@
     <Component class="javax.swing.JButton" name="bMesero">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\DELL\Documents\ProyectosProgra\Restaurant\src\ec\edu\ups\imagenes\meseroR.png"/>
+          <Image iconType="3" name="/ec/edu/ups/imagenes/meseroR.png"/>
         </Property>
       </Properties>
       <Events>
