@@ -11,6 +11,9 @@ import ec.edu.ups.vista.mesero.VistaMesero;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.datoscreados.GenerarMesa;
+import ec.edu.ups.datoscreados.GenerarMesero;
+import ec.edu.ups.datoscreados.GenerarProducto;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
@@ -47,63 +50,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorCliente = new ControladorCliente();
         //Para pruebas
         //--------------------------------------------------------------------------------------------
-        Mesa mesa = new Mesa();
-        controladorMesa.create(mesa);
-        Mesa mesa2 = new Mesa();
-        controladorMesa.create(mesa2);
-        Mesa mesa3 = new Mesa();
-        controladorMesa.create(mesa3);
-        Mesa mesa4 = new Mesa();
-        controladorMesa.create(mesa4);
-        Mesa mesa5 = new Mesa();
-        controladorMesa.create(mesa5);
-        Mesa mesa6 = new Mesa();
-        controladorMesa.create(mesa6);
-        Mesa mesa7 = new Mesa();
-        controladorMesa.create(mesa7);
-        Mesa mesa8 = new Mesa();
-        controladorMesa.create(mesa8);
-        Mesero mesero1 = new Mesero();
-        mesero1.setNombre("Carlos");
-        controladorMesero.create(mesero1);
-        Mesero mesero2 = new Mesero();
-        mesero2.setNombre("Pedro");
-        controladorMesero.create(mesero2);
-        Mesero mesero3 = new Mesero();
-        mesero3.setNombre("Alex");
-        controladorMesero.create(mesero3);
-
-        controladorMesa.delete(3);
-
-        Categoria categoria = new Categoria();
-        categoria.setNombre("Plato");
-        Categoria categoria1 = new Categoria();
-        categoria1.setNombre("Bebida");
-
-        Producto producto = new Producto();
-        producto.setNombre("arroz");
-        producto.setPrecio(10);
-        producto.setCategoria(categoria);
-        controladorProducto.create(producto);
-        Producto producto1 = new Producto();
-        producto1.setNombre("Atun");
-        producto1.setPrecio(2);
-        producto1.setCategoria(categoria);
-        controladorProducto.create(producto1);
-        controladorProducto.delete(2);
-        Producto producto2 = new Producto();
-        producto2.setNombre("Sandia");
-        producto2.setPrecio(4);
-        producto2.setCategoria(categoria1);
-        controladorProducto.create(producto2);
-        Producto producto3 = new Producto();
-        producto3.setNombre("Jugo");
-        producto3.setPrecio(3);
-        producto3.setCategoria(categoria1);
-        controladorProducto.create(producto3);
         
-        ImageIcon img = new ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/gerenteR.png"));
-        producto3.setImgIcon(img);
+        GenerarMesa generarMesa = new GenerarMesa(controladorMesa);
+        
+        GenerarMesero generarMesero = new GenerarMesero(controladorMesero);
+
+        GenerarProducto generarProductos = new GenerarProducto(controladorProducto);
+
         //---------------------------------------------------------------------------------------------
     }
 
