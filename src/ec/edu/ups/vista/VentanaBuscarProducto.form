@@ -105,6 +105,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tNombre">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lPrecio">
       <Properties>
@@ -112,8 +115,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tPrecio">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tDescripcion">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tDescripcionActionPerformed"/>
       </Events>
@@ -137,6 +146,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tCategoria">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="bBuscar">
       <Properties>

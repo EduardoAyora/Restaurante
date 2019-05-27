@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.ImagenFondoGerente;
 import java.awt.Dimension;
@@ -27,13 +29,19 @@ public class VistaGerente extends javax.swing.JFrame {
     private VentanaEliminarProducto vep1;
     private VentanaListaProducto vlp;
     private ControladorProducto cp;
+    private ControladorMesero cm;
+    private ControladorMesa cm1;
+
     /**
      * Creates new form VistaGerente
      */
-    public VistaGerente() {
+    public VistaGerente(ControladorProducto cp, ControladorMesero cm, ControladorMesa cm1) {
         initComponents();
         jDesktopPane1.setBorder(new ImagenFondoGerente());
         this.setExtendedState(VistaGerente.MAXIMIZED_BOTH);
+        this.cp = cp;
+        this.cm = cm;
+        this.cm1 = cm1;
 
     }
 
@@ -66,23 +74,11 @@ public class VistaGerente extends javax.swing.JFrame {
         opUpdateP = new javax.swing.JMenuItem();
         opDeleteP = new javax.swing.JMenuItem();
         opListP = new javax.swing.JMenuItem();
-        menCategoria = new javax.swing.JMenu();
-        opCreateCa = new javax.swing.JMenuItem();
-        opReadCa = new javax.swing.JMenuItem();
-        opUpdateCa = new javax.swing.JMenuItem();
-        opDeleteCa = new javax.swing.JMenuItem();
-        opListCa = new javax.swing.JMenuItem();
 
         setTitle("Gestión de Gerente");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
-            }
-        });
-
-        jDesktopPane1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jDesktopPane1KeyPressed(evt);
             }
         });
 
@@ -94,49 +90,24 @@ public class VistaGerente extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 301, Short.MAX_VALUE)
+            .addGap(0, 324, Short.MAX_VALUE)
         );
 
         menMesero.setText("Mesero");
 
         opCrearMe.setText("Nuevo");
-        opCrearMe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opCrearMeActionPerformed(evt);
-            }
-        });
         menMesero.add(opCrearMe);
 
         opReadMe.setText("Buscar");
-        opReadMe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opReadMeActionPerformed(evt);
-            }
-        });
         menMesero.add(opReadMe);
 
         opUpdateMe.setText("Editar");
-        opUpdateMe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opUpdateMeActionPerformed(evt);
-            }
-        });
         menMesero.add(opUpdateMe);
 
         opDeleteMe.setText("Eliminar");
-        opDeleteMe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opDeleteMeActionPerformed(evt);
-            }
-        });
         menMesero.add(opDeleteMe);
 
         opListMe.setText("Lista");
-        opListMe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opListMeActionPerformed(evt);
-            }
-        });
         menMesero.add(opListMe);
 
         jMenuBar1.add(menMesero);
@@ -147,11 +118,6 @@ public class VistaGerente extends javax.swing.JFrame {
         menMesa.add(opCrearMesa);
 
         opReadMesa.setText("Buscar");
-        opReadMesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opReadMesaActionPerformed(evt);
-            }
-        });
         menMesa.add(opReadMesa);
 
         opUpdateMesa.setText("Editar");
@@ -168,70 +134,21 @@ public class VistaGerente extends javax.swing.JFrame {
         menProduct.setText("Producto");
 
         opCrearP.setText("Nuevo");
-        opCrearP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opCrearPActionPerformed(evt);
-            }
-        });
         menProduct.add(opCrearP);
 
         opReadP.setText("Buscar");
-        opReadP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opReadPActionPerformed(evt);
-            }
-        });
         menProduct.add(opReadP);
 
         opUpdateP.setText("Editar");
-        opUpdateP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opUpdatePActionPerformed(evt);
-            }
-        });
         menProduct.add(opUpdateP);
 
         opDeleteP.setText("Eliminar");
-        opDeleteP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opDeletePActionPerformed(evt);
-            }
-        });
         menProduct.add(opDeleteP);
 
         opListP.setText("Lista");
-        opListP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opListPActionPerformed(evt);
-            }
-        });
         menProduct.add(opListP);
 
         jMenuBar1.add(menProduct);
-
-        menCategoria.setText("Categoría");
-
-        opCreateCa.setText("Nuevo");
-        menCategoria.add(opCreateCa);
-
-        opReadCa.setText("Buscar");
-        opReadCa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opReadCaActionPerformed(evt);
-            }
-        });
-        menCategoria.add(opReadCa);
-
-        opUpdateCa.setText("Editar");
-        menCategoria.add(opUpdateCa);
-
-        opDeleteCa.setText("Eliminar");
-        menCategoria.add(opDeleteCa);
-
-        opListCa.setText("Lista");
-        menCategoria.add(opListCa);
-
-        jMenuBar1.add(menCategoria);
 
         setJMenuBar(jMenuBar1);
 
@@ -249,7 +166,7 @@ public class VistaGerente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void opCrearMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearMeActionPerformed
+    private void opCrearMeActionPerformed(java.awt.event.ActionEvent evt) {                                          
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
             vcm = new VentanaCrearMesero();
@@ -261,9 +178,9 @@ public class VistaGerente extends javax.swing.JFrame {
             vcm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             vcm.toFront();
         
-    }//GEN-LAST:event_opCrearMeActionPerformed
+    }                                         
 
-    private void opReadPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadPActionPerformed
+    private void opReadPActionPerformed(java.awt.event.ActionEvent evt) {                                        
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
             vbp = new VentanaBuscarProducto(cp);
@@ -276,15 +193,15 @@ public class VistaGerente extends javax.swing.JFrame {
         
             vbp.toFront();
         
-    }//GEN-LAST:event_opReadPActionPerformed
+    }                                       
 
     private void opReadCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadCaActionPerformed
 
     }//GEN-LAST:event_opReadCaActionPerformed
 
-    private void opReadMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMesaActionPerformed
+    private void opReadMesaActionPerformed(java.awt.event.ActionEvent evt) {                                           
 
-    }//GEN-LAST:event_opReadMesaActionPerformed
+    }                                          
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
@@ -292,7 +209,7 @@ public class VistaGerente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyPressed
 
-    private void opReadMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMeActionPerformed
+    private void opReadMeActionPerformed(java.awt.event.ActionEvent evt) {                                         
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
             vbm = new VentanaBuscarMesero();
@@ -304,9 +221,9 @@ public class VistaGerente extends javax.swing.JFrame {
             vbm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             vbm.toFront();
         
-    }//GEN-LAST:event_opReadMeActionPerformed
+    }                                        
 
-    private void opUpdateMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateMeActionPerformed
+    private void opUpdateMeActionPerformed(java.awt.event.ActionEvent evt) {                                           
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
             vem = new VentanaEditarMesero();
@@ -318,9 +235,9 @@ public class VistaGerente extends javax.swing.JFrame {
             vem.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             vem.toFront();
         
-    }//GEN-LAST:event_opUpdateMeActionPerformed
+    }                                          
 
-    private void opDeleteMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteMeActionPerformed
+    private void opDeleteMeActionPerformed(java.awt.event.ActionEvent evt) {                                           
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
             vem1 = new VentanaEliminarMesero();
@@ -332,9 +249,9 @@ public class VistaGerente extends javax.swing.JFrame {
             vem1.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             vem1.toFront();
         
-    }//GEN-LAST:event_opDeleteMeActionPerformed
+    }                                          
 
-    private void opListMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListMeActionPerformed
+    private void opListMeActionPerformed(java.awt.event.ActionEvent evt) {                                         
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
             vlm = new VentanaListaMesero();
@@ -346,9 +263,9 @@ public class VistaGerente extends javax.swing.JFrame {
             vlm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             vlm.toFront();
         
-    }//GEN-LAST:event_opListMeActionPerformed
+    }                                        
 
-    private void opCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearPActionPerformed
+    private void opCrearPActionPerformed(java.awt.event.ActionEvent evt) {                                         
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
             vcp = new VentanaCrearProducto(cp);
@@ -361,12 +278,12 @@ public class VistaGerente extends javax.swing.JFrame {
             vcp.toFront();
         
 
-    }//GEN-LAST:event_opCrearPActionPerformed
+    }                                        
 
-    private void opUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdatePActionPerformed
+    private void opUpdatePActionPerformed(java.awt.event.ActionEvent evt) {                                          
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
-            vep = new VentanaEditarProducto();
+            vep = new VentanaEditarProducto(cp);
             vep.toFront();
             vep.setVisible(true);
             jDesktopPane1.add(vep);
@@ -375,9 +292,9 @@ public class VistaGerente extends javax.swing.JFrame {
             vep.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             vep.toFront();
         
-    }//GEN-LAST:event_opUpdatePActionPerformed
+    }                                         
 
-    private void opDeletePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeletePActionPerformed
+    private void opDeletePActionPerformed(java.awt.event.ActionEvent evt) {                                          
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
             vep1 = new VentanaEliminarProducto();
@@ -389,53 +306,27 @@ public class VistaGerente extends javax.swing.JFrame {
             vep1.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
             vep1.toFront();
         
-    }//GEN-LAST:event_opDeletePActionPerformed
-
-    private void opListPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListPActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vlp = new VentanaListaProducto(cp);
-            vlp.toFront();
-            vlp.setVisible(true);
-            jDesktopPane1.add(vlp);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vlp.getSize();
-            vlp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vlp.toFront();
-        
-    }//GEN-LAST:event_opListPActionPerformed
-
-    private void jDesktopPane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDesktopPane1KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_jDesktopPane1KeyPressed
+    }                                         
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu menCategoria;
     private javax.swing.JMenu menMesa;
     private javax.swing.JMenu menMesero;
     private javax.swing.JMenu menProduct;
     private javax.swing.JMenuItem opCrearMe;
     private javax.swing.JMenuItem opCrearMesa;
     private javax.swing.JMenuItem opCrearP;
-    private javax.swing.JMenuItem opCreateCa;
-    private javax.swing.JMenuItem opDeleteCa;
     private javax.swing.JMenuItem opDeleteMe;
     private javax.swing.JMenuItem opDeleteMesa;
     private javax.swing.JMenuItem opDeleteP;
-    private javax.swing.JMenuItem opListCa;
     private javax.swing.JMenuItem opListMe;
     private javax.swing.JMenuItem opListMesa;
     private javax.swing.JMenuItem opListP;
-    private javax.swing.JMenuItem opReadCa;
     private javax.swing.JMenuItem opReadMe;
     private javax.swing.JMenuItem opReadMesa;
     private javax.swing.JMenuItem opReadP;
-    private javax.swing.JMenuItem opUpdateCa;
     private javax.swing.JMenuItem opUpdateMe;
     private javax.swing.JMenuItem opUpdateMesa;
     private javax.swing.JMenuItem opUpdateP;

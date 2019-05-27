@@ -6,6 +6,10 @@
 package ec.edu.ups.vista;
 
 import com.sun.glass.events.KeyEvent;
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.controlador.ControladorProducto;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
@@ -16,13 +20,20 @@ import javax.swing.JOptionPane;
 public class Contrasenia extends javax.swing.JFrame {
 
     private VistaGerente vistaGerente;
+    private ControladorProducto controladorProducto;
+    private ControladorMesa controladorMesa;
+    private ControladorMesero controladorMesero;
 
     /**
      * Creates new form Contrasenia
      */
-    public Contrasenia() {
+    public Contrasenia(ControladorProducto controladorProducto, ControladorMesero controladorMesero, ControladorMesa controladorMesa) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.controladorProducto = controladorProducto;
+        this.controladorMesero = controladorMesero;
+        this.controladorMesa = controladorMesa;
+
     }
 
     /**
@@ -113,7 +124,7 @@ public class Contrasenia extends javax.swing.JFrame {
 
             this.dispose();
             JOptionPane.showMessageDialog(null, "bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
-            vistaGerente = new VistaGerente();
+            vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa);
             vistaGerente.toFront();
             vistaGerente.setVisible(true);
 
@@ -124,7 +135,7 @@ public class Contrasenia extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void JpassClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JpassClaveKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             char clave[] = JpassClave.getPassword();
             String clavedef = new String(clave);
 
@@ -132,7 +143,7 @@ public class Contrasenia extends javax.swing.JFrame {
 
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
-                vistaGerente = new VistaGerente();
+                vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa);
                 vistaGerente.toFront();
                 vistaGerente.setVisible(true);
 
@@ -140,11 +151,11 @@ public class Contrasenia extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-        
+
     }//GEN-LAST:event_JpassClaveKeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed

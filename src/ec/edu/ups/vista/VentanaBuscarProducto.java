@@ -6,6 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
 import javax.swing.JOptionPane;
 
@@ -16,6 +17,7 @@ import javax.swing.JOptionPane;
 public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
 
     ControladorProducto controladorProducto;
+    Categoria categoria;
 
     /**
      * Creates new form VentanaBuscarProducto
@@ -54,8 +56,13 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
 
         lNombre.setText("Nombre:");
 
+        tNombre.setEditable(false);
+
         lPrecio.setText("Precio:");
 
+        tPrecio.setEditable(false);
+
+        tDescripcion.setEditable(false);
         tDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tDescripcionActionPerformed(evt);
@@ -72,6 +79,8 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
                 bCancelarActionPerformed(evt);
             }
         });
+
+        tCategoria.setEditable(false);
 
         bBuscar.setText("Buscar");
         bBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,8 +159,9 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
         Producto buscarProducto = controladorProducto.read(codigo);
         if (buscarProducto != null) {
             tNombre.setText(buscarProducto.getNombre());
-            //tPrecio.setText(buscarProducto.getPrecio());
+            tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
             tDescripcion.setText(buscarProducto.getDescripcion());
+            tCategoria.setText(buscarProducto.getCategoria().getNombre());
         } else {
             tNombre.setText("");
             tPrecio.setText("");

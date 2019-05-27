@@ -18,13 +18,13 @@ public class ControladorProducto {
     private List<Producto> lista;
     private int codigo;
 
-    public int getCodigo() {
-        return codigo;
-    }
-
     public ControladorProducto() {
         lista = new ArrayList<>();
         codigo = 1;
+    }
+
+    public int getCodigo() {
+        return codigo;
     }
 
     public void create(Producto producto) {
