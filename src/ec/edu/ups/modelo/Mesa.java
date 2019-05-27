@@ -20,7 +20,6 @@ public class Mesa {
     private boolean mesaAbierta;
     private Mesero mesero;
     private ControladorDetalle controladorDetalle;
-    private ImageIcon imgIcon;
 
     public Mesa() {
         mesaAbierta = true;

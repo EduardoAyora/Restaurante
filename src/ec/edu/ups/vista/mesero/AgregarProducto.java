@@ -15,6 +15,7 @@ import ec.edu.ups.modelo.Render;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -69,7 +70,7 @@ public class AgregarProducto extends javax.swing.JFrame {
                     producto.getNombre(),
                     producto.getDescripcion(),
                     producto.getPrecio(),
-                    producto.getPrecio(),
+                    new JLabel(producto.getImgIcon()),
                     btnSeleccionar
                 };
                 modelo.addRow(datos);

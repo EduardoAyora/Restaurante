@@ -7,6 +7,7 @@ package ec.edu.ups.modelo;
 
 import java.awt.Component;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -22,6 +23,11 @@ public class Render extends DefaultTableCellRenderer{
         if(o instanceof JButton){
             JButton boton = (JButton) o;
             return boton;
+        }
+        
+        if(o instanceof JLabel){
+            JLabel lbl = (JLabel) o;
+            return lbl;
         }
         
         return super.getTableCellRendererComponent(jtable, o, bln, bln1, i, i1); 
