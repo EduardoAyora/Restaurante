@@ -269,7 +269,7 @@ public class VistaGerente extends javax.swing.JFrame {
 
     private void opUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdatePActionPerformed
         if (vep == null || vep.isVisible() == false) {
-            vep = new VentanaEditarProducto();
+            vep = new VentanaEditarProducto(cp);
             vep.toFront();
             vep.setVisible(true);
             jDesktopPane1.add(vep);
