@@ -52,6 +52,7 @@ public class AgregarProducto extends javax.swing.JFrame {
     public void llenarDatos() {
         tblProductos.setDefaultRenderer(Object.class, new Render());
         JButton btnSeleccionar = new JButton("Seleccionar");
+        btnSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/visto1.png")));
 
         List<Producto> productos = controladorProducto.getLista();
         DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();

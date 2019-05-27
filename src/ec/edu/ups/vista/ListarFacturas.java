@@ -83,17 +83,18 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
         tblFactura = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Lista de facturas");
 
         tblFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Numero de Factura", "Fecha", "Cliente", "Subtotal", "Iva", "Total"
+                "Numero de Factura", "Fecha", "Cliente", "Subtotal", "Iva", "Total", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -101,6 +102,26 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tblFactura);
+        if (tblFactura.getColumnModel().getColumnCount() > 0) {
+            tblFactura.getColumnModel().getColumn(0).setMinWidth(130);
+            tblFactura.getColumnModel().getColumn(0).setPreferredWidth(130);
+            tblFactura.getColumnModel().getColumn(0).setMaxWidth(130);
+            tblFactura.getColumnModel().getColumn(1).setMinWidth(70);
+            tblFactura.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tblFactura.getColumnModel().getColumn(1).setMaxWidth(70);
+            tblFactura.getColumnModel().getColumn(3).setMinWidth(70);
+            tblFactura.getColumnModel().getColumn(3).setPreferredWidth(70);
+            tblFactura.getColumnModel().getColumn(3).setMaxWidth(70);
+            tblFactura.getColumnModel().getColumn(4).setMinWidth(70);
+            tblFactura.getColumnModel().getColumn(4).setPreferredWidth(70);
+            tblFactura.getColumnModel().getColumn(4).setMaxWidth(70);
+            tblFactura.getColumnModel().getColumn(5).setMinWidth(70);
+            tblFactura.getColumnModel().getColumn(5).setPreferredWidth(70);
+            tblFactura.getColumnModel().getColumn(5).setMaxWidth(70);
+            tblFactura.getColumnModel().getColumn(6).setMinWidth(120);
+            tblFactura.getColumnModel().getColumn(6).setPreferredWidth(120);
+            tblFactura.getColumnModel().getColumn(6).setMaxWidth(120);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -68,6 +68,7 @@ public class VistaMesa extends javax.swing.JFrame {
     public void llenarDatos(){
         tblDetalles.setDefaultRenderer(Object.class, new Render());
         JButton btnQuitar = new JButton("Quitar");
+        btnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/cerrar1.png")));
 
         SortedSet<Detalle> detalles = mesa.getControladorDetalle().getLista();
         DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
@@ -135,6 +136,7 @@ public class VistaMesa extends javax.swing.JFrame {
         txtIva = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
 
+        tblDetalles.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblDetalles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -157,6 +159,11 @@ public class VistaMesa extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblDetalles);
+        if (tblDetalles.getColumnModel().getColumnCount() > 0) {
+            tblDetalles.getColumnModel().getColumn(5).setMinWidth(150);
+            tblDetalles.getColumnModel().getColumn(5).setPreferredWidth(150);
+            tblDetalles.getColumnModel().getColumn(5).setMaxWidth(150);
+        }
 
         jLabel1.setText("Numero de mesa:");
 
@@ -166,7 +173,7 @@ public class VistaMesa extends javax.swing.JFrame {
 
         txtMesero.setEditable(false);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         btnAgregar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAgregar.setText("Agregar Producto");
@@ -208,9 +215,7 @@ public class VistaMesa extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
