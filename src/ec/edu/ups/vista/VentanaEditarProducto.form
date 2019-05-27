@@ -103,9 +103,6 @@
     <Component class="javax.swing.JTextField" name="tCodigo">
     </Component>
     <Component class="javax.swing.JTextField" name="tNombre">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tNombreActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lNombre">
       <Properties>
@@ -120,9 +117,6 @@
     <Component class="javax.swing.JTextField" name="tPrecio">
     </Component>
     <Component class="javax.swing.JTextField" name="tDescripcion">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tDescripcionActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lDescripcion">
       <Properties>
@@ -153,11 +147,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Actualizar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bActualizarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bBuscar">
       <Properties>

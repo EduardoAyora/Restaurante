@@ -5,17 +5,27 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Categoria;
+import ec.edu.ups.modelo.Producto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class VentanaEditarProducto extends javax.swing.JInternalFrame {
 
+    ControladorProducto controladorProducto;
+    Categoria categoria;
+
     /**
      * Creates new form VentanaEditarProducto
      */
-    public VentanaEditarProducto() {
+    public VentanaEditarProducto(ControladorProducto controladorProducto) {
         initComponents();
+        this.controladorProducto = controladorProducto;
+        bActualizar.setEnabled(false);
     }
 
     /**
@@ -46,21 +56,9 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
 
         lCodigo.setText("Código:");
 
-        tNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tNombreActionPerformed(evt);
-            }
-        });
-
         lNombre.setText("Nombre:");
 
         lPrecio.setText("Precio:");
-
-        tDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDescripcionActionPerformed(evt);
-            }
-        });
 
         lDescripcion.setText("Descripción:");
 
@@ -69,8 +67,18 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         bActualizar.setText("Actualizar");
+        bActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActualizarActionPerformed(evt);
+            }
+        });
 
         bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
 
         bBuscar.setText("Buscar");
         bBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,17 +151,39 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tNombreActionPerformed
-
-    private void tDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDescripcionActionPerformed
-
-    }//GEN-LAST:event_tDescripcionActionPerformed
-
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        // TODO add your handling code here:
+        int codigo = Integer.parseInt(tCodigo.getText());
+        Producto buscarProducto = controladorProducto.read(codigo);
+        if (buscarProducto != null) {
+            tNombre.setText(buscarProducto.getNombre());
+            tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
+            tDescripcion.setText(buscarProducto.getDescripcion());
+            //comboCategoria.set
+        } else {
+            tNombre.setText("");
+            tPrecio.setText("");
+            tDescripcion.setText("");
+            JOptionPane.showMessageDialog(this, "El producto no existe");
+        }
     }//GEN-LAST:event_bBuscarActionPerformed
+
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+
+        dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
+        Producto productoActual = new Producto();
+        productoActual.setNombre(tNombre.getText());
+        productoActual.setPrecio(Integer.parseInt(tPrecio.getText()));
+        productoActual.setDescripcion(tDescripcion.getText());
+        if (""!= tNombre.getText() && "" != tPrecio.getText() && "" != tDescripcion.getText()) {
+            bActualizar.setEnabled(true);
+            controladorProducto.update(productoActual);
+            JOptionPane.showMessageDialog(this, "Producto actualizado exitosamente!");
+            
+        }
+    }//GEN-LAST:event_bActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
