@@ -5,7 +5,10 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Producto;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,11 +16,14 @@ import java.awt.event.KeyEvent;
  */
 public class VentanaCrearProducto extends javax.swing.JInternalFrame {
 
+    ControladorProducto controladorProducto;
+
     /**
      * Creates new form VentanaCrearProducto
      */
-    public VentanaCrearProducto() {
+    public VentanaCrearProducto(ControladorProducto controladorProducto) {
         initComponents();
+        this.controladorProducto = controladorProducto;
 
     }
 
@@ -76,8 +82,18 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         lCategoria.setText("Categoría:");
 
         bCrear.setText("Crear");
+        bCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCrearActionPerformed(evt);
+            }
+        });
 
         bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
 
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -154,6 +170,25 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
+        Producto producto = new Producto();
+        producto.setCodigoProducto(Integer.parseInt(tCodigo.getText()));
+        producto.setNombre(tNombre.getText());
+        producto.setPrecio(Integer.parseInt(tPrecio.getText()));
+        producto.setDescripcion(tDescripcion.getText());
+        controladorProducto.create(producto);
+        JOptionPane.showMessageDialog(this, "Producto creado exitosamente!");
+        tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
+        tNombre.setText("");
+        tPrecio.setText("");
+        tDescripcion.setText("");
+        comboCategoria.setSelectedIndex(0);
+    }//GEN-LAST:event_bCrearActionPerformed
+
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

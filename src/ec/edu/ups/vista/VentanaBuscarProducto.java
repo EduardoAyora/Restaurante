@@ -5,17 +5,24 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Producto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
 
+    ControladorProducto controladorProducto;
+
     /**
      * Creates new form VentanaBuscarProducto
      */
-    public VentanaBuscarProducto() {
+    public VentanaBuscarProducto(ControladorProducto controladorProducto) {
         initComponents();
+        this.controladorProducto = controladorProducto;
     }
 
     /**
@@ -60,8 +67,18 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
         lCategoria.setText("Categoría:");
 
         bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
 
         bBuscar.setText("Buscar");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,14 +94,15 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
                     .addComponent(lNombre))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bBuscar))
                     .addComponent(tPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(bBuscar))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,6 +144,27 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
     private void tDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDescripcionActionPerformed
 
     }//GEN-LAST:event_tDescripcionActionPerformed
+
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        int codigo = Integer.parseInt(tCodigo.getText());
+        Producto buscarProducto = controladorProducto.read(codigo);
+        if (buscarProducto != null) {
+            tNombre.setText(buscarProducto.getNombre());
+            //tPrecio.setText(buscarProducto.getPrecio());
+            tDescripcion.setText(buscarProducto.getDescripcion());
+        } else {
+            tNombre.setText("");
+            tPrecio.setText("");
+            tDescripcion.setText("");
+            JOptionPane.showMessageDialog(this, "El producto no existe");
+        }
+
+
+    }//GEN-LAST:event_bBuscarActionPerformed
+
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
