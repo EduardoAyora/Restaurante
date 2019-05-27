@@ -6,6 +6,7 @@
 package ec.edu.ups.modelo;
 
 import ec.edu.ups.controlador.ControladorDetalle;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Mesa {
     private boolean mesaAbierta;
     private Mesero mesero;
     private ControladorDetalle controladorDetalle;
+    private ImageIcon imgIcon;
 
     public Mesa() {
         mesaAbierta = true;
