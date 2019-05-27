@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.modelo;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ public class Mesero extends Persona{
     private List<Mesa> mesas;
     
     public Mesero(){
+        mesas = new ArrayList<>();
     }
 
     public void abrirMesa(Mesa mesa){
@@ -38,7 +41,5 @@ public class Mesero extends Persona{
     public List<Mesa> getMesas() {
         return mesas;
     }
-    
-    
     
 }

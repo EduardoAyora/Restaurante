@@ -17,6 +17,7 @@ public class Producto {
     private String nombre;
     private double precio;
     private String descripcion;
+    private Categoria categoria;
 
     public Producto() {
     }
@@ -67,6 +68,13 @@ public class Producto {
         this.descripcion = detalle;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
 
     @Override

@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.modelo;
 
+import ec.edu.ups.controlador.ControladorDetalle;
+
 /**
  *
  * @author Eduardo Ayora
@@ -15,7 +17,14 @@ public class Mesa {
     private int numeroPersonas;
     private int capacidad;
     private boolean mesaAbierta;
+    private Mesero mesero;
+    private ControladorDetalle controladorDetalle;
 
+    public Mesa() {
+        mesaAbierta = true;
+        controladorDetalle = new ControladorDetalle();
+    }
+    
     public int getNumeroMesa() {
         return numeroMesa;
     }
@@ -47,7 +56,20 @@ public class Mesa {
     public void setMesaAbierta(boolean mesaAbierta) {
         this.mesaAbierta = mesaAbierta;
     }
+
+    public Mesero getMesero() {
+        return mesero;
+    }
+
+    public void setMesero(Mesero mesero) {
+        this.mesero = mesero;
+    }
     
-    
-    
+    public ControladorDetalle getControladorDetalle() {
+        return controladorDetalle;
+    }
+
+    public void setControladorDetalle(ControladorDetalle controladorDetalle) {
+        this.controladorDetalle = controladorDetalle;
+    }
 }

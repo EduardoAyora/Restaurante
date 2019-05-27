@@ -6,11 +6,20 @@
 package ec.edu.ups.vista.mesero;
 
 import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Mesa;
+import ec.edu.ups.modelo.Mesero;
+import ec.edu.ups.modelo.Render;
 import ec.edu.ups.vista.VentanaPrincipal;
 import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,15 +28,39 @@ import javax.swing.JOptionPane;
 public class VistaMesero extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
-    private ListaMesas listaMesas;
+    private ControladorProducto controladorProducto;
+    private AbrirMesa abrirMesa;
+    private Mesero mesero;
+    private VistaMesa vistaMesa;
 
     /**
      * Creates new form EscogerMesa
      */
-    public VistaMesero(ControladorMesa controladorMesa) {
+    public VistaMesero(Mesero mesero, ControladorMesa controladorMesa, ControladorProducto controladorProducto) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.controladorMesa = controladorMesa;
+        this.controladorProducto = controladorProducto;
+        this.mesero = mesero;
+        llenarTabla();
+        tblMesas.setRowHeight(60);
+    }
+
+    public void llenarTabla() {
+
+        tblMesas.setDefaultRenderer(Object.class, new Render());
+        JButton btnVer = new JButton("Ver");
+
+        List<Mesa> mesas = mesero.getMesas();
+        DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
+        modelo.setRowCount(0);
+        for (Mesa mesa : mesas) {
+            Object[] datos = {"Mesa " + mesa.getNumeroMesa(),
+                btnVer
+            };
+            modelo.addRow(datos);
+        }
+
     }
 
     /**
@@ -42,7 +75,7 @@ public class VistaMesero extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMesas = new javax.swing.JTable();
 
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -62,9 +95,7 @@ public class VistaMesero extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,15 +105,28 @@ public class VistaMesero extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mesa", "Ver", "Cerrar"
+                "Mesa", "Ver"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMesas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMesasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblMesas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,9 +136,7 @@ public class VistaMesero extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -112,11 +154,12 @@ public class VistaMesero extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        if (listaMesas == null || listaMesas.isVisible() == false) {
-            listaMesas = new ListaMesas();
-            listaMesas.setControladorMesa(controladorMesa);
-            listaMesas.toFront();
-            listaMesas.setVisible(true);
+        if (abrirMesa == null || abrirMesa.isVisible() == false) {
+            abrirMesa = new AbrirMesa();
+            abrirMesa.setMesas(controladorMesa, mesero, controladorProducto);
+            abrirMesa.toFront();
+            abrirMesa.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
@@ -126,11 +169,44 @@ public class VistaMesero extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyPressed
 
+    private void tblMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMesasMouseClicked
+        // TODO add your handling code here:
+        try {
+            int columna = tblMesas.getColumnModel().getColumnIndexAtX(evt.getX());
+            int fila = evt.getY() / tblMesas.getRowHeight();
+
+            if (fila < tblMesas.getRowCount() && fila >= 0 && columna < tblMesas.getColumnCount() && columna >= 0) {
+                Object value = tblMesas.getValueAt(fila, columna);
+                if (value instanceof JButton) {
+                    ((JButton) value).doClick();
+                    JButton boton = (JButton) value;
+                    int numMesa = evt.getY() / tblMesas.getRowHeight();
+                    Mesa auxMesa = mesero.getMesas().get(numMesa);
+                    /*if (boton.getText().equals("Ver")) {
+                    vistaMesa = new VistaMesa(auxMesa, mesero, controladorMesa, controladorProducto);
+                    vistaMesa.setVisible(true);
+                    dispose();
+                } else {
+                    auxMesa.setMesaAbierta(true);
+                    mesero.cerrarMesa(auxMesa);
+                    llenarTabla();
+                }*/
+                    vistaMesa = new VistaMesa(auxMesa, mesero, controladorMesa, controladorProducto);
+                    vistaMesa.setVisible(true);
+                    dispose();
+                }
+            }
+        } catch (java.lang.IndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(this, "La mesa ha sido cerrada en caja", "Mesa cerrada", JOptionPane.OK_OPTION);
+        }
+
+    }//GEN-LAST:event_tblMesasMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblMesas;
     // End of variables declaration//GEN-END:variables
 }

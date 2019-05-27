@@ -5,6 +5,10 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorFactura;
+import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.ImagenFondoCaja;
 import java.awt.event.KeyEvent;
 
@@ -13,20 +17,35 @@ import java.awt.event.KeyEvent;
  * @author DELL
  */
 public class VistaCaja extends javax.swing.JFrame {
-    VentanaCrearCliente crearCliente;
-    VentanaBuscarCliente buscarCliente;
-    VentanaEditarCliente editarCliente;
-    VentanaEliminarCliente eliminarCliente;
-    VentanaListaCliente listaCliente;
+    private VentanaCrearCliente crearCliente;
+    private VentanaBuscarCliente buscarCliente;
+    private VentanaEditarCliente editarCliente;
+    private VentanaEliminarCliente eliminarCliente;
+    private VentanaListaCliente listaCliente;
+    private ControladorFactura controladorFactura;
+    private ControladorCliente controladorCliente;
+    private ControladorMesa controladorMesa;
+    private CrearFactura crearFactura;
+    private Cliente cliente;
+    private ListarFacturas listarFacturas;
     
     /**
      * Creates new form VistaCaja
      */
-    public VistaCaja() {
+    public VistaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa) {
         initComponents();
         jDesktopPane1.setBorder(new ImagenFondoCaja());
         this.setExtendedState(VistaCaja.MAXIMIZED_BOTH);
-        
+        this.controladorFactura = controladorFactura;
+        this.controladorCliente = controladorCliente;
+        this.controladorMesa = controladorMesa;
+        //Prueba
+        //---------------------------------------------------------------------
+        cliente = new Cliente();
+        cliente.setNombre("Jaime");
+        cliente.setCedula("0107082125");
+        cliente.setMesa(controladorMesa.read(2));
+        //----------------------------------------------------------------------
     }
 
     /**
@@ -136,6 +155,11 @@ public class VistaCaja extends javax.swing.JFrame {
         menMesero2.add(opAnularFac);
 
         opListFac.setText("Lista");
+        opListFac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opListFacActionPerformed(evt);
+            }
+        });
         menMesero2.add(opListFac);
 
         jMenuBar1.add(menMesero2);
@@ -164,6 +188,9 @@ public class VistaCaja extends javax.swing.JFrame {
 
     private void opCrearFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearFacActionPerformed
         // TODO add your handling code here:
+        crearFactura = new CrearFactura(controladorFactura, cliente);
+        crearFactura.setVisible(true);
+        jDesktopPane1.add(crearFactura);
     }//GEN-LAST:event_opCrearFacActionPerformed
 
     private void opUpdateCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateCliActionPerformed
@@ -199,6 +226,13 @@ public class VistaCaja extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
+
+    private void opListFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListFacActionPerformed
+        // TODO add your handling code here:
+        listarFacturas = new ListarFacturas(controladorFactura);
+        jDesktopPane1.add(listarFacturas);
+        listarFacturas.setVisible(true);
+    }//GEN-LAST:event_opListFacActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

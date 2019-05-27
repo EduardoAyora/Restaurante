@@ -7,7 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Producto;
-import java.util.Set;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,7 +27,7 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
 
     public void llenarDatos(){
         DefaultTableModel modelo = (DefaultTableModel) tbProducto.getModel();
-        Set<Producto> lista = controladorProducto.getLista();
+        List <Producto> lista = controladorProducto.getLista();
         for (Producto producto : lista){
           Object[] datos = {producto.getCodigoProducto(),
               producto.getNombre(), producto.getPrecio(),
