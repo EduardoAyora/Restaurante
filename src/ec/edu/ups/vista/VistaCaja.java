@@ -17,6 +17,10 @@ import java.awt.event.KeyEvent;
  * @author DELL
  */
 public class VistaCaja extends javax.swing.JFrame {
+
+    static void jDesktopPane1() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private VentanaCrearCliente crearCliente;
     private VentanaBuscarCliente buscarCliente;
     private VentanaEditarCliente editarCliente;
@@ -181,6 +185,8 @@ public class VistaCaja extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void opCrearCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearCliActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
         crearCliente = new VentanaCrearCliente();
         jDesktopPane1.add(crearCliente);
         crearCliente.setVisible(true);
@@ -188,12 +194,16 @@ public class VistaCaja extends javax.swing.JFrame {
 
     private void opCrearFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearFacActionPerformed
         // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
         crearFactura = new CrearFactura(controladorFactura, cliente);
         crearFactura.setVisible(true);
         jDesktopPane1.add(crearFactura);
     }//GEN-LAST:event_opCrearFacActionPerformed
 
     private void opUpdateCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateCliActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
         editarCliente = new VentanaEditarCliente();
         jDesktopPane1.add(editarCliente);
         editarCliente.setVisible(true);
@@ -201,21 +211,29 @@ public class VistaCaja extends javax.swing.JFrame {
 
     private void opAnularFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opAnularFacActionPerformed
         // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
     }//GEN-LAST:event_opAnularFacActionPerformed
 
     private void opReadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadCliActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
         buscarCliente = new VentanaBuscarCliente();
         jDesktopPane1.add(buscarCliente);
         buscarCliente.setVisible(true);
     }//GEN-LAST:event_opReadCliActionPerformed
 
     private void opDeleteCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteCliActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
         eliminarCliente = new VentanaEliminarCliente();
         jDesktopPane1.add(eliminarCliente);
         eliminarCliente.setVisible(true);
     }//GEN-LAST:event_opDeleteCliActionPerformed
 
     private void opListCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListCliActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
         listaCliente = new VentanaListaCliente();
         jDesktopPane1.add(listaCliente);
         listaCliente.setVisible(true);
@@ -229,6 +247,8 @@ public class VistaCaja extends javax.swing.JFrame {
 
     private void opListFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListFacActionPerformed
         // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
         listarFacturas = new ListarFacturas(controladorFactura);
         jDesktopPane1.add(listarFacturas);
         listarFacturas.setVisible(true);

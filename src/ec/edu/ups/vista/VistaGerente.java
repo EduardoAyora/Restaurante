@@ -82,12 +82,6 @@ public class VistaGerente extends javax.swing.JFrame {
             }
         });
 
-        jDesktopPane1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jDesktopPane1KeyPressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
@@ -296,7 +290,8 @@ public class VistaGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_opReadPActionPerformed
 
     private void opCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearPActionPerformed
-        if (vcp == null || vcp.isVisible() == false) {
+            jDesktopPane1.removeAll();
+            jDesktopPane1.repaint();
             vcp = new VentanaCrearProducto(cp);
             vcp.toFront();
             vcp.setVisible(true);
@@ -304,9 +299,9 @@ public class VistaGerente extends javax.swing.JFrame {
             Dimension desktopSize = jDesktopPane1.getSize();
             Dimension frameSize = vcp.getSize();
             vcp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-        } else {
+        
             vcp.toFront();
-        }
+        
     }//GEN-LAST:event_opCrearPActionPerformed
 
     private void opReadMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMesaActionPerformed
@@ -370,7 +365,8 @@ public class VistaGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_opReadMeActionPerformed
 
     private void opCrearMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearMeActionPerformed
-        if (vcm == null || vcm.isVisible() == false) {
+            jDesktopPane1.removeAll();
+            jDesktopPane1.repaint();
             vcm = new VentanaCrearMesero();
             vcm.toFront();
             vcm.setVisible(true);
@@ -378,9 +374,9 @@ public class VistaGerente extends javax.swing.JFrame {
             Dimension desktopSize = jDesktopPane1.getSize();
             Dimension frameSize = vcm.getSize();
             vcm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-        } else {
+        
             vcm.toFront();
-        }
+        
     }//GEN-LAST:event_opCrearMeActionPerformed
 
 
