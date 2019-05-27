@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -37,11 +38,11 @@ public class VistaMesero extends javax.swing.JFrame {
      * Creates new form EscogerMesa
      */
     public VistaMesero(Mesero mesero, ControladorMesa controladorMesa, ControladorProducto controladorProducto) {
+        this.mesero = mesero;
         initComponents();
         this.setLocationRelativeTo(null);
         this.controladorMesa = controladorMesa;
         this.controladorProducto = controladorProducto;
-        this.mesero = mesero;
         llenarTabla();
         tblMesas.setRowHeight(60);
     }
@@ -49,18 +50,18 @@ public class VistaMesero extends javax.swing.JFrame {
     public void llenarTabla() {
 
         tblMesas.setDefaultRenderer(Object.class, new Render());
-        JButton btnVer = new JButton("Ver");
+        JButton btnVer = new JButton();
+        btnVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/listas1.png")));
 
         List<Mesa> mesas = mesero.getMesas();
         DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
         modelo.setRowCount(0);
         for (Mesa mesa : mesas) {
-            Object[] datos = {"Mesa " + mesa.getNumeroMesa(),
+            Object[] datos = {"           Mesa " + mesa.getNumeroMesa(),
                 btnVer
             };
             modelo.addRow(datos);
         }
-
     }
 
     /**
@@ -77,6 +78,7 @@ public class VistaMesero extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMesas = new javax.swing.JTable();
 
+        setTitle(mesero.getNombre());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -105,6 +107,7 @@ public class VistaMesero extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tblMesas.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tblMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -127,6 +130,11 @@ public class VistaMesero extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblMesas);
+        if (tblMesas.getColumnModel().getColumnCount() > 0) {
+            tblMesas.getColumnModel().getColumn(1).setMinWidth(80);
+            tblMesas.getColumnModel().getColumn(1).setPreferredWidth(80);
+            tblMesas.getColumnModel().getColumn(1).setMaxWidth(80);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,7 +144,7 @@ public class VistaMesero extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
