@@ -93,7 +93,7 @@ public class VistaMesa extends javax.swing.JFrame {
         for(Detalle detalle : mesa.getControladorDetalle().getLista()){
             suma += detalle.getSubtotal();
         }
-        txtSubtotal.setText(Double.toString(suma));
+        txtSubtotal.setText(String.format("%.2f", suma));
     }
 
     public void calcularIva() {
@@ -103,7 +103,7 @@ public class VistaMesa extends javax.swing.JFrame {
     
     public void calcularTotal() {
         double total = Double.parseDouble(txtSubtotal.getText()) + (Double.parseDouble(txtSubtotal.getText()) * 0.12);
-        txtTotal.setText(Double.toString(total));
+        txtTotal.setText(String.format("%.2f", total));
     }
     
     public void llenarTextos(){

@@ -7,20 +7,14 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorFactura;
-import ec.edu.ups.vista.mesero.VistaMesero;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.datoscreados.GenerarMesa;
 import ec.edu.ups.datoscreados.GenerarMesero;
 import ec.edu.ups.datoscreados.GenerarProducto;
-import ec.edu.ups.modelo.Categoria;
-import ec.edu.ups.modelo.Mesa;
-import ec.edu.ups.modelo.Mesero;
-import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.vista.mesero.UsuarioMesero;
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
 
 /**
  *

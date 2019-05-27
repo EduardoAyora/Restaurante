@@ -39,7 +39,7 @@ public class AgregarProducto extends javax.swing.JFrame {
         this.mesero = mesero;
         this.controladorMesa = controladorMesa;
         this.controladorProducto = controladorProducto;
-        nombreCategoria = "Plato";
+        nombreCategoria = "Entrada";
         setLocationRelativeTo(null);
         llenarDatos();
         tblProductos.setRowHeight(60);
