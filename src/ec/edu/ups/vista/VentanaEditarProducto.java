@@ -181,7 +181,11 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
             bActualizar.setEnabled(true);
             controladorProducto.update(productoActual);
             JOptionPane.showMessageDialog(this, "Producto actualizado exitosamente!");
-            
+            tCodigo.setText("");
+            tNombre.setText("");
+            tPrecio.setText("");
+            tDescripcion.setText("");
+            comboCategoria.setSelectedIndex(0);
         }
     }//GEN-LAST:event_bActualizarActionPerformed
 
