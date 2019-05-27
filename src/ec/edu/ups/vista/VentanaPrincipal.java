@@ -101,6 +101,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         producto3.setPrecio(3);
         producto3.setCategoria(categoria1);
         controladorProducto.create(producto3);
+        
+        ImageIcon img = new ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/gerenteR.png"));
+        producto3.setImgIcon(img);
         //---------------------------------------------------------------------------------------------
     }
 

@@ -6,6 +6,7 @@
 package ec.edu.ups.modelo;
 
 import ec.edu.ups.controlador.ControladorDetalle;
+import javax.swing.ImageIcon;
 
 /**
  *

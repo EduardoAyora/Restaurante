@@ -6,20 +6,23 @@
 package ec.edu.ups.modelo;
 
 import java.util.Objects;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Eduardo Ayora
  */
 public class Producto {
-    
+
     private int codigoProducto;
     private String nombre;
     private double precio;
     private String descripcion;
     private Categoria categoria;
+    private ImageIcon imgIcon;
 
     public Producto() {
+        imgIcon = new ImageIcon();
     }
 
     public Producto(String nombre, int precio, String marca, String descripcion) {
@@ -76,6 +79,13 @@ public class Producto {
         this.categoria = categoria;
     }
 
+    public ImageIcon getImgIcon() {
+        return imgIcon;
+    }
+
+    public void setImgIcon(ImageIcon imgIcon) {
+        this.imgIcon = imgIcon;
+    }
 
     @Override
     public int hashCode() {
@@ -101,8 +111,5 @@ public class Producto {
         }
         return true;
     }
-    
-    
-    
-    
+
 }
