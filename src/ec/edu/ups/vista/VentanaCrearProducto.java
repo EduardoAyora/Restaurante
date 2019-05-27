@@ -6,6 +6,7 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 public class VentanaCrearProducto extends javax.swing.JInternalFrame {
 
     ControladorProducto controladorProducto;
+    Categoria categoria;
 
     /**
      * Creates new form VentanaCrearProducto
@@ -24,6 +26,9 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
     public VentanaCrearProducto(ControladorProducto controladorProducto) {
         initComponents();
         this.controladorProducto = controladorProducto;
+        tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
+        categoria = new Categoria();
+        categoria.setNombre("Plato");
 
     }
 
@@ -177,13 +182,14 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         producto.setNombre(tNombre.getText());
         producto.setPrecio(Integer.parseInt(tPrecio.getText()));
         producto.setDescripcion(tDescripcion.getText());
+        producto.setCategoria(categoria);
         controladorProducto.create(producto);
         JOptionPane.showMessageDialog(this, "Producto creado exitosamente!");
         tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
         tNombre.setText("");
         tPrecio.setText("");
         tDescripcion.setText("");
-        comboCategoria.setSelectedIndex(0);
+        comboCategoria.setSelectedIndex(2);
     }//GEN-LAST:event_bCrearActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed

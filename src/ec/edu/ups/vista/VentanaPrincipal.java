@@ -222,9 +222,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void bGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGerenteActionPerformed
         if (contrasenia == null || contrasenia.isVisible() == false) {
-            contrasenia = new Contrasenia();
+            contrasenia = new Contrasenia(controladorProducto, controladorMesero, controladorMesa);
             contrasenia.toFront();
             contrasenia.setVisible(true);
+            this.toBack();
         } else {
             contrasenia.toFront();
         }
@@ -235,6 +236,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
+            this.toBack();
         } else {
             vistaCaja.toFront();
         }
@@ -245,6 +247,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             usuarioMesero = new UsuarioMesero(controladorMesero, controladorMesa, controladorProducto);
             usuarioMesero.toFront();
             usuarioMesero.setVisible(true);
+            this.toBack();
         } else {
             usuarioMesero.toFront();
         }
