@@ -92,8 +92,16 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     }
     
     public void llenarDatosCliente(){
+        Date date = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaTexto = formato.format(date.getTime());
         txtCedula.setText(cliente.getCedula());
         txtNombre.setText(cliente.getNombre());
+        txtCodigo.setText(Integer.toString(cliente.getCodigo()));
+        txtDireccion.setText(cliente.getDireccion());
+        txtTelefono.setText(cliente.getTelefono());
+        txtFecha.setText(fechaTexto);
+        
     }
 
     @SuppressWarnings("unchecked")

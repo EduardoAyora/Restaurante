@@ -15,12 +15,16 @@ import java.awt.Desktop;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -33,20 +37,39 @@ public class VistaMesero extends javax.swing.JFrame {
     private AbrirMesa abrirMesa;
     private Mesero mesero;
     private VistaMesa vistaMesa;
+    private ResourceBundle mensajes;
 
     /**
      * Creates new form EscogerMesa
      */
-    public VistaMesero(Mesero mesero, ControladorMesa controladorMesa, ControladorProducto controladorProducto) {
+    public VistaMesero(Mesero mesero, ControladorMesa controladorMesa, ControladorProducto controladorProducto, ResourceBundle mensajes) {
         this.mesero = mesero;
         initComponents();
         this.setLocationRelativeTo(null);
         this.controladorMesa = controladorMesa;
         this.controladorProducto = controladorProducto;
+        this.mensajes = mensajes;
+        cambiarIdioma(mensajes);
         llenarTabla();
         tblMesas.setRowHeight(60);
     }
 
+    public void cambiarIdioma(ResourceBundle mensajes){
+        
+        btnNuevo.setText(mensajes.getString("btn.mesanueva"));
+        
+        
+        JTableHeader tableHeader = tblMesas.getTableHeader();
+        TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+        TableColumn tableColumn;
+        tableColumn = tableColumnModel.getColumn(0);
+        tableColumn.setHeaderValue(mensajes.getString("txt.mesa"));
+        tableColumn = tableColumnModel.getColumn(1);
+        tableColumn.setHeaderValue(mensajes.getString("txt.ver"));
+        tableHeader.repaint();
+        
+    }
+    
     public void llenarTabla() {
 
         tblMesas.setDefaultRenderer(Object.class, new Render());
@@ -57,7 +80,7 @@ public class VistaMesero extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblMesas.getModel();
         modelo.setRowCount(0);
         for (Mesa mesa : mesas) {
-            Object[] datos = {"           Mesa " + mesa.getNumeroMesa(),
+            Object[] datos = {"           " + mensajes.getString("txt.mesa") + " "+ mesa.getNumeroMesa(),
                 btnVer
             };
             modelo.addRow(datos);
@@ -163,7 +186,7 @@ public class VistaMesero extends javax.swing.JFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         if (abrirMesa == null || abrirMesa.isVisible() == false) {
-            abrirMesa = new AbrirMesa();
+            abrirMesa = new AbrirMesa(mensajes);
             abrirMesa.setMesas(controladorMesa, mesero, controladorProducto);
             abrirMesa.toFront();
             abrirMesa.setVisible(true);
@@ -194,12 +217,12 @@ public class VistaMesero extends javax.swing.JFrame {
                     vistaMesa = new VistaMesa(auxMesa, mesero, controladorMesa, controladorProducto);
                     vistaMesa.setVisible(true);
                     dispose();
-                } else {
+                    } else {
                     auxMesa.setMesaAbierta(true);
                     mesero.cerrarMesa(auxMesa);
                     llenarTabla();
-                }*/
-                    vistaMesa = new VistaMesa(auxMesa, mesero, controladorMesa, controladorProducto);
+                    }*/
+                    vistaMesa = new VistaMesa(auxMesa, mesero, controladorMesa, controladorProducto, mensajes);
                     vistaMesa.setVisible(true);
                     dispose();
                 }

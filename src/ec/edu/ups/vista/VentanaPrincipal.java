@@ -15,6 +15,8 @@ import ec.edu.ups.datoscreados.GenerarMesero;
 import ec.edu.ups.datoscreados.GenerarProducto;
 import ec.edu.ups.vista.mesero.UsuarioMesero;
 import java.awt.event.KeyEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -30,6 +32,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private UsuarioMesero usuarioMesero;
     private Contrasenia contrasenia;
     private VistaCaja vistaCaja;
+    private Locale localizacion;
+    private ResourceBundle mensajes;
 
     /**
      * Creates new form VentanaPrincipal
@@ -42,6 +46,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorMesero = new ControladorMesero();
         controladorFactura = new ControladorFactura();
         controladorCliente = new ControladorCliente();
+        localizacion = new Locale("es", "EC");
+        Locale.setDefault(localizacion);
+        cambiarIdioma();
         //Para pruebas
         //--------------------------------------------------------------------------------------------
         GenerarMesa generarMesa = new GenerarMesa(controladorMesa);
@@ -53,6 +60,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //---------------------------------------------------------------------------------------------
     }
 
+    public void cambiarIdioma(){
+        
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", Locale.getDefault());
+        lblMesero.setText(mensajes.getString("txt.mesero"));
+        lblGerente.setText(mensajes.getString("lbl.gerente"));
+        lblCaja.setText(mensajes.getString("txt.caja"));
+        
+        menuAjustes.setText(mensajes.getString("txt.ajustes"));
+        itmPass.setText(mensajes.getString("txt.admin.contraseñas"));
+        itmAyuda.setText(mensajes.getString("itm.ayuda"));
+        itmSalir.setText(mensajes.getString("itm.salir"));
+        
+        menuIdioma.setText(mensajes.getString("vista.idiomas"));
+        itmEspañol.setText(mensajes.getString("vista.item.español"));
+        itmIngles.setText(mensajes.getString("vista.item.ingles"));
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,17 +87,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem2 = new javax.swing.JMenuItem();
         bGerente = new javax.swing.JButton();
         bCaja = new javax.swing.JButton();
         bMesero = new javax.swing.JButton();
-        lGerente = new javax.swing.JLabel();
-        lCaja = new javax.swing.JLabel();
-        lMesero = new javax.swing.JLabel();
+        lblGerente = new javax.swing.JLabel();
+        lblCaja = new javax.swing.JLabel();
+        lblMesero = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        opPass = new javax.swing.JMenuItem();
-        opAyuda = new javax.swing.JMenuItem();
-        opSalir = new javax.swing.JMenuItem();
+        menuAjustes = new javax.swing.JMenu();
+        itmPass = new javax.swing.JMenuItem();
+        itmAyuda = new javax.swing.JMenuItem();
+        itmSalir = new javax.swing.JMenuItem();
+        menuIdioma = new javax.swing.JMenu();
+        itmEspañol = new javax.swing.JMenuItem();
+        itmIngles = new javax.swing.JMenuItem();
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Restaurante");
@@ -99,33 +130,56 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lGerente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lGerente.setText("Gerente");
+        lblGerente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblGerente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGerente.setText("Gerente");
 
-        lCaja.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lCaja.setText("Caja");
+        lblCaja.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblCaja.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCaja.setText("Caja");
 
-        lMesero.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lMesero.setText("Mesero");
+        lblMesero.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblMesero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMesero.setText("Mesero");
 
-        jMenu1.setText("Ajustes");
+        menuAjustes.setText("Ajustes");
 
-        opPass.setText("Administrar contraseñas");
-        jMenu1.add(opPass);
+        itmPass.setText("Administrar contraseñas");
+        menuAjustes.add(itmPass);
 
-        opAyuda.setText("Ayuda");
-        jMenu1.add(opAyuda);
+        itmAyuda.setText("Ayuda");
+        menuAjustes.add(itmAyuda);
 
-        opSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
-        opSalir.setText("Salir");
-        opSalir.addActionListener(new java.awt.event.ActionListener() {
+        itmSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        itmSalir.setText("Salir");
+        itmSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opSalirActionPerformed(evt);
+                itmSalirActionPerformed(evt);
             }
         });
-        jMenu1.add(opSalir);
+        menuAjustes.add(itmSalir);
 
-        menuBar.add(jMenu1);
+        menuBar.add(menuAjustes);
+
+        menuIdioma.setText("Idioma");
+
+        itmEspañol.setText("Español");
+        itmEspañol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmEspañolActionPerformed(evt);
+            }
+        });
+        menuIdioma.add(itmEspañol);
+
+        itmIngles.setText("Inglés");
+        itmIngles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmInglesActionPerformed(evt);
+            }
+        });
+        menuIdioma.add(itmIngles);
+
+        menuBar.add(menuIdioma);
 
         setJMenuBar(menuBar);
 
@@ -135,20 +189,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bGerente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGerente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(lGerente)
-                .addGap(88, 88, 88)
-                .addComponent(lCaja)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lMesero)
-                .addGap(39, 39, 39))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMesero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,9 +212,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(bMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lGerente)
-                    .addComponent(lCaja)
-                    .addComponent(lMesero))
+                    .addComponent(lblGerente)
+                    .addComponent(lblCaja)
+                    .addComponent(lblMesero))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -193,7 +245,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void bMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMeseroActionPerformed
         if (usuarioMesero == null || usuarioMesero.isVisible() == false) {
-            usuarioMesero = new UsuarioMesero(controladorMesero, controladorMesa, controladorProducto);
+            usuarioMesero = new UsuarioMesero(controladorMesero, controladorMesa, controladorProducto, mensajes);
             usuarioMesero.toFront();
             usuarioMesero.setVisible(true);
             this.toBack();
@@ -202,10 +254,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bMeseroActionPerformed
 
-    private void opSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opSalirActionPerformed
+    private void itmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_opSalirActionPerformed
+    }//GEN-LAST:event_itmSalirActionPerformed
 
+    private void itmEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEspañolActionPerformed
+        // TODO add your handling code here:
+        localizacion = new Locale("es", "EC");
+        Locale.setDefault(localizacion);
+        cambiarIdioma();
+        comprobaciones();
+    }//GEN-LAST:event_itmEspañolActionPerformed
+
+    private void itmInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInglesActionPerformed
+        // TODO add your handling code here:
+        localizacion = new Locale("en", "US");
+        Locale.setDefault(localizacion);
+        cambiarIdioma();
+        comprobaciones();
+    }//GEN-LAST:event_itmInglesActionPerformed
+
+    private void comprobaciones(){
+        
+        if (usuarioMesero != null && usuarioMesero.isVisible()) {
+            usuarioMesero.cambiarIdioma(mensajes);
+        }
+
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -245,14 +321,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bCaja;
     private javax.swing.JButton bGerente;
     private javax.swing.JButton bMesero;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JLabel lCaja;
-    private javax.swing.JLabel lGerente;
-    private javax.swing.JLabel lMesero;
+    private javax.swing.JMenuItem itmAyuda;
+    private javax.swing.JMenuItem itmEspañol;
+    private javax.swing.JMenuItem itmIngles;
+    private javax.swing.JMenuItem itmPass;
+    private javax.swing.JMenuItem itmSalir;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel lblCaja;
+    private javax.swing.JLabel lblGerente;
+    private javax.swing.JLabel lblMesero;
+    private javax.swing.JMenu menuAjustes;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem opAyuda;
-    private javax.swing.JMenuItem opPass;
-    private javax.swing.JMenuItem opSalir;
+    private javax.swing.JMenu menuIdioma;
     // End of variables declaration//GEN-END:variables
 
 }

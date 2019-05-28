@@ -5,17 +5,24 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.modelo.Cliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class VentanaCrearCliente extends javax.swing.JInternalFrame {
-
+    
+    private ControladorCliente controladorCliente;
     /**
      * Creates new form VentanaCrearMesero
      */
-    public VentanaCrearCliente() {
+    public VentanaCrearCliente(ControladorCliente controladorCliente) {
         initComponents();
+        this.controladorCliente=controladorCliente;
+        tCodigo.setText(Integer.toString(this.controladorCliente.getCodigo()));
     }
 
     /**
@@ -66,8 +73,18 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         });
 
         bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
 
         bCrear.setText("Crear");
+        bCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCrearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,7 +114,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
                 .addComponent(bCrear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bCancelar)
-                .addContainerGap())
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,6 +161,28 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
 
     }//GEN-LAST:event_tDireccionActionPerformed
+
+    private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
+        // TODO add your handling code here:
+        Cliente cliente=new Cliente();
+        cliente.setNombre(tNombre.getText());
+        cliente.setCedula(tCedula.getText());
+        cliente.setDireccion(tDireccion.getText());
+        cliente.setTelefono(tTelefono.getText());
+        cliente.setCorreo(tEmail.getText());
+        tNombre.setText("");
+        tCedula.setText("");
+        tDireccion.setText("");
+        tTelefono.setText("");
+        tEmail.setText("");
+        controladorCliente.create(cliente);
+        tCodigo.setText(Integer.toString(this.controladorCliente.getCodigo()));
+        JOptionPane.showMessageDialog(this, "Cliente creado exitosamente", "Crear cliente", JOptionPane.OK_OPTION);
+    }//GEN-LAST:event_bCrearActionPerformed
+
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
