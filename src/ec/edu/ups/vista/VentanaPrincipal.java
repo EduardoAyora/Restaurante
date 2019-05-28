@@ -44,9 +44,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorCliente = new ControladorCliente();
         //Para pruebas
         //--------------------------------------------------------------------------------------------
-        
         GenerarMesa generarMesa = new GenerarMesa(controladorMesa);
-        
+
         GenerarMesero generarMesero = new GenerarMesero(controladorMesero);
 
         GenerarProducto generarProductos = new GenerarProducto(controladorProducto);

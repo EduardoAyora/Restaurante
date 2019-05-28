@@ -31,7 +31,7 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
         for (Producto producto : lista){
           Object[] datos = {producto.getCodigoProducto(),
               producto.getNombre(), producto.getPrecio(),
-              producto.getDescripcion()
+              producto.getDescripcion(), producto.getCategoria().getNombre()
           };
           modelo.addRow(datos);
         }
@@ -62,7 +62,7 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -70,6 +70,14 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
             }
         });
         scroller.setViewportView(tbProducto);
+        if (tbProducto.getColumnModel().getColumnCount() > 0) {
+            tbProducto.getColumnModel().getColumn(0).setMinWidth(70);
+            tbProducto.getColumnModel().getColumn(0).setPreferredWidth(70);
+            tbProducto.getColumnModel().getColumn(0).setMaxWidth(70);
+            tbProducto.getColumnModel().getColumn(2).setMinWidth(70);
+            tbProducto.getColumnModel().getColumn(2).setPreferredWidth(70);
+            tbProducto.getColumnModel().getColumn(2).setMaxWidth(70);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
