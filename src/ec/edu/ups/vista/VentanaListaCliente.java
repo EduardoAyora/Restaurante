@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Mesero;
 //import ec.edu.ups.controlador.ControladorMesero;
 import java.util.Set;
@@ -15,25 +17,31 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL
  */
 public class VentanaListaCliente extends javax.swing.JInternalFrame {
+    
+    private ControladorCliente controladorCliente;
+
     //ControladorMesero controladorMesero;
     /**
      * Creates new form VentanaListaMesero
      */
-    public VentanaListaCliente() {
+    public VentanaListaCliente(ControladorCliente controladorCliente) {
         initComponents();
+        this.controladorCliente=controladorCliente;
+        llenarDatos();
     }
 
-    /*public void llenarDatos() {
-        DefaultTableModel modelo = (DefaultTableModel) tablaMesero.getModel();
-        Set<Mesero> lista = controladorMesero.getLista();
-        for (Mesero mesero : lista) {
-            Object[] datos = {mesero.getCodigo(),
-                mesero.getCedula(), mesero.getNombre(),
-                mesero.getDireccion(), mesero.getTelefono()
+    public void llenarDatos() {
+        DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
+        Set<Cliente> lista = controladorCliente.getLista();
+        for (Cliente cliente : lista) {
+            Object[] datos = {cliente.getCodigo(),
+                cliente.getCedula(), cliente.getNombre(),
+                cliente.getDireccion(), cliente.getTelefono(),
+                cliente.getCorreo()
             };
             modelo.addRow(datos);
         }
-    }*/
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,13 +53,13 @@ public class VentanaListaCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         tablaCliente = new javax.swing.JScrollPane();
-        tablaMesero = new javax.swing.JTable();
+        tblCliente = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
         setTitle("Lista de clientes");
 
-        tablaMesero.setModel(new javax.swing.table.DefaultTableModel(
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,7 +75,7 @@ public class VentanaListaCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaCliente.setViewportView(tablaMesero);
+        tablaCliente.setViewportView(tblCliente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,6 +100,6 @@ public class VentanaListaCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane tablaCliente;
-    private javax.swing.JTable tablaMesero;
+    private javax.swing.JTable tblCliente;
     // End of variables declaration//GEN-END:variables
 }

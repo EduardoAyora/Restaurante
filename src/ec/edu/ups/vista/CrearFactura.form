@@ -112,10 +112,7 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="txtTelefono" min="-2" pref="190" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="txtTelefono" min="-2" pref="190" max="-2" attributes="0"/>
                                       <Component id="txtDireccion" min="-2" pref="343" max="-2" attributes="0"/>
                                   </Group>
                               </Group>

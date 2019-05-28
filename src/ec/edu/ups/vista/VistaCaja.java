@@ -45,10 +45,10 @@ public class VistaCaja extends javax.swing.JFrame {
         this.controladorMesa = controladorMesa;
         //Prueba
         //---------------------------------------------------------------------
-        cliente = new Cliente();
+       /** cliente = new Cliente();
         cliente.setNombre("Jaime");
         cliente.setCedula("0107082125");
-        cliente.setMesa(controladorMesa.read(2));
+        cliente.setMesa(controladorMesa.read(2));*/
         //----------------------------------------------------------------------
     }
 
@@ -187,9 +187,10 @@ public class VistaCaja extends javax.swing.JFrame {
     private void opCrearCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        crearCliente = new VentanaCrearCliente();
-        jDesktopPane1.add(crearCliente);
+        crearCliente = new VentanaCrearCliente(controladorCliente);
         crearCliente.setVisible(true);
+        jDesktopPane1.add(crearCliente);
+        
     }//GEN-LAST:event_opCrearCliActionPerformed
 
     private void opCrearFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearFacActionPerformed
@@ -204,9 +205,10 @@ public class VistaCaja extends javax.swing.JFrame {
     private void opUpdateCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        editarCliente = new VentanaEditarCliente();
-        jDesktopPane1.add(editarCliente);
+        editarCliente = new VentanaEditarCliente(controladorCliente);
         editarCliente.setVisible(true);
+        jDesktopPane1.add(editarCliente);
+        
     }//GEN-LAST:event_opUpdateCliActionPerformed
 
     private void opAnularFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opAnularFacActionPerformed
@@ -218,23 +220,25 @@ public class VistaCaja extends javax.swing.JFrame {
     private void opReadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        buscarCliente = new VentanaBuscarCliente();
-        jDesktopPane1.add(buscarCliente);
+        buscarCliente = new VentanaBuscarCliente(controladorCliente);
         buscarCliente.setVisible(true);
+        jDesktopPane1.add(buscarCliente);
+        
     }//GEN-LAST:event_opReadCliActionPerformed
 
     private void opDeleteCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        eliminarCliente = new VentanaEliminarCliente();
+        eliminarCliente = new VentanaEliminarCliente(controladorCliente);
+         eliminarCliente.setVisible(true);
         jDesktopPane1.add(eliminarCliente);
-        eliminarCliente.setVisible(true);
+       
     }//GEN-LAST:event_opDeleteCliActionPerformed
 
     private void opListCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        listaCliente = new VentanaListaCliente();
+        listaCliente = new VentanaListaCliente(controladorCliente);
         jDesktopPane1.add(listaCliente);
         listaCliente.setVisible(true);
     }//GEN-LAST:event_opListCliActionPerformed

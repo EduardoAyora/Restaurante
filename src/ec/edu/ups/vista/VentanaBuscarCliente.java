@@ -5,17 +5,22 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.modelo.Cliente;
+
 /**
  *
  * @author DELL
  */
 public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
-
+      
+    private ControladorCliente controladorCliente;
     /**
      * Creates new form VentanaBuscarMesero
      */
-    public VentanaBuscarCliente() {
+    public VentanaBuscarCliente(ControladorCliente controladorCliente) {
         initComponents();
+        this.controladorCliente=controladorCliente;
     }
 
     /**
@@ -27,8 +32,6 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tCodigo = new javax.swing.JTextField();
-        lCodigo = new javax.swing.JLabel();
         tCedula = new javax.swing.JTextField();
         lCedula = new javax.swing.JLabel();
         lNombre = new javax.swing.JLabel();
@@ -45,8 +48,6 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Buscar cliente");
 
-        lCodigo.setText("Código:");
-
         lCedula.setText("Cédula:");
 
         lNombre.setText("Nombre:");
@@ -55,13 +56,23 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
 
         lTelefono.setText("Teléfono:");
 
+        tTelefono.setEditable(false);
+
+        tDireccion.setEditable(false);
         tDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tDireccionActionPerformed(evt);
             }
         });
 
+        tNombre.setEditable(false);
+
         bBuscar.setText("Buscar");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarActionPerformed(evt);
+            }
+        });
 
         bCancelar.setText("Cancelar");
         bCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,19 +83,14 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
 
         lEmail.setText("E-mail:");
 
+        tEmail.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lCodigo)
-                        .addGap(18, 18, 18)
-                        .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(bBuscar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,32 +101,33 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
                                     .addComponent(lTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lCedula, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tNombre)
-                                    .addComponent(tDireccion)
-                                    .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(tNombre)
+                                        .addComponent(tDireccion)
+                                        .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(bBuscar))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(lEmail)
                                 .addGap(18, 18, 18)
-                                .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
                         .addComponent(bCancelar)))
-                .addContainerGap())
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lCodigo)
-                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCedula)
-                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lNombre)
@@ -137,7 +144,7 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lEmail)
                     .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(bCancelar)
                 .addContainerGap())
         );
@@ -153,18 +160,26 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bCancelarActionPerformed
 
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        // TODO add your handling code here:
+        String cedula=tCedula.getText();
+        Cliente cliente= controladorCliente.readCedula(cedula);
+        tNombre.setText(cliente.getNombre());
+        tDireccion.setText(cliente.getDireccion());
+        tTelefono.setText(cliente.getTelefono());
+        tEmail.setText(cliente.getCorreo());
+    }//GEN-LAST:event_bBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bBuscar;
     private javax.swing.JButton bCancelar;
     private javax.swing.JLabel lCedula;
-    private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDireccion;
     private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lTelefono;
     private javax.swing.JTextField tCedula;
-    private javax.swing.JTextField tCodigo;
     private javax.swing.JTextField tDireccion;
     private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;

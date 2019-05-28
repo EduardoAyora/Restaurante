@@ -13,6 +13,8 @@ public class Cliente extends Persona{
     
     private String correo;
     private Mesa mesa;
+    
+    
 
     public String getCorreo() {
         return correo;
@@ -29,5 +31,6 @@ public class Cliente extends Persona{
     public void setMesa(Mesa mesa) {
         this.mesa = mesa;
     }
+   
     
 }
