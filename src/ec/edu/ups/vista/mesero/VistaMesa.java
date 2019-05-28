@@ -11,11 +11,15 @@ import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Render;
+import java.util.ResourceBundle;
 import java.util.SortedSet;
 import javax.swing.JButton;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -28,20 +32,50 @@ public class VistaMesa extends javax.swing.JFrame {
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
     private AgregarProducto agregarProducto;
+    private ResourceBundle mensajes;
     /**
      * Creates new form InformacionMesa
      */
-    public VistaMesa(Mesa mesa, Mesero mesero, ControladorMesa controladorMesa, ControladorProducto controladorProducto) {
+    public VistaMesa(Mesa mesa, Mesero mesero, ControladorMesa controladorMesa, ControladorProducto controladorProducto, ResourceBundle mensajes) {
         initComponents();
         this.mesa = mesa;
         this.mesero = mesero;
         this.controladorMesa = controladorMesa;
         this.controladorProducto = controladorProducto;
+        this.mensajes = mensajes;
+        cambiarIdioma(mensajes);
         setLocationRelativeTo(null);
         formatoTabla();
         llenarTextos();
         llenarDatos();
         tblDetalles.setRowHeight(60);
+    }
+    
+    public void cambiarIdioma(ResourceBundle mensajes){
+        
+        lblMesero.setText(mensajes.getString("txt.mesero") + ":");
+        lblNumero.setText(mensajes.getString("txt.numero.mesa"));
+        btnAgregar.setText(mensajes.getString("btn.agregar.producto"));
+        btnSalir.setText(mensajes.getString("itm.salir"));
+        lblIva.setText(mensajes.getString("txt.iva"));
+        
+        JTableHeader tableHeader = tblDetalles.getTableHeader();
+        TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+        TableColumn tableColumn;
+        tableColumn = tableColumnModel.getColumn(0);
+        tableColumn.setHeaderValue(mensajes.getString("txt.codigo"));
+        tableColumn = tableColumnModel.getColumn(1);
+        tableColumn.setHeaderValue(mensajes.getString("txt.nombre.producto"));
+        tableColumn = tableColumnModel.getColumn(2);
+        tableColumn.setHeaderValue(mensajes.getString("txt.cantidad"));
+        tableColumn = tableColumnModel.getColumn(3);
+        tableColumn.setHeaderValue(mensajes.getString("txt.precio"));
+        tableColumn = tableColumnModel.getColumn(4);
+        tableColumn.setHeaderValue(mensajes.getString("txt.subtotal"));
+        tableColumn = tableColumnModel.getColumn(5);
+        tableColumn.setHeaderValue(mensajes.getString("txt.quitar"));
+        tableHeader.repaint();
+        
     }
     
     public void formatoTabla(){
@@ -67,7 +101,7 @@ public class VistaMesa extends javax.swing.JFrame {
     
     public void llenarDatos(){
         tblDetalles.setDefaultRenderer(Object.class, new Render());
-        JButton btnQuitar = new JButton("Quitar");
+        JButton btnQuitar = new JButton(mensajes.getString("txt.quitar"));
         btnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/cerrar1.png")));
 
         SortedSet<Detalle> detalles = mesa.getControladorDetalle().getLista();
@@ -122,17 +156,17 @@ public class VistaMesa extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetalles = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        lblNumero = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblMesero = new javax.swing.JLabel();
         txtMesero = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblSubtotal = new javax.swing.JLabel();
+        lblIva = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         txtSubtotal = new javax.swing.JTextField();
         txtIva = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
@@ -166,11 +200,11 @@ public class VistaMesa extends javax.swing.JFrame {
             tblDetalles.getColumnModel().getColumn(5).setMaxWidth(150);
         }
 
-        jLabel1.setText("Numero de mesa:");
+        lblNumero.setText("Numero de mesa:");
 
         txtCodigo.setEditable(false);
 
-        jLabel3.setText("Mesero:");
+        lblMesero.setText("Mesero:");
 
         txtMesero.setEditable(false);
 
@@ -194,14 +228,14 @@ public class VistaMesa extends javax.swing.JFrame {
         });
         jPanel1.add(btnSalir);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Subtotal:");
+        lblSubtotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblSubtotal.setText("Subtotal:");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Iva:");
+        lblIva.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblIva.setText("Iva:");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Total:");
+        lblTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTotal.setText("Total:");
 
         txtSubtotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -216,9 +250,9 @@ public class VistaMesa extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIva, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,15 +265,15 @@ public class VistaMesa extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblIva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(lblTotal)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -254,8 +288,8 @@ public class VistaMesa extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1123, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
+                            .addComponent(lblMesero)
+                            .addComponent(lblNumero))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCodigo)
@@ -276,10 +310,10 @@ public class VistaMesa extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(lblMesero))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
+                            .addComponent(lblNumero)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -295,14 +329,14 @@ public class VistaMesa extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto);
+        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
         vistaMesero.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        agregarProducto = new AgregarProducto(mesa, mesero, controladorMesa, controladorProducto);
+        agregarProducto = new AgregarProducto(mesa, mesero, controladorMesa, controladorProducto, mensajes);
         agregarProducto.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -329,14 +363,14 @@ public class VistaMesa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblIva;
+    private javax.swing.JLabel lblMesero;
+    private javax.swing.JLabel lblNumero;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblDetalles;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtIva;
