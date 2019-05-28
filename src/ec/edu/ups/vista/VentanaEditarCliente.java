@@ -5,17 +5,23 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.modelo.Cliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class VentanaEditarCliente extends javax.swing.JInternalFrame {
 
+    private ControladorCliente controladorCliente;
     /**
      * Creates new form VentanaEditarMesero
      */
-    public VentanaEditarCliente() {
+    public VentanaEditarCliente(ControladorCliente controladorCliente) {
         initComponents();
+        this.controladorCliente=controladorCliente;
     }
 
     /**
@@ -27,8 +33,6 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tCodigo = new javax.swing.JTextField();
-        lCodigo = new javax.swing.JLabel();
         lCedula = new javax.swing.JLabel();
         tCedula = new javax.swing.JTextField();
         bBuscar = new javax.swing.JButton();
@@ -41,16 +45,19 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
         bCancelar = new javax.swing.JButton();
         bActualizar = new javax.swing.JButton();
         lPassActual = new javax.swing.JLabel();
-        tPassActual = new javax.swing.JTextField();
+        tCorreo = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Editar cliente");
 
-        lCodigo.setText("Código:");
-
         lCedula.setText("Cédula:");
 
         bBuscar.setText("Buscar");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarActionPerformed(evt);
+            }
+        });
 
         lNombre.setText("Nombre:");
 
@@ -72,6 +79,11 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
         });
 
         bActualizar.setText("Actualizar");
+        bActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActualizarActionPerformed(evt);
+            }
+        });
 
         lPassActual.setText("E-mail:");
 
@@ -87,46 +99,38 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(bCancelar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 22, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(11, 11, 11)
-                                    .addComponent(lCodigo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(bBuscar))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lCedula, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                        .addComponent(tDireccion)
-                                        .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lPassActual)
-                                .addGap(18, 18, 18)
-                                .addComponent(tPassActual, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(lDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lCedula, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                .addComponent(tDireccion)
+                                .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bBuscar)))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lPassActual)
+                .addGap(18, 18, 18)
+                .addComponent(tCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lCodigo)
-                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCedula)
-                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lNombre)
@@ -142,8 +146,8 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lPassActual)
-                    .addComponent(tPassActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addComponent(tCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCancelar)
                     .addComponent(bActualizar))
@@ -161,22 +165,47 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bCancelarActionPerformed
 
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        // TODO add your handling code here:
+        String cedula =tCedula.getText();
+        Cliente cliente= controladorCliente.readCedula(cedula);
+        tNombre.setText(cliente.getNombre());
+        tDireccion.setText(cliente.getDireccion());
+        tTelefono.setText(cliente.getTelefono());
+        tCorreo.setText(cliente.getCorreo());
+        
+    }//GEN-LAST:event_bBuscarActionPerformed
+
+    private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
+        // TODO add your handling code here:
+        Cliente cliente = controladorCliente.readCedula(tCedula.getText());
+        cliente.setNombre(tNombre.getText());
+        cliente.setDireccion(tDireccion.getText());
+        cliente.setTelefono(tTelefono.getText());
+        cliente.setCorreo(tCorreo.getText());
+        controladorCliente.update(cliente);
+        tNombre.setText("");
+        tCedula.setText("");
+        tDireccion.setText("");
+        tTelefono.setText("");
+        tCorreo.setText("");
+        JOptionPane.showMessageDialog(this, "Cliente Actualizado Exitosamente", "Actualizar cliente", JOptionPane.OK_OPTION);
+    }//GEN-LAST:event_bActualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bActualizar;
     private javax.swing.JButton bBuscar;
     private javax.swing.JButton bCancelar;
     private javax.swing.JLabel lCedula;
-    private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDireccion;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lPassActual;
     private javax.swing.JLabel lTelefono;
     private javax.swing.JTextField tCedula;
-    private javax.swing.JTextField tCodigo;
+    private javax.swing.JTextField tCorreo;
     private javax.swing.JTextField tDireccion;
     private javax.swing.JTextField tNombre;
-    private javax.swing.JTextField tPassActual;
     private javax.swing.JTextField tTelefono;
     // End of variables declaration//GEN-END:variables
 }
