@@ -93,17 +93,18 @@ public class VistaMesa extends javax.swing.JFrame {
         for(Detalle detalle : mesa.getControladorDetalle().getLista()){
             suma += detalle.getSubtotal();
         }
-        txtSubtotal.setText(String.format("%.2f", suma));
+        txtSubtotal.setText(Double.toString(suma));
     }
 
     public void calcularIva() {
         double iva = Double.parseDouble(txtSubtotal.getText()) * 0.12;
         txtIva.setText(String.format("%.2f", iva));
+        
     }
     
     public void calcularTotal() {
         double total = Double.parseDouble(txtSubtotal.getText()) + (Double.parseDouble(txtSubtotal.getText()) * 0.12);
-        txtTotal.setText(String.format("%.2f", total));
+        txtTotal.setText(Double.toString(total));
     }
     
     public void llenarTextos(){
