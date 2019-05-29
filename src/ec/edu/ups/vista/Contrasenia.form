@@ -25,11 +25,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="60" max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="lContrasena" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="btnIngresar" max="32767" attributes="0"/>
-                  <Component id="JpassClave" pref="126" max="32767" attributes="0"/>
+                  <Component id="pClave" pref="126" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
           </Group>
@@ -40,8 +40,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JpassClave" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pClave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lContrasena" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnIngresar" pref="44" max="32767" attributes="0"/>
@@ -51,9 +51,9 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JPasswordField" name="JpassClave">
+    <Component class="javax.swing.JPasswordField" name="pClave">
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JpassClaveKeyPressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pClaveKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnIngresar">
@@ -64,7 +64,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lContrasena">
       <Properties>
         <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
       </Properties>

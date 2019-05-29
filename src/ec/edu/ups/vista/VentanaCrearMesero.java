@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.modelo.Mesero;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,15 +19,32 @@ import javax.swing.JOptionPane;
 public class VentanaCrearMesero extends javax.swing.JInternalFrame {
 
     ControladorMesero controladorMesero;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaCrearMesero
      */
-    public VentanaCrearMesero(ControladorMesero controladorMesero) {
+    public VentanaCrearMesero(ControladorMesero controladorMesero, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesero.crear"));
         initComponents();
         this.controladorMesero = controladorMesero;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         tCodigo.setText(String.valueOf(this.controladorMesero.getCod()));
 
+    }
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesero.crear"));
+        lCodigo.setText(mensajes.getString("txt.codigo"));
+        lCedula.setText(mensajes.getString("cliente.cedula"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
+        lDireccion.setText(mensajes.getString("cliente.direccion"));
+        lTelefono.setText(mensajes.getString("cliente.telefono"));
+        lContrasena.setText(mensajes.getString("txt.contraseña"));
+        bCrear.setText(mensajes.getString("boton.crear"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
 
     /**
@@ -53,7 +72,7 @@ public class VentanaCrearMesero extends javax.swing.JInternalFrame {
         bCrear = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Crear mesero");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

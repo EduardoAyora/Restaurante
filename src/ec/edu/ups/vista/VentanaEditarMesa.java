@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,14 +19,28 @@ import javax.swing.JOptionPane;
 public class VentanaEditarMesa extends javax.swing.JInternalFrame {
     
     ControladorMesa controladorMesa;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaEditarMesa
      */
-    public VentanaEditarMesa(ControladorMesa controladorMesa) {
+    public VentanaEditarMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesa.editar"));
         initComponents();
         this.controladorMesa = controladorMesa;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         bActualizar.setEnabled(false);
+    }
+    
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesa.editar"));
+        lNumero.setText(mensajes.getString("txt.numero.mesa"));
+        lCapacidad.setText(mensajes.getString("txt.capacidad"));
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        bActualizar.setText(mensajes.getString("boton.actualizar"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
 
     /**
@@ -45,7 +61,7 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
         bActualizar = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Editar mesa");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

@@ -6,12 +6,11 @@
 package ec.edu.ups.vista;
 
 import com.sun.glass.events.KeyEvent;
-import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.ClaveGerente;
-import java.awt.Dimension;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,18 +24,28 @@ public class Contrasenia extends javax.swing.JFrame {
     private ControladorMesa controladorMesa;
     private ControladorMesero controladorMesero;
     private ClaveGerente claveGerente;
+    private ResourceBundle mensajes;
 
     /**
      * Creates new form Contrasenia
      */
-    public Contrasenia(ControladorProducto controladorProducto, ControladorMesero controladorMesero, ControladorMesa controladorMesa, ClaveGerente claveGerente) {
+    public Contrasenia(ControladorProducto controladorProducto,
+            ControladorMesero controladorMesero, ControladorMesa controladorMesa,
+            ClaveGerente claveGerente, ResourceBundle mensajes) {
         initComponents();
+        cambiarIdiomas(mensajes);
         this.setLocationRelativeTo(null);
         this.controladorProducto = controladorProducto;
         this.controladorMesero = controladorMesero;
         this.controladorMesa = controladorMesa;
         this.claveGerente = claveGerente;
+        this.mensajes = mensajes;
 
+    }
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        lContrasena.setText(mensajes.getString("txt.contraseña"));
+        btnIngresar.setText(mensajes.getString("boton.ingresar"));
     }
 
     /**
@@ -48,9 +57,9 @@ public class Contrasenia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JpassClave = new javax.swing.JPasswordField();
+        pClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lContrasena = new javax.swing.JLabel();
 
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -58,9 +67,9 @@ public class Contrasenia extends javax.swing.JFrame {
             }
         });
 
-        JpassClave.addKeyListener(new java.awt.event.KeyAdapter() {
+        pClave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JpassClaveKeyPressed(evt);
+                pClaveKeyPressed(evt);
             }
         });
 
@@ -71,7 +80,7 @@ public class Contrasenia extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Contraseña:");
+        lContrasena.setText("Contraseña:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,11 +88,11 @@ public class Contrasenia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lContrasena)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JpassClave, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                    .addComponent(pClave, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                 .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
@@ -91,8 +100,8 @@ public class Contrasenia extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JpassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(pClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lContrasena))
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addGap(22, 22, 22))
@@ -103,50 +112,58 @@ public class Contrasenia extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-        char clave[] = JpassClave.getPassword();
+        char clave[] = pClave.getPassword();
         String clavedef = new String(clave);
-        if (clavedef.equals(claveGerente.getClave())){
-            this.dispose();
-            JOptionPane.showMessageDialog(null, "bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
-            vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa);
-            vistaGerente.toFront();
-            vistaGerente.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-    }//GEN-LAST:event_btnIngresarActionPerformed
-
-    private void JpassClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JpassClaveKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            char clave[] = JpassClave.getPassword();
-            String clavedef = new String(clave);
-
+        if (vistaGerente == null) {
             if (clavedef.equals(claveGerente.getClave())) {
-
                 this.dispose();
-                JOptionPane.showMessageDialog(null, "Bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
-                vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa);
+                JOptionPane.showMessageDialog(null, "bienvenido", "Aprobado", JOptionPane.INFORMATION_MESSAGE);
+                vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
                 vistaGerente.toFront();
                 vistaGerente.setVisible(true);
 
             } else {
-                JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
             }
+        } else {
+            this.dispose();
+            vistaGerente.toFront();
         }
 
-    }//GEN-LAST:event_JpassClaveKeyPressed
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void pClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pClaveKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            char clave[] = pClave.getPassword();
+            String clavedef = new String(clave);
+            if (vistaGerente == null || vistaGerente.isVisible() == false) {
+                if (clavedef.equals(claveGerente.getClave())) {
+                    this.dispose();
+                    JOptionPane.showMessageDialog(null, "bienvenido", "Aprobado", JOptionPane.INFORMATION_MESSAGE);
+                    vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
+                    vistaGerente.toFront();
+                    vistaGerente.setVisible(true);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                this.dispose();
+                vistaGerente.toFront();
+            }
+        }
+    }//GEN-LAST:event_pClaveKeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocused()) {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField JpassClave;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lContrasena;
+    private javax.swing.JPasswordField pClave;
     // End of variables declaration//GEN-END:variables
 }

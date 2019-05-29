@@ -11,6 +11,8 @@ import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.ImagenFondoGerente;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 
 /**
  *
@@ -36,20 +38,44 @@ public class VistaGerente extends javax.swing.JFrame {
     private ControladorProducto cp;
     private ControladorMesero cm;
     private ControladorMesa cm1;
-
+    private JLabel titulo;
+    private ResourceBundle mensajes;
     /**
      * Creates new form VistaGerente
      */
-    public VistaGerente(ControladorProducto cp, ControladorMesero cm, ControladorMesa cm1) {
+    public VistaGerente(ControladorProducto cp, ControladorMesero cm, ControladorMesa cm1, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("gerente.gestion"));
         initComponents();
         jDesktopPane1.setBorder(new ImagenFondoGerente());
         this.setExtendedState(VistaGerente.MAXIMIZED_BOTH);
         this.cp = cp;
         this.cm = cm;
         this.cm1 = cm1;
-
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
     }
 
+    public void cambiarIdiomas(ResourceBundle mensajes){
+        menMesa.setText(mensajes.getString("txt.mesa"));
+        menMesero.setText(mensajes.getString("txt.mesero"));
+        menProduct.setText(mensajes.getString("vista.producto"));
+        opCrearMe.setText(mensajes.getString("crud.nuevo"));
+        opCrearP.setText(mensajes.getString("crud.nuevo"));
+        opCrearMesa.setText(mensajes.getString("crud.nuevo"));
+        opReadMe.setText(mensajes.getString("crud.buscar"));
+        opReadP.setText(mensajes.getString("crud.buscar"));
+        opReadMesa.setText(mensajes.getString("crud.buscar"));
+        opUpdateMe.setText(mensajes.getString("crud.editar"));
+        opUpdateP.setText(mensajes.getString("crud.editar"));
+        opUpdateMesa.setText(mensajes.getString("crud.editar"));
+        opDeleteMe.setText(mensajes.getString("crud.eliminar"));
+        opDeleteP.setText(mensajes.getString("crud.eliminar"));
+        opDeleteMesa.setText(mensajes.getString("crud.eliminar"));
+        opListMe.setText(mensajes.getString("vista.item.listar"));
+        opListP.setText(mensajes.getString("vista.item.listar"));
+        opListMesa.setText(mensajes.getString("vista.item.listar"));
+        titulo.setText(mensajes.getString("gerente.gestion"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,7 +106,7 @@ public class VistaGerente extends javax.swing.JFrame {
         opDeleteP = new javax.swing.JMenuItem();
         opListP = new javax.swing.JMenuItem();
 
-        setTitle("Gestión de Gerente");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -247,7 +273,7 @@ public class VistaGerente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocused()) {
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocused()== false) {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
@@ -261,7 +287,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opListPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListPActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vlp = new VentanaListaProducto(cp);
+        vlp = new VentanaListaProducto(cp, mensajes);
         vlp.toFront();
         vlp.setVisible(true);
         jDesktopPane1.add(vlp);
@@ -317,7 +343,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearPActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vcp = new VentanaCrearProducto(cp);
+        vcp = new VentanaCrearProducto(cp, mensajes);
         vcp.toFront();
         vcp.setVisible(true);
         jDesktopPane1.add(vcp);
@@ -344,7 +370,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opListMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListMeActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vlm = new VentanaListaMesero(cm);
+        vlm = new VentanaListaMesero(cm, mensajes);
         vlm.toFront();
         vlm.setVisible(true);
         jDesktopPane1.add(vlm);
@@ -400,7 +426,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opCrearMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearMeActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vcm = new VentanaCrearMesero(cm);
+        vcm = new VentanaCrearMesero(cm, mensajes);
         vcm.toFront();
         vcm.setVisible(true);
         jDesktopPane1.add(vcm);
@@ -415,7 +441,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opCrearMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearMesaActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vcm1 = new VentanaCrearMesa(cm1);
+        vcm1 = new VentanaCrearMesa(cm1, mensajes);
         vcm1.toFront();
         vcm1.setVisible(true);
         jDesktopPane1.add(vcm1);
@@ -428,7 +454,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opUpdateMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateMesaActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vem2 = new VentanaEditarMesa(cm1);
+        vem2 = new VentanaEditarMesa(cm1, mensajes);
         vem2.toFront();
         vem2.setVisible(true);
         jDesktopPane1.add(vem2);
@@ -454,7 +480,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opListMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListMesaActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vlm1 = new VentanaListaMesa(cm1);
+        vlm1 = new VentanaListaMesa(cm1, mensajes);
         vlm1.toFront();
         vlm1.setVisible(true);
         jDesktopPane1.add(vlm1);

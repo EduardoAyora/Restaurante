@@ -38,6 +38,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ResourceBundle mensajes;
     private ClaveGerente claveGerente;
     private ClaveCaja claveCaja;
+    private VistaGerente vistaGerente;
 
     /**
      * Creates new form VentanaPrincipal
@@ -234,7 +235,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void bGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGerenteActionPerformed
         if (contrasenia == null || contrasenia.isVisible() == false) {
-            contrasenia = new Contrasenia(controladorProducto, controladorMesero, controladorMesa, claveGerente);
+            contrasenia = new Contrasenia(controladorProducto, controladorMesero, controladorMesa, claveGerente, mensajes);
             contrasenia.toFront();
             contrasenia.setVisible(true);
             this.toBack();
@@ -290,6 +291,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (cambioContrasenia == null || cambioContrasenia.isVisible() == false) {
             cambioContrasenia = new CambioContrasenia(controladorMesero, claveGerente, claveCaja, mensajes);
             cambioContrasenia.setVisible(true);
+            cambioContrasenia.toFront();
+        } else {
+            cambioContrasenia.toFront();
         }
 
     }//GEN-LAST:event_itmPassActionPerformed
@@ -303,7 +307,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (cambioContrasenia != null && cambioContrasenia.isVisible()) {
             cambioContrasenia.cambiarIdioma(mensajes);
         }
-
+        if (contrasenia != null && contrasenia.isVisible()) {
+            contrasenia.cambiarIdiomas(mensajes);
+        }
     }
 
     /**

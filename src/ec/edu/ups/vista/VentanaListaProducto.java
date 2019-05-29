@@ -9,8 +9,12 @@ import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.Render;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -19,15 +23,40 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaListaProducto extends javax.swing.JInternalFrame {
 
     ControladorProducto controladorProducto;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaListaProducto
      */
-    public VentanaListaProducto(ControladorProducto controladorProducto) {
+    public VentanaListaProducto(ControladorProducto controladorProducto, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("producto.lista"));
         initComponents();
         this.controladorProducto = controladorProducto;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         llenarDatos();
         tbProducto.setRowHeight(60);
+    }
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("producto.lista"));
+        JTableHeader tableHeader = tbProducto.getTableHeader();
+        TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+        TableColumn tableColumn;
+        tableColumn = tableColumnModel.getColumn(0);
+        tableColumn.setHeaderValue(mensajes.getString("txt.codigo"));
+        tableColumn = tableColumnModel.getColumn(1);
+        tableColumn.setHeaderValue(mensajes.getString("txt.nombre"));
+        tableColumn = tableColumnModel.getColumn(2);
+        tableColumn.setHeaderValue(mensajes.getString("producto.precio"));
+        tableColumn = tableColumnModel.getColumn(3);
+        tableColumn.setHeaderValue(mensajes.getString("producto.detalle"));
+        tableColumn = tableColumnModel.getColumn(4);
+        tableColumn.setHeaderValue(mensajes.getString("producto.categoria"));
+        tableColumn = tableColumnModel.getColumn(5);
+        tableColumn.setHeaderValue(mensajes.getString("txt.imagen"));
+        tableHeader.repaint();
     }
 
     public void llenarDatos() {
@@ -58,7 +87,7 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("Lista de productos");
+        setTitle(titulo.getText());
 
         tbProducto.setAutoCreateRowSorter(true);
         tbProducto.setModel(new javax.swing.table.DefaultTableModel(

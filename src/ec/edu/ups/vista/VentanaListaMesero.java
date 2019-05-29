@@ -8,8 +8,13 @@ package ec.edu.ups.vista;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.controlador.ControladorMesero;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
 import java.util.Set;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -18,14 +23,37 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaListaMesero extends javax.swing.JInternalFrame {
 
     ControladorMesero controladorMesero;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaListaMesero
      */
-    public VentanaListaMesero(ControladorMesero controladorMesero) {
+    public VentanaListaMesero(ControladorMesero controladorMesero, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesero.lista"));
         initComponents();
         this.controladorMesero = controladorMesero;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         llenarDatos();
+    }
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesero.lista"));
+        JTableHeader tableHeader = tablaMesero.getTableHeader();
+        TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+        TableColumn tableColumn;
+        tableColumn = tableColumnModel.getColumn(0);
+        tableColumn.setHeaderValue(mensajes.getString("txt.codigo"));
+        tableColumn = tableColumnModel.getColumn(1);
+        tableColumn.setHeaderValue(mensajes.getString("cliente.cedula"));
+        tableColumn = tableColumnModel.getColumn(2);
+        tableColumn.setHeaderValue(mensajes.getString("txt.nombre"));
+        tableColumn = tableColumnModel.getColumn(3);
+        tableColumn.setHeaderValue(mensajes.getString("cliente.direccion"));
+        tableColumn = tableColumnModel.getColumn(4);
+        tableColumn.setHeaderValue(mensajes.getString("cliente.telefono"));
+        tableHeader.repaint();
     }
 
     public void llenarDatos() {
@@ -54,7 +82,7 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("Lista de meseros");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

@@ -9,7 +9,12 @@ import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -18,16 +23,32 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaListaMesa extends javax.swing.JInternalFrame {
 
     ControladorMesa controladorMesa;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaListaMesa
      */
-    public VentanaListaMesa(ControladorMesa controladorMesa) {
+    public VentanaListaMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesa.lista"));
         initComponents();
         this.controladorMesa = controladorMesa;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         llenarDatos();
     }
 
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesa.lista"));
+        JTableHeader tableHeader = tablaMesero.getTableHeader();
+        TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+        TableColumn tableColumn;
+        tableColumn = tableColumnModel.getColumn(0);
+        tableColumn.setHeaderValue(mensajes.getString("txt.numero.mesa"));
+        tableColumn = tableColumnModel.getColumn(1);
+        tableColumn.setHeaderValue(mensajes.getString("txt.capacidad"));
+        tableHeader.repaint();
+    }
     public void llenarDatos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaMesero.getModel();
         List<Mesa> lista = controladorMesa.getLista();
@@ -53,7 +74,7 @@ public class VentanaListaMesa extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("Lista de mesas");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

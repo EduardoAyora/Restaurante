@@ -15,8 +15,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -29,15 +31,45 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
     ControladorProducto controladorProducto;
     Categoria categoria;
     String ruta;
+    ResourceBundle mensajes;
+    JLabel titulo;
+    String entrada;
+    String plato;
+    String bebida;
+    String postre;
 
     /**
      * Creates new form VentanaCrearProducto
      */
-    public VentanaCrearProducto(ControladorProducto controladorProducto) {
+    public VentanaCrearProducto(ControladorProducto controladorProducto, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("producto.nuevo"));
+        entrada = mensajes.getString("txt.entrada");
+        plato = mensajes.getString("txt.plato");
+        bebida = mensajes.getString("txt.bebida");
+        postre = mensajes.getString("txt.postre");
         initComponents();
         this.controladorProducto = controladorProducto;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
 
+    }
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        entrada = mensajes.getString("txt.entrada");
+        plato = mensajes.getString("txt.plato");
+        bebida = mensajes.getString("txt.bebida");
+        postre = mensajes.getString("txt.postre");
+        titulo.setText(mensajes.getString("producto.nuevo"));
+        lCodigo.setText(mensajes.getString("txt.codigo"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
+        lPrecio.setText(mensajes.getString("producto.precio"));
+        lDescripcion.setText(mensajes.getString("producto.detalle"));
+        lCategoria.setText(mensajes.getString("producto.categoria"));
+        lImagen.setText(mensajes.getString("txt.imagen"));
+        bSeleccionar.setText(mensajes.getString("txt.seleccionar"));
+        bCrear.setText(mensajes.getString("boton.crear"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
 
     public void escogerFoto() {
@@ -94,7 +126,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         lEscogerImg = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Crear producto");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -139,7 +171,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Plato", "Bebida", "Postre" }));
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { entrada, plato, bebida, postre }));
         comboCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCategoriaActionPerformed(evt);
@@ -287,7 +319,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         });
         producto.setImgIcon(new ImageIcon(tImagen.getText()));
         controladorProducto.create(producto);
-        JOptionPane.showMessageDialog(this, "Producto creado exitosamente!","Crear producto", JOptionPane.YES_OPTION);
+        JOptionPane.showMessageDialog(this, "Producto creado exitosamente!", "Crear producto", JOptionPane.YES_OPTION);
         tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
         tNombre.setText("");
         tPrecio.setText("");

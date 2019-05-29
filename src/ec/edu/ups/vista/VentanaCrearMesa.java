@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,17 +19,29 @@ import javax.swing.JOptionPane;
 public class VentanaCrearMesa extends javax.swing.JInternalFrame {
 
     ControladorMesa controladorMesa;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaCrearMesa
      */
-    public VentanaCrearMesa(ControladorMesa controladorMesa) {
+    public VentanaCrearMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesero.crear"));
         initComponents();
         this.controladorMesa = controladorMesa;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         tNumero.setText(String.valueOf(this.controladorMesa.getContador()));
 
     }
 
+    public void cambiarIdiomas(ResourceBundle mensajes){
+        titulo.setText(mensajes.getString("mesero.crear"));
+        lNumero.setText(mensajes.getString("txt.numero.mesa"));
+        lCapacidad.setText(mensajes.getString("txt.capacidad"));
+        bCrear.setText(mensajes.getString("boton.crear"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +59,7 @@ public class VentanaCrearMesa extends javax.swing.JInternalFrame {
         bCrear = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Crear mesa");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
