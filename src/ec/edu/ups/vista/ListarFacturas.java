@@ -44,18 +44,23 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
 
         tblFactura.setDefaultRenderer(Object.class, new Render());
         JButton btnDetalles = new JButton("Ver Detalles");
-        //btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/cerrar1.png")));
-        
         DefaultTableModel modelo = (DefaultTableModel) tblFactura.getModel();
         Set<Factura> lista = controladorFactura.getLista();
         for (Factura factura : lista) {
+            //Factura activa
+            String activo = "";
+            if(!factura.isActivo()){
+                activo = "Anulada";
+            }
+            //Iva
+            String formatoIva = (String.format("%.2f", factura.getIva()));
             Object[] datos = {factura.getNumeroFactura(),
                 factura.getFecha(),
                 factura.getCliente().getNombre(),
                 factura.getSubtotal(),
-                factura.getIva(),
+                formatoIva,
                 factura.getTotal(),
-                factura.getTotal(),
+                activo,
                 btnDetalles
             };
             modelo.addRow(datos);
@@ -185,6 +190,7 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
                     Dimension frameSize = ventanaReadFactura.getSize();
                     ventanaReadFactura.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
                     ventanaReadFactura.setFocusable(true);
+                    this.dispose();
                 }
             }
         }

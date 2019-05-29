@@ -45,14 +45,6 @@ public class VistaCaja extends javax.swing.JFrame {
         this.controladorFactura = controladorFactura;
         this.controladorCliente = controladorCliente;
         this.controladorMesa = controladorMesa;
-        //Prueba
-        //---------------------------------------------------------------------
-        /**
-         * cliente = new Cliente(); cliente.setNombre("Jaime");
-         * cliente.setCedula("0107082125");
-        cliente.setMesa(controladorMesa.read(2));
-         */
-        //----------------------------------------------------------------------
     }
 
     /**
@@ -74,8 +66,6 @@ public class VistaCaja extends javax.swing.JFrame {
         opListCli = new javax.swing.JMenuItem();
         menMesero2 = new javax.swing.JMenu();
         opCrearFac = new javax.swing.JMenuItem();
-        opReadFac = new javax.swing.JMenuItem();
-        opAnularFac = new javax.swing.JMenuItem();
         opListFac = new javax.swing.JMenuItem();
 
         setTitle("Gestión de Caja");
@@ -150,17 +140,6 @@ public class VistaCaja extends javax.swing.JFrame {
         });
         menMesero2.add(opCrearFac);
 
-        opReadFac.setText("Buscar");
-        menMesero2.add(opReadFac);
-
-        opAnularFac.setText("Anular");
-        opAnularFac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opAnularFacActionPerformed(evt);
-            }
-        });
-        menMesero2.add(opAnularFac);
-
         opListFac.setText("Lista");
         opListFac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,12 +201,6 @@ public class VistaCaja extends javax.swing.JFrame {
 
     }//GEN-LAST:event_opUpdateCliActionPerformed
 
-    private void opAnularFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opAnularFacActionPerformed
-        // TODO add your handling code here:
-        jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
-    }//GEN-LAST:event_opAnularFacActionPerformed
-
     private void opReadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
@@ -275,14 +248,12 @@ public class VistaCaja extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menMesero1;
     private javax.swing.JMenu menMesero2;
-    private javax.swing.JMenuItem opAnularFac;
     private javax.swing.JMenuItem opCrearCli;
     private javax.swing.JMenuItem opCrearFac;
     private javax.swing.JMenuItem opDeleteCli;
     private javax.swing.JMenuItem opListCli;
     private javax.swing.JMenuItem opListFac;
     private javax.swing.JMenuItem opReadCli;
-    private javax.swing.JMenuItem opReadFac;
     private javax.swing.JMenuItem opUpdateCli;
     // End of variables declaration//GEN-END:variables
 }

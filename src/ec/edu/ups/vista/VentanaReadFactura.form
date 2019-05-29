@@ -108,11 +108,14 @@
                                       </Group>
                                   </Group>
                                   <EmptySpace pref="28" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtTelefono" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                                      <Component id="txtDireccion" alignment="0" pref="209" max="32767" attributes="0"/>
-                                      <Component id="txtMesa" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <Component id="txtCorreo" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtTelefono" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                          <Component id="txtDireccion" alignment="0" pref="209" max="32767" attributes="0"/>
+                                          <Component id="txtMesa" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
+                                          <Component id="txtCorreo" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="btnAnular" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                               </Group>
@@ -132,10 +135,11 @@
                       <Component id="lblNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNumeroFactura" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAnular" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -348,6 +352,14 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnAnular">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Anular"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnularActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
