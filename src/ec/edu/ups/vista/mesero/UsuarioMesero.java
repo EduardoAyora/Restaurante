@@ -10,6 +10,7 @@ import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Mesero;
 import java.util.ResourceBundle;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class UsuarioMesero extends javax.swing.JFrame {
     private ControladorProducto controladorProducto;
     private VistaMesero vistaMesero;
     private ResourceBundle mensajes;
+
     /**
      * Creates new form EscogerMesero
      */
@@ -35,15 +37,15 @@ public class UsuarioMesero extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    public void cambiarIdioma(ResourceBundle mensajes){
-        
+    public void cambiarIdioma(ResourceBundle mensajes) {
+
         lblMesero.setText(mensajes.getString("txt.mesero") + ":");
         lblCodigo.setText(mensajes.getString("txt.codigo"));
         lblContraseña.setText(mensajes.getString("txt.contraseña"));
         btnAceptar.setText(mensajes.getString("btn.aceptar"));
-        
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,11 +58,11 @@ public class UsuarioMesero extends javax.swing.JFrame {
         lblCodigo = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         lblContraseña = new javax.swing.JLabel();
-        txtContraseña = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnAceptar = new javax.swing.JButton();
         lblMesero = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JPasswordField();
 
         lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblCodigo.setText("Código:");
@@ -74,8 +76,6 @@ public class UsuarioMesero extends javax.swing.JFrame {
 
         lblContraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblContraseña.setText("Contraseña:");
-
-        txtContraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -103,8 +103,8 @@ public class UsuarioMesero extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtContraseña)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(txtContraseña))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -128,9 +128,9 @@ public class UsuarioMesero extends javax.swing.JFrame {
                             .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                            .addComponent(txtContraseña))))
                 .addGap(22, 22, 22))
         );
 
@@ -139,18 +139,29 @@ public class UsuarioMesero extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        
+        String pass = "";
+        char[] password = txtContraseña.getPassword();
+        for (int i = 0; i < password.length; i++) {
+            pass += password[i];
+        }
         int codigo = Integer.parseInt(txtCodigo.getText());
         Mesero mesero = controladorMesero.read(codigo);
-        vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
-        vistaMesero.setVisible(true);
-        this.dispose();
+        if (pass.equals(mesero.getContraseña())) {
+            JOptionPane.showMessageDialog(null, "Bienvenido", "Contraseña correcta", JOptionPane.INFORMATION_MESSAGE);
+            vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
+            vistaMesero.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "Contraseña incorrecta", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
         // TODO add your handling code here:
-        try{
+        try {
             lblNombre.setText(controladorMesero.read(Integer.parseInt(txtCodigo.getText())).getNombre());
-        }catch(Exception ex){
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_txtCodigoFocusLost
 
@@ -163,6 +174,6 @@ public class UsuarioMesero extends javax.swing.JFrame {
     private javax.swing.JLabel lblMesero;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtContraseña;
+    private javax.swing.JPasswordField txtContraseña;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,6 +20,7 @@ public class Mesero extends Persona{
     
     public Mesero(){
         mesas = new ArrayList<>();
+        contraseña = "1234";
     }
 
     public void abrirMesa(Mesa mesa){
