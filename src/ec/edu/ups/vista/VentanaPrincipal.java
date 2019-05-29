@@ -13,6 +13,8 @@ import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.datoscreados.GenerarMesa;
 import ec.edu.ups.datoscreados.GenerarMesero;
 import ec.edu.ups.datoscreados.GenerarProducto;
+import ec.edu.ups.modelo.ClaveCaja;
+import ec.edu.ups.modelo.ClaveGerente;
 import ec.edu.ups.vista.mesero.UsuarioMesero;
 import java.awt.event.KeyEvent;
 import java.util.Locale;
@@ -30,10 +32,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControladorFactura controladorFactura;
     private ControladorCliente controladorCliente;
     private UsuarioMesero usuarioMesero;
+    private ContraseniaCaja contraseniaCaja;
     private Contrasenia contrasenia;
     private VistaCaja vistaCaja;
+    private CambioContrasenia cambioContrasenia;
     private Locale localizacion;
     private ResourceBundle mensajes;
+    private ClaveGerente claveGerente;
+    private ClaveCaja claveCaja;
 
     /**
      * Creates new form VentanaPrincipal
@@ -46,6 +52,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorMesero = new ControladorMesero();
         controladorFactura = new ControladorFactura();
         controladorCliente = new ControladorCliente();
+        claveGerente = new ClaveGerente();
+        claveCaja = new ClaveCaja();
         localizacion = new Locale("es", "EC");
         Locale.setDefault(localizacion);
         cambiarIdioma();
@@ -60,24 +68,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //---------------------------------------------------------------------------------------------
     }
 
-    public void cambiarIdioma(){
-        
+    public void cambiarIdioma() {
+
         mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", Locale.getDefault());
         lblMesero.setText(mensajes.getString("txt.mesero"));
         lblGerente.setText(mensajes.getString("lbl.gerente"));
         lblCaja.setText(mensajes.getString("txt.caja"));
-        
+
         menuAjustes.setText(mensajes.getString("txt.ajustes"));
         itmPass.setText(mensajes.getString("txt.admin.contraseñas"));
         itmAyuda.setText(mensajes.getString("itm.ayuda"));
         itmSalir.setText(mensajes.getString("itm.salir"));
-        
+
         menuIdioma.setText(mensajes.getString("vista.idiomas"));
         itmEspañol.setText(mensajes.getString("vista.item.español"));
         itmIngles.setText(mensajes.getString("vista.item.ingles"));
-        
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,6 +153,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuAjustes.setText("Ajustes");
 
         itmPass.setText("Administrar contraseñas");
+        itmPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmPassActionPerformed(evt);
+            }
+        });
         menuAjustes.add(itmPass);
 
         itmAyuda.setText("Ayuda");
@@ -223,7 +236,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void bGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGerenteActionPerformed
         if (contrasenia == null || contrasenia.isVisible() == false) {
-            contrasenia = new Contrasenia(controladorProducto, controladorMesero, controladorMesa);
+            contrasenia = new Contrasenia(controladorProducto, controladorMesero, controladorMesa, claveGerente);
             contrasenia.toFront();
             contrasenia.setVisible(true);
             this.toBack();
@@ -233,13 +246,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bGerenteActionPerformed
 
     private void bCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCajaActionPerformed
-        if (vistaCaja == null || vistaCaja.isVisible() == false) {
-            vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
-            vistaCaja.toFront();
-            vistaCaja.setVisible(true);
+        if (contraseniaCaja == null || contraseniaCaja.isVisible() == false) {
+            contraseniaCaja = new ContraseniaCaja(controladorFactura, controladorCliente, controladorMesa, claveCaja);
+            contraseniaCaja.toFront();
+            contraseniaCaja.setVisible(true);
             this.toBack();
         } else {
-            vistaCaja.toFront();
+            contraseniaCaja.toFront();
         }
     }//GEN-LAST:event_bCajaActionPerformed
 
@@ -274,14 +287,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         comprobaciones();
     }//GEN-LAST:event_itmInglesActionPerformed
 
-    private void comprobaciones(){
-        
+    private void itmPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmPassActionPerformed
+        // TODO add your handling code here:
+        if (cambioContrasenia == null || cambioContrasenia.isVisible() == false) {
+            CambioContrasenia cambioContrasenia = new CambioContrasenia(controladorMesero, claveGerente, claveCaja);
+            cambioContrasenia.setVisible(true);
+        }
+            
+    }//GEN-LAST:event_itmPassActionPerformed
+
+    
+
+    private void comprobaciones() {
+
         if (usuarioMesero != null && usuarioMesero.isVisible()) {
             usuarioMesero.cambiarIdioma(mensajes);
         }
 
     }
-    
+
     /**
      * @param args the command line arguments
      */
