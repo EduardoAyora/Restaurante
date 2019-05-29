@@ -290,7 +290,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void itmPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmPassActionPerformed
         // TODO add your handling code here:
         if (cambioContrasenia == null || cambioContrasenia.isVisible() == false) {
-            CambioContrasenia cambioContrasenia = new CambioContrasenia(controladorMesero, claveGerente, claveCaja);
+            cambioContrasenia = new CambioContrasenia(controladorMesero, claveGerente, claveCaja, mensajes);
             cambioContrasenia.setVisible(true);
         }
             
@@ -300,8 +300,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void comprobaciones() {
 
-        if (usuarioMesero != null && usuarioMesero.isVisible()) {
+        if(usuarioMesero != null && usuarioMesero.isVisible()) {
             usuarioMesero.cambiarIdioma(mensajes);
+        }
+        
+        if(cambioContrasenia != null && cambioContrasenia.isVisible()){
+            cambioContrasenia.cambiarIdioma(mensajes);
         }
 
     }

@@ -9,6 +9,7 @@ import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.modelo.ClaveCaja;
 import ec.edu.ups.modelo.ClaveGerente;
 import ec.edu.ups.modelo.Mesero;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,17 +21,20 @@ public class CambioContrasenia extends javax.swing.JFrame {
     private ControladorMesero controladorMesero;
     private ClaveGerente claveGerente;
     private ClaveCaja claveCaja;
+    private ResourceBundle mensajes;
 
     /**
      * Creates new form CambioContrasenia
      */
-    public CambioContrasenia(ControladorMesero controladorMesero, ClaveGerente claveGerente, ClaveCaja claveCaja) {
+    public CambioContrasenia(ControladorMesero controladorMesero, ClaveGerente claveGerente, ClaveCaja claveCaja, ResourceBundle mensajes) {
         initComponents();
         grupoBotones();
         setLocationRelativeTo(null);
         this.controladorMesero = controladorMesero;
         this.claveGerente = claveGerente;
         this.claveCaja = claveCaja;
+        this.mensajes = mensajes;
+        cambiarIdioma(mensajes);
     }
 
     public void grupoBotones() {
@@ -42,6 +46,20 @@ public class CambioContrasenia extends javax.swing.JFrame {
 
     }
 
+    public void cambiarIdioma(ResourceBundle mensajes){
+        
+        rbtnMesero.setText(mensajes.getString("txt.mesero"));
+        rbtnCaja.setText(mensajes.getString("txt.caja"));
+        rbtnGerente.setText(mensajes.getString("lbl.gerente"));
+        lblCodigo.setText(mensajes.getString("cambio.codigo"));
+        lblContraseña.setText(mensajes.getString("cambio.contraseña"));
+        lblNueva.setText(mensajes.getString("cambio.contraseñanueva"));
+        lblNombre.setText(mensajes.getString("txt.nombre"));
+        btnCambiar.setText(mensajes.getString("cambio.cambiar"));
+        this.repaint();
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,26 +70,26 @@ public class CambioContrasenia extends javax.swing.JFrame {
     private void initComponents() {
 
         btnGrupo = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
+        lblContraseña = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
         rbtnMesero = new javax.swing.JRadioButton();
         rbtnCaja = new javax.swing.JRadioButton();
         rbtnGerente = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblNueva = new javax.swing.JLabel();
         txtNueva = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
+        lblNombreMesero = new javax.swing.JLabel();
         btnCambiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Ingrese su código:");
+        lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblCodigo.setText("Ingrese su código:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Ingrese su contraseña actual:");
+        lblContraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblContraseña.setText("Ingrese su contraseña actual:");
 
         txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -103,10 +121,10 @@ public class CambioContrasenia extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Ingrese contraseña nueva:");
+        lblNueva.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblNueva.setText("Ingrese contraseña nueva:");
 
-        jLabel4.setText("Nombre:");
+        lblNombre.setText("Nombre:");
 
         btnCambiar.setText("Cambiar Contraseña");
         btnCambiar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,16 +146,16 @@ public class CambioContrasenia extends javax.swing.JFrame {
                 .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lblNombre)
                         .addGap(18, 18, 18)
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNombreMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addComponent(btnCambiar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
+                            .addComponent(lblContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCodigo)
+                            .addComponent(lblNueva))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,18 +170,18 @@ public class CambioContrasenia extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbtnMesero)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnCaja)
-                    .addComponent(jLabel2)
+                    .addComponent(lblContraseña)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNueva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbtnGerente)
                         .addComponent(txtNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -172,10 +190,10 @@ public class CambioContrasenia extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNombreMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -188,7 +206,7 @@ public class CambioContrasenia extends javax.swing.JFrame {
         try {
             if (rbtnMesero.isSelected()) {
                 Mesero mesero = controladorMesero.read(Integer.parseInt(txtCodigo.getText()));
-                lblNombre.setText(mesero.getNombre());
+                lblNombreMesero.setText(mesero.getNombre());
             }
         } catch (Exception ex) {
         }
@@ -264,11 +282,11 @@ public class CambioContrasenia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCambiar;
     private javax.swing.ButtonGroup btnGrupo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombreMesero;
+    private javax.swing.JLabel lblNueva;
     private javax.swing.JRadioButton rbtnCaja;
     private javax.swing.JRadioButton rbtnGerente;
     private javax.swing.JRadioButton rbtnMesero;
