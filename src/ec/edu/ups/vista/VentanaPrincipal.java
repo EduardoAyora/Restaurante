@@ -39,7 +39,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ClaveGerente claveGerente;
     private ClaveCaja claveCaja;
     public static VistaCaja vistaCaja;
-    private VistaGerente vistaGerente;
+    public static VistaGerente vistaGerente;
 
     /**
      * Creates new form VentanaPrincipal
@@ -235,19 +235,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bGerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGerenteActionPerformed
-        if (contrasenia == null || contrasenia.isVisible() == false) {
-            contrasenia = new Contrasenia(controladorProducto, controladorMesero, controladorMesa, claveGerente, mensajes);
+        if (vistaGerente == null || vistaGerente.isVisible() == false) {
+            contrasenia = new Contrasenia(controladorProducto, controladorMesero, controladorMesa, claveGerente, mensajes, vistaGerente);
             contrasenia.toFront();
             contrasenia.setVisible(true);
             this.toBack();
         } else {
-            contrasenia.toFront();
+            vistaGerente.toFront();
         }
     }//GEN-LAST:event_bGerenteActionPerformed
 
     private void bCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCajaActionPerformed
         if (vistaCaja == null || vistaCaja.isVisible() == false) {
-            contraseniaCaja = new ContraseniaCaja(controladorFactura, controladorCliente, controladorMesa, claveCaja, vistaCaja);
+            contraseniaCaja = new ContraseniaCaja(controladorFactura, controladorCliente, controladorMesa, claveCaja, vistaCaja, mensajes);
             contraseniaCaja.toFront();
             contraseniaCaja.setVisible(true);
             this.toBack();
@@ -311,10 +311,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         if (contrasenia != null && contrasenia.isVisible()) {
             contrasenia.cambiarIdiomas(mensajes);
-
-            if (ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()) {
-            }
         }
+        if (ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()) {
+            ContraseniaCaja.vistaCaja.cambiarIdioma(mensajes);
+        }
+        
+        if (Contrasenia.vistaGerente != null && Contrasenia.vistaGerente.isVisible()) {
+            Contrasenia.vistaGerente.cambiarIdiomas(mensajes);
+        }
+        
     }
 
     /**

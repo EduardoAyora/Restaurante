@@ -14,6 +14,7 @@ import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.ClaveCaja;
 import ec.edu.ups.modelo.ClaveGerente;
 import java.awt.Dimension;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,15 +29,17 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     private ControladorMesa controladorMesa;
     private VentanaCrearFactura crearFactura;
     private ClaveCaja claveCaja;
+    private ResourceBundle mensajes;
     /**
      * Creates new form Contrasenia
      */
-    public ContraseniaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ClaveCaja claveCaja, VistaCaja vistaCaja) {
+    public ContraseniaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ClaveCaja claveCaja, VistaCaja vistaCaja, ResourceBundle mensajes) {
         initComponents();
         this.controladorFactura = controladorFactura;
         this.controladorCliente = controladorCliente;
         this.controladorMesa = controladorMesa;
         this.claveCaja = claveCaja;
+        this.mensajes = mensajes;
         vistaCaja = this.vistaCaja;
         setLocationRelativeTo(null);
 
@@ -112,7 +115,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
             this.dispose();
             JOptionPane.showMessageDialog(null, "bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
             
-            vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
+            vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa, mensajes);
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
             VentanaPrincipal.vistaCaja = this.vistaCaja;
@@ -132,7 +135,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
 
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
-                vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
+                vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa, mensajes);
                 vistaCaja.toFront();
                 vistaCaja.setVisible(true);
                 VentanaPrincipal.vistaCaja = this.vistaCaja;

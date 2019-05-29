@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class Contrasenia extends javax.swing.JFrame {
 
-    private VistaGerente vistaGerente;
+    public static VistaGerente vistaGerente;
     private ControladorProducto controladorProducto;
     private ControladorMesa controladorMesa;
     private ControladorMesero controladorMesero;
@@ -31,7 +31,7 @@ public class Contrasenia extends javax.swing.JFrame {
      */
     public Contrasenia(ControladorProducto controladorProducto,
             ControladorMesero controladorMesero, ControladorMesa controladorMesa,
-            ClaveGerente claveGerente, ResourceBundle mensajes) {
+            ClaveGerente claveGerente, ResourceBundle mensajes, VistaGerente vistaGerente) {
         initComponents();
         cambiarIdiomas(mensajes);
         this.setLocationRelativeTo(null);
@@ -39,6 +39,7 @@ public class Contrasenia extends javax.swing.JFrame {
         this.controladorMesero = controladorMesero;
         this.controladorMesa = controladorMesa;
         this.claveGerente = claveGerente;
+        vistaGerente = this.vistaGerente;
         this.mensajes = mensajes;
 
     }
@@ -121,6 +122,7 @@ public class Contrasenia extends javax.swing.JFrame {
                 vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
                 vistaGerente.toFront();
                 vistaGerente.setVisible(true);
+                VentanaPrincipal.vistaGerente = this.vistaGerente;
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
@@ -143,6 +145,7 @@ public class Contrasenia extends javax.swing.JFrame {
                     vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
                     vistaGerente.toFront();
                     vistaGerente.setVisible(true);
+                    VentanaPrincipal.vistaGerente = this.vistaGerente;
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
