@@ -16,7 +16,6 @@ import ec.edu.ups.datoscreados.GenerarProducto;
 import ec.edu.ups.modelo.ClaveCaja;
 import ec.edu.ups.modelo.ClaveGerente;
 import ec.edu.ups.vista.mesero.UsuarioMesero;
-import java.awt.event.KeyEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -34,7 +33,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private UsuarioMesero usuarioMesero;
     private ContraseniaCaja contraseniaCaja;
     private Contrasenia contrasenia;
-    private VistaCaja vistaCaja;
     private CambioContrasenia cambioContrasenia;
     private Locale localizacion;
     private ResourceBundle mensajes;
@@ -293,18 +291,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             cambioContrasenia = new CambioContrasenia(controladorMesero, claveGerente, claveCaja, mensajes);
             cambioContrasenia.setVisible(true);
         }
-            
-    }//GEN-LAST:event_itmPassActionPerformed
 
-    
+    }//GEN-LAST:event_itmPassActionPerformed
 
     private void comprobaciones() {
 
-        if(usuarioMesero != null && usuarioMesero.isVisible()) {
+        if (usuarioMesero != null && usuarioMesero.isVisible()) {
             usuarioMesero.cambiarIdioma(mensajes);
         }
-        
-        if(cambioContrasenia != null && cambioContrasenia.isVisible()){
+
+        if (cambioContrasenia != null && cambioContrasenia.isVisible()) {
             cambioContrasenia.cambiarIdioma(mensajes);
         }
 

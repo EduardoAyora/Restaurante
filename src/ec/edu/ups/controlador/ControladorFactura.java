@@ -14,55 +14,55 @@ import java.util.Set;
  * @author Eduardo Ayora
  */
 public class ControladorFactura {
-    
+
     private Set<Factura> lista;
     private int numero;
 
-    public Set<Factura> getFactura(){
+    public Set<Factura> getFactura() {
         return lista;
     }
-    
+
     public int getCodigo() {
         return numero;
     }
-    
+
     public ControladorFactura() {
         lista = new HashSet<>();
         numero = 1;
     }
-    
-    public void create(Factura facturaCabecera){
+
+    public void create(Factura facturaCabecera) {
         facturaCabecera.setNumeroFactura(numero);
         numero++;
         lista.add(facturaCabecera);
     }
-    
-    public Factura read(int numero){
+
+    public Factura read(int numero) {
         for (Factura facturaCabecera : lista) {
-            if(facturaCabecera.getNumeroFactura()== numero){
+            if (facturaCabecera.getNumeroFactura() == numero) {
                 return facturaCabecera;
             }
         }
         return null;
     }
-    
-    public void update(Factura facturaCabecera){
-        if(lista.contains(facturaCabecera)){
+
+    public void update(Factura facturaCabecera) {
+        if (lista.contains(facturaCabecera)) {
             lista.remove(facturaCabecera);
             lista.add(facturaCabecera);
         }
     }
-    
-    public void delete(int numero){
+
+    public void delete(int numero) {
         for (Factura facturaCabecera : lista) {
-            if(facturaCabecera.getNumeroFactura()== numero){
+            if (facturaCabecera.getNumeroFactura() == numero) {
                 lista.remove(facturaCabecera);
                 break;
             }
         }
     }
-    
-    public void imprimir(){
+
+    public void imprimir() {
         for (Factura facturaCabecera : lista) {
             System.out.println(facturaCabecera.getNumeroFactura());
         }
@@ -71,6 +71,5 @@ public class ControladorFactura {
     public Set<Factura> getLista() {
         return lista;
     }
-    
-    
+
 }
