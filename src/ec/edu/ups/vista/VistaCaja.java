@@ -29,10 +29,10 @@ public class VistaCaja extends javax.swing.JFrame {
     private ControladorFactura controladorFactura;
     private ControladorCliente controladorCliente;
     private ControladorMesa controladorMesa;
-    private CrearFactura crearFactura;
+    private VentanaCrearFactura crearFactura;
     private Cliente cliente;
     private ListarFacturas listarFacturas;
-    
+
     /**
      * Creates new form VistaCaja
      */
@@ -45,10 +45,11 @@ public class VistaCaja extends javax.swing.JFrame {
         this.controladorMesa = controladorMesa;
         //Prueba
         //---------------------------------------------------------------------
-       /** cliente = new Cliente();
-        cliente.setNombre("Jaime");
-        cliente.setCedula("0107082125");
-        cliente.setMesa(controladorMesa.read(2));*/
+        /**
+         * cliente = new Cliente(); cliente.setNombre("Jaime");
+         * cliente.setCedula("0107082125");
+        cliente.setMesa(controladorMesa.read(2));
+         */
         //----------------------------------------------------------------------
     }
 
@@ -190,14 +191,14 @@ public class VistaCaja extends javax.swing.JFrame {
         crearCliente = new VentanaCrearCliente(controladorCliente);
         crearCliente.setVisible(true);
         jDesktopPane1.add(crearCliente);
-        
+
     }//GEN-LAST:event_opCrearCliActionPerformed
 
     private void opCrearFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearFacActionPerformed
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        crearFactura = new CrearFactura(controladorFactura, controladorCliente,controladorMesa);
+        crearFactura = new VentanaCrearFactura(controladorFactura, controladorCliente,controladorMesa);
         crearFactura.setVisible(true);
         jDesktopPane1.add(crearFactura);
     }//GEN-LAST:event_opCrearFacActionPerformed
@@ -208,7 +209,7 @@ public class VistaCaja extends javax.swing.JFrame {
         editarCliente = new VentanaEditarCliente(controladorCliente);
         editarCliente.setVisible(true);
         jDesktopPane1.add(editarCliente);
-        
+
     }//GEN-LAST:event_opUpdateCliActionPerformed
 
     private void opAnularFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opAnularFacActionPerformed
@@ -223,16 +224,16 @@ public class VistaCaja extends javax.swing.JFrame {
         buscarCliente = new VentanaBuscarCliente(controladorCliente);
         buscarCliente.setVisible(true);
         jDesktopPane1.add(buscarCliente);
-        
+
     }//GEN-LAST:event_opReadCliActionPerformed
 
     private void opDeleteCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
         eliminarCliente = new VentanaEliminarCliente(controladorCliente);
-         eliminarCliente.setVisible(true);
+        eliminarCliente.setVisible(true);
         jDesktopPane1.add(eliminarCliente);
-       
+
     }//GEN-LAST:event_opDeleteCliActionPerformed
 
     private void opListCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListCliActionPerformed
@@ -244,7 +245,7 @@ public class VistaCaja extends javax.swing.JFrame {
     }//GEN-LAST:event_opListCliActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed

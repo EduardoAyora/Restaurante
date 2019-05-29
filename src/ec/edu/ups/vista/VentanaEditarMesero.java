@@ -5,17 +5,26 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.modelo.Mesero;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class VentanaEditarMesero extends javax.swing.JInternalFrame {
 
+    ControladorMesero controladorMesero;
+
     /**
      * Creates new form VentanaEditarMesero
      */
-    public VentanaEditarMesero() {
+    public VentanaEditarMesero(ControladorMesero controladorMesero) {
         initComponents();
+        this.controladorMesero = controladorMesero;
+        bActualizar.setEnabled(false);
     }
 
     /**
@@ -47,12 +56,22 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Editar mesero");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lCodigo.setText("Código:");
 
         lCedula.setText("Cédula:");
 
         bBuscar.setText("Buscar");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarActionPerformed(evt);
+            }
+        });
 
         lNombre.setText("Nombre:");
 
@@ -74,6 +93,11 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         });
 
         bActualizar.setText("Actualizar");
+        bActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActualizarActionPerformed(evt);
+            }
+        });
 
         lPassActual.setText("Contraseña actual:");
 
@@ -173,8 +197,59 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
+
+        this.dispose();
+
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocusOwner()) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
+
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        int cod = Integer.parseInt(tCodigo.getText());
+        Mesero buscarMesero = controladorMesero.read(cod);
+        if (buscarMesero != null) {
+            tCedula.setText(buscarMesero.getCedula());
+            tNombre.setText(buscarMesero.getNombre());
+            tDireccion.setText(buscarMesero.getDireccion());
+            tTelefono.setText(buscarMesero.getTelefono());
+            bActualizar.setEnabled(true);
+        } else {
+            tCedula.setText("");
+            tNombre.setText("");
+            tDireccion.setText("");
+            tTelefono.setText("");
+            JOptionPane.showMessageDialog(this, "El mesero no existe", "Buscar mesero", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_bBuscarActionPerformed
+
+    private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
+        int cod = Integer.parseInt(tCodigo.getText());
+        Mesero editMesero = controladorMesero.read(cod);
+        editMesero.setCodigo(Integer.parseInt(tCodigo.getText()));
+        editMesero.setCedula(tCedula.getText());
+        editMesero.setNombre(tNombre.getText());
+        editMesero.setDireccion(tDireccion.getText());
+        editMesero.setTelefono(tTelefono.getText());
+        if (tPassActual.getText().equals(editMesero.getContraseña())) {
+            editMesero.setContraseña(tPassNueva.getText());
+            controladorMesero.update(editMesero);
+            JOptionPane.showMessageDialog(this, "Mesero actualizado exitosamente!", "Actualizar mesero", JOptionPane.INFORMATION_MESSAGE);
+            tCodigo.setText("");
+            tCedula.setText("");
+            tNombre.setText("");
+            tDireccion.setText("");
+            tTelefono.setText("");
+            tPassActual.setText("");
+            tPassNueva.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Contraseña actual incorrecta", "Cambiar contraseña", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_bActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,8 +8,17 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -19,6 +28,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
 
     ControladorProducto controladorProducto;
     Categoria categoria;
+    String ruta;
 
     /**
      * Creates new form VentanaCrearProducto
@@ -27,9 +37,33 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         initComponents();
         this.controladorProducto = controladorProducto;
         tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
-        categoria = new Categoria();
-        categoria.setNombre("Plato");
 
+    }
+
+    public void escogerFoto() {
+        selecImg.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("*.png", "png");
+        FileNameExtensionFilter filtro2 = new FileNameExtensionFilter("*.jpg", "jpg");
+        selecImg.setFileFilter(filtro1);
+        selecImg.setFileFilter(filtro2);
+        try {
+            selecImg.showOpenDialog(bCrear);
+            File abre = selecImg.getSelectedFile();
+            ruta = abre.getAbsolutePath();
+            if (abre != null) {
+                FileReader archivos = new FileReader(abre);
+                BufferedReader lee = new BufferedReader(archivos);
+                lee.close();
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex + ""
+                    + "\nNo se ha encontrado el archivo",
+                    "ADVERTENCIA!", JOptionPane.WARNING_MESSAGE);
+        }
+        char c = 92;
+        String signo = Character.toString(c);
+        tImagen.setText(ruta.replace(signo, "/"));
+        lEscogerImg.setIcon(new ImageIcon(tImagen.getText()));
     }
 
     /**
@@ -41,6 +75,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        selecImg = new javax.swing.JFileChooser();
         tCodigo = new javax.swing.JTextField();
         lCodigo = new javax.swing.JLabel();
         lNombre = new javax.swing.JLabel();
@@ -53,6 +88,10 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         bCrear = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
         comboCategoria = new javax.swing.JComboBox<>();
+        lImagen = new javax.swing.JLabel();
+        tImagen = new javax.swing.JTextField();
+        bSeleccionar = new javax.swing.JButton();
+        lEscogerImg = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Crear producto");
@@ -100,7 +139,31 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Plato", "Bebida", "Postre" }));
+        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriaActionPerformed(evt);
+            }
+        });
+
+        lImagen.setText("Imagen:");
+
+        tImagen.setEditable(false);
+        tImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tImagenActionPerformed(evt);
+            }
+        });
+
+        bSeleccionar.setText("Seleccionar...");
+        bSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSeleccionarActionPerformed(evt);
+            }
+        });
+
+        lEscogerImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lEscogerImg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,24 +172,33 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lImagen)
                     .addComponent(lCodigo)
                     .addComponent(lDescripcion)
                     .addComponent(lPrecio)
                     .addComponent(lCategoria)
                     .addComponent(lNombre))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bCrear)
-                .addGap(18, 18, 18)
-                .addComponent(bCancelar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bCrear)
+                        .addGap(18, 18, 18)
+                        .addComponent(bCancelar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lEscogerImg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bSeleccionar)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -152,7 +224,14 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCategoria)
                     .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lImagen)
+                    .addComponent(bSeleccionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lEscogerImg, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCancelar)
                     .addComponent(bCrear))
@@ -178,36 +257,82 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
 
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
         Producto producto = new Producto();
+        Categoria categoriaPlato = new Categoria();
+        categoriaPlato.setNombre("Plato");
+        Categoria categoriaBebida = new Categoria();
+        categoriaBebida.setNombre("Bebida");
+        Categoria categoriaEntrada = new Categoria();
+        categoriaEntrada.setNombre("Entrada");
+        Categoria categoriaPostre = new Categoria();
+        categoriaPostre.setNombre("Postre");
         producto.setCodigoProducto(Integer.parseInt(tCodigo.getText()));
         producto.setNombre(tNombre.getText());
-        producto.setPrecio(Integer.parseInt(tPrecio.getText()));
+        producto.setPrecio(Double.parseDouble(tPrecio.getText()));
         producto.setDescripcion(tDescripcion.getText());
-        producto.setCategoria(categoria);
+        String itemSeleccionado = comboCategoria.getSelectedItem().toString();
+
+        comboCategoria.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (itemSeleccionado.equalsIgnoreCase(categoriaEntrada.getNombre())) {
+                    producto.setCategoria(categoriaEntrada);
+                } else if (itemSeleccionado.equalsIgnoreCase(categoriaPlato.getNombre())) {
+                    producto.setCategoria(categoriaPlato);
+                } else if (itemSeleccionado.equalsIgnoreCase(categoriaBebida.getNombre())) {
+                    producto.setCategoria(categoriaBebida);
+                } else if (itemSeleccionado.equalsIgnoreCase(categoriaPostre.getNombre())) {
+                    producto.setCategoria(categoriaPostre);
+                }
+            }
+        });
+        producto.setImgIcon(new ImageIcon(tImagen.getText()));
         controladorProducto.create(producto);
-        JOptionPane.showMessageDialog(this, "Producto creado exitosamente!");
+        JOptionPane.showMessageDialog(this, "Producto creado exitosamente!","Crear producto", JOptionPane.YES_OPTION);
         tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
         tNombre.setText("");
         tPrecio.setText("");
         tDescripcion.setText("");
-        comboCategoria.setSelectedIndex(2);
+        comboCategoria.setSelectedIndex(0);
+        tImagen.setText("");
+        lEscogerImg.setIcon(null);
     }//GEN-LAST:event_bCrearActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
+    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriaActionPerformed
+
+    private void tImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tImagenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tImagenActionPerformed
+
+    private void bSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeleccionarActionPerformed
+        selecImg = new JFileChooser();
+        selecImg.setVisible(true);
+        escogerFoto();
+
+    }//GEN-LAST:event_bSeleccionarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bCrear;
+    private javax.swing.JButton bSeleccionar;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JLabel lCategoria;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDescripcion;
+    private javax.swing.JLabel lEscogerImg;
+    private javax.swing.JLabel lImagen;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lPrecio;
+    private javax.swing.JFileChooser selecImg;
     private javax.swing.JTextField tCodigo;
     private javax.swing.JTextField tDescripcion;
+    private javax.swing.JTextField tImagen;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tPrecio;
     // End of variables declaration//GEN-END:variables

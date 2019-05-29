@@ -14,7 +14,7 @@ import java.util.List;
  * @author Eduardo Ayora
  */
 public class ControladorMesa {
-    
+
     private List<Mesa> lista;
     private int contador;
 
@@ -26,45 +26,44 @@ public class ControladorMesa {
     public int getContador() {
         return contador;
     }
-    
+
     public List<Mesa> getLista() {
         return lista;
     }
-    
-    
-    public void create(Mesa mesa){
+
+    public void create(Mesa mesa) {
         mesa.setNumeroMesa(contador);
         contador++;
         lista.add(mesa);
     }
-    
-    public Mesa read(int codigo){
-        for(Mesa mesa : lista){
-            if(mesa.getNumeroMesa() == codigo){
+
+    public Mesa read(int codigo) {
+        for (Mesa mesa : lista) {
+            if (mesa.getNumeroMesa() == codigo) {
                 return mesa;
             }
         }
         return null;
     }
-    
-    public void update(Mesa mesa){
-        for(int i = 0; i < lista.size(); i++){
+
+    public void update(Mesa mesa) {
+        for (int i = 0; i < lista.size(); i++) {
             Mesa elemento = lista.get(i);
-            if(elemento.getNumeroMesa() == mesa.getNumeroMesa()){
+            if (elemento.getNumeroMesa() == mesa.getNumeroMesa()) {
                 lista.set(i, mesa);
                 break;
             }
         }
     }
-    
-    public void delete(int codigo){
-        for(int i = 0; i < lista.size(); i++){
+
+    public void delete(int codigo) {
+        for (int i = 0; i < lista.size(); i++) {
             Mesa elemento = lista.get(i);
-            if(elemento.getNumeroMesa() == codigo){
+            if (elemento.getNumeroMesa() == codigo) {
                 lista.remove(i);
                 break;
             }
         }
     }
-    
+
 }

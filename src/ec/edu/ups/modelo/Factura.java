@@ -7,18 +7,14 @@ package ec.edu.ups.modelo;
 
 import ec.edu.ups.controlador.ControladorDetalle;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  *
  * @author Eduardo Ayora
  */
 public class Factura {
-    
+
     private int numeroFactura;
     private Date fecha;
     private Cliente cliente;
@@ -42,7 +38,7 @@ public class Factura {
         this.iva = iva;
         this.total = total;
     }
-    
+
     public int getNumeroFactura() {
         return numeroFactura;
     }
@@ -100,7 +96,7 @@ public class Factura {
     public void setControladorDetalle(ControladorDetalle controladorDetalle) {
         this.controladorDetalle = controladorDetalle;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -125,7 +121,5 @@ public class Factura {
         }
         return true;
     }
-    
-    
-    
+
 }

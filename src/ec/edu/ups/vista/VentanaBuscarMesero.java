@@ -5,17 +5,25 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.modelo.Mesero;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
 
+    ControladorMesero controladorMesero;
+
     /**
      * Creates new form VentanaBuscarMesero
      */
-    public VentanaBuscarMesero() {
+    public VentanaBuscarMesero(ControladorMesero controladorMesero) {
         initComponents();
+        this.controladorMesero = controladorMesero;
     }
 
     /**
@@ -42,6 +50,11 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Buscar mesero");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lCodigo.setText("Código:");
 
@@ -60,6 +73,11 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
         });
 
         bBuscar.setText("Buscar");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarActionPerformed(evt);
+            }
+        });
 
         bCancelar.setText("Cancelar");
         bCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -75,29 +93,31 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lCodigo)
-                        .addGap(18, 18, 18)
-                        .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(bBuscar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lCedula, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tNombre)
-                            .addComponent(tDireccion)
-                            .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bCancelar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(lCodigo)
+                                .addGap(18, 18, 18)
+                                .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(bBuscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lCedula, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tNombre)
+                                    .addComponent(tDireccion)
+                                    .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bCancelar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -137,8 +157,34 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
+
+        this.dispose();
+
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        int cod = Integer.parseInt(tCodigo.getText());
+        Mesero buscarMesero = controladorMesero.read(cod);
+        if (buscarMesero != null) {
+            tCedula.setText(buscarMesero.getCedula());
+            tNombre.setText(buscarMesero.getNombre());
+            tDireccion.setText(buscarMesero.getDireccion());
+            tTelefono.setText(buscarMesero.getTelefono());
+        } else {
+            tCedula.setText("");
+            tNombre.setText("");
+            tDireccion.setText("");
+            tTelefono.setText("");
+            JOptionPane.showMessageDialog(this, "El mesero no existe", "Buscar mesero", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_bBuscarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

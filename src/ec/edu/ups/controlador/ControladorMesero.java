@@ -15,12 +15,16 @@ public class ControladorMesero {
 
     public ControladorMesero() {
         listaMesero = new HashSet<>();
-        cod = 0;
+        cod = 1;
+    }
+
+    public int getCod() {
+        return cod;
     }
 
     public void create(Mesero mesero) {
-        cod++;
         mesero.setCodigo(cod);
+        cod++;
         listaMesero.add(mesero);
     }
 
@@ -58,8 +62,8 @@ public class ControladorMesero {
             }
         }
     }
-    
-    public Set<Mesero> getLista(){
+
+    public Set<Mesero> getLista() {
         return listaMesero;
     }
 }

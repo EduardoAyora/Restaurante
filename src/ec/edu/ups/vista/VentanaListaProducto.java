@@ -7,7 +7,9 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.modelo.Render;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,7 +17,9 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL
  */
 public class VentanaListaProducto extends javax.swing.JInternalFrame {
+
     ControladorProducto controladorProducto;
+
     /**
      * Creates new form VentanaListaProducto
      */
@@ -23,19 +27,23 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
         initComponents();
         this.controladorProducto = controladorProducto;
         llenarDatos();
+        tbProducto.setRowHeight(60);
     }
 
-    public void llenarDatos(){
+    public void llenarDatos() {
+        tbProducto.setDefaultRenderer(Object.class, new Render());
         DefaultTableModel modelo = (DefaultTableModel) tbProducto.getModel();
-        List <Producto> lista = controladorProducto.getLista();
-        for (Producto producto : lista){
-          Object[] datos = {producto.getCodigoProducto(),
-              producto.getNombre(), producto.getPrecio(),
-              producto.getDescripcion()
-          };
-          modelo.addRow(datos);
+        List<Producto> lista = controladorProducto.getLista();
+        for (Producto producto : lista) {
+            Object[] datos = {producto.getCodigoProducto(),
+                producto.getNombre(), producto.getPrecio(),
+                producto.getDescripcion(), producto.getCategoria().getNombre(),
+                new JLabel(producto.getImgIcon(), JLabel.CENTER)
+            };
+            modelo.addRow(datos);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,11 +66,11 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nombre", "Precio", "Descripción", "Categoría"
+                "Código", "Nombre", "Precio", "Descripción", "Categoría", "Imagen"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -70,6 +78,24 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
             }
         });
         scroller.setViewportView(tbProducto);
+        if (tbProducto.getColumnModel().getColumnCount() > 0) {
+            tbProducto.getColumnModel().getColumn(0).setMinWidth(70);
+            tbProducto.getColumnModel().getColumn(0).setPreferredWidth(70);
+            tbProducto.getColumnModel().getColumn(0).setMaxWidth(70);
+            tbProducto.getColumnModel().getColumn(1).setMinWidth(90);
+            tbProducto.getColumnModel().getColumn(1).setPreferredWidth(90);
+            tbProducto.getColumnModel().getColumn(2).setMinWidth(70);
+            tbProducto.getColumnModel().getColumn(2).setPreferredWidth(70);
+            tbProducto.getColumnModel().getColumn(2).setMaxWidth(70);
+            tbProducto.getColumnModel().getColumn(3).setMinWidth(90);
+            tbProducto.getColumnModel().getColumn(3).setPreferredWidth(90);
+            tbProducto.getColumnModel().getColumn(4).setMinWidth(80);
+            tbProducto.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tbProducto.getColumnModel().getColumn(4).setMaxWidth(80);
+            tbProducto.getColumnModel().getColumn(5).setMinWidth(80);
+            tbProducto.getColumnModel().getColumn(5).setPreferredWidth(80);
+            tbProducto.getColumnModel().getColumn(5).setMaxWidth(80);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,8 +110,8 @@ public class VentanaListaProducto extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scroller, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scroller, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();

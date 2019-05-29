@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 
 /**
@@ -26,14 +27,23 @@ public class AbrirMesa extends javax.swing.JFrame {
     private ControladorMesa controladorMesa;
     private Mesero mesero;
     private ControladorProducto controladorProducto;
+    private ResourceBundle mensajes;
 
     /**
      * Creates new form ListaMesa
      */
-    public AbrirMesa() {
+    public AbrirMesa(ResourceBundle mensajes) {
         initComponents();
         this.setLocationRelativeTo(null);
         botones = new ArrayList<>();
+        this.mensajes = mensajes;
+        cambiarIdioma(mensajes);
+    }
+    
+    public void cambiarIdioma(ResourceBundle mensajes){
+        
+        btnCancelar.setText(mensajes.getString("btn.cancelar"));
+        
     }
 
     public void setMesas(ControladorMesa controladorMesa, Mesero mesero, ControladorProducto controladorProducto) {
@@ -47,7 +57,8 @@ public class AbrirMesa extends javax.swing.JFrame {
         Font fuente = new Font("arial", Font.PLAIN, 35);
         for (int i = 0; i < controladorMesa.getLista().size(); i++) {
             if (controladorMesa.getLista().get(i).isMesaAbierta()) {
-                JButton btn = new JButton("Mesa " + Integer.toString(controladorMesa.getLista().get(i).getNumeroMesa()));
+                JButton btn = new JButton(mensajes.getString("txt.mesa") + " " 
+                        + Integer.toString(controladorMesa.getLista().get(i).getNumeroMesa()));
                 btn.setName(Integer.toString(i));
                 btn.setFont(fuente);
                 btn.addActionListener(new ActionListener() {
@@ -59,7 +70,7 @@ public class AbrirMesa extends javax.swing.JFrame {
                         mesa.setMesaAbierta(false);
                         mesero.getMesas().add(mesa);
                         mesa.setMesero(mesero);
-                        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto);
+                        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
                         vistaMesero.setVisible(true);
                         dispose();
                     }
@@ -82,18 +93,18 @@ public class AbrirMesa extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         panel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panel.setLayout(new java.awt.GridLayout(2, 1));
         jScrollPane1.setViewportView(panel);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -107,7 +118,7 @@ public class AbrirMesa extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(300, 300, 300))
         );
         layout.setVerticalGroup(
@@ -116,26 +127,26 @@ public class AbrirMesa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto);
+        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
         vistaMesero.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables

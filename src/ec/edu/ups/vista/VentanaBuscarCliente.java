@@ -7,20 +7,22 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author DELL
  */
 public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
-      
+
     private ControladorCliente controladorCliente;
+
     /**
      * Creates new form VentanaBuscarMesero
      */
     public VentanaBuscarCliente(ControladorCliente controladorCliente) {
         initComponents();
-        this.controladorCliente=controladorCliente;
+        this.controladorCliente = controladorCliente;
     }
 
     /**
@@ -47,6 +49,11 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Buscar cliente");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lCedula.setText("Cédula:");
 
@@ -157,18 +164,26 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
+
+        this.dispose();
+
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
         // TODO add your handling code here:
-        String cedula=tCedula.getText();
-        Cliente cliente= controladorCliente.readCedula(cedula);
+        String cedula = tCedula.getText();
+        Cliente cliente = controladorCliente.readCedula(cedula);
         tNombre.setText(cliente.getNombre());
         tDireccion.setText(cliente.getDireccion());
         tTelefono.setText(cliente.getTelefono());
         tEmail.setText(cliente.getCorreo());
     }//GEN-LAST:event_bBuscarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

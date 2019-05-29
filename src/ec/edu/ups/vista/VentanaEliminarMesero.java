@@ -5,17 +5,26 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.modelo.Mesero;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
 
+    ControladorMesero controladorMesero;
+
     /**
      * Creates new form VentanaEliminarMesero
      */
-    public VentanaEliminarMesero() {
+    public VentanaEliminarMesero(ControladorMesero controladorMesero) {
         initComponents();
+        this.controladorMesero = controladorMesero;
+        bEliminar.setEnabled(false);
     }
 
     /**
@@ -42,12 +51,22 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
         bEliminar = new javax.swing.JButton();
 
         setTitle("Eliminar mesero");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lCodigo.setText("Código:");
 
         lCedula.setText("Cédula:");
 
         bBuscar.setText("Buscar");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarActionPerformed(evt);
+            }
+        });
 
         lNombre.setText("Nombre:");
 
@@ -150,12 +169,45 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
+
+        this.dispose();
+
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
-        // TODO add your handling code here:
+        int cod = Integer.parseInt(tCodigo.getText());
+        controladorMesero.delete(cod);
+        JOptionPane.showMessageDialog(this, "Mesero eliminado exitosamente!", "Eliminar mesero", JOptionPane.YES_OPTION);
+        tCedula.setText("");
+        tNombre.setText("");
+        tDireccion.setText("");
+        tTelefono.setText("");
+
     }//GEN-LAST:event_bEliminarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
+
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        int cod = Integer.parseInt(tCodigo.getText());
+        Mesero buscarMesero = controladorMesero.read(cod);
+        if (buscarMesero != null) {
+            tCedula.setText(buscarMesero.getCedula());
+            tNombre.setText(buscarMesero.getNombre());
+            tDireccion.setText(buscarMesero.getDireccion());
+            tTelefono.setText(buscarMesero.getTelefono());
+            bEliminar.setEnabled(true);
+        } else {
+            tCedula.setText("");
+            tNombre.setText("");
+            tDireccion.setText("");
+            tTelefono.setText("");
+            JOptionPane.showMessageDialog(this, "El mesero no existe", "Buscar mesero", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_bBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

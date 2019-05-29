@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  * @author Eduardo Ayora
  */
 public class Mesa {
-    
+
     private int numeroMesa;
     private int numeroPersonas;
     private int capacidad;
@@ -25,7 +25,7 @@ public class Mesa {
         mesaAbierta = true;
         controladorDetalle = new ControladorDetalle();
     }
-    
+
     public int getNumeroMesa() {
         return numeroMesa;
     }
@@ -65,7 +65,7 @@ public class Mesa {
     public void setMesero(Mesero mesero) {
         this.mesero = mesero;
     }
-    
+
     public ControladorDetalle getControladorDetalle() {
         return controladorDetalle;
     }

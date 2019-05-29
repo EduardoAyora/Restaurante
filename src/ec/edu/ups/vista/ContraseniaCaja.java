@@ -7,9 +7,11 @@ package ec.edu.ups.vista;
 
 import com.sun.glass.events.KeyEvent;
 import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.ClaveCaja;
 import ec.edu.ups.modelo.ClaveGerente;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
@@ -18,24 +20,24 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario-Pc
  */
-public class Contrasenia extends javax.swing.JFrame {
-
-    private VistaGerente vistaGerente;
-    private ControladorProducto controladorProducto;
+public class ContraseniaCaja extends javax.swing.JFrame {
+    
+    private VistaCaja vistaCaja;
+    private ControladorFactura controladorFactura;
+    private ControladorCliente controladorCliente;
     private ControladorMesa controladorMesa;
-    private ControladorMesero controladorMesero;
-    private ClaveGerente claveGerente;
-
+    private VentanaCrearFactura crearFactura;
+    private ClaveCaja claveCaja;
     /**
      * Creates new form Contrasenia
      */
-    public Contrasenia(ControladorProducto controladorProducto, ControladorMesero controladorMesero, ControladorMesa controladorMesa, ClaveGerente claveGerente) {
+    public ContraseniaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ClaveCaja claveCaja) {
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.controladorProducto = controladorProducto;
-        this.controladorMesero = controladorMesero;
+        this.controladorFactura = controladorFactura;
+        this.controladorCliente = controladorCliente;
         this.controladorMesa = controladorMesa;
-        this.claveGerente = claveGerente;
+        this.claveCaja = claveCaja;
+        setLocationRelativeTo(null);
 
     }
 
@@ -105,12 +107,13 @@ public class Contrasenia extends javax.swing.JFrame {
         // TODO add your handling code here:
         char clave[] = JpassClave.getPassword();
         String clavedef = new String(clave);
-        if (clavedef.equals(claveGerente.getClave())){
+        if (clavedef.equals(claveCaja.getClave())){
             this.dispose();
             JOptionPane.showMessageDialog(null, "bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
-            vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa);
-            vistaGerente.toFront();
-            vistaGerente.setVisible(true);
+            
+            vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
+            vistaCaja.toFront();
+            vistaCaja.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -122,13 +125,13 @@ public class Contrasenia extends javax.swing.JFrame {
             char clave[] = JpassClave.getPassword();
             String clavedef = new String(clave);
 
-            if (clavedef.equals(claveGerente.getClave())) {
+            if (clavedef.equals(claveCaja.getClave())) {
 
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
-                vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa);
-                vistaGerente.toFront();
-                vistaGerente.setVisible(true);
+                vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
+                vistaCaja.toFront();
+                vistaCaja.setVisible(true);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);

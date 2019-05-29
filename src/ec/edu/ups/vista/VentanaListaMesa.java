@@ -5,36 +5,35 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.modelo.Mesero;
-import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.modelo.Mesa;
 import java.awt.event.KeyEvent;
-import java.util.Set;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author DELL
  */
-public class VentanaListaMesero extends javax.swing.JInternalFrame {
+public class VentanaListaMesa extends javax.swing.JInternalFrame {
 
-    ControladorMesero controladorMesero;
+    ControladorMesa controladorMesa;
 
     /**
-     * Creates new form VentanaListaMesero
+     * Creates new form VentanaListaMesa
      */
-    public VentanaListaMesero(ControladorMesero controladorMesero) {
+    public VentanaListaMesa(ControladorMesa controladorMesa) {
         initComponents();
-        this.controladorMesero = controladorMesero;
+        this.controladorMesa = controladorMesa;
         llenarDatos();
     }
 
     public void llenarDatos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaMesero.getModel();
-        Set<Mesero> lista = controladorMesero.getLista();
-        for (Mesero mesero : lista) {
-            Object[] datos = {mesero.getCodigo(),
-                mesero.getCedula(), mesero.getNombre(),
-                mesero.getDireccion(), mesero.getTelefono()
+        List<Mesa> lista = controladorMesa.getLista();
+        for (Mesa mesa : lista) {
+            Object[] datos = {mesa.getNumeroMesa(),
+                mesa.getCapacidad()
             };
             modelo.addRow(datos);
         }
@@ -54,7 +53,7 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setMaximizable(true);
-        setTitle("Lista de meseros");
+        setTitle("Lista de mesas");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -66,11 +65,11 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Cédula", "Nombre", "Dirección", "Teléfono"
+                "Número de mesa", "Capacidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -78,17 +77,6 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tablaMesero);
-        if (tablaMesero.getColumnModel().getColumnCount() > 0) {
-            tablaMesero.getColumnModel().getColumn(0).setMinWidth(60);
-            tablaMesero.getColumnModel().getColumn(0).setPreferredWidth(60);
-            tablaMesero.getColumnModel().getColumn(0).setMaxWidth(60);
-            tablaMesero.getColumnModel().getColumn(1).setMinWidth(70);
-            tablaMesero.getColumnModel().getColumn(1).setPreferredWidth(70);
-            tablaMesero.getColumnModel().getColumn(1).setMaxWidth(70);
-            tablaMesero.getColumnModel().getColumn(4).setMinWidth(70);
-            tablaMesero.getColumnModel().getColumn(4).setPreferredWidth(70);
-            tablaMesero.getColumnModel().getColumn(4).setMaxWidth(70);
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +84,7 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

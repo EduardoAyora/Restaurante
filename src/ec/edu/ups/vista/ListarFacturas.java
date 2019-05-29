@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package ec.edu.ups.vista;
-import ec.edu.ups.controlador.ControladorCliente;
+
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.modelo.Factura;
 import java.util.ResourceBundle;
@@ -19,9 +19,10 @@ import javax.swing.table.TableColumnModel;
  * @author Estudiante
  */
 public class ListarFacturas extends javax.swing.JInternalFrame {
-     
+
     private ControladorFactura controladorFactura;
     private ResourceBundle mensajes;
+
     /**
      * Creates new form ListarClientes
      */
@@ -34,8 +35,8 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
         //cambiarIdioma(mensajes);
     }
 
-     public void llenarDatos(){
-        
+    public void llenarDatos() {
+
         DefaultTableModel modelo = (DefaultTableModel) tblFactura.getModel();
         Set<Factura> lista = controladorFactura.getLista();
         for (Factura factura : lista) {
@@ -44,14 +45,14 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
                 factura.getCliente().getNombre(),
                 factura.getSubtotal(),
                 factura.getIva(),
-                factura.getTotal() };
+                factura.getTotal()};
             modelo.addRow(datos);
         }
-        
+
     }
-    
-    public void cambiarIdioma(ResourceBundle mensajes){
-        
+
+    public void cambiarIdioma(ResourceBundle mensajes) {
+
         JTableHeader tableHeader = tblFactura.getTableHeader();
         TableColumnModel tableColumnModel = tableHeader.getColumnModel();
         TableColumn tableColumn;
@@ -68,8 +69,9 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
         tableColumn = tableColumnModel.getColumn(5);
         tableColumn.setHeaderValue(mensajes.getString("factura.total"));
         tableHeader.repaint();
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
