@@ -6,9 +6,12 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorFactura;
+import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Factura;
+import ec.edu.ups.modelo.Render;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -37,6 +40,10 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
 
     public void llenarDatos() {
 
+        tblFactura.setDefaultRenderer(Object.class, new Render());
+        JButton btnDetalles = new JButton(mensajes.getString("Ver detalles"));
+        //btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/cerrar1.png")));
+        
         DefaultTableModel modelo = (DefaultTableModel) tblFactura.getModel();
         Set<Factura> lista = controladorFactura.getLista();
         for (Factura factura : lista) {
@@ -45,7 +52,9 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
                 factura.getCliente().getNombre(),
                 factura.getSubtotal(),
                 factura.getIva(),
-                factura.getTotal()};
+                factura.getTotal(),
+                btnDetalles
+            };
             modelo.addRow(datos);
         }
 
@@ -92,15 +101,20 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Numero de Factura", "Fecha", "Cliente", "Subtotal", "Iva", "Total", "Estado"
+                "Numero de Factura", "Fecha", "Cliente", "Subtotal", "Iva", "Total", "Estado", "Ver detalles"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFacturaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblFactura);
@@ -144,6 +158,24 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacturaMouseClicked
+        // TODO add your handling code here:
+        int columna = tblFactura.getColumnModel().getColumnIndexAtX(evt.getX());
+        int fila = evt.getY() / tblFactura.getRowHeight();
+
+        if (fila < tblFactura.getRowCount() && fila >= 0 && columna < tblFactura.getColumnCount() && columna >= 0) {
+            Object value = tblFactura.getValueAt(fila, columna);
+            if (value instanceof JButton) {
+                ((JButton) value).doClick();
+                JButton boton = (JButton) value;
+                int numDetalle = evt.getY() / tblFactura.getRowHeight();
+                Factura factura = controladorFactura.buscarPosicion(numDetalle);
+                
+                llenarDatos();
+            }
+        }
+    }//GEN-LAST:event_tblFacturaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

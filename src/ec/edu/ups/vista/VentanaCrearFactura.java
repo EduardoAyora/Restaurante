@@ -383,7 +383,7 @@ public class VentanaCrearFactura extends javax.swing.JInternalFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
         Date date = new Date();
-        Cliente cliente = controladorCliente.readCedula(txtCedula.getText());
+        cliente = controladorCliente.readCedula(txtCedula.getText());
         factura.setCliente(cliente);
         factura.setFecha(date);
         controladorFactura.create(factura);

@@ -31,12 +31,13 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     /**
      * Creates new form Contrasenia
      */
-    public ContraseniaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ClaveCaja claveCaja) {
+    public ContraseniaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ClaveCaja claveCaja, VistaCaja vistaCaja) {
         initComponents();
         this.controladorFactura = controladorFactura;
         this.controladorCliente = controladorCliente;
         this.controladorMesa = controladorMesa;
         this.claveCaja = claveCaja;
+        vistaCaja = this.vistaCaja;
         setLocationRelativeTo(null);
 
     }
