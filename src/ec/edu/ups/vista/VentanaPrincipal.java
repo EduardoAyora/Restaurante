@@ -60,24 +60,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //---------------------------------------------------------------------------------------------
     }
 
-    public void cambiarIdioma(){
-        
+    public void cambiarIdioma() {
+
         mensajes = ResourceBundle.getBundle("ec.edu.ups.idiomas.mensajes", Locale.getDefault());
         lblMesero.setText(mensajes.getString("txt.mesero"));
         lblGerente.setText(mensajes.getString("lbl.gerente"));
         lblCaja.setText(mensajes.getString("txt.caja"));
-        
+
         menuAjustes.setText(mensajes.getString("txt.ajustes"));
         itmPass.setText(mensajes.getString("txt.admin.contraseñas"));
         itmAyuda.setText(mensajes.getString("itm.ayuda"));
         itmSalir.setText(mensajes.getString("itm.salir"));
-        
+
         menuIdioma.setText(mensajes.getString("vista.idiomas"));
         itmEspañol.setText(mensajes.getString("vista.item.español"));
         itmIngles.setText(mensajes.getString("vista.item.ingles"));
-        
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -274,14 +274,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         comprobaciones();
     }//GEN-LAST:event_itmInglesActionPerformed
 
-    private void comprobaciones(){
-        
+    private void comprobaciones() {
+
         if (usuarioMesero != null && usuarioMesero.isVisible()) {
             usuarioMesero.cambiarIdioma(mensajes);
         }
 
     }
-    
+
     /**
      * @param args the command line arguments
      */

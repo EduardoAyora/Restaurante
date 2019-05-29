@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
-
+    
     ControladorProducto controladorProducto;
     Categoria categoria;
 
@@ -25,6 +25,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
     public VentanaBuscarProducto(ControladorProducto controladorProducto) {
         initComponents();
         this.controladorProducto = controladorProducto;
+        
     }
 
     /**
@@ -50,9 +51,15 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
         bBuscar = new javax.swing.JButton();
         lImagen = new javax.swing.JLabel();
         tImagen = new javax.swing.JTextField();
+        lEspacioImg = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Buscar producto");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lCodigo.setText("Código:");
 
@@ -95,6 +102,9 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
 
         tImagen.setEditable(false);
 
+        lEspacioImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lEspacioImg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,10 +112,6 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lImagen)
-                        .addGap(18, 18, 18)
-                        .addComponent(tImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lCodigo)
@@ -124,7 +130,13 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
                                     .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(bBuscar)))))
-                    .addComponent(bCancelar, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(bCancelar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lImagen)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(lEspacioImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -151,10 +163,12 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCategoria)
                     .addComponent(tCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lImagen)
                     .addComponent(tImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lEspacioImg, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bCancelar)
                 .addContainerGap())
@@ -176,21 +190,27 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
             tDescripcion.setText(buscarProducto.getDescripcion());
             tCategoria.setText(buscarProducto.getCategoria().getNombre());
             tImagen.setText(buscarProducto.getImgIcon().toString());
+            lEspacioImg.setIcon(buscarProducto.getImgIcon());
         } else {
             tNombre.setText("");
             tPrecio.setText("");
             tDescripcion.setText("");
             tCategoria.setText("");
             tImagen.setText("");
-            JOptionPane.showMessageDialog(this, "El producto no existe");
+            lEspacioImg.setIcon(null);
+            JOptionPane.showMessageDialog(this, "El producto no existe", "Buscar producto", JOptionPane.WARNING_MESSAGE);
         }
-
+        
 
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        this.dispose();
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -199,6 +219,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lCategoria;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDescripcion;
+    private javax.swing.JLabel lEspacioImg;
     private javax.swing.JLabel lImagen;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lPrecio;

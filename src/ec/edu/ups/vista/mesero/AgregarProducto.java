@@ -14,7 +14,6 @@ import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.Render;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
@@ -227,6 +226,20 @@ public class AgregarProducto extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblProductos);
+        if (tblProductos.getColumnModel().getColumnCount() > 0) {
+            tblProductos.getColumnModel().getColumn(0).setMinWidth(70);
+            tblProductos.getColumnModel().getColumn(0).setPreferredWidth(70);
+            tblProductos.getColumnModel().getColumn(0).setMaxWidth(70);
+            tblProductos.getColumnModel().getColumn(3).setMinWidth(115);
+            tblProductos.getColumnModel().getColumn(3).setPreferredWidth(115);
+            tblProductos.getColumnModel().getColumn(3).setMaxWidth(115);
+            tblProductos.getColumnModel().getColumn(4).setMinWidth(100);
+            tblProductos.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tblProductos.getColumnModel().getColumn(4).setMaxWidth(100);
+            tblProductos.getColumnModel().getColumn(5).setMinWidth(150);
+            tblProductos.getColumnModel().getColumn(5).setPreferredWidth(150);
+            tblProductos.getColumnModel().getColumn(5).setMaxWidth(150);
+        }
 
         btnListo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnListo.setText("Listo");

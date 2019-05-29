@@ -13,26 +13,26 @@ import ec.edu.ups.modelo.Mesero;
  * @author Karen
  */
 public class GenerarMesero {
-    
+
     private ControladorMesero controladorMesero;
-    
-    public GenerarMesero(ControladorMesero controladorMesero){
+
+    public GenerarMesero(ControladorMesero controladorMesero) {
         this.controladorMesero = controladorMesero;
         crearMeseros();
     }
-    
-    public void crearMeseros(){
-        
+
+    public void crearMeseros() {
+
         Mesero mesero1 = new Mesero();
-        mesero1.setNombre("Carlos");
+        mesero1.setNombre("Eduardo");
         controladorMesero.create(mesero1);
         Mesero mesero2 = new Mesero();
-        mesero2.setNombre("Pedro");
+        mesero2.setNombre("Wilmer");
         controladorMesero.create(mesero2);
         Mesero mesero3 = new Mesero();
-        mesero3.setNombre("Alex");
+        mesero3.setNombre("José");
         controladorMesero.create(mesero3);
-        
+
     }
-    
+
 }

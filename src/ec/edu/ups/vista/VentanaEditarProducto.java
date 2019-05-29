@@ -8,7 +8,16 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -18,6 +27,7 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
 
     ControladorProducto controladorProducto;
     Categoria categoria;
+    String ruta;
 
     /**
      * Creates new form VentanaEditarProducto
@@ -26,6 +36,32 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
         initComponents();
         this.controladorProducto = controladorProducto;
         bActualizar.setEnabled(false);
+    }
+
+    public void escogerFoto() {
+        selectorImagenes.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("*.png", "png");
+        FileNameExtensionFilter filtro2 = new FileNameExtensionFilter("*.jpg", "jpg");
+        selectorImagenes.setFileFilter(filtro1);
+        selectorImagenes.setFileFilter(filtro2);
+        try {
+            selectorImagenes.showOpenDialog(bActualizar);
+            File abre = selectorImagenes.getSelectedFile();
+            ruta = abre.getAbsolutePath();
+            if (abre != null) {
+                FileReader archivos = new FileReader(abre);
+                BufferedReader lee = new BufferedReader(archivos);
+                lee.close();
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex + ""
+                    + "\nNo se ha encontrado el archivo",
+                    "ADVERTENCIA!", JOptionPane.WARNING_MESSAGE);
+        }
+        char c = 92;
+        String signo = Character.toString(c);
+        tImagen.setText(ruta.replace(signo, "/"));
+        lEscogerImg.setIcon(new ImageIcon(tImagen.getText()));
     }
 
     /**
@@ -37,6 +73,7 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        selectorImagenes = new javax.swing.JFileChooser();
         lCodigo = new javax.swing.JLabel();
         tCodigo = new javax.swing.JTextField();
         tNombre = new javax.swing.JTextField();
@@ -50,6 +87,10 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
         bActualizar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
         bBuscar = new javax.swing.JButton();
+        lImagen = new javax.swing.JLabel();
+        tImagen = new javax.swing.JTextField();
+        bSeleccionar = new javax.swing.JButton();
+        lEscogerImg = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Editar producto");
@@ -64,7 +105,7 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
 
         lCategoria.setText("Categoría:");
 
-        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Plato", "Bebida", "Postre" }));
 
         bActualizar.setText("Actualizar");
         bActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,34 +128,58 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
             }
         });
 
+        lImagen.setText("Imagen:");
+
+        tImagen.setEditable(false);
+
+        bSeleccionar.setText("Seleccionar...");
+        bSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSeleccionarActionPerformed(evt);
+            }
+        });
+
+        lEscogerImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lEscogerImg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lCodigo)
-                    .addComponent(lDescripcion)
-                    .addComponent(lPrecio)
-                    .addComponent(lCategoria)
-                    .addComponent(lNombre))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bBuscar))
-                    .addComponent(tPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bActualizar)
-                .addGap(18, 18, 18)
-                .addComponent(bCancelar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(bActualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(bCancelar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lCodigo)
+                            .addComponent(lDescripcion)
+                            .addComponent(lPrecio)
+                            .addComponent(lCategoria)
+                            .addComponent(lNombre))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bBuscar))
+                            .addComponent(tPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lImagen)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bSeleccionar))
+                            .addComponent(lEscogerImg, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -141,7 +206,14 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCategoria)
                     .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lImagen)
+                    .addComponent(tImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bSeleccionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lEscogerImg, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCancelar)
                     .addComponent(bActualizar))
@@ -158,50 +230,92 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
             tNombre.setText(buscarProducto.getNombre());
             tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
             tDescripcion.setText(buscarProducto.getDescripcion());
-            //comboCategoria.set
+            comboCategoria.setSelectedItem(buscarProducto.getCategoria().getNombre());
+            tImagen.setText(buscarProducto.getImgIcon().toString());
+            lEscogerImg.setIcon(buscarProducto.getImgIcon());
+            bActualizar.setEnabled(true);
         } else {
             tNombre.setText("");
             tPrecio.setText("");
             tDescripcion.setText("");
+            comboCategoria.setSelectedIndex(0);
+            tImagen.setText("");
+            lEscogerImg.setIcon(null);
             JOptionPane.showMessageDialog(this, "El producto no existe");
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
-        Producto productoActual = new Producto();
+        int cod = Integer.parseInt(tCodigo.getText());
+        Producto productoActual = controladorProducto.read(cod);
+        Categoria categoriaPlato = new Categoria();
+        categoriaPlato.setNombre("Plato");
+        Categoria categoriaBebida = new Categoria();
+        categoriaBebida.setNombre("Bebida");
+        Categoria categoriaEntrada = new Categoria();
+        categoriaEntrada.setNombre("Entrada");
+        Categoria categoriaPostre = new Categoria();
+        categoriaPostre.setNombre("Postre");
         productoActual.setNombre(tNombre.getText());
-        productoActual.setPrecio(Integer.parseInt(tPrecio.getText()));
+        productoActual.setPrecio(Double.parseDouble(tPrecio.getText()));
         productoActual.setDescripcion(tDescripcion.getText());
-        if (""!= tNombre.getText() && "" != tPrecio.getText() && "" != tDescripcion.getText()) {
-            bActualizar.setEnabled(true);
-            controladorProducto.update(productoActual);
-            JOptionPane.showMessageDialog(this, "Producto actualizado exitosamente!");
-            tCodigo.setText("");
-            tNombre.setText("");
-            tPrecio.setText("");
-            tDescripcion.setText("");
-            comboCategoria.setSelectedIndex(0);
-        }
+        String itemSeleccionado = comboCategoria.getSelectedItem().toString();
+
+        comboCategoria.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (itemSeleccionado.equalsIgnoreCase(categoriaEntrada.getNombre())) {
+                    productoActual.setCategoria(categoriaEntrada);
+                } else if (itemSeleccionado.equalsIgnoreCase(categoriaPlato.getNombre())) {
+                    productoActual.setCategoria(categoriaPlato);
+                } else if (itemSeleccionado.equalsIgnoreCase(categoriaBebida.getNombre())) {
+                    productoActual.setCategoria(categoriaBebida);
+                } else if (itemSeleccionado.equalsIgnoreCase(categoriaPostre.getNombre())) {
+                    productoActual.setCategoria(categoriaPostre);
+                }
+            }
+        });
+        productoActual.setImgIcon(new ImageIcon(tImagen.getText()));
+        controladorProducto.update(productoActual);
+        JOptionPane.showMessageDialog(this, "Producto actualizado exitosamente!", "Actualizar producto", JOptionPane.YES_NO_OPTION);
+        tCodigo.setText("");
+        tNombre.setText("");
+        tPrecio.setText("");
+        tDescripcion.setText("");
+        comboCategoria.setSelectedIndex(0);
+        tImagen.setText("");
+        lEscogerImg.setIcon(null);
+
     }//GEN-LAST:event_bActualizarActionPerformed
+
+    private void bSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeleccionarActionPerformed
+        selectorImagenes = new JFileChooser();
+        selectorImagenes.setVisible(true);
+        escogerFoto();
+    }//GEN-LAST:event_bSeleccionarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bActualizar;
     private javax.swing.JButton bBuscar;
     private javax.swing.JButton bCancelar;
+    private javax.swing.JButton bSeleccionar;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JLabel lCategoria;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDescripcion;
+    private javax.swing.JLabel lEscogerImg;
+    private javax.swing.JLabel lImagen;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lPrecio;
+    private javax.swing.JFileChooser selectorImagenes;
     private javax.swing.JTextField tCodigo;
     private javax.swing.JTextField tDescripcion;
+    private javax.swing.JTextField tImagen;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tPrecio;
     // End of variables declaration//GEN-END:variables

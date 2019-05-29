@@ -26,23 +26,36 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lCodigo" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lDescripcion" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lPrecio" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lCategoria" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lNombre" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tNombre" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                  <Component id="tDescripcion" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="tCodigo" min="-2" pref="60" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="bBuscar" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lCodigo" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lDescripcion" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lPrecio" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lCategoria" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lNombre" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tNombre" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="tDescripcion" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="tCodigo" min="-2" pref="60" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="bBuscar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="tPrecio" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="tCategoria" min="-2" pref="125" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="tPrecio" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="tCategoria" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lImagen" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lEscogerImg" max="32767" attributes="0"/>
+                          <Component id="tImagen" pref="125" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -84,7 +97,14 @@
                   <Component id="lCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lImagen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tImagen" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lEscogerImg" pref="79" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -111,6 +131,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tNombre">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tNombreActionPerformed"/>
       </Events>
@@ -126,8 +149,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tPrecio">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tDescripcion">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tDescripcionActionPerformed"/>
       </Events>
@@ -146,16 +175,44 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEliminarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tCategoria">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tCategoriaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lImagen">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Imagen:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tImagen">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tImagenActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lEscogerImg">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

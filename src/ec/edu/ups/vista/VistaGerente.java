@@ -250,7 +250,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opDeletePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeletePActionPerformed
             jDesktopPane1.removeAll();
             jDesktopPane1.repaint();
-            vep1 = new VentanaEliminarProducto();
+            vep1 = new VentanaEliminarProducto(cp);
             vep1.toFront();
             vep1.setVisible(true);
             jDesktopPane1.add(vep1);

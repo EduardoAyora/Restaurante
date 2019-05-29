@@ -53,7 +53,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         llenarTabla();
     }
 
-    public void llenarTabla(){
+    public void llenarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
         Set<Detalle> lista = factura.getControladorDetalle().getLista();
         for (Detalle detalle : lista) {
@@ -61,8 +61,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 detalle.getProducto().getNombre(),
                 detalle.getCantidad(),
                 detalle.getPrecio(),
-                detalle.getSubtotal(),
-            };
+                detalle.getSubtotal(),};
             modelo.addRow(datos);
         }
         calcularSubtotal();
@@ -72,7 +71,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     public void calcularSubtotal() {
         double suma = 0;
-        for(Detalle detalle : cliente.getMesa().getControladorDetalle().getLista()){
+        for (Detalle detalle : cliente.getMesa().getControladorDetalle().getLista()) {
             suma += detalle.getSubtotal();
         }
         factura.setSubtotal(suma);
@@ -84,14 +83,14 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         factura.setIva(iva);
         txtIva.setText(String.format("%.2f", iva));
     }
-    
+
     public void calcularTotal() {
         double total = factura.getSubtotal() + factura.getIva();
         factura.setTotal(total);
         txtTotal.setText(Double.toString(total));
     }
-    
-    public void llenarDatosCliente(){
+
+    public void llenarDatosCliente() {
         Date date = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String fechaTexto = formato.format(date.getTime());
@@ -101,7 +100,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         txtDireccion.setText(cliente.getDireccion());
         txtTelefono.setText(cliente.getTelefono());
         txtFecha.setText(fechaTexto);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -137,6 +136,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Nueva factura");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         txtCedula.setEditable(false);
 
@@ -385,6 +389,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private void txtNumeroFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroFacturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroFacturaActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        this.dispose();
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
