@@ -18,23 +18,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario-Pc
  */
 public class VentanaReadFactura extends javax.swing.JInternalFrame {
-    private ControladorFactura controladorFactura;
-    private ControladorCliente controladorCliente;
+
     private Factura factura;
-     private Cliente cliente;
+
     /**
      * Creates new form VentanaReadFactura
      */
-    public VentanaReadFactura(ControladorFactura controladorFactura, ControladorCliente controladorCliente) {
+    public VentanaReadFactura() {
         initComponents();
-        this.controladorFactura= controladorFactura;
-        this.controladorCliente=controladorCliente;
-        
-        
     }
-     
-        public void llenarDatos() {
-       
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
+    public void llenarDatos() {
+
         Cliente cliente = factura.getCliente();
         txtNumeroFactura.setText(Integer.toString(factura.getNumeroFactura()));
         txtCedula.setText(cliente.getCedula());
@@ -43,11 +42,13 @@ public class VentanaReadFactura extends javax.swing.JInternalFrame {
         txtFecha.setText(factura.getFecha());
         txtTelefono.setText(cliente.getTelefono());
         txtDireccion.setText(cliente.getDireccion());
+        txtCorreo.setText(cliente.getCorreo());
+        txtMesa.setText(Integer.toString(cliente.getMesa().getNumeroMesa()));
+        llenarTabla();
 
-        llenarDatos();
-                   
     }
-         public void llenarTabla() {
+
+    public void llenarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
         Set<Detalle> lista = factura.getControladorDetalle().getLista();
         for (Detalle detalle : lista) {
@@ -62,26 +63,19 @@ public class VentanaReadFactura extends javax.swing.JInternalFrame {
         calcularIva();
         calcularTotal();
     }
-            public void calcularSubtotal() {
-        double suma = 0;
-        for (Detalle detalle : cliente.getMesa().getControladorDetalle().getLista()) {
-            suma += detalle.getSubtotal();
-        }
-        factura.setSubtotal(suma);
-        txtSubtotal.setText(Double.toString(suma));
+
+    public void calcularSubtotal() {
+        txtSubtotal.setText(Double.toString(factura.getSubtotal()));
     }
 
     public void calcularIva() {
-        double iva = factura.getSubtotal() * 0.12;
-        factura.setIva(iva);
-        txtIva.setText(String.format("%.2f", iva));
+        txtIva.setText(Double.toString(factura.getIva()));
     }
 
     public void calcularTotal() {
-        double total = factura.getSubtotal() + factura.getIva();
-        factura.setTotal(total);
-        txtTotal.setText(Double.toString(total));
+        txtTotal.setText(Double.toString(factura.getTotal()));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,6 +112,8 @@ public class VentanaReadFactura extends javax.swing.JInternalFrame {
         txtMesa = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
+
+        setClosable(true);
 
         txtCedula.setEditable(false);
 
@@ -314,7 +310,7 @@ public class VentanaReadFactura extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotal)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -330,8 +326,8 @@ public class VentanaReadFactura extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

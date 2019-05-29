@@ -9,6 +9,7 @@ import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Factura;
 import ec.edu.ups.modelo.Render;
+import java.awt.Dimension;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.JButton;
@@ -25,6 +26,7 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
 
     private ControladorFactura controladorFactura;
     private ResourceBundle mensajes;
+    private VentanaReadFactura ventanaReadFactura;
 
     /**
      * Creates new form ListarClientes
@@ -172,8 +174,18 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
                 JButton boton = (JButton) value;
                 int numDetalle = evt.getY() / tblFactura.getRowHeight();
                 Factura factura = controladorFactura.buscarPosicion(numDetalle);
-                
-                llenarDatos();
+                if (ventanaReadFactura == null || ventanaReadFactura.isVisible() == false) {
+                    ventanaReadFactura = new VentanaReadFactura();
+                    ventanaReadFactura.setFactura(factura);
+                    ventanaReadFactura.llenarDatos();
+                    ventanaReadFactura.setVisible(true);
+                    VistaCaja.jDesktopPane1.add(ventanaReadFactura);
+                    ventanaReadFactura.toFront();
+                    Dimension desktopSize = VistaCaja.jDesktopPane1.getSize();
+                    Dimension frameSize = ventanaReadFactura.getSize();
+                    ventanaReadFactura.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+                    ventanaReadFactura.setFocusable(true);
+                }
             }
         }
     }//GEN-LAST:event_tblFacturaMouseClicked
