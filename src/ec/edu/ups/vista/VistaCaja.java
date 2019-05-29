@@ -10,6 +10,8 @@ import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.ImagenFondoCaja;
+import static ec.edu.ups.vista.VistaGerente.jDesktopPane1;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 
 /**
@@ -191,6 +193,10 @@ public class VistaCaja extends javax.swing.JFrame {
         crearCliente = new VentanaCrearCliente(controladorCliente);
         crearCliente.setVisible(true);
         jDesktopPane1.add(crearCliente);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = crearCliente.getSize();
+        crearCliente.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        crearCliente.toFront();
 
     }//GEN-LAST:event_opCrearCliActionPerformed
 
@@ -201,6 +207,10 @@ public class VistaCaja extends javax.swing.JFrame {
         crearFactura = new VentanaCrearFactura(controladorFactura, controladorCliente,controladorMesa);
         crearFactura.setVisible(true);
         jDesktopPane1.add(crearFactura);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = crearFactura.getSize();
+        crearFactura.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        crearFactura.toFront();
     }//GEN-LAST:event_opCrearFacActionPerformed
 
     private void opUpdateCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateCliActionPerformed

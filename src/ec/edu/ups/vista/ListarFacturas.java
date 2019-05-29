@@ -41,7 +41,7 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
     public void llenarDatos() {
 
         tblFactura.setDefaultRenderer(Object.class, new Render());
-        JButton btnDetalles = new JButton(mensajes.getString("Ver detalles"));
+        JButton btnDetalles = new JButton("Ver Detalles");
         //btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/cerrar1.png")));
         
         DefaultTableModel modelo = (DefaultTableModel) tblFactura.getModel();
@@ -52,6 +52,7 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
                 factura.getCliente().getNombre(),
                 factura.getSubtotal(),
                 factura.getIva(),
+                factura.getTotal(),
                 factura.getTotal(),
                 btnDetalles
             };
