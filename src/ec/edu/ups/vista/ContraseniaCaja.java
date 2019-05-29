@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  */
 public class ContraseniaCaja extends javax.swing.JFrame {
     
-    private VistaCaja vistaCaja;
+    public static VistaCaja vistaCaja;
     private ControladorFactura controladorFactura;
     private ControladorCliente controladorCliente;
     private ControladorMesa controladorMesa;
@@ -115,6 +115,8 @@ public class ContraseniaCaja extends javax.swing.JFrame {
             vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
+            VentanaPrincipal.vistaCaja = this.vistaCaja;
+            
         } else {
             JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -133,6 +135,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
                 vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
                 vistaCaja.toFront();
                 vistaCaja.setVisible(true);
+                VentanaPrincipal.vistaCaja = this.vistaCaja;
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);

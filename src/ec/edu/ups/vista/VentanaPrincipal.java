@@ -38,7 +38,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ResourceBundle mensajes;
     private ClaveGerente claveGerente;
     private ClaveCaja claveCaja;
-    private VistaCaja vistaCaja;
+    public static VistaCaja vistaCaja;
     private VistaGerente vistaGerente;
 
     /**
@@ -306,6 +306,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             cambioContrasenia.cambiarIdioma(mensajes);
         }
 
+        if(ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()){
+            
+        }
     }
 
     /**

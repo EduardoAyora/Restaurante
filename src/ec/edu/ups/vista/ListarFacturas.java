@@ -127,12 +127,12 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblFactura);
         if (tblFactura.getColumnModel().getColumnCount() > 0) {
-            tblFactura.getColumnModel().getColumn(0).setMinWidth(130);
-            tblFactura.getColumnModel().getColumn(0).setPreferredWidth(130);
-            tblFactura.getColumnModel().getColumn(0).setMaxWidth(130);
-            tblFactura.getColumnModel().getColumn(1).setMinWidth(70);
-            tblFactura.getColumnModel().getColumn(1).setPreferredWidth(70);
-            tblFactura.getColumnModel().getColumn(1).setMaxWidth(70);
+            tblFactura.getColumnModel().getColumn(0).setMinWidth(105);
+            tblFactura.getColumnModel().getColumn(0).setPreferredWidth(105);
+            tblFactura.getColumnModel().getColumn(0).setMaxWidth(105);
+            tblFactura.getColumnModel().getColumn(1).setMinWidth(90);
+            tblFactura.getColumnModel().getColumn(1).setPreferredWidth(90);
+            tblFactura.getColumnModel().getColumn(1).setMaxWidth(90);
             tblFactura.getColumnModel().getColumn(3).setMinWidth(70);
             tblFactura.getColumnModel().getColumn(3).setPreferredWidth(70);
             tblFactura.getColumnModel().getColumn(3).setMaxWidth(70);
