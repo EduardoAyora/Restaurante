@@ -20,9 +20,7 @@ import java.awt.event.KeyEvent;
  */
 public class VistaCaja extends javax.swing.JFrame {
 
-    static void jDesktopPane1() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     private VentanaCrearCliente crearCliente;
     private VentanaBuscarCliente buscarCliente;
     private VentanaEditarCliente editarCliente;

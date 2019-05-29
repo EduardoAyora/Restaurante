@@ -72,7 +72,7 @@ public class VentanaReadFactura extends javax.swing.JInternalFrame {
     public void calcularIva() {
         txtIva.setText(String.format("%.2f", factura.getIva()));
     }
-
+    
     public void calcularTotal() {
         txtTotal.setText(Double.toString(factura.getTotal()));
     }
