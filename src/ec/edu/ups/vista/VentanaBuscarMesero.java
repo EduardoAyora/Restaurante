@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.modelo.Mesero;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,15 +19,30 @@ import javax.swing.JOptionPane;
 public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
 
     ControladorMesero controladorMesero;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaBuscarMesero
      */
-    public VentanaBuscarMesero(ControladorMesero controladorMesero) {
+    public VentanaBuscarMesero(ControladorMesero controladorMesero, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesero.buscar"));
         initComponents();
         this.controladorMesero = controladorMesero;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
     }
 
+    public void cambiarIdiomas(ResourceBundle mensajes){
+        titulo.setText(mensajes.getString("mesero.buscar"));
+        lCodigo.setText(mensajes.getString("txt.codigo"));
+        lCedula.setText(mensajes.getString("cliente.cedula"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
+        lDireccion.setText(mensajes.getString("cliente.direccion"));
+        lTelefono.setText(mensajes.getString("cliente.telefono"));
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,7 +66,7 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
         bCancelar = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Buscar mesero");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

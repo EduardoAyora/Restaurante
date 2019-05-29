@@ -40,6 +40,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private ControladorMesa cm1;
     private JLabel titulo;
     private ResourceBundle mensajes;
+
     /**
      * Creates new form VistaGerente
      */
@@ -55,7 +56,7 @@ public class VistaGerente extends javax.swing.JFrame {
         cambiarIdiomas(mensajes);
     }
 
-    public void cambiarIdiomas(ResourceBundle mensajes){
+    public void cambiarIdiomas(ResourceBundle mensajes) {
         menMesa.setText(mensajes.getString("txt.mesa"));
         menMesero.setText(mensajes.getString("txt.mesero"));
         menProduct.setText(mensajes.getString("vista.producto"));
@@ -76,6 +77,7 @@ public class VistaGerente extends javax.swing.JFrame {
         opListMesa.setText(mensajes.getString("vista.item.listar"));
         titulo.setText(mensajes.getString("gerente.gestion"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -273,7 +275,7 @@ public class VistaGerente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocused()== false) {
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocused() == false) {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
@@ -301,7 +303,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opDeletePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeletePActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vep1 = new VentanaEliminarProducto(cp);
+        vep1 = new VentanaEliminarProducto(cp, mensajes);
         vep1.toFront();
         vep1.setVisible(true);
         jDesktopPane1.add(vep1);
@@ -315,7 +317,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdatePActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vep = new VentanaEditarProducto(cp);
+        vep = new VentanaEditarProducto(cp, mensajes);
         vep.toFront();
         vep.setVisible(true);
         jDesktopPane1.add(vep);
@@ -329,7 +331,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opReadPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadPActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vbp = new VentanaBuscarProducto(cp);
+        vbp = new VentanaBuscarProducto(cp, mensajes);
         vbp.toFront();
         vbp.setVisible(true);
         jDesktopPane1.add(vbp);
@@ -357,7 +359,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opReadMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMesaActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vbm1 = new VentanaBuscarMesa(cm1);
+        vbm1 = new VentanaBuscarMesa(cm1, mensajes);
         vbm1.toFront();
         vbm1.setVisible(true);
         jDesktopPane1.add(vbm1);
@@ -384,7 +386,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opDeleteMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteMeActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vem1 = new VentanaEliminarMesero(cm);
+        vem1 = new VentanaEliminarMesero(cm, mensajes);
         vem1.toFront();
         vem1.setVisible(true);
         jDesktopPane1.add(vem1);
@@ -398,7 +400,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opUpdateMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateMeActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vem = new VentanaEditarMesero(cm);
+        vem = new VentanaEditarMesero(cm, mensajes);
         vem.toFront();
         vem.setVisible(true);
         jDesktopPane1.add(vem);
@@ -412,7 +414,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opReadMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMeActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vbm = new VentanaBuscarMesero(cm);
+        vbm = new VentanaBuscarMesero(cm, mensajes);
         vbm.toFront();
         vbm.setVisible(true);
         jDesktopPane1.add(vbm);
@@ -467,7 +469,7 @@ public class VistaGerente extends javax.swing.JFrame {
     private void opDeleteMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteMesaActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        vem3 = new VentanaEliminarMesa(cm1);
+        vem3 = new VentanaEliminarMesa(cm1, mensajes);
         vem3.toFront();
         vem3.setVisible(true);
         jDesktopPane1.add(vem3);

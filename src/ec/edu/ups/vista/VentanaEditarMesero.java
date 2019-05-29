@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.modelo.Mesero;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,16 +19,34 @@ import javax.swing.JOptionPane;
 public class VentanaEditarMesero extends javax.swing.JInternalFrame {
 
     ControladorMesero controladorMesero;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaEditarMesero
      */
-    public VentanaEditarMesero(ControladorMesero controladorMesero) {
+    public VentanaEditarMesero(ControladorMesero controladorMesero, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesero.editar"));
         initComponents();
         this.controladorMesero = controladorMesero;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         bActualizar.setEnabled(false);
     }
 
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesero.editar"));
+        lCodigo.setText(mensajes.getString("txt.codigo"));
+        lCedula.setText(mensajes.getString("cliente.cedula"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
+        lDireccion.setText(mensajes.getString("cliente.direccion"));
+        lTelefono.setText(mensajes.getString("cliente.telefono"));
+        lPassActual.setText(mensajes.getString("txt.contrasenaactual"));
+        lPassNueva.setText(mensajes.getString("txt.contrasenanueva"));
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        bActualizar.setText(mensajes.getString("boton.actualizar"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +75,7 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         lPassNueva = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Editar mesero");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

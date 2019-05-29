@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,15 +17,28 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
-    
+
     ControladorMesa controladorMesa;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaBuscarMesa
      */
-    public VentanaBuscarMesa(ControladorMesa controladorMesa) {
+    public VentanaBuscarMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesa.buscar"));
         initComponents();
         this.controladorMesa = controladorMesa;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
+    }
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesa.buscar"));
+        lNumero.setText(mensajes.getString("txt.numero.mesa"));
+        lCapacidad.setText(mensajes.getString("txt.capacidad"));
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
 
     /**
@@ -43,7 +58,7 @@ public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
         bCancelar = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Buscar mesa");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -113,7 +128,7 @@ public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        
+
         this.dispose();
 
     }//GEN-LAST:event_bCancelarActionPerformed
