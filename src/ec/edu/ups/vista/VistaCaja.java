@@ -197,7 +197,7 @@ public class VistaCaja extends javax.swing.JFrame {
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        crearFactura = new CrearFactura(controladorFactura, cliente);
+        crearFactura = new CrearFactura(controladorFactura, controladorCliente,controladorMesa);
         crearFactura.setVisible(true);
         jDesktopPane1.add(crearFactura);
     }//GEN-LAST:event_opCrearFacActionPerformed

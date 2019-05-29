@@ -8,10 +8,12 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorDetalle;
 import ec.edu.ups.controlador.ControladorFactura;
+import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Factura;
+import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Producto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,26 +36,25 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private ControladorFactura controladorFactura;
     private ControladorCliente controladorCliente;
+    private ControladorMesa controladorMesa;
     private Factura factura;
     private DefaultTableModel modelo;
     private Cliente cliente;
+    private Mesa mesa;
 
     /**
      * Creates new form CrearCliente
      */
-    public CrearFactura(ControladorFactura controladorFactura, Cliente cliente) {
+    public CrearFactura(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa) {
         initComponents();
         this.controladorFactura = controladorFactura;
-        factura = new Factura();
-        this.cliente = cliente;
-        factura.setCliente(cliente);
-        factura.setControladorDetalle(cliente.getMesa().getControladorDetalle());
+        this.controladorCliente = controladorCliente;
+        this.controladorMesa = controladorMesa;
+        this.factura = new Factura();
         txtNumeroFactura.setText(Integer.toString(this.controladorFactura.getCodigo()));
-        llenarDatosCliente();
-        llenarTabla();
     }
 
-    public void llenarTabla(){
+    public void llenarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) tblDetalles.getModel();
         Set<Detalle> lista = factura.getControladorDetalle().getLista();
         for (Detalle detalle : lista) {
@@ -61,8 +62,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 detalle.getProducto().getNombre(),
                 detalle.getCantidad(),
                 detalle.getPrecio(),
-                detalle.getSubtotal(),
-            };
+                detalle.getSubtotal(),};
             modelo.addRow(datos);
         }
         calcularSubtotal();
@@ -72,7 +72,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     public void calcularSubtotal() {
         double suma = 0;
-        for(Detalle detalle : cliente.getMesa().getControladorDetalle().getLista()){
+        for (Detalle detalle : cliente.getMesa().getControladorDetalle().getLista()) {
             suma += detalle.getSubtotal();
         }
         factura.setSubtotal(suma);
@@ -84,24 +84,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         factura.setIva(iva);
         txtIva.setText(String.format("%.2f", iva));
     }
-    
+
     public void calcularTotal() {
         double total = factura.getSubtotal() + factura.getIva();
         factura.setTotal(total);
         txtTotal.setText(Double.toString(total));
-    }
-    
-    public void llenarDatosCliente(){
-        Date date = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaTexto = formato.format(date.getTime());
-        txtCedula.setText(cliente.getCedula());
-        txtNombre.setText(cliente.getNombre());
-        txtCodigo.setText(Integer.toString(cliente.getCodigo()));
-        txtDireccion.setText(cliente.getDireccion());
-        txtTelefono.setText(cliente.getTelefono());
-        txtFecha.setText(fechaTexto);
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -132,11 +119,15 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JTextField();
         lblTotal = new javax.swing.JLabel();
         btnCrear = new javax.swing.JButton();
+        lblCorreo = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        jbtBuscar = new javax.swing.JButton();
+        jlbMesa = new javax.swing.JLabel();
+        txtMesa = new javax.swing.JTextField();
+        btnAsignacion = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
-
-        txtCedula.setEditable(false);
 
         lblCedula.setText("Cedula de Cliente:");
 
@@ -199,7 +190,6 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
         txtIva.setEditable(false);
         txtIva.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txtIva.setText("12%");
 
         lblIva.setText("Iva:");
 
@@ -212,6 +202,26 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
+            }
+        });
+
+        lblCorreo.setText("Email:");
+
+        txtCorreo.setEditable(false);
+
+        jbtBuscar.setText("Buscar");
+        jbtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtBuscarActionPerformed(evt);
+            }
+        });
+
+        jlbMesa.setText("Mesa:");
+
+        btnAsignacion.setText("Asignacion");
+        btnAsignacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignacionActionPerformed(evt);
             }
         });
 
@@ -261,19 +271,33 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                                         .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblDireccion)
-                                        .addGap(34, 34, 34))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTelefono)
-                                        .addGap(36, 36, 36)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(153, 153, 153))
-                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(lblTelefono)
+                                                .addGap(36, 36, 36))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblCorreo)
+                                                    .addComponent(lblDireccion))
+                                                .addGap(34, 34, 34))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jbtBuscar)
+                                            .addComponent(jlbMesa))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnAsignacion)))
+                                .addGap(69, 69, 69))
                             .addComponent(jScrollPane1))))
                 .addGap(19, 19, 19))
         );
@@ -284,20 +308,12 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumero)
                     .addComponent(txtNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTelefono)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDireccion)))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtBuscar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -310,8 +326,27 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFecha)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(27, 27, 27)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTelefono)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDireccion)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCorreo)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlbMesa)
+                            .addComponent(txtMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAsignacion))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -353,17 +388,32 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
         Date date = new Date();
+        Cliente cliente = controladorCliente.readCedula(txtCedula.getText());
+        factura.setCliente(cliente);
         factura.setFecha(date);
         controladorFactura.create(factura);
+        JOptionPane.showMessageDialog(this, "Factura creada exitosamente", "Crear factura", JOptionPane.OK_OPTION);
+        factura = new Factura();
+        vaciarCajasTexto();
+        txtNumeroFactura.setText(Integer.toString(controladorFactura.getCodigo()));
         //Hacemos que el mesero cierre la mesa que atendia.
         cliente.getMesa().getMesero().cerrarMesa(cliente.getMesa());
         cliente.getMesa().setMesaAbierta(true);
         //Vaciamos los detalles de la mesa.
         cliente.getMesa().setControladorDetalle(new ControladorDetalle());
-        JOptionPane.showMessageDialog(this, "Factura creada exitosamente", "Crear factura", JOptionPane.OK_OPTION);
         dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
-
+    public void vaciarCajasTexto() {
+        txtCedula.setText("");
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        txtFecha.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        txtDireccion.setText("");
+        txtSubtotal.setText("");
+        txtTotal.setText("");
+    }
 
     private void txtSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalActionPerformed
         // TODO add your handling code here:
@@ -373,13 +423,45 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroFacturaActionPerformed
 
+    private void jbtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBuscarActionPerformed
+        // TODO add your handling code here:
+        Date date = new Date();
+        cliente = controladorCliente.readCedula(txtCedula.getText());
+        factura.setCliente(cliente);
+        factura.setFecha(date);
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaTexto = formato.format(date.getTime());
+        txtCodigo.setText(Integer.toString(cliente.getCodigo()));
+        txtNombre.setText(cliente.getNombre());
+        txtFecha.setText(fechaTexto);
+        txtTelefono.setText(cliente.getTelefono());
+        txtDireccion.setText(cliente.getDireccion());
+        txtCorreo.setText(cliente.getCorreo());
+
+
+    }//GEN-LAST:event_jbtBuscarActionPerformed
+
+    private void btnAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignacionActionPerformed
+        // TODO add your handling code here:
+        String asignacion = txtMesa.getText();
+        int numMesa = Integer.parseInt(asignacion);
+        mesa = controladorMesa.read(numMesa);
+        cliente.setMesa(mesa);
+        factura.setControladorDetalle(cliente.getMesa().getControladorDetalle());
+        llenarTabla();
+    }//GEN-LAST:event_btnAsignacionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsignacion;
     private javax.swing.JButton btnCrear;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtBuscar;
+    private javax.swing.JLabel jlbMesa;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIva;
@@ -391,9 +473,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblDetalles;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIva;
+    private javax.swing.JTextField txtMesa;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumeroFactura;
     private javax.swing.JTextField txtSubtotal;
