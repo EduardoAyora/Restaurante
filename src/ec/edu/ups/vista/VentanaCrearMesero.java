@@ -5,17 +5,27 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.modelo.Mesero;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class VentanaCrearMesero extends javax.swing.JInternalFrame {
 
+    ControladorMesero controladorMesero;
+
     /**
      * Creates new form VentanaCrearMesero
      */
-    public VentanaCrearMesero() {
+    public VentanaCrearMesero(ControladorMesero controladorMesero) {
         initComponents();
+        this.controladorMesero = controladorMesero;
+        tCodigo.setText(String.valueOf(this.controladorMesero.getCod()));
+
     }
 
     /**
@@ -44,6 +54,11 @@ public class VentanaCrearMesero extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Crear mesero");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lCodigo.setText("Código:");
 
@@ -59,15 +74,19 @@ public class VentanaCrearMesero extends javax.swing.JInternalFrame {
 
         tCodigo.setEditable(false);
 
-        tDireccion.addActionListener(new java.awt.event.ActionListener() {
+        bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDireccionActionPerformed(evt);
+                bCancelarActionPerformed(evt);
             }
         });
 
-        bCancelar.setText("Cancelar");
-
         bCrear.setText("Crear");
+        bCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCrearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,9 +164,33 @@ public class VentanaCrearMesero extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
+    private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
+        Mesero mesero = new Mesero();
+        mesero.setCodigo(Integer.parseInt(tCodigo.getText()));
+        mesero.setCedula(tCedula.getText());
+        mesero.setNombre(tNombre.getText());
+        mesero.setDireccion(tDireccion.getText());
+        mesero.setTelefono(tTelefono.getText());
+        mesero.setContraseña(tContrasena.getText());
+        controladorMesero.create(mesero);
+        JOptionPane.showMessageDialog(this, "Mesero creado exitosamente!", "Crear mesero", JOptionPane.OK_OPTION);
+        tCodigo.setText(String.valueOf(this.controladorMesero.getCod()));
+        tCedula.setText("");
+        tNombre.setText("");
+        tDireccion.setText("");
+        tTelefono.setText("");
+        tContrasena.setText("");
+    }//GEN-LAST:event_bCrearActionPerformed
 
-    }//GEN-LAST:event_tDireccionActionPerformed
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

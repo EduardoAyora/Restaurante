@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Producto;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,6 +55,11 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Eliminar producto");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lCodigo.setText("Código:");
 
@@ -65,11 +71,6 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
         });
 
         tNombre.setEditable(false);
-        tNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tNombreActionPerformed(evt);
-            }
-        });
 
         lNombre.setText("Nombre:");
 
@@ -78,11 +79,6 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
         tPrecio.setEditable(false);
 
         tDescripcion.setEditable(false);
-        tDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDescripcionActionPerformed(evt);
-            }
-        });
 
         lDescripcion.setText("Descripción:");
 
@@ -103,20 +99,10 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
         });
 
         tCategoria.setEditable(false);
-        tCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tCategoriaActionPerformed(evt);
-            }
-        });
 
         lImagen.setText("Imagen:");
 
         tImagen.setEditable(false);
-        tImagen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tImagenActionPerformed(evt);
-            }
-        });
 
         lEscogerImg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lEscogerImg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -222,22 +208,6 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 
-    private void tNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tNombreActionPerformed
-
-    private void tDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDescripcionActionPerformed
-
-    }//GEN-LAST:event_tDescripcionActionPerformed
-
-    private void tCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tCategoriaActionPerformed
-
-    private void tImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tImagenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tImagenActionPerformed
-
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         int cod = Integer.parseInt(tCodigo.getText());
         controladorProducto.delete(cod);
@@ -255,6 +225,12 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

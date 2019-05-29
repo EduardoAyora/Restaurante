@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
-    
+
     ControladorProducto controladorProducto;
     Categoria categoria;
 
@@ -25,7 +26,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
     public VentanaBuscarProducto(ControladorProducto controladorProducto) {
         initComponents();
         this.controladorProducto = controladorProducto;
-        
+
     }
 
     /**
@@ -200,7 +201,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
             lEspacioImg.setIcon(null);
             JOptionPane.showMessageDialog(this, "El producto no existe", "Buscar producto", JOptionPane.WARNING_MESSAGE);
         }
-        
+
 
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -209,7 +210,9 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        this.dispose();
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
     }//GEN-LAST:event_formKeyPressed
 
 

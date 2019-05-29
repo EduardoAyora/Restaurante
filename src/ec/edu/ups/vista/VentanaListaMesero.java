@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.controlador.ControladorMesero;
+import java.awt.event.KeyEvent;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,12 +16,16 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL
  */
 public class VentanaListaMesero extends javax.swing.JInternalFrame {
+
     ControladorMesero controladorMesero;
+
     /**
      * Creates new form VentanaListaMesero
      */
-    public VentanaListaMesero() {
+    public VentanaListaMesero(ControladorMesero controladorMesero) {
         initComponents();
+        this.controladorMesero = controladorMesero;
+        llenarDatos();
     }
 
     public void llenarDatos() {
@@ -50,6 +55,11 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
         setClosable(true);
         setMaximizable(true);
         setTitle("Lista de meseros");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         tablaMesero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,6 +78,17 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tablaMesero);
+        if (tablaMesero.getColumnModel().getColumnCount() > 0) {
+            tablaMesero.getColumnModel().getColumn(0).setMinWidth(60);
+            tablaMesero.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tablaMesero.getColumnModel().getColumn(0).setMaxWidth(60);
+            tablaMesero.getColumnModel().getColumn(1).setMinWidth(70);
+            tablaMesero.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tablaMesero.getColumnModel().getColumn(1).setMaxWidth(70);
+            tablaMesero.getColumnModel().getColumn(4).setMinWidth(70);
+            tablaMesero.getColumnModel().getColumn(4).setPreferredWidth(70);
+            tablaMesero.getColumnModel().getColumn(4).setMaxWidth(70);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,8 +96,8 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,6 +109,12 @@ public class VentanaListaMesero extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocusOwner()) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

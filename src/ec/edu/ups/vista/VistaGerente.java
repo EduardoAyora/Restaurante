@@ -222,7 +222,7 @@ public class VistaGerente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocused()) {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
@@ -234,73 +234,73 @@ public class VistaGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_jDesktopPane1KeyPressed
 
     private void opListPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListPActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vlp = new VentanaListaProducto(cp);
-            vlp.toFront();
-            vlp.setVisible(true);
-            jDesktopPane1.add(vlp);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vlp.getSize();
-            vlp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vlp.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vlp = new VentanaListaProducto(cp);
+        vlp.toFront();
+        vlp.setVisible(true);
+        jDesktopPane1.add(vlp);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vlp.getSize();
+        vlp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vlp.toFront();
+
     }//GEN-LAST:event_opListPActionPerformed
 
     private void opDeletePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeletePActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vep1 = new VentanaEliminarProducto(cp);
-            vep1.toFront();
-            vep1.setVisible(true);
-            jDesktopPane1.add(vep1);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vep1.getSize();
-            vep1.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vep1.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vep1 = new VentanaEliminarProducto(cp);
+        vep1.toFront();
+        vep1.setVisible(true);
+        jDesktopPane1.add(vep1);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vep1.getSize();
+        vep1.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vep1.toFront();
+
     }//GEN-LAST:event_opDeletePActionPerformed
 
     private void opUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdatePActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vep = new VentanaEditarProducto(cp);
-            vep.toFront();
-            vep.setVisible(true);
-            jDesktopPane1.add(vep);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vep.getSize();
-            vep.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vep.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vep = new VentanaEditarProducto(cp);
+        vep.toFront();
+        vep.setVisible(true);
+        jDesktopPane1.add(vep);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vep.getSize();
+        vep.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vep.toFront();
+
     }//GEN-LAST:event_opUpdatePActionPerformed
 
     private void opReadPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadPActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vbp = new VentanaBuscarProducto(cp);
-            vbp.toFront();
-            vbp.setVisible(true);
-            jDesktopPane1.add(vbp);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vbp.getSize();
-            vbp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vbp.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vbp = new VentanaBuscarProducto(cp);
+        vbp.toFront();
+        vbp.setVisible(true);
+        jDesktopPane1.add(vbp);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vbp.getSize();
+        vbp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vbp.toFront();
+
     }//GEN-LAST:event_opReadPActionPerformed
 
     private void opCrearPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearPActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vcp = new VentanaCrearProducto(cp);
-            vcp.toFront();
-            vcp.setVisible(true);
-            jDesktopPane1.add(vcp);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vcp.getSize();
-            vcp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vcp.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vcp = new VentanaCrearProducto(cp);
+        vcp.toFront();
+        vcp.setVisible(true);
+        jDesktopPane1.add(vcp);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vcp.getSize();
+        vcp.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vcp.toFront();
+
     }//GEN-LAST:event_opCrearPActionPerformed
 
     private void opReadMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMesaActionPerformed
@@ -308,74 +308,74 @@ public class VistaGerente extends javax.swing.JFrame {
     }//GEN-LAST:event_opReadMesaActionPerformed
 
     private void opListMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListMeActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vlm = new VentanaListaMesero();
-            vlm.toFront();
-            vlm.setVisible(true);
-            jDesktopPane1.add(vlm);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vlm.getSize();
-            vlm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vlm.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vlm = new VentanaListaMesero(cm);
+        vlm.toFront();
+        vlm.setVisible(true);
+        jDesktopPane1.add(vlm);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vlm.getSize();
+        vlm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vlm.toFront();
+
     }//GEN-LAST:event_opListMeActionPerformed
 
     private void opDeleteMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteMeActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vem1 = new VentanaEliminarMesero();
-            vem1.toFront();
-            vem1.setVisible(true);
-            jDesktopPane1.add(vem1);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vem1.getSize();
-            vem1.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vem1.toFront();
-       
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vem1 = new VentanaEliminarMesero(cm);
+        vem1.toFront();
+        vem1.setVisible(true);
+        jDesktopPane1.add(vem1);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vem1.getSize();
+        vem1.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vem1.toFront();
+
     }//GEN-LAST:event_opDeleteMeActionPerformed
 
     private void opUpdateMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateMeActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vem = new VentanaEditarMesero();
-            vem.toFront();
-            vem.setVisible(true);
-            jDesktopPane1.add(vem);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vem.getSize();
-            vem.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vem.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vem = new VentanaEditarMesero(cm);
+        vem.toFront();
+        vem.setVisible(true);
+        jDesktopPane1.add(vem);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vem.getSize();
+        vem.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vem.toFront();
+
     }//GEN-LAST:event_opUpdateMeActionPerformed
 
     private void opReadMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadMeActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vbm = new VentanaBuscarMesero();
-            vbm.toFront();
-            vbm.setVisible(true);
-            jDesktopPane1.add(vbm);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vbm.getSize();
-            vbm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-            vbm.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vbm = new VentanaBuscarMesero(cm);
+        vbm.toFront();
+        vbm.setVisible(true);
+        jDesktopPane1.add(vbm);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vbm.getSize();
+        vbm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        vbm.toFront();
+
     }//GEN-LAST:event_opReadMeActionPerformed
 
     private void opCrearMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearMeActionPerformed
-            jDesktopPane1.removeAll();
-            jDesktopPane1.repaint();
-            vcm = new VentanaCrearMesero();
-            vcm.toFront();
-            vcm.setVisible(true);
-            jDesktopPane1.add(vcm);
-            Dimension desktopSize = jDesktopPane1.getSize();
-            Dimension frameSize = vcm.getSize();
-            vcm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
-        
-            vcm.toFront();
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        vcm = new VentanaCrearMesero(cm);
+        vcm.toFront();
+        vcm.setVisible(true);
+        jDesktopPane1.add(vcm);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = vcm.getSize();
+        vcm.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+
+        vcm.toFront();
+
     }//GEN-LAST:event_opCrearMeActionPerformed
 
 
