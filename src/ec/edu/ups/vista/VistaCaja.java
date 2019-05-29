@@ -13,6 +13,7 @@ import ec.edu.ups.modelo.ImagenFondoCaja;
 import static ec.edu.ups.vista.VistaGerente.jDesktopPane1;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -32,19 +33,27 @@ public class VistaCaja extends javax.swing.JFrame {
     private VentanaCrearFactura crearFactura;
     private Cliente cliente;
     private ListarFacturas listarFacturas;
+    private ResourceBundle mensajes;
 
     /**
      * Creates new form VistaCaja
      */
-    public VistaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa) {
+    public VistaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ResourceBundle mensajes) {
         initComponents();
         jDesktopPane1.setBorder(new ImagenFondoCaja());
         this.setExtendedState(VistaCaja.MAXIMIZED_BOTH);
         this.controladorFactura = controladorFactura;
         this.controladorCliente = controladorCliente;
         this.controladorMesa = controladorMesa;
+        this.mensajes = mensajes;
+        cambiarIdioma(mensajes);
     }
 
+    public void cambiarIdioma(ResourceBundle mensajes){
+        
+        menMesero1.setText(mensajes.getString("vista.cliente"));
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

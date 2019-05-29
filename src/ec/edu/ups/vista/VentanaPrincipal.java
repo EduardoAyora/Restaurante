@@ -247,7 +247,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void bCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCajaActionPerformed
         if (vistaCaja == null || vistaCaja.isVisible() == false) {
-            contraseniaCaja = new ContraseniaCaja(controladorFactura, controladorCliente, controladorMesa, claveCaja, vistaCaja);
+            contraseniaCaja = new ContraseniaCaja(controladorFactura, controladorCliente, controladorMesa, claveCaja, vistaCaja, mensajes);
             contraseniaCaja.toFront();
             contraseniaCaja.setVisible(true);
             this.toBack();
@@ -313,7 +313,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             contrasenia.cambiarIdiomas(mensajes);
         }
         if (ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()) {
-            
+            ContraseniaCaja.vistaCaja.cambiarIdioma(mensajes);
         }
         
         if (Contrasenia.vistaGerente != null && Contrasenia.vistaGerente.isVisible()) {
