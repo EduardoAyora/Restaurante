@@ -38,6 +38,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ResourceBundle mensajes;
     private ClaveGerente claveGerente;
     private ClaveCaja claveCaja;
+    public static VistaCaja vistaCaja;
     private VistaGerente vistaGerente;
 
     /**
@@ -245,13 +246,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bGerenteActionPerformed
 
     private void bCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCajaActionPerformed
-        if (contraseniaCaja == null || contraseniaCaja.isVisible() == false) {
-            contraseniaCaja = new ContraseniaCaja(controladorFactura, controladorCliente, controladorMesa, claveCaja);
+        if (vistaCaja == null || vistaCaja.isVisible() == false) {
+            contraseniaCaja = new ContraseniaCaja(controladorFactura, controladorCliente, controladorMesa, claveCaja, vistaCaja);
             contraseniaCaja.toFront();
             contraseniaCaja.setVisible(true);
             this.toBack();
         } else {
-            contraseniaCaja.toFront();
+            vistaCaja.toFront();
         }
     }//GEN-LAST:event_bCajaActionPerformed
 
@@ -307,8 +308,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (cambioContrasenia != null && cambioContrasenia.isVisible()) {
             cambioContrasenia.cambiarIdioma(mensajes);
         }
+
         if (contrasenia != null && contrasenia.isVisible()) {
             contrasenia.cambiarIdiomas(mensajes);
+
+            if (ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()) {
+            }
         }
     }
 

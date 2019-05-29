@@ -72,4 +72,15 @@ public class ControladorFactura {
         return lista;
     }
 
+    public Factura buscarPosicion(int posicion){
+        int i = 0;
+        for(Factura factura : lista){
+            if(i == posicion){
+                return factura;
+            }
+            i++;
+        }
+        return null;
+    }
+    
 }

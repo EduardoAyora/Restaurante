@@ -22,9 +22,11 @@ public class Factura {
     private double iva;
     private double total;
     private int contadorDetalles;
+    private boolean activo;
     private ControladorDetalle controladorDetalle;
 
     public Factura() {
+        activo = true;
         fecha = new Date();
         controladorDetalle = new ControladorDetalle();
         contadorDetalles = 1;
@@ -39,6 +41,14 @@ public class Factura {
         this.total = total;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
     public int getNumeroFactura() {
         return numeroFactura;
     }

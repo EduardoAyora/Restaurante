@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  */
 public class ContraseniaCaja extends javax.swing.JFrame {
     
-    private VistaCaja vistaCaja;
+    public static VistaCaja vistaCaja;
     private ControladorFactura controladorFactura;
     private ControladorCliente controladorCliente;
     private ControladorMesa controladorMesa;
@@ -31,12 +31,13 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     /**
      * Creates new form Contrasenia
      */
-    public ContraseniaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ClaveCaja claveCaja) {
+    public ContraseniaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ClaveCaja claveCaja, VistaCaja vistaCaja) {
         initComponents();
         this.controladorFactura = controladorFactura;
         this.controladorCliente = controladorCliente;
         this.controladorMesa = controladorMesa;
         this.claveCaja = claveCaja;
+        vistaCaja = this.vistaCaja;
         setLocationRelativeTo(null);
 
     }
@@ -114,6 +115,8 @@ public class ContraseniaCaja extends javax.swing.JFrame {
             vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
+            VentanaPrincipal.vistaCaja = this.vistaCaja;
+            
         } else {
             JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -132,6 +135,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
                 vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa);
                 vistaCaja.toFront();
                 vistaCaja.setVisible(true);
+                VentanaPrincipal.vistaCaja = this.vistaCaja;
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
