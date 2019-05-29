@@ -219,7 +219,10 @@ public class VistaCaja extends javax.swing.JFrame {
         editarCliente = new VentanaEditarCliente(controladorCliente);
         editarCliente.setVisible(true);
         jDesktopPane1.add(editarCliente);
-
+         Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = editarCliente.getSize();
+        editarCliente.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        editarCliente.toFront();
     }//GEN-LAST:event_opUpdateCliActionPerformed
 
     private void opAnularFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opAnularFacActionPerformed
@@ -234,6 +237,10 @@ public class VistaCaja extends javax.swing.JFrame {
         buscarCliente = new VentanaBuscarCliente(controladorCliente);
         buscarCliente.setVisible(true);
         jDesktopPane1.add(buscarCliente);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = buscarCliente.getSize();
+        buscarCliente.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        buscarCliente.toFront();
 
     }//GEN-LAST:event_opReadCliActionPerformed
 
@@ -243,6 +250,10 @@ public class VistaCaja extends javax.swing.JFrame {
         eliminarCliente = new VentanaEliminarCliente(controladorCliente);
         eliminarCliente.setVisible(true);
         jDesktopPane1.add(eliminarCliente);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = eliminarCliente.getSize();
+        eliminarCliente.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        eliminarCliente.toFront();
 
     }//GEN-LAST:event_opDeleteCliActionPerformed
 
@@ -252,6 +263,10 @@ public class VistaCaja extends javax.swing.JFrame {
         listaCliente = new VentanaListaCliente(controladorCliente);
         jDesktopPane1.add(listaCliente);
         listaCliente.setVisible(true);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = listaCliente.getSize();
+        listaCliente.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        listaCliente.toFront();
     }//GEN-LAST:event_opListCliActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -267,6 +282,10 @@ public class VistaCaja extends javax.swing.JFrame {
         listarFacturas = new ListarFacturas(controladorFactura);
         jDesktopPane1.add(listarFacturas);
         listarFacturas.setVisible(true);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension frameSize = listarFacturas.getSize();
+        listarFacturas.setLocation((desktopSize.width - frameSize.width) / 2, (desktopSize.height - frameSize.height) / 2);
+        listarFacturas.toFront();
     }//GEN-LAST:event_opListFacActionPerformed
 
 
