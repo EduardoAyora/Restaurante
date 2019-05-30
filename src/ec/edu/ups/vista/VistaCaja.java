@@ -61,6 +61,41 @@ public class VistaCaja extends javax.swing.JFrame {
         opCrearFac.setText(mensajes.getString("vista.item.crear"));
         opListFac.setText(mensajes.getString("vista.item.listar"));
         
+        comprobaciones();
+    }
+    
+    public void comprobaciones(){
+        
+        if (crearCliente != null && crearCliente.isVisible()) {
+            crearCliente.cambiarIdioma(mensajes);
+        }
+        
+        /*if (buscarCliente != null && buscarCliente.isVisible()) {------------------
+            buscarCliente.cambiarIdioma(mensajes);
+        }*/
+        
+        if (editarCliente != null && editarCliente.isVisible()) {
+            editarCliente.cambiarIdioma(mensajes);
+        }
+        
+        if (eliminarCliente != null && eliminarCliente.isVisible()) {
+            eliminarCliente.cambiarIdioma(mensajes);
+        }
+        
+        /*if (listaCliente != null && listaCliente.isVisible()) {--------
+            listaCliente.cambiarIdioma(mensajes);
+        }*/
+        
+        /*if (crearFactura != null && crearFactura.isVisible()) {
+            crearFactura.cambiarIdioma(mensajes);
+        }*/
+        
+        if (listarFacturas != null && listarFacturas.isVisible()) {
+            listarFacturas.cambiarIdioma(mensajes);
+        }
+        
+        
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -276,6 +311,9 @@ public class VistaCaja extends javax.swing.JFrame {
         listarFacturas.toFront();
     }//GEN-LAST:event_opListFacActionPerformed
 
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane jDesktopPane1;

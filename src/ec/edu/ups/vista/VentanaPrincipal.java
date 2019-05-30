@@ -315,6 +315,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         
         if (ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()) {
+            ContraseniaCaja.vistaCaja.setMensajes(mensajes);
             ContraseniaCaja.vistaCaja.cambiarIdioma(mensajes);
         }
         
