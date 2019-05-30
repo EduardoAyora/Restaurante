@@ -115,7 +115,7 @@ public class Contrasenia extends javax.swing.JFrame {
         // TODO add your handling code here:
         char clave[] = pClave.getPassword();
         String clavedef = new String(clave);
-        if (vistaGerente == null) {
+        if (vistaGerente == null || vistaGerente.isVisible() == false) {
             if (clavedef.equals(claveGerente.getClave())) {
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "bienvenido", "Aprobado", JOptionPane.INFORMATION_MESSAGE);

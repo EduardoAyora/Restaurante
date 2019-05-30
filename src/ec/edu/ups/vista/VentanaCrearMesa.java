@@ -26,7 +26,7 @@ public class VentanaCrearMesa extends javax.swing.JInternalFrame {
      * Creates new form VentanaCrearMesa
      */
     public VentanaCrearMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
-        titulo = new JLabel(mensajes.getString("mesero.crear"));
+        titulo = new JLabel(mensajes.getString("mesa.crear"));
         initComponents();
         this.controladorMesa = controladorMesa;
         this.mensajes = mensajes;
@@ -36,7 +36,7 @@ public class VentanaCrearMesa extends javax.swing.JInternalFrame {
     }
 
     public void cambiarIdiomas(ResourceBundle mensajes){
-        titulo.setText(mensajes.getString("mesero.crear"));
+        titulo.setText(mensajes.getString("mesa.crear"));
         lNumero.setText(mensajes.getString("txt.numero.mesa"));
         lCapacidad.setText(mensajes.getString("txt.capacidad"));
         bCrear.setText(mensajes.getString("boton.crear"));
