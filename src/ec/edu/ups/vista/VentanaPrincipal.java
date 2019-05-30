@@ -322,8 +322,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             Contrasenia.vistaGerente.cambiarIdiomas(mensajes);
         }
         
-        
-        
     }
 
     /**

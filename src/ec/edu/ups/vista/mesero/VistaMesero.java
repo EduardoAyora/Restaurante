@@ -28,9 +28,9 @@ public class VistaMesero extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
-    public static AbrirMesa abrirMesa;
+    private AbrirMesa abrirMesa;
     private Mesero mesero;
-    public static VistaMesa vistaMesa;
+    private VistaMesa vistaMesa;
     private ResourceBundle mensajes;
 
     /**
@@ -227,9 +227,6 @@ public class VistaMesero extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblMesasMouseClicked
 
-    public void setMensajes(ResourceBundle mensajes) {
-        this.mensajes = mensajes;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevo;
