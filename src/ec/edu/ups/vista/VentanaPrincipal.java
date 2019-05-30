@@ -37,7 +37,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ResourceBundle mensajes;
     private ClaveGerente claveGerente;
     private ClaveCaja claveCaja;
-    public static UsuarioMesero usuarioMesero;
+    private UsuarioMesero usuarioMesero;
     public static VistaCaja vistaCaja;
     public static VistaGerente vistaGerente;
 
