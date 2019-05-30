@@ -129,7 +129,6 @@ public class Contrasenia extends javax.swing.JFrame {
         // TODO add your handling code here:
         char clave[] = pClave.getPassword();
         String clavedef = new String(clave);
-
         if (clavedef.equals(claveGerente.getClave())) {
             this.dispose();
             JOptionPane.showMessageDialog(null, bienvenido = mensajes.getString("option.bienvenido"), aprob = mensajes.getString("option.aprobado"), JOptionPane.INFORMATION_MESSAGE);
@@ -145,11 +144,16 @@ public class Contrasenia extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocused()) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
+
     private void pClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pClaveKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             char clave[] = pClave.getPassword();
             String clavedef = new String(clave);
-
             if (clavedef.equals(claveGerente.getClave())) {
                 this.dispose();
                 JOptionPane.showMessageDialog(null, bienvenido = mensajes.getString("option.bienvenido"), aprob = mensajes.getString("option.aprobado"), JOptionPane.INFORMATION_MESSAGE);
@@ -163,12 +167,6 @@ public class Contrasenia extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_pClaveKeyPressed
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocused()) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

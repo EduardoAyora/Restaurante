@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +24,18 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
         initComponents();
         this.controladorCliente=controladorCliente;
     }
-
+    public void cambiarIdioma(ResourceBundle mensajes){
+        
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
+        lCedula.setText(mensajes.getString("cliente.cedula"));
+        lDireccion.setText(mensajes.getString("cliente.direccion"));
+        lTelefono.setText(mensajes.getString("cliente.telefono"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
+        bActualizar.setText(mensajes.getString("boton.actualizar"));
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
