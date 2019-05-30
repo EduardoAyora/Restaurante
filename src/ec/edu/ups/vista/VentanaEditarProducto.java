@@ -27,15 +27,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class VentanaEditarProducto extends javax.swing.JInternalFrame {
 
-    ControladorProducto controladorProducto;
-    Categoria categoria;
-    String ruta;
-    ResourceBundle mensajes;
-    JLabel titulo;
-    String entrada;
-    String plato;
-    String bebida;
-    String postre;
+    private ControladorProducto controladorProducto;
+    private Categoria categoria;
+    private String ruta;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String entrada;
+    private String plato;
+    private String bebida;
+    private String postre;
+    private String nofound;
+    private String bprod;
+    private String actpr;
 
     /**
      * Creates new form VentanaEditarProducto
@@ -58,6 +61,9 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
         plato = mensajes.getString("txt.plato");
         bebida = mensajes.getString("txt.bebida");
         postre = mensajes.getString("txt.postre");
+        nofound = mensajes.getString("option.noprod");
+        bprod = mensajes.getString("producto.buscar");
+        actpr = mensajes.getString("option.actprod");
         titulo.setText(mensajes.getString("producto.editar"));
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -70,6 +76,7 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
         bActualizar.setText(mensajes.getString("boton.actualizar"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     public void escogerFoto() {
         selectorImagenes.setFileSelectionMode(JFileChooser.FILES_ONLY);
         FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("*.png", "png");
@@ -273,7 +280,7 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
             comboCategoria.setSelectedIndex(0);
             tImagen.setText("");
             lEscogerImg.setIcon(null);
-            JOptionPane.showMessageDialog(this, "El producto no existe");
+            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.noprod"), bprod = mensajes.getString("producto.buscar"), JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -313,7 +320,7 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
         });
         productoActual.setImgIcon(new ImageIcon(tImagen.getText()));
         controladorProducto.update(productoActual);
-        JOptionPane.showMessageDialog(this, "Producto actualizado exitosamente!", "Actualizar producto", JOptionPane.YES_NO_OPTION);
+        JOptionPane.showMessageDialog(this, actpr = mensajes.getString("option.actprod"), titulo.getText(), JOptionPane.YES_NO_OPTION);
         tCodigo.setText("");
         tNombre.setText("");
         tPrecio.setText("");

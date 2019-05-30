@@ -17,10 +17,13 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class VentanaEditarMesa extends javax.swing.JInternalFrame {
-    
+
     ControladorMesa controladorMesa;
     ResourceBundle mensajes;
-    JLabel titulo;
+    private JLabel titulo;
+    private String bumesa;
+    private String nofound;
+    private String actmesa;
 
     /**
      * Creates new form VentanaEditarMesa
@@ -33,9 +36,12 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
         cambiarIdiomas(mensajes);
         bActualizar.setEnabled(false);
     }
-    
+
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesa.editar"));
+        bumesa = mensajes.getString("mesa.buscar");
+        nofound = mensajes.getString("option.nomesa");
+        actmesa = mensajes.getString("option.actmesa");
         lNumero.setText(mensajes.getString("txt.numero.mesa"));
         lCapacidad.setText(mensajes.getString("txt.capacidad"));
         bBuscar.setText(mensajes.getString("boton.buscar"));
@@ -142,7 +148,7 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        
+
         this.dispose();
 
     }//GEN-LAST:event_bCancelarActionPerformed
@@ -161,7 +167,7 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
             bActualizar.setEnabled(true);
         } else {
             tCapacidad.setText("");
-            JOptionPane.showMessageDialog(this, "La mesa no existe", "Buscar mesa", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), bumesa = mensajes.getString("mesa.buscar"), JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -171,7 +177,7 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
         editMesa.setNumeroMesa(Integer.parseInt(tNumero.getText()));
         editMesa.setCapacidad(Integer.parseInt(tCapacidad.getText()));
         controladorMesa.update(editMesa);
-        JOptionPane.showMessageDialog(this, "Mesa actualizada exitosamente!", "Actualizar mesa", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, actmesa = mensajes.getString("option.actmesa"), titulo.getText(), JOptionPane.INFORMATION_MESSAGE);
         tNumero.setText("");
         tCapacidad.setText("");
     }//GEN-LAST:event_bActualizarActionPerformed

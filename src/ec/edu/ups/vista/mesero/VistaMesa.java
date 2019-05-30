@@ -31,7 +31,7 @@ public class VistaMesa extends javax.swing.JFrame {
     private Mesero mesero;
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
-    private AgregarProducto agregarProducto;
+    public static AgregarProducto agregarProducto;
     private ResourceBundle mensajes;
     /**
      * Creates new form InformacionMesa
@@ -359,6 +359,9 @@ public class VistaMesa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblDetallesMouseClicked
 
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

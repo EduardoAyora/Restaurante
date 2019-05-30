@@ -57,6 +57,7 @@ public class VistaGerente extends javax.swing.JFrame {
     }
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("gerente.gestion"));
         menMesa.setText(mensajes.getString("txt.mesa"));
         menMesero.setText(mensajes.getString("txt.mesero"));
         menProduct.setText(mensajes.getString("vista.producto"));
@@ -75,7 +76,7 @@ public class VistaGerente extends javax.swing.JFrame {
         opListMe.setText(mensajes.getString("vista.item.listar"));
         opListP.setText(mensajes.getString("vista.item.listar"));
         opListMesa.setText(mensajes.getString("vista.item.listar"));
-        titulo.setText(mensajes.getString("gerente.gestion"));
+        
     }
 
     /**

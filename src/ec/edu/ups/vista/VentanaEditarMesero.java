@@ -18,9 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class VentanaEditarMesero extends javax.swing.JInternalFrame {
 
-    ControladorMesero controladorMesero;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorMesero controladorMesero;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
+    private String bumesero;
+    private String actmesero;
+    private String errorpass;
+    private String pass;
 
     /**
      * Creates new form VentanaEditarMesero
@@ -36,6 +41,11 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesero.editar"));
+        nofound = mensajes.getString("option.nomesero");
+        bumesero = mensajes.getString("mesero.buscar");
+        actmesero = mensajes.getString("option.actmesero");
+        errorpass = mensajes.getString("option.errorpass");
+        pass = mensajes.getString("txt.contraseña");
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -47,6 +57,7 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         bActualizar.setText(mensajes.getString("boton.actualizar"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -242,7 +253,10 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
             tNombre.setText("");
             tDireccion.setText("");
             tTelefono.setText("");
-            JOptionPane.showMessageDialog(this, "El mesero no existe", "Buscar mesero", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    nofound = mensajes.getString("option.nomesero"),
+                    bumesero = mensajes.getString("mesero.buscar"),
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -257,7 +271,9 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         if (tPassActual.getText().equals(editMesero.getContraseña())) {
             editMesero.setContraseña(tPassNueva.getText());
             controladorMesero.update(editMesero);
-            JOptionPane.showMessageDialog(this, "Mesero actualizado exitosamente!", "Actualizar mesero", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    actmesero = mensajes.getString("option.actmesero"),
+                    titulo.getText(), JOptionPane.INFORMATION_MESSAGE);
             tCodigo.setText("");
             tCedula.setText("");
             tNombre.setText("");
@@ -266,7 +282,10 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
             tPassActual.setText("");
             tPassNueva.setText("");
         } else {
-            JOptionPane.showMessageDialog(this, "Contraseña actual incorrecta", "Cambiar contraseña", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    errorpass = mensajes.getString("option.errorpass"),
+                    pass = mensajes.getString("txt.contraseña"),
+                    JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_bActualizarActionPerformed
