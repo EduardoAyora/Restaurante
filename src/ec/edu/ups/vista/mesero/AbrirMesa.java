@@ -82,6 +82,9 @@ public class AbrirMesa extends javax.swing.JFrame {
         panel.updateUI();
     }
 
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

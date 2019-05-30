@@ -18,9 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
 
-    ControladorProducto controladorProducto;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorProducto controladorProducto;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
+    private String bprod;
+    private String elimprod;
 
     /**
      * Creates new form VentanaEliminarProducto
@@ -36,6 +39,9 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("producto.eliminar"));
+        nofound = mensajes.getString("option.noprod");
+        bprod = mensajes.getString("producto.buscar");
+        elimprod = mensajes.getString("option.elimprod");
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lNombre.setText(mensajes.getString("txt.nombre"));
         lPrecio.setText(mensajes.getString("producto.precio"));
@@ -46,6 +52,7 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
         bEliminar.setText(mensajes.getString("boton.eliminar"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -224,14 +231,17 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
             tCategoria.setText("");
             tImagen.setText("");
             lEscogerImg.setIcon(null);
-            JOptionPane.showMessageDialog(this, "El producto no existe", "Buscar producto", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    nofound = mensajes.getString("option.noprod"),
+                    bprod = mensajes.getString("producto.buscar"),
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         int cod = Integer.parseInt(tCodigo.getText());
         controladorProducto.delete(cod);
-        JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente!", "Eliminar producto", JOptionPane.YES_OPTION);
+        JOptionPane.showMessageDialog(this, elimprod = mensajes.getString("option.elimprod"), titulo.getText(), JOptionPane.YES_OPTION);
         tCodigo.setText("");
         tNombre.setText("");
         tPrecio.setText("");

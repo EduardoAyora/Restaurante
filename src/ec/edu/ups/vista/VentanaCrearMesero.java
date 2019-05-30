@@ -20,16 +20,17 @@ public class VentanaCrearMesero extends javax.swing.JInternalFrame {
 
     ControladorMesero controladorMesero;
     ResourceBundle mensajes;
-    JLabel titulo;
+    private JLabel titulo;
+    private String exito;
 
     /**
      * Creates new form VentanaCrearMesero
      */
     public VentanaCrearMesero(ControladorMesero controladorMesero, ResourceBundle mensajes) {
         titulo = new JLabel(mensajes.getString("mesero.crear"));
-        initComponents();
         this.controladorMesero = controladorMesero;
         this.mensajes = mensajes;
+        initComponents();
         cambiarIdiomas(mensajes);
         tCodigo.setText(String.valueOf(this.controladorMesero.getCod()));
 
@@ -37,6 +38,7 @@ public class VentanaCrearMesero extends javax.swing.JInternalFrame {
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesero.crear"));
+        exito = mensajes.getString("option.exitomesero");
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -192,7 +194,7 @@ public class VentanaCrearMesero extends javax.swing.JInternalFrame {
         mesero.setTelefono(tTelefono.getText());
         mesero.setContraseña(tContrasena.getText());
         controladorMesero.create(mesero);
-        JOptionPane.showMessageDialog(this, "Mesero creado exitosamente!", "Crear mesero", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(this, exito = mensajes.getString("option.exitomesero"), titulo.getText(), JOptionPane.OK_OPTION);
         tCodigo.setText(String.valueOf(this.controladorMesero.getCod()));
         tCedula.setText("");
         tNombre.setText("");

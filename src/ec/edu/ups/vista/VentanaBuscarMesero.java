@@ -17,10 +17,11 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
-
-    ControladorMesero controladorMesero;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    
+    private ControladorMesero controladorMesero;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
 
     /**
      * Creates new form VentanaBuscarMesero
@@ -32,9 +33,10 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
         this.mensajes = mensajes;
         cambiarIdiomas(mensajes);
     }
-
-    public void cambiarIdiomas(ResourceBundle mensajes){
+    
+    public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesero.buscar"));
+        nofound = mensajes.getString("option.nomesero");
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -43,6 +45,7 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
         bBuscar.setText(mensajes.getString("boton.buscar"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,7 +177,7 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
+        
         this.dispose();
 
     }//GEN-LAST:event_bCancelarActionPerformed
@@ -192,7 +195,7 @@ public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
             tNombre.setText("");
             tDireccion.setText("");
             tTelefono.setText("");
-            JOptionPane.showMessageDialog(this, "El mesero no existe", "Buscar mesero", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesero"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_bBuscarActionPerformed

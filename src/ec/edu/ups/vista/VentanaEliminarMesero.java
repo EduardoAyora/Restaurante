@@ -17,10 +17,13 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
-
-    ControladorMesero controladorMesero;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    
+    private ControladorMesero controladorMesero;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
+    private String bumesero;
+    private String elimesero;
 
     /**
      * Creates new form VentanaEliminarMesero
@@ -33,9 +36,12 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
         cambiarIdiomas(mensajes);
         bEliminar.setEnabled(false);
     }
-
+    
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesero.eliminar"));
+        nofound = mensajes.getString("option.nomesero");
+        bumesero = mensajes.getString("mesero.buscar");
+        elimesero = mensajes.getString("option.elimesero");
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -45,6 +51,7 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
         bBuscar.setText(mensajes.getString("boton.buscar"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -187,7 +194,7 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
+        
         this.dispose();
 
     }//GEN-LAST:event_bCancelarActionPerformed
@@ -195,7 +202,9 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         int cod = Integer.parseInt(tCodigo.getText());
         controladorMesero.delete(cod);
-        JOptionPane.showMessageDialog(this, "Mesero eliminado exitosamente!", "Eliminar mesero", JOptionPane.YES_OPTION);
+        JOptionPane.showMessageDialog(this, 
+                elimesero = mensajes.getString("option.elimesero"), 
+                titulo.getText(), JOptionPane.YES_OPTION);
         tCedula.setText("");
         tNombre.setText("");
         tDireccion.setText("");
@@ -223,7 +232,10 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
             tNombre.setText("");
             tDireccion.setText("");
             tTelefono.setText("");
-            JOptionPane.showMessageDialog(this, "El mesero no existe", "Buscar mesero", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    nofound = mensajes.getString("option.nomesero"),
+                    bumesero = mensajes.getString("mesero.buscar"),
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 

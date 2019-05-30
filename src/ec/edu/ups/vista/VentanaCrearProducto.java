@@ -30,13 +30,14 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
 
     ControladorProducto controladorProducto;
     Categoria categoria;
-    String ruta;
+    private String ruta;
     ResourceBundle mensajes;
-    JLabel titulo;
-    String entrada;
-    String plato;
-    String bebida;
-    String postre;
+    private JLabel titulo;
+    private String entrada;
+    private String plato;
+    private String bebida;
+    private String postre;
+    private String exito;
 
     /**
      * Creates new form VentanaCrearProducto
@@ -60,6 +61,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         plato = mensajes.getString("txt.plato");
         bebida = mensajes.getString("txt.bebida");
         postre = mensajes.getString("txt.postre");
+        exito = mensajes.getString("option.exitop");
         titulo.setText(mensajes.getString("producto.nuevo"));
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -319,7 +321,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         });
         producto.setImgIcon(new ImageIcon(tImagen.getText()));
         controladorProducto.create(producto);
-        JOptionPane.showMessageDialog(this, "Producto creado exitosamente!", "Crear producto", JOptionPane.YES_OPTION);
+        JOptionPane.showMessageDialog(this, exito = mensajes.getString("option.exitop"), titulo.getText(), JOptionPane.YES_OPTION);
         tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
         tNombre.setText("");
         tPrecio.setText("");

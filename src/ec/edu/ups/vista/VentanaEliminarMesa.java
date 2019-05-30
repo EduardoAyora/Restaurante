@@ -20,7 +20,10 @@ public class VentanaEliminarMesa extends javax.swing.JInternalFrame {
 
     ControladorMesa controladorMesa;
     ResourceBundle mensajes;
-    JLabel titulo;
+    private JLabel titulo;
+    private String bumesa;
+    private String nofound;
+    private String elimesa;
 
     /**
      * Creates new form VentanaEliminarMesa
@@ -36,6 +39,9 @@ public class VentanaEliminarMesa extends javax.swing.JInternalFrame {
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesa.eliminar"));
+        bumesa = mensajes.getString("mesa.buscar");
+        nofound = mensajes.getString("option.nomesa");
+        elimesa = mensajes.getString("option.elimesa");
         lNumero.setText(mensajes.getString("txt.numero.mesa"));
         lCapacidad.setText(mensajes.getString("txt.capacidad"));
         bBuscar.setText(mensajes.getString("boton.buscar"));
@@ -149,7 +155,9 @@ public class VentanaEliminarMesa extends javax.swing.JInternalFrame {
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         int cod = Integer.parseInt(tNumero.getText());
         controladorMesa.delete(cod);
-        JOptionPane.showMessageDialog(this, "Mesa eliminada exitosamente!", "Eliminar mesa", JOptionPane.YES_OPTION);
+        JOptionPane.showMessageDialog(this,
+                elimesa = mensajes.getString("option.elimesa"),
+                titulo.getText(), JOptionPane.YES_OPTION);
         tNumero.setText("");
         tCapacidad.setText("");
 
@@ -169,7 +177,7 @@ public class VentanaEliminarMesa extends javax.swing.JInternalFrame {
             bEliminar.setEnabled(true);
         } else {
             tCapacidad.setText("");
-            JOptionPane.showMessageDialog(this, "La mesa no existe", "Buscar mesa", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), bumesa = mensajes.getString("mesa.buscar"), JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 

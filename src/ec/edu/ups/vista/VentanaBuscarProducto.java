@@ -19,10 +19,11 @@ import javax.swing.JOptionPane;
  */
 public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
 
-    ControladorProducto controladorProducto;
-    Categoria categoria;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorProducto controladorProducto;
+    private Categoria categoria;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
 
     /**
      * Creates new form VentanaBuscarProducto
@@ -38,6 +39,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("producto.buscar"));
+        nofound = mensajes.getString("option.noprod");
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lNombre.setText(mensajes.getString("txt.nombre"));
         lPrecio.setText(mensajes.getString("producto.precio"));
@@ -47,6 +49,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
         bBuscar.setText(mensajes.getString("boton.buscar"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -217,7 +220,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
             tCategoria.setText("");
             tImagen.setText("");
             lEspacioImg.setIcon(null);
-            JOptionPane.showMessageDialog(this, "El producto no existe", "Buscar producto", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.noprod"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
         }
 
 

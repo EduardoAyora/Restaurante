@@ -11,6 +11,7 @@ import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.ClaveGerente;
 import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,10 @@ public class Contrasenia extends javax.swing.JFrame {
     private ControladorMesero controladorMesero;
     private ClaveGerente claveGerente;
     private ResourceBundle mensajes;
+    private String aprob;
+    private String deneg;
+    private String bienvenido;
+    private String errorPass;
 
     /**
      * Creates new form Contrasenia
@@ -32,8 +37,6 @@ public class Contrasenia extends javax.swing.JFrame {
     public Contrasenia(ControladorProducto controladorProducto,
             ControladorMesero controladorMesero, ControladorMesa controladorMesa,
             ClaveGerente claveGerente, ResourceBundle mensajes, VistaGerente vistaGerente) {
-        initComponents();
-        cambiarIdiomas(mensajes);
         this.setLocationRelativeTo(null);
         this.controladorProducto = controladorProducto;
         this.controladorMesero = controladorMesero;
@@ -41,12 +44,18 @@ public class Contrasenia extends javax.swing.JFrame {
         this.claveGerente = claveGerente;
         vistaGerente = this.vistaGerente;
         this.mensajes = mensajes;
-
+        initComponents();
+        cambiarIdiomas(mensajes);
     }
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("txt.contraseña"));
         lContrasena.setText(mensajes.getString("txt.contraseña"));
         btnIngresar.setText(mensajes.getString("boton.ingresar"));
+        aprob = mensajes.getString("option.aprobado");
+        deneg = mensajes.getString("option.denegado");
+        bienvenido = mensajes.getString("option.bienvenido");
+        errorPass = mensajes.getString("option.errorpass");
     }
 
     /**
@@ -58,10 +67,15 @@ public class Contrasenia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         pClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         lContrasena = new javax.swing.JLabel();
 
+        titulo.setText(mensajes.getString("txt.contraseña")
+        );
+
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -115,22 +129,19 @@ public class Contrasenia extends javax.swing.JFrame {
         // TODO add your handling code here:
         char clave[] = pClave.getPassword();
         String clavedef = new String(clave);
-        if (vistaGerente == null || vistaGerente.isVisible() == false) {
-            if (clavedef.equals(claveGerente.getClave())) {
-                this.dispose();
-                JOptionPane.showMessageDialog(null, "bienvenido", "Aprobado", JOptionPane.INFORMATION_MESSAGE);
-                vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
-                vistaGerente.toFront();
-                vistaGerente.setVisible(true);
-                VentanaPrincipal.vistaGerente = this.vistaGerente;
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } else {
+        if (clavedef.equals(claveGerente.getClave())) {
             this.dispose();
+            JOptionPane.showMessageDialog(null, bienvenido = mensajes.getString("option.bienvenido"), aprob = mensajes.getString("option.aprobado"), JOptionPane.INFORMATION_MESSAGE);
+            vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
             vistaGerente.toFront();
+            vistaGerente.setVisible(true);
+            VentanaPrincipal.vistaGerente = this.vistaGerente;
+
+        } else {
+            JOptionPane.showMessageDialog(null, errorPass = mensajes.getString("option.errorpass"), deneg = mensajes.getString("option.denegado"), JOptionPane.INFORMATION_MESSAGE);
         }
+
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -138,21 +149,17 @@ public class Contrasenia extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             char clave[] = pClave.getPassword();
             String clavedef = new String(clave);
-            if (vistaGerente == null || vistaGerente.isVisible() == false) {
-                if (clavedef.equals(claveGerente.getClave())) {
-                    this.dispose();
-                    JOptionPane.showMessageDialog(null, "bienvenido", "Aprobado", JOptionPane.INFORMATION_MESSAGE);
-                    vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
-                    vistaGerente.toFront();
-                    vistaGerente.setVisible(true);
-                    VentanaPrincipal.vistaGerente = this.vistaGerente;
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } else {
+            if (clavedef.equals(claveGerente.getClave())) {
                 this.dispose();
+                JOptionPane.showMessageDialog(null, bienvenido = mensajes.getString("option.bienvenido"), aprob = mensajes.getString("option.aprobado"), JOptionPane.INFORMATION_MESSAGE);
+                vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
                 vistaGerente.toFront();
+                vistaGerente.setVisible(true);
+                VentanaPrincipal.vistaGerente = this.vistaGerente;
+
+            } else {
+                JOptionPane.showMessageDialog(null, errorPass = mensajes.getString("option.errorpass"), deneg = mensajes.getString("option.denegado"), JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_pClaveKeyPressed
@@ -168,5 +175,6 @@ public class Contrasenia extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel lContrasena;
     private javax.swing.JPasswordField pClave;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,9 +18,10 @@ import javax.swing.JOptionPane;
  */
 public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
 
-    ControladorMesa controladorMesa;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorMesa controladorMesa;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
 
     /**
      * Creates new form VentanaBuscarMesa
@@ -35,6 +36,7 @@ public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesa.buscar"));
+        nofound = mensajes.getString("option.nomesa");
         lNumero.setText(mensajes.getString("txt.numero.mesa"));
         lCapacidad.setText(mensajes.getString("txt.capacidad"));
         bBuscar.setText(mensajes.getString("boton.buscar"));
@@ -141,7 +143,7 @@ public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
         } else {
             tNumero.setText("");
             tCapacidad.setText("");
-            JOptionPane.showMessageDialog(this, "La mesa no existe", "Buscar mesa", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_bBuscarActionPerformed

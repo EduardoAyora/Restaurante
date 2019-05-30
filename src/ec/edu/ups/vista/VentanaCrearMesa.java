@@ -20,28 +20,31 @@ public class VentanaCrearMesa extends javax.swing.JInternalFrame {
 
     ControladorMesa controladorMesa;
     ResourceBundle mensajes;
-    JLabel titulo;
+    private JLabel titulo;
+    private String exito;
 
     /**
      * Creates new form VentanaCrearMesa
      */
     public VentanaCrearMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
         titulo = new JLabel(mensajes.getString("mesa.crear"));
-        initComponents();
         this.controladorMesa = controladorMesa;
         this.mensajes = mensajes;
+        initComponents();
         cambiarIdiomas(mensajes);
         tNumero.setText(String.valueOf(this.controladorMesa.getContador()));
 
     }
 
-    public void cambiarIdiomas(ResourceBundle mensajes){
+    public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesa.crear"));
+        exito = mensajes.getString("option.exitomesa");
         lNumero.setText(mensajes.getString("txt.numero.mesa"));
         lCapacidad.setText(mensajes.getString("txt.capacidad"));
         bCrear.setText(mensajes.getString("boton.crear"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,7 +144,7 @@ public class VentanaCrearMesa extends javax.swing.JInternalFrame {
         mesa.setNumeroMesa(Integer.parseInt(tNumero.getText()));
         mesa.setCapacidad(Integer.parseInt(tCapacidad.getText()));
         controladorMesa.create(mesa);
-        JOptionPane.showMessageDialog(this, "Mesa creada exitosamente!", "Crear mesa", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(this, exito = mensajes.getString("option.exitomesa"), titulo.getText(), JOptionPane.OK_OPTION);
         tNumero.setText(String.valueOf(this.controladorMesa.getContador()));
         tCapacidad.setText("");
     }//GEN-LAST:event_bCrearActionPerformed
