@@ -52,6 +52,14 @@ public class VistaCaja extends javax.swing.JFrame {
     public void cambiarIdioma(ResourceBundle mensajes){
         
         menMesero1.setText(mensajes.getString("vista.cliente"));
+        menMesero2.setText(mensajes.getString("vista.factura"));
+        opCrearCli.setText(mensajes.getString("vista.item.crear"));
+        opReadCli.setText(mensajes.getString("vista.item.read"));
+        opUpdateCli.setText(mensajes.getString("vista.item.update"));
+        opDeleteCli.setText(mensajes.getString("vista.item.delete"));
+        opListCli.setText(mensajes.getString("vista.item.listar"));
+        opCrearFac.setText(mensajes.getString("vista.item.crear"));
+        opListFac.setText(mensajes.getString("vista.item.listar"));
         
     }
     /**
@@ -176,7 +184,7 @@ public class VistaCaja extends javax.swing.JFrame {
     private void opCrearCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opCrearCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        crearCliente = new VentanaCrearCliente(controladorCliente);
+        crearCliente = new VentanaCrearCliente(controladorCliente,mensajes);
         crearCliente.setVisible(true);
         jDesktopPane1.add(crearCliente);
         Dimension desktopSize = jDesktopPane1.getSize();

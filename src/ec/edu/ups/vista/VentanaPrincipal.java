@@ -40,7 +40,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ClaveCaja claveCaja;
     public static VistaCaja vistaCaja;
     public static VistaGerente vistaGerente;
-
+    
     /**
      * Creates new form VentanaPrincipal
      */
@@ -312,13 +312,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (contrasenia != null && contrasenia.isVisible()) {
             contrasenia.cambiarIdiomas(mensajes);
         }
-        if (ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()) {
+        if (ContraseniaCaja.vistaCaja!= null && ContraseniaCaja.vistaCaja.isVisible()) {
             ContraseniaCaja.vistaCaja.cambiarIdioma(mensajes);
         }
         
         if (Contrasenia.vistaGerente != null && Contrasenia.vistaGerente.isVisible()) {
             Contrasenia.vistaGerente.cambiarIdiomas(mensajes);
         }
+        
         
     }
 
