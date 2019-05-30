@@ -21,7 +21,7 @@ public class UsuarioMesero extends javax.swing.JFrame {
     private ControladorMesero controladorMesero;
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
-    private VistaMesero vistaMesero;
+    public static VistaMesero vistaMesero;
     private ResourceBundle mensajes;
 
     /**
@@ -165,6 +165,9 @@ public class UsuarioMesero extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCodigoFocusLost
 
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
