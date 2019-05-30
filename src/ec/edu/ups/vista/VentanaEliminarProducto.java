@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Producto;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,16 +19,33 @@ import javax.swing.JOptionPane;
 public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
 
     ControladorProducto controladorProducto;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaEliminarProducto
      */
-    public VentanaEliminarProducto(ControladorProducto controladorProducto) {
+    public VentanaEliminarProducto(ControladorProducto controladorProducto, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("producto.eliminar"));
         initComponents();
         this.controladorProducto = controladorProducto;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         bEliminar.setEnabled(false);
     }
 
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("producto.eliminar"));
+        lCodigo.setText(mensajes.getString("txt.codigo"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
+        lPrecio.setText(mensajes.getString("producto.precio"));
+        lDescripcion.setText(mensajes.getString("producto.detalle"));
+        lCategoria.setText(mensajes.getString("producto.categoria"));
+        lImagen.setText(mensajes.getString("txt.imagen"));
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        bEliminar.setText(mensajes.getString("boton.eliminar"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +73,8 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
         lEscogerImg = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Eliminar producto");
+        setTitle(titulo.getText()
+        );
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

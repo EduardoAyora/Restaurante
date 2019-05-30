@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,14 +19,28 @@ import javax.swing.JOptionPane;
 public class VentanaEliminarMesa extends javax.swing.JInternalFrame {
 
     ControladorMesa controladorMesa;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaEliminarMesa
      */
-    public VentanaEliminarMesa(ControladorMesa controladorMesa) {
+    public VentanaEliminarMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesa.eliminar"));
         initComponents();
         this.controladorMesa = controladorMesa;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
         bEliminar.setEnabled(false);
+    }
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesa.eliminar"));
+        lNumero.setText(mensajes.getString("txt.numero.mesa"));
+        lCapacidad.setText(mensajes.getString("txt.capacidad"));
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        bEliminar.setText(mensajes.getString("boton.eliminar"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
 
     /**
@@ -44,7 +60,7 @@ public class VentanaEliminarMesa extends javax.swing.JInternalFrame {
         bCancelar = new javax.swing.JButton();
         bEliminar = new javax.swing.JButton();
 
-        setTitle("Eliminar mesa");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

@@ -115,7 +115,27 @@ public class Contrasenia extends javax.swing.JFrame {
         // TODO add your handling code here:
         char clave[] = pClave.getPassword();
         String clavedef = new String(clave);
-        if (vistaGerente == null) {
+
+        if (clavedef.equals(claveGerente.getClave())) {
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "bienvenido", "Aprobado", JOptionPane.INFORMATION_MESSAGE);
+            vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
+            vistaGerente.toFront();
+            vistaGerente.setVisible(true);
+            VentanaPrincipal.vistaGerente = this.vistaGerente;
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void pClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pClaveKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            char clave[] = pClave.getPassword();
+            String clavedef = new String(clave);
+
             if (clavedef.equals(claveGerente.getClave())) {
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "bienvenido", "Aprobado", JOptionPane.INFORMATION_MESSAGE);
@@ -126,33 +146,6 @@ public class Contrasenia extends javax.swing.JFrame {
 
             } else {
                 JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } else {
-            this.dispose();
-            vistaGerente.toFront();
-        }
-
-    }//GEN-LAST:event_btnIngresarActionPerformed
-
-    private void pClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pClaveKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            char clave[] = pClave.getPassword();
-            String clavedef = new String(clave);
-            if (vistaGerente == null || vistaGerente.isVisible() == false) {
-                if (clavedef.equals(claveGerente.getClave())) {
-                    this.dispose();
-                    JOptionPane.showMessageDialog(null, "bienvenido", "Aprobado", JOptionPane.INFORMATION_MESSAGE);
-                    vistaGerente = new VistaGerente(controladorProducto, controladorMesero, controladorMesa, mensajes);
-                    vistaGerente.toFront();
-                    vistaGerente.setVisible(true);
-                    VentanaPrincipal.vistaGerente = this.vistaGerente;
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error de clave", "Denegado", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } else {
-                this.dispose();
-                vistaGerente.toFront();
             }
         }
     }//GEN-LAST:event_pClaveKeyPressed

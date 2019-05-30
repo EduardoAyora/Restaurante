@@ -44,6 +44,10 @@ public class ContraseniaCaja extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
     }
+    
+    public  void cambiarIdiomas(ResourceBundle mensajes){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -9,6 +9,8 @@ import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Categoria;
 import ec.edu.ups.modelo.Producto;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,16 +21,32 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
 
     ControladorProducto controladorProducto;
     Categoria categoria;
+    ResourceBundle mensajes;
+    JLabel titulo;
 
     /**
      * Creates new form VentanaBuscarProducto
      */
-    public VentanaBuscarProducto(ControladorProducto controladorProducto) {
+    public VentanaBuscarProducto(ControladorProducto controladorProducto, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("producto.buscar"));
         initComponents();
         this.controladorProducto = controladorProducto;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
 
     }
 
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("producto.buscar"));
+        lCodigo.setText(mensajes.getString("txt.codigo"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
+        lPrecio.setText(mensajes.getString("producto.precio"));
+        lDescripcion.setText(mensajes.getString("producto.detalle"));
+        lCategoria.setText(mensajes.getString("producto.categoria"));
+        lImagen.setText(mensajes.getString("txt.imagen"));
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +73,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
         lEspacioImg = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Buscar producto");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -111,7 +129,7 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

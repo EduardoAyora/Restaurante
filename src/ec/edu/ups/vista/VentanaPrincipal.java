@@ -30,7 +30,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControladorMesero controladorMesero;
     private ControladorFactura controladorFactura;
     private ControladorCliente controladorCliente;
-    private UsuarioMesero usuarioMesero;
     private ContraseniaCaja contraseniaCaja;
     private Contrasenia contrasenia;
     private CambioContrasenia cambioContrasenia;
@@ -38,6 +37,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ResourceBundle mensajes;
     private ClaveGerente claveGerente;
     private ClaveCaja claveCaja;
+    private UsuarioMesero usuarioMesero;
     public static VistaCaja vistaCaja;
     public static VistaGerente vistaGerente;
     
@@ -60,11 +60,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //Para pruebas
         //--------------------------------------------------------------------------------------------
         GenerarMesa generarMesa = new GenerarMesa(controladorMesa);
-
         GenerarMesero generarMesero = new GenerarMesero(controladorMesero);
-
         GenerarProducto generarProductos = new GenerarProducto(controladorProducto);
-
         //---------------------------------------------------------------------------------------------
     }
 
@@ -312,7 +309,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (contrasenia != null && contrasenia.isVisible()) {
             contrasenia.cambiarIdiomas(mensajes);
         }
-        if (ContraseniaCaja.vistaCaja!= null && ContraseniaCaja.vistaCaja.isVisible()) {
+        
+        if (contraseniaCaja != null && contraseniaCaja.isVisible()) {
+            contraseniaCaja.cambiarIdiomas(mensajes);
+        }
+        
+        if (ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()) {
             ContraseniaCaja.vistaCaja.cambiarIdioma(mensajes);
         }
         
