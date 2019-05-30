@@ -320,9 +320,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         
         if (Contrasenia.vistaGerente != null && Contrasenia.vistaGerente.isVisible()) {
+            Contrasenia.vistaGerente.setMensajes(mensajes);
             Contrasenia.vistaGerente.cambiarIdiomas(mensajes);
         }
-        
         
     }
 
