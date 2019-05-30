@@ -11,7 +11,6 @@ import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.ClaveGerente;
 import java.util.ResourceBundle;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,7 +36,6 @@ public class Contrasenia extends javax.swing.JFrame {
     public Contrasenia(ControladorProducto controladorProducto,
             ControladorMesero controladorMesero, ControladorMesa controladorMesa,
             ClaveGerente claveGerente, ResourceBundle mensajes, VistaGerente vistaGerente) {
-        this.setLocationRelativeTo(null);
         this.controladorProducto = controladorProducto;
         this.controladorMesero = controladorMesero;
         this.controladorMesa = controladorMesa;
@@ -45,6 +43,7 @@ public class Contrasenia extends javax.swing.JFrame {
         vistaGerente = this.vistaGerente;
         this.mensajes = mensajes;
         initComponents();
+        this.setLocationRelativeTo(null);
         cambiarIdiomas(mensajes);
     }
 

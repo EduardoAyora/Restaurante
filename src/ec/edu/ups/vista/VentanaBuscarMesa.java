@@ -130,20 +130,23 @@ public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
         this.dispose();
-
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int cod = Integer.parseInt(tNumero.getText());
-        Mesa buscarMesa = controladorMesa.read(cod);
-        if (buscarMesa != null) {
-            tCapacidad.setText(String.valueOf(buscarMesa.getCapacidad()));
+        if (tNumero.getText().equals("") == false) {
+            int cod = Integer.parseInt(tNumero.getText());
+            Mesa buscarMesa = controladorMesa.read(cod);
+            if (buscarMesa != null) {
+                tCapacidad.setText(String.valueOf(buscarMesa.getCapacidad()));
+            } else {
+                tNumero.setText("");
+                tCapacidad.setText("");
+                JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
+            }
         } else {
-            tNumero.setText("");
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tCapacidad.setText("");
-            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_bBuscarActionPerformed

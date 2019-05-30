@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class VentanaEditarMesa extends javax.swing.JInternalFrame {
 
-    ControladorMesa controladorMesa;
-    ResourceBundle mensajes;
+    private ControladorMesa controladorMesa;
+    private ResourceBundle mensajes;
     private JLabel titulo;
     private String bumesa;
     private String nofound;
@@ -148,9 +148,7 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
         this.dispose();
-
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -160,14 +158,19 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int cod = Integer.parseInt(tNumero.getText());
-        Mesa buscarMesa = controladorMesa.read(cod);
-        if (buscarMesa != null) {
-            tCapacidad.setText(String.valueOf(buscarMesa.getCapacidad()));
-            bActualizar.setEnabled(true);
+        if (tNumero.getText().equals("") == false) {
+            int cod = Integer.parseInt(tNumero.getText());
+            Mesa buscarMesa = controladorMesa.read(cod);
+            if (buscarMesa != null) {
+                tCapacidad.setText(String.valueOf(buscarMesa.getCapacidad()));
+                bActualizar.setEnabled(true);
+            } else {
+                tCapacidad.setText("");
+                JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), bumesa = mensajes.getString("mesa.buscar"), JOptionPane.WARNING_MESSAGE);
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tCapacidad.setText("");
-            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), bumesa = mensajes.getString("mesa.buscar"), JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 

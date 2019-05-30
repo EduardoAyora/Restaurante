@@ -22,9 +22,9 @@ import javax.swing.table.TableColumnModel;
  */
 public class VentanaListaProducto extends javax.swing.JInternalFrame {
 
-    ControladorProducto controladorProducto;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorProducto controladorProducto;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
 
     /**
      * Creates new form VentanaListaProducto

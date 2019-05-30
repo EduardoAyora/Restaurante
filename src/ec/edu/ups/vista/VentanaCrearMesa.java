@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class VentanaCrearMesa extends javax.swing.JInternalFrame {
 
-    ControladorMesa controladorMesa;
-    ResourceBundle mensajes;
+    private ControladorMesa controladorMesa;
+    private ResourceBundle mensajes;
     private JLabel titulo;
     private String exito;
 

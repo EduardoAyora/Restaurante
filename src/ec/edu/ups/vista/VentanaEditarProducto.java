@@ -91,6 +91,8 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
                 FileReader archivos = new FileReader(abre);
                 BufferedReader lee = new BufferedReader(archivos);
                 lee.close();
+            } else {
+                ruta = "";
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex + ""
@@ -263,24 +265,34 @@ public class VentanaEditarProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int codigo = Integer.parseInt(tCodigo.getText());
-        Producto buscarProducto = controladorProducto.read(codigo);
-        if (buscarProducto != null) {
-            tNombre.setText(buscarProducto.getNombre());
-            tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
-            tDescripcion.setText(buscarProducto.getDescripcion());
-            comboCategoria.setSelectedItem(buscarProducto.getCategoria().getNombre());
-            tImagen.setText(buscarProducto.getImgIcon().toString());
-            lEscogerImg.setIcon(buscarProducto.getImgIcon());
-            bActualizar.setEnabled(true);
+        if (tCodigo.getText().equals("") == false) {
+            int codigo = Integer.parseInt(tCodigo.getText());
+            Producto buscarProducto = controladorProducto.read(codigo);
+            if (buscarProducto != null) {
+                tNombre.setText(buscarProducto.getNombre());
+                tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
+                tDescripcion.setText(buscarProducto.getDescripcion());
+                comboCategoria.setSelectedItem(buscarProducto.getCategoria().getNombre());
+                tImagen.setText(buscarProducto.getImgIcon().toString());
+                lEscogerImg.setIcon(buscarProducto.getImgIcon());
+                bActualizar.setEnabled(true);
+            } else {
+                tNombre.setText("");
+                tPrecio.setText("");
+                tDescripcion.setText("");
+                comboCategoria.setSelectedIndex(0);
+                tImagen.setText("");
+                lEscogerImg.setIcon(null);
+                JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.noprod"), bprod = mensajes.getString("producto.buscar"), JOptionPane.WARNING_MESSAGE);
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tNombre.setText("");
             tPrecio.setText("");
             tDescripcion.setText("");
             comboCategoria.setSelectedIndex(0);
             tImagen.setText("");
             lEscogerImg.setIcon(null);
-            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.noprod"), bprod = mensajes.getString("producto.buscar"), JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 

@@ -15,16 +15,19 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
-     private ControladorCliente controladorCliente;
+
+    private ControladorCliente controladorCliente;
+
     /**
      * Creates new form VentanaEliminarMesero
      */
     public VentanaEliminarCliente(ControladorCliente controladorCliente) {
         initComponents();
-        this.controladorCliente=controladorCliente;
+        this.controladorCliente = controladorCliente;
     }
-   public void cambiarIdioma(ResourceBundle mensajes){
-        
+
+    public void cambiarIdioma(ResourceBundle mensajes) {
+
         bBuscar.setText(mensajes.getString("boton.eliminar"));
         lNombre.setText(mensajes.getString("txt.nombre"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
@@ -32,9 +35,9 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
         lTelefono.setText(mensajes.getString("cliente.telefono"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
         bEliminar.setText(mensajes.getString("boton.eliminar"));
-        
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,12 +74,6 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
         });
 
         lNombre.setText("Nombre:");
-
-        tDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDireccionActionPerformed(evt);
-            }
-        });
 
         lDireccion.setText("Dirección:");
 
@@ -163,17 +160,13 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
-
-    }//GEN-LAST:event_tDireccionActionPerformed
-
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
-        // TODO add your handling code here:
-          String cedula = tCedula.getText();
+
+        String cedula = tCedula.getText();
         Cliente cliente = controladorCliente.readCedula(cedula);
         int codigo = cliente.getCodigo();
         controladorCliente.delete(codigo);
@@ -186,14 +179,31 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bEliminarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        // TODO add your handling code here:
-        String cedula=tCedula.getText();
-        Cliente cliente=controladorCliente.readCedula(cedula);
-        tNombre.setText(cliente.getNombre());
-        tDireccion.setText(cliente.getDireccion());
-        tTelefono.setText(cliente.getTelefono());
-        tEmail.setText(cliente.getTelefono());
-        
+        if (tCedula.getText().equals("") == false) {
+
+            String cedula = tCedula.getText();
+            Cliente cliente = controladorCliente.readCedula(cedula);
+            if (cliente != null) {
+                tNombre.setText(cliente.getNombre());
+                tDireccion.setText(cliente.getDireccion());
+                tTelefono.setText(cliente.getTelefono());
+                tEmail.setText(cliente.getCorreo());
+            } else {
+                tCedula.setText("");
+                tNombre.setText("");
+                tDireccion.setText("");
+                tTelefono.setText("");
+                tEmail.setText("");
+                JOptionPane.showMessageDialog(this, "El cliente no existe", "Buscar cliente", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+            tNombre.setText("");
+            tDireccion.setText("");
+            tTelefono.setText("");
+            tEmail.setText("");
+        }
+
     }//GEN-LAST:event_bBuscarActionPerformed
 
 

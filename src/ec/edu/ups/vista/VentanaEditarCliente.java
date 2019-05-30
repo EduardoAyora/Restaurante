@@ -17,15 +17,17 @@ import javax.swing.JOptionPane;
 public class VentanaEditarCliente extends javax.swing.JInternalFrame {
 
     private ControladorCliente controladorCliente;
+
     /**
      * Creates new form VentanaEditarMesero
      */
     public VentanaEditarCliente(ControladorCliente controladorCliente) {
         initComponents();
-        this.controladorCliente=controladorCliente;
+        this.controladorCliente = controladorCliente;
     }
-    public void cambiarIdioma(ResourceBundle mensajes){
-        
+
+    public void cambiarIdioma(ResourceBundle mensajes) {
+
         bBuscar.setText(mensajes.getString("boton.buscar"));
         lNombre.setText(mensajes.getString("txt.nombre"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
@@ -33,9 +35,9 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
         lTelefono.setText(mensajes.getString("cliente.telefono"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
         bActualizar.setText(mensajes.getString("boton.actualizar"));
-        
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -178,14 +180,30 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        // TODO add your handling code here:
-        String cedula =tCedula.getText();
-        Cliente cliente= controladorCliente.readCedula(cedula);
-        tNombre.setText(cliente.getNombre());
-        tDireccion.setText(cliente.getDireccion());
-        tTelefono.setText(cliente.getTelefono());
-        tCorreo.setText(cliente.getCorreo());
-        
+        if (tCedula.getText().equals("") == false) {
+            String cedula = tCedula.getText();
+            Cliente cliente = controladorCliente.readCedula(cedula);
+            if (cliente != null) {
+                tNombre.setText(cliente.getNombre());
+                tDireccion.setText(cliente.getDireccion());
+                tTelefono.setText(cliente.getTelefono());
+                tCorreo.setText(cliente.getCorreo());
+            } else {
+                tCedula.setText("");
+                tNombre.setText("");
+                tDireccion.setText("");
+                tTelefono.setText("");
+                tCorreo.setText("");
+                JOptionPane.showMessageDialog(this, "El cliente no existe", "Buscar cliente", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+            tNombre.setText("");
+            tDireccion.setText("");
+            tTelefono.setText("");
+            tCorreo.setText("");
+        }
+
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed

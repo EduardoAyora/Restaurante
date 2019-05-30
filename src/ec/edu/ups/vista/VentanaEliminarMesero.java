@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
-    
+
     private ControladorMesero controladorMesero;
     private ResourceBundle mensajes;
     private JLabel titulo;
@@ -36,7 +36,7 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
         cambiarIdiomas(mensajes);
         bEliminar.setEnabled(false);
     }
-    
+
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesero.eliminar"));
         nofound = mensajes.getString("option.nomesero");
@@ -194,7 +194,7 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        
+
         this.dispose();
 
     }//GEN-LAST:event_bCancelarActionPerformed
@@ -202,8 +202,8 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         int cod = Integer.parseInt(tCodigo.getText());
         controladorMesero.delete(cod);
-        JOptionPane.showMessageDialog(this, 
-                elimesero = mensajes.getString("option.elimesero"), 
+        JOptionPane.showMessageDialog(this,
+                elimesero = mensajes.getString("option.elimesero"),
                 titulo.getText(), JOptionPane.YES_OPTION);
         tCedula.setText("");
         tNombre.setText("");
@@ -219,23 +219,31 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int cod = Integer.parseInt(tCodigo.getText());
-        Mesero buscarMesero = controladorMesero.read(cod);
-        if (buscarMesero != null) {
-            tCedula.setText(buscarMesero.getCedula());
-            tNombre.setText(buscarMesero.getNombre());
-            tDireccion.setText(buscarMesero.getDireccion());
-            tTelefono.setText(buscarMesero.getTelefono());
-            bEliminar.setEnabled(true);
+        if (tCodigo.getText().equals("") == false) {
+            int cod = Integer.parseInt(tCodigo.getText());
+            Mesero buscarMesero = controladorMesero.read(cod);
+            if (buscarMesero != null) {
+                tCedula.setText(buscarMesero.getCedula());
+                tNombre.setText(buscarMesero.getNombre());
+                tDireccion.setText(buscarMesero.getDireccion());
+                tTelefono.setText(buscarMesero.getTelefono());
+                bEliminar.setEnabled(true);
+            } else {
+                tCedula.setText("");
+                tNombre.setText("");
+                tDireccion.setText("");
+                tTelefono.setText("");
+                JOptionPane.showMessageDialog(this,
+                        nofound = mensajes.getString("option.nomesero"),
+                        bumesero = mensajes.getString("mesero.buscar"),
+                        JOptionPane.WARNING_MESSAGE);
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tCedula.setText("");
             tNombre.setText("");
             tDireccion.setText("");
             tTelefono.setText("");
-            JOptionPane.showMessageDialog(this,
-                    nofound = mensajes.getString("option.nomesero"),
-                    bumesero = mensajes.getString("mesero.buscar"),
-                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 

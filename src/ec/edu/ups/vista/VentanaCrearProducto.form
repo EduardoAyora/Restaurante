@@ -136,9 +136,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tNombre">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tNombreActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tPrecio">
     </Component>
@@ -153,9 +150,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tDescripcion">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tDescripcionActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lCategoria">
       <Properties>
@@ -184,9 +178,6 @@
           <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { entrada, plato, bebida, postre })" type="code"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboCategoriaActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -200,9 +191,6 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tImagenActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bSeleccionar">
       <Properties>

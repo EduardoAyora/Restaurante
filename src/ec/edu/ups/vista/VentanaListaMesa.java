@@ -22,9 +22,9 @@ import javax.swing.table.TableColumnModel;
  */
 public class VentanaListaMesa extends javax.swing.JInternalFrame {
 
-    ControladorMesa controladorMesa;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorMesa controladorMesa;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
 
     /**
      * Creates new form VentanaListaMesa
@@ -49,6 +49,7 @@ public class VentanaListaMesa extends javax.swing.JInternalFrame {
         tableColumn.setHeaderValue(mensajes.getString("txt.capacidad"));
         tableHeader.repaint();
     }
+
     public void llenarDatos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaMesero.getModel();
         List<Mesa> lista = controladorMesa.getLista();

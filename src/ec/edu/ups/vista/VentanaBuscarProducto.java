@@ -94,11 +94,6 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
         tPrecio.setEditable(false);
 
         tDescripcion.setEditable(false);
-        tDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDescripcionActionPerformed(evt);
-            }
-        });
 
         lDescripcion.setText("Descripción:");
 
@@ -199,28 +194,35 @@ public class VentanaBuscarProducto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDescripcionActionPerformed
-
-    }//GEN-LAST:event_tDescripcionActionPerformed
-
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int codigo = Integer.parseInt(tCodigo.getText());
-        Producto buscarProducto = controladorProducto.read(codigo);
-        if (buscarProducto != null) {
-            tNombre.setText(buscarProducto.getNombre());
-            tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
-            tDescripcion.setText(buscarProducto.getDescripcion());
-            tCategoria.setText(buscarProducto.getCategoria().getNombre());
-            tImagen.setText(buscarProducto.getImgIcon().toString());
-            lEspacioImg.setIcon(buscarProducto.getImgIcon());
+        if (tCodigo.getText().equals("") == false) {
+            int codigo = Integer.parseInt(tCodigo.getText());
+            Producto buscarProducto = controladorProducto.read(codigo);
+            if (buscarProducto != null) {
+                tNombre.setText(buscarProducto.getNombre());
+                tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
+                tDescripcion.setText(buscarProducto.getDescripcion());
+                tCategoria.setText(buscarProducto.getCategoria().getNombre());
+                tImagen.setText(buscarProducto.getImgIcon().toString());
+                lEspacioImg.setIcon(buscarProducto.getImgIcon());
+            } else {
+                tCodigo.setText("");
+                tNombre.setText("");
+                tPrecio.setText("");
+                tDescripcion.setText("");
+                tCategoria.setText("");
+                tImagen.setText("");
+                lEspacioImg.setIcon(null);
+                JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.noprod"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tNombre.setText("");
             tPrecio.setText("");
             tDescripcion.setText("");
             tCategoria.setText("");
             tImagen.setText("");
             lEspacioImg.setIcon(null);
-            JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.noprod"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
         }
 
 

@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,11 +67,6 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
         tTelefono.setEditable(false);
 
         tDireccion.setEditable(false);
-        tDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDireccionActionPerformed(evt);
-            }
-        });
 
         tNombre.setEditable(false);
 
@@ -159,24 +155,35 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
-
-    }//GEN-LAST:event_tDireccionActionPerformed
-
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
         this.dispose();
-
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        // TODO add your handling code here:
-        String cedula = tCedula.getText();
-        Cliente cliente = controladorCliente.readCedula(cedula);
-        tNombre.setText(cliente.getNombre());
-        tDireccion.setText(cliente.getDireccion());
-        tTelefono.setText(cliente.getTelefono());
-        tEmail.setText(cliente.getCorreo());
+        if (tCedula.getText().equals("") == false) {
+
+            String cedula = tCedula.getText();
+            Cliente cliente = controladorCliente.readCedula(cedula);
+            if (cliente != null) {
+                tNombre.setText(cliente.getNombre());
+                tDireccion.setText(cliente.getDireccion());
+                tTelefono.setText(cliente.getTelefono());
+                tEmail.setText(cliente.getCorreo());
+            } else {
+                tCedula.setText("");
+                tNombre.setText("");
+                tDireccion.setText("");
+                tTelefono.setText("");
+                tEmail.setText("");
+                JOptionPane.showMessageDialog(this, "El cliente no existe", "Buscar cliente", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+            tNombre.setText("");
+            tDireccion.setText("");
+            tTelefono.setText("");
+            tEmail.setText("");
+        }
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed

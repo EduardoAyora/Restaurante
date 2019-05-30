@@ -214,27 +214,37 @@ public class VentanaEliminarProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int codigo = Integer.parseInt(tCodigo.getText());
-        Producto buscarProducto = controladorProducto.read(codigo);
-        if (buscarProducto != null) {
-            tNombre.setText(buscarProducto.getNombre());
-            tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
-            tDescripcion.setText(buscarProducto.getDescripcion());
-            tCategoria.setText(buscarProducto.getCategoria().getNombre());
-            tImagen.setText(buscarProducto.getImgIcon().toString());
-            lEscogerImg.setIcon(buscarProducto.getImgIcon());
-            bEliminar.setEnabled(true);
+        if (tCodigo.getText().equals("") == false) {
+            int codigo = Integer.parseInt(tCodigo.getText());
+            Producto buscarProducto = controladorProducto.read(codigo);
+            if (buscarProducto != null) {
+                tNombre.setText(buscarProducto.getNombre());
+                tPrecio.setText(Double.toString(buscarProducto.getPrecio()));
+                tDescripcion.setText(buscarProducto.getDescripcion());
+                tCategoria.setText(buscarProducto.getCategoria().getNombre());
+                tImagen.setText(buscarProducto.getImgIcon().toString());
+                lEscogerImg.setIcon(buscarProducto.getImgIcon());
+                bEliminar.setEnabled(true);
+            } else {
+                tNombre.setText("");
+                tPrecio.setText("");
+                tDescripcion.setText("");
+                tCategoria.setText("");
+                tImagen.setText("");
+                lEscogerImg.setIcon(null);
+                JOptionPane.showMessageDialog(this,
+                        nofound = mensajes.getString("option.noprod"),
+                        bprod = mensajes.getString("producto.buscar"),
+                        JOptionPane.WARNING_MESSAGE);
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tNombre.setText("");
             tPrecio.setText("");
             tDescripcion.setText("");
             tCategoria.setText("");
             tImagen.setText("");
             lEscogerImg.setIcon(null);
-            JOptionPane.showMessageDialog(this,
-                    nofound = mensajes.getString("option.noprod"),
-                    bprod = mensajes.getString("producto.buscar"),
-                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 

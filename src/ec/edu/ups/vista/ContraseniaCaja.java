@@ -9,11 +9,7 @@ import com.sun.glass.events.KeyEvent;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorMesa;
-import ec.edu.ups.controlador.ControladorMesero;
-import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.ClaveCaja;
-import ec.edu.ups.modelo.ClaveGerente;
-import java.awt.Dimension;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
@@ -33,7 +29,10 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     /**
      * Creates new form Contrasenia
      */
-    public ContraseniaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ClaveCaja claveCaja, VistaCaja vistaCaja, ResourceBundle mensajes) {
+    public ContraseniaCaja(ControladorFactura controladorFactura, 
+            ControladorCliente controladorCliente, 
+            ControladorMesa controladorMesa, ClaveCaja claveCaja,
+            VistaCaja vistaCaja, ResourceBundle mensajes) {
         initComponents();
         this.controladorFactura = controladorFactura;
         this.controladorCliente = controladorCliente;

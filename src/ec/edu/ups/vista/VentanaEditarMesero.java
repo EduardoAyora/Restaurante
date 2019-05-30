@@ -106,12 +106,6 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
 
         lNombre.setText("Nombre:");
 
-        tDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDireccionActionPerformed(evt);
-            }
-        });
-
         lDireccion.setText("Dirección:");
 
         lTelefono.setText("Teléfono:");
@@ -223,14 +217,8 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
-
-    }//GEN-LAST:event_tDireccionActionPerformed
-
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
         this.dispose();
-
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -240,23 +228,31 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int cod = Integer.parseInt(tCodigo.getText());
-        Mesero buscarMesero = controladorMesero.read(cod);
-        if (buscarMesero != null) {
-            tCedula.setText(buscarMesero.getCedula());
-            tNombre.setText(buscarMesero.getNombre());
-            tDireccion.setText(buscarMesero.getDireccion());
-            tTelefono.setText(buscarMesero.getTelefono());
-            bActualizar.setEnabled(true);
+        if (tCodigo.getText().equals("") == false) {
+            int cod = Integer.parseInt(tCodigo.getText());
+            Mesero buscarMesero = controladorMesero.read(cod);
+            if (buscarMesero != null) {
+                tCedula.setText(buscarMesero.getCedula());
+                tNombre.setText(buscarMesero.getNombre());
+                tDireccion.setText(buscarMesero.getDireccion());
+                tTelefono.setText(buscarMesero.getTelefono());
+                bActualizar.setEnabled(true);
+            } else {
+                tCedula.setText("");
+                tNombre.setText("");
+                tDireccion.setText("");
+                tTelefono.setText("");
+                JOptionPane.showMessageDialog(this,
+                        nofound = mensajes.getString("option.nomesero"),
+                        bumesero = mensajes.getString("mesero.buscar"),
+                        JOptionPane.WARNING_MESSAGE);
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tCedula.setText("");
             tNombre.setText("");
             tDireccion.setText("");
             tTelefono.setText("");
-            JOptionPane.showMessageDialog(this,
-                    nofound = mensajes.getString("option.nomesero"),
-                    bumesero = mensajes.getString("mesero.buscar"),
-                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 

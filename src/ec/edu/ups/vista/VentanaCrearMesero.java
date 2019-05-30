@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class VentanaCrearMesero extends javax.swing.JInternalFrame {
 
-    ControladorMesero controladorMesero;
-    ResourceBundle mensajes;
+    private ControladorMesero controladorMesero;
+    private ResourceBundle mensajes;
     private JLabel titulo;
     private String exito;
 
