@@ -324,6 +324,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             Contrasenia.vistaGerente.cambiarIdiomas(mensajes);
         }
         
+        if(UsuarioMesero.vistaMesero != null && UsuarioMesero.vistaMesero.isVisible()){
+            UsuarioMesero.vistaMesero.setMensajes(mensajes);
+            UsuarioMesero.vistaMesero.reiniciar();
+        }
+        
+        if(UsuarioMesero.vistaMesero.abrirMesa != null && UsuarioMesero.vistaMesero.abrirMesa.isVisible()){
+            UsuarioMesero.vistaMesero.abrirMesa.setMensajes(mensajes);
+            UsuarioMesero.vistaMesero.abrirMesa.reiniciar();
+        }
+        
+        if(UsuarioMesero.vistaMesero.vistaMesa != null && UsuarioMesero.vistaMesero.vistaMesa.isVisible()){
+            UsuarioMesero.vistaMesero.vistaMesa.setMensajes(mensajes);
+            UsuarioMesero.vistaMesero.vistaMesa.cambiarIdioma(mensajes);
+        }
+        
+        if(UsuarioMesero.vistaMesero.vistaMesa.agregarProducto != null && UsuarioMesero.vistaMesero.vistaMesa.agregarProducto.isVisible()){
+            UsuarioMesero.vistaMesero.vistaMesa.agregarProducto.setMensajes(mensajes);
+            UsuarioMesero.vistaMesero.vistaMesa.agregarProducto.cambiarIdioma(mensajes);
+        }
+        
     }
 
     /**

@@ -46,14 +46,14 @@ public class AbrirMesa extends javax.swing.JFrame {
         btnCancelar.setText(mensajes.getString("btn.cancelar"));
 
     }
-
-    public void reiniciar() {
-
+    
+    public void reiniciar(){
+        
         VentanaPrincipal.usuarioMesero.vistaMesero.abrirMesa = new AbrirMesa(mensajes);
         VentanaPrincipal.usuarioMesero.vistaMesero.abrirMesa.setVisible(true);
         VentanaPrincipal.usuarioMesero.vistaMesero.abrirMesa.setMesas(controladorMesa, mesero, controladorProducto);
         this.dispose();
-
+        
     }
 
     public void setMesas(ControladorMesa controladorMesa, Mesero mesero, ControladorProducto controladorProducto) {

@@ -11,6 +11,7 @@ import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Render;
+import ec.edu.ups.vista.VentanaPrincipal;
 import java.util.ResourceBundle;
 import java.util.SortedSet;
 import javax.swing.JButton;
@@ -329,8 +330,8 @@ public class VistaMesa extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
-        vistaMesero.setVisible(true);
+        VentanaPrincipal.usuarioMesero.vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
+        VentanaPrincipal.usuarioMesero.vistaMesero.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
