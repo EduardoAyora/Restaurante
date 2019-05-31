@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -16,15 +17,31 @@ import java.awt.event.KeyEvent;
 public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
 
     private ControladorCliente controladorCliente;
+    private ResourceBundle mensajes;
 
     /**
      * Creates new form VentanaBuscarMesero
      */
-    public VentanaBuscarCliente(ControladorCliente controladorCliente) {
-        initComponents();
+    public VentanaBuscarCliente(ControladorCliente controladorCliente,ResourceBundle mensajes) {
+       
         this.controladorCliente = controladorCliente;
+        this.mensajes=mensajes;
+        initComponents();
+        cambiarIdioma(mensajes);
     }
-
+     public void cambiarIdioma(ResourceBundle mensajes){
+        
+        titulo.setText(mensajes.getString("titulo.cliente.buscar"));   
+        lNombre.setText(mensajes.getString("txt.nombre"));
+        lCedula.setText(mensajes.getString("cliente.cedula"));
+        lDireccion.setText(mensajes.getString("cliente.direccion"));
+        lTelefono.setText(mensajes.getString("cliente.telefono"));
+        lEmail.setText(mensajes.getString("txt.correo"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
+        bBuscar.setText(mensajes.getString("boton.buscar"));
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +51,7 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         tCedula = new javax.swing.JTextField();
         lCedula = new javax.swing.JLabel();
         lNombre = new javax.swing.JLabel();
@@ -47,8 +65,11 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
         lEmail = new javax.swing.JLabel();
         tEmail = new javax.swing.JTextField();
 
+        titulo.setText(mensajes.getString("titulo.cliente.buscar")
+        );
+
         setClosable(true);
-        setTitle("Buscar cliente");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -164,8 +185,12 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
-        this.dispose();
+        tNombre.setText("");
+        tCedula.setText("");
+        tDireccion.setText("");
+        tTelefono.setText("");
+        tEmail.setText("");
+        
 
     }//GEN-LAST:event_bCancelarActionPerformed
 
@@ -199,5 +224,6 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

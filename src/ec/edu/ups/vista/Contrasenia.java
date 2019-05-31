@@ -41,6 +41,7 @@ public class Contrasenia extends javax.swing.JFrame {
         this.claveGerente = claveGerente;
         vistaGerente = this.vistaGerente;
         this.mensajes = mensajes;
+        
 
     }
 

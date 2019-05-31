@@ -31,19 +31,20 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListarClientes
      */
-    public ListarFacturas(ControladorFactura controladorFactura) {
-        initComponents();
+    public ListarFacturas(ControladorFactura controladorFactura,ResourceBundle mensajes) {
+       
         this.controladorFactura = controladorFactura;
-        //this.mensajes = mensajes;
+        this.mensajes = mensajes;
+        initComponents();
         llenarDatos();
         tblFactura.setRowHeight(30);
-        //cambiarIdioma(mensajes);
+        cambiarIdioma(mensajes);
     }
 
     public void llenarDatos() {
 
         tblFactura.setDefaultRenderer(Object.class, new Render());
-        JButton btnDetalles = new JButton("Ver Detalles");
+        JButton btnDetalles = new JButton(mensajes.getString("factura.detalle"));
         DefaultTableModel modelo = (DefaultTableModel) tblFactura.getModel();
         Set<Factura> lista = controladorFactura.getLista();
         for (Factura factura : lista) {
@@ -69,7 +70,7 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
     }
 
     public void cambiarIdioma(ResourceBundle mensajes) {
-
+        titulo.setText(mensajes.getString("factura.lista"));
         JTableHeader tableHeader = tblFactura.getTableHeader();
         TableColumnModel tableColumnModel = tableHeader.getColumnModel();
         TableColumn tableColumn;
@@ -78,13 +79,17 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
         tableColumn = tableColumnModel.getColumn(1);
         tableColumn.setHeaderValue(mensajes.getString("factura.fecha"));
         tableColumn = tableColumnModel.getColumn(2);
-        tableColumn.setHeaderValue(mensajes.getString("factura.cliente"));
+        tableColumn.setHeaderValue(mensajes.getString("vista.cliente"));
         tableColumn = tableColumnModel.getColumn(3);
-        tableColumn.setHeaderValue(mensajes.getString("factura.subtotal"));
+        tableColumn.setHeaderValue(mensajes.getString("txt.subtotal"));
         tableColumn = tableColumnModel.getColumn(4);
         tableColumn.setHeaderValue(mensajes.getString("factura.iva"));
         tableColumn = tableColumnModel.getColumn(5);
         tableColumn.setHeaderValue(mensajes.getString("factura.total"));
+        tableColumn = tableColumnModel.getColumn(6);
+        tableColumn.setHeaderValue(mensajes.getString("factura.estado"));
+        tableColumn = tableColumnModel.getColumn(7);
+        tableColumn.setHeaderValue(mensajes.getString("factura.detalle"));
         tableHeader.repaint();
 
     }
@@ -98,11 +103,15 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFactura = new javax.swing.JTable();
 
+        titulo.setText(mensajes.getString("factura.lista")
+        );
+
         setClosable(true);
-        setTitle("Lista de facturas");
+        setTitle(titulo.getText());
 
         tblFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,5 +209,6 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblFactura;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

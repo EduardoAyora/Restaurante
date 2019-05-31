@@ -39,18 +39,20 @@ public class VistaCaja extends javax.swing.JFrame {
      * Creates new form VistaCaja
      */
     public VistaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ResourceBundle mensajes) {
-        initComponents();
-        jDesktopPane1.setBorder(new ImagenFondoCaja());
-        this.setExtendedState(VistaCaja.MAXIMIZED_BOTH);
+        
+        
         this.controladorFactura = controladorFactura;
         this.controladorCliente = controladorCliente;
         this.controladorMesa = controladorMesa;
         this.mensajes = mensajes;
+        initComponents();
         cambiarIdioma(mensajes);
+        jDesktopPane1.setBorder(new ImagenFondoCaja());
+        this.setExtendedState(VistaCaja.MAXIMIZED_BOTH);
     }
 
     public void cambiarIdioma(ResourceBundle mensajes){
-        
+        titulo.setText(mensajes.getString("vista.caja.titulo")); 
         menMesero1.setText(mensajes.getString("vista.cliente"));
         menMesero2.setText(mensajes.getString("vista.factura"));
         opCrearCli.setText(mensajes.getString("vista.item.crear"));
@@ -71,6 +73,7 @@ public class VistaCaja extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menMesero1 = new javax.swing.JMenu();
@@ -83,7 +86,9 @@ public class VistaCaja extends javax.swing.JFrame {
         opCrearFac = new javax.swing.JMenuItem();
         opListFac = new javax.swing.JMenuItem();
 
-        setTitle("Gestión de Caja");
+        titulo.setText(mensajes.getString("vista.caja.titulo"));
+
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -198,7 +203,7 @@ public class VistaCaja extends javax.swing.JFrame {
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        crearFactura = new VentanaCrearFactura(controladorFactura, controladorCliente,controladorMesa);
+        crearFactura = new VentanaCrearFactura(controladorFactura, controladorCliente,controladorMesa,mensajes);
         crearFactura.setVisible(true);
         jDesktopPane1.add(crearFactura);
         Dimension desktopSize = jDesktopPane1.getSize();
@@ -210,7 +215,7 @@ public class VistaCaja extends javax.swing.JFrame {
     private void opUpdateCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opUpdateCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        editarCliente = new VentanaEditarCliente(controladorCliente);
+        editarCliente = new VentanaEditarCliente(controladorCliente,mensajes);
         editarCliente.setVisible(true);
         jDesktopPane1.add(editarCliente);
          Dimension desktopSize = jDesktopPane1.getSize();
@@ -222,7 +227,7 @@ public class VistaCaja extends javax.swing.JFrame {
     private void opReadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opReadCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        buscarCliente = new VentanaBuscarCliente(controladorCliente);
+        buscarCliente = new VentanaBuscarCliente(controladorCliente,mensajes );
         buscarCliente.setVisible(true);
         jDesktopPane1.add(buscarCliente);
         Dimension desktopSize = jDesktopPane1.getSize();
@@ -235,7 +240,7 @@ public class VistaCaja extends javax.swing.JFrame {
     private void opDeleteCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opDeleteCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        eliminarCliente = new VentanaEliminarCliente(controladorCliente);
+        eliminarCliente = new VentanaEliminarCliente(controladorCliente,mensajes);
         eliminarCliente.setVisible(true);
         jDesktopPane1.add(eliminarCliente);
         Dimension desktopSize = jDesktopPane1.getSize();
@@ -248,7 +253,7 @@ public class VistaCaja extends javax.swing.JFrame {
     private void opListCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opListCliActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        listaCliente = new VentanaListaCliente(controladorCliente);
+        listaCliente = new VentanaListaCliente(controladorCliente,mensajes);
         jDesktopPane1.add(listaCliente);
         listaCliente.setVisible(true);
         Dimension desktopSize = jDesktopPane1.getSize();
@@ -267,7 +272,7 @@ public class VistaCaja extends javax.swing.JFrame {
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        listarFacturas = new ListarFacturas(controladorFactura);
+        listarFacturas = new ListarFacturas(controladorFactura,mensajes);
         jDesktopPane1.add(listarFacturas);
         listarFacturas.setVisible(true);
         Dimension desktopSize = jDesktopPane1.getSize();
@@ -289,5 +294,6 @@ public class VistaCaja extends javax.swing.JFrame {
     private javax.swing.JMenuItem opListFac;
     private javax.swing.JMenuItem opReadCli;
     private javax.swing.JMenuItem opUpdateCli;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

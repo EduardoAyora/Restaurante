@@ -23,21 +23,24 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
      * Creates new form VentanaCrearMesero
      */
     public VentanaCrearCliente(ControladorCliente controladorCliente, ResourceBundle mensajes) {
-        initComponents();
+        
         this.controladorCliente=controladorCliente;
         this.mensajes=mensajes;
+        initComponents();
         tCodigo.setText(Integer.toString(this.controladorCliente.getCodigo()));
         cambiarIdioma(mensajes);
     }
  public void cambiarIdioma(ResourceBundle mensajes){
-        
+        titulo.setText(mensajes.getString("titulo.cliente.crear"));
         lCodigo.setText(mensajes.getString("cliente.codigo"));
         lNombre.setText(mensajes.getString("txt.nombre"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
         lDireccion.setText(mensajes.getString("cliente.direccion"));
         lTelefono.setText(mensajes.getString("cliente.telefono"));
+        lEmail.setText(mensajes.getString("txt.correo"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
         bCrear.setText(mensajes.getString("boton.crear"));
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
         
         
     }
@@ -50,6 +53,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         lCodigo = new javax.swing.JLabel();
         lCedula = new javax.swing.JLabel();
         lNombre = new javax.swing.JLabel();
@@ -65,8 +69,10 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         bCancelar = new javax.swing.JButton();
         bCrear = new javax.swing.JButton();
 
+        titulo.setText(mensajes.getString("titulo.cliente.crear"));
+
         setClosable(true);
-        setTitle("Crear cliente");
+        setTitle(titulo.getText());
 
         lCodigo.setText("Código:");
 
@@ -193,11 +199,16 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         tEmail.setText("");
         controladorCliente.create(cliente);
         tCodigo.setText(Integer.toString(this.controladorCliente.getCodigo()));
-        JOptionPane.showMessageDialog(this, "Cliente creado exitosamente", "Crear cliente", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(this, mensajes.getString("jptionp.cliente"), "Crear cliente", JOptionPane.OK_OPTION);
     }//GEN-LAST:event_bCrearActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         // TODO add your handling code here:
+        tNombre.setText("");
+        tCedula.setText("");
+        tDireccion.setText("");
+        tTelefono.setText("");
+        tEmail.setText("");
     }//GEN-LAST:event_bCancelarActionPerformed
 
 
@@ -216,5 +227,6 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

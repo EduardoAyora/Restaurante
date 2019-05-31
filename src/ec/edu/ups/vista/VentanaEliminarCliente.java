@@ -16,20 +16,25 @@ import javax.swing.JOptionPane;
  */
 public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
      private ControladorCliente controladorCliente;
+     private ResourceBundle mensajes;
     /**
      * Creates new form VentanaEliminarMesero
      */
-    public VentanaEliminarCliente(ControladorCliente controladorCliente) {
-        initComponents();
+    public VentanaEliminarCliente(ControladorCliente controladorCliente,ResourceBundle mensajes) {
+       
         this.controladorCliente=controladorCliente;
+        this.mensajes=mensajes;
+         initComponents();
+        cambiarIdioma(mensajes);
     }
    public void cambiarIdioma(ResourceBundle mensajes){
-        
+        titulo.setText(mensajes.getString("titulo.cliente.eliminar")); 
         bBuscar.setText(mensajes.getString("boton.eliminar"));
         lNombre.setText(mensajes.getString("txt.nombre"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
         lDireccion.setText(mensajes.getString("cliente.direccion"));
         lTelefono.setText(mensajes.getString("cliente.telefono"));
+        lEmail.setText(mensajes.getString("txt.correo"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
         bEliminar.setText(mensajes.getString("boton.eliminar"));
         
@@ -44,6 +49,7 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         lCedula = new javax.swing.JLabel();
         tCedula = new javax.swing.JTextField();
         bBuscar = new javax.swing.JButton();
@@ -58,8 +64,10 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
         lEmail = new javax.swing.JLabel();
         tEmail = new javax.swing.JTextField();
 
+        titulo.setText(mensajes.getString("titulo.cliente.eliminar"));
+
         setClosable(true);
-        setTitle("Eliminar cliente");
+        setTitle(titulo.getText());
 
         lCedula.setText("Cédula:");
 
@@ -169,6 +177,11 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         // TODO add your handling code here:
+        tNombre.setText("");
+        tCedula.setText("");
+        tDireccion.setText("");
+        tTelefono.setText("");
+        lEmail.setText("");
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
@@ -211,5 +224,6 @@ public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }
