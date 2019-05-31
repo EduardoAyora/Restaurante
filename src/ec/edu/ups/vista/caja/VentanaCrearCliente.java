@@ -23,9 +23,9 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
      * Creates new form VentanaCrearMesero
      */
     public VentanaCrearCliente(ControladorCliente controladorCliente, ResourceBundle mensajes) {
+        this.mensajes=mensajes;
         initComponents();
         this.controladorCliente=controladorCliente;
-        this.mensajes=mensajes;
         tCodigo.setText(Integer.toString(this.controladorCliente.getCodigo()));
         cambiarIdioma(mensajes);
     }
