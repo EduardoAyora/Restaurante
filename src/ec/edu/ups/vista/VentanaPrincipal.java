@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.vista.gerente.VistaGerente;
+import ec.edu.ups.vista.caja.VistaCaja;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorMesa;
@@ -37,7 +39,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ResourceBundle mensajes;
     private ClaveGerente claveGerente;
     private ClaveCaja claveCaja;
-    private UsuarioMesero usuarioMesero;
+    public static UsuarioMesero usuarioMesero;
     public static VistaCaja vistaCaja;
     public static VistaGerente vistaGerente;
     
@@ -315,13 +317,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         
         if (ContraseniaCaja.vistaCaja != null && ContraseniaCaja.vistaCaja.isVisible()) {
+            ContraseniaCaja.vistaCaja.setMensajes(mensajes);
             ContraseniaCaja.vistaCaja.cambiarIdioma(mensajes);
         }
         
         if (Contrasenia.vistaGerente != null && Contrasenia.vistaGerente.isVisible()) {
+            Contrasenia.vistaGerente.setMensajes(mensajes);
             Contrasenia.vistaGerente.cambiarIdiomas(mensajes);
         }
         
+        if(UsuarioMesero.vistaMesero != null && UsuarioMesero.vistaMesero.isVisible()){
+            UsuarioMesero.vistaMesero.setMensajes(mensajes);
+            UsuarioMesero.vistaMesero.reiniciar();
+        }
+        
+        if(UsuarioMesero.vistaMesero.abrirMesa != null && UsuarioMesero.vistaMesero.abrirMesa.isVisible()){
+            UsuarioMesero.vistaMesero.abrirMesa.setMensajes(mensajes);
+            UsuarioMesero.vistaMesero.abrirMesa.reiniciar();
+        }
+        
+        if(UsuarioMesero.vistaMesero.vistaMesa != null && UsuarioMesero.vistaMesero.vistaMesa.isVisible()){
+            UsuarioMesero.vistaMesero.vistaMesa.setMensajes(mensajes);
+            UsuarioMesero.vistaMesero.vistaMesa.cambiarIdioma(mensajes);
+        }
+        
+        if(UsuarioMesero.vistaMesero.vistaMesa.agregarProducto != null && UsuarioMesero.vistaMesero.vistaMesa.agregarProducto.isVisible()){
+            UsuarioMesero.vistaMesero.vistaMesa.agregarProducto.setMensajes(mensajes);
+            UsuarioMesero.vistaMesero.vistaMesa.agregarProducto.cambiarIdioma(mensajes);
+        }
         
     }
 

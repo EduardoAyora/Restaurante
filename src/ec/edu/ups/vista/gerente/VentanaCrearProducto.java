@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Categoria;
@@ -28,15 +28,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class VentanaCrearProducto extends javax.swing.JInternalFrame {
 
-    ControladorProducto controladorProducto;
-    Categoria categoria;
-    String ruta;
-    ResourceBundle mensajes;
-    JLabel titulo;
-    String entrada;
-    String plato;
-    String bebida;
-    String postre;
+    private ControladorProducto controladorProducto;
+    private Categoria categoria;
+    private String ruta;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String entrada;
+    private String plato;
+    private String bebida;
+    private String postre;
+    private String exito;
 
     /**
      * Creates new form VentanaCrearProducto
@@ -60,6 +61,7 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         plato = mensajes.getString("txt.plato");
         bebida = mensajes.getString("txt.bebida");
         postre = mensajes.getString("txt.postre");
+        exito = mensajes.getString("option.exitop");
         titulo.setText(mensajes.getString("producto.nuevo"));
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -86,6 +88,9 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
                 FileReader archivos = new FileReader(abre);
                 BufferedReader lee = new BufferedReader(archivos);
                 lee.close();
+                
+            }else{
+                ruta = "";
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex + ""
@@ -139,21 +144,9 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
 
         lNombre.setText("Nombre:");
 
-        tNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tNombreActionPerformed(evt);
-            }
-        });
-
         lPrecio.setText("Precio:");
 
         lDescripcion.setText("Descripción:");
-
-        tDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDescripcionActionPerformed(evt);
-            }
-        });
 
         lCategoria.setText("Categoría:");
 
@@ -172,20 +165,10 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         });
 
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { entrada, plato, bebida, postre }));
-        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCategoriaActionPerformed(evt);
-            }
-        });
 
         lImagen.setText("Imagen:");
 
         tImagen.setEditable(false);
-        tImagen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tImagenActionPerformed(evt);
-            }
-        });
 
         bSeleccionar.setText("Seleccionar...");
         bSeleccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -273,14 +256,6 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDescripcionActionPerformed
-
-    }//GEN-LAST:event_tDescripcionActionPerformed
-
-    private void tNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNombreActionPerformed
-
-    }//GEN-LAST:event_tNombreActionPerformed
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             this.dispose();
@@ -301,25 +276,25 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
         producto.setNombre(tNombre.getText());
         producto.setPrecio(Double.parseDouble(tPrecio.getText()));
         producto.setDescripcion(tDescripcion.getText());
-        String itemSeleccionado = comboCategoria.getSelectedItem().toString();
+        int itemSeleccionado = comboCategoria.getSelectedIndex();
 
         comboCategoria.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (itemSeleccionado.equalsIgnoreCase(categoriaEntrada.getNombre())) {
+                if (itemSeleccionado==0) {
                     producto.setCategoria(categoriaEntrada);
-                } else if (itemSeleccionado.equalsIgnoreCase(categoriaPlato.getNombre())) {
+                } else if (itemSeleccionado==1) {
                     producto.setCategoria(categoriaPlato);
-                } else if (itemSeleccionado.equalsIgnoreCase(categoriaBebida.getNombre())) {
+                } else if (itemSeleccionado==2) {
                     producto.setCategoria(categoriaBebida);
-                } else if (itemSeleccionado.equalsIgnoreCase(categoriaPostre.getNombre())) {
+                } else if (itemSeleccionado==3) {
                     producto.setCategoria(categoriaPostre);
                 }
             }
         });
         producto.setImgIcon(new ImageIcon(tImagen.getText()));
         controladorProducto.create(producto);
-        JOptionPane.showMessageDialog(this, "Producto creado exitosamente!", "Crear producto", JOptionPane.YES_OPTION);
+        JOptionPane.showMessageDialog(this, exito = mensajes.getString("option.exitop"), titulo.getText(), JOptionPane.YES_OPTION);
         tCodigo.setText(String.valueOf(this.controladorProducto.getCodigo()));
         tNombre.setText("");
         tPrecio.setText("");
@@ -332,14 +307,6 @@ public class VentanaCrearProducto extends javax.swing.JInternalFrame {
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
-
-    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboCategoriaActionPerformed
-
-    private void tImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tImagenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tImagenActionPerformed
 
     private void bSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeleccionarActionPerformed
         selecImg = new JFileChooser();

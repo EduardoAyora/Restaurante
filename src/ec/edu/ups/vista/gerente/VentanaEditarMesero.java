@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.modelo.Mesero;
@@ -18,9 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class VentanaEditarMesero extends javax.swing.JInternalFrame {
 
-    ControladorMesero controladorMesero;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorMesero controladorMesero;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
+    private String bumesero;
+    private String actmesero;
+    private String errorpass;
+    private String pass;
 
     /**
      * Creates new form VentanaEditarMesero
@@ -36,6 +41,11 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesero.editar"));
+        nofound = mensajes.getString("option.nomesero");
+        bumesero = mensajes.getString("mesero.buscar");
+        actmesero = mensajes.getString("option.actmesero");
+        errorpass = mensajes.getString("option.errorpass");
+        pass = mensajes.getString("txt.contraseña");
         lCodigo.setText(mensajes.getString("txt.codigo"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -47,6 +57,7 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         bActualizar.setText(mensajes.getString("boton.actualizar"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,12 +105,6 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         });
 
         lNombre.setText("Nombre:");
-
-        tDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDireccionActionPerformed(evt);
-            }
-        });
 
         lDireccion.setText("Dirección:");
 
@@ -212,14 +217,8 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
-
-    }//GEN-LAST:event_tDireccionActionPerformed
-
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
         this.dispose();
-
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -229,20 +228,31 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int cod = Integer.parseInt(tCodigo.getText());
-        Mesero buscarMesero = controladorMesero.read(cod);
-        if (buscarMesero != null) {
-            tCedula.setText(buscarMesero.getCedula());
-            tNombre.setText(buscarMesero.getNombre());
-            tDireccion.setText(buscarMesero.getDireccion());
-            tTelefono.setText(buscarMesero.getTelefono());
-            bActualizar.setEnabled(true);
+        if (tCodigo.getText().equals("") == false) {
+            int cod = Integer.parseInt(tCodigo.getText());
+            Mesero buscarMesero = controladorMesero.read(cod);
+            if (buscarMesero != null) {
+                tCedula.setText(buscarMesero.getCedula());
+                tNombre.setText(buscarMesero.getNombre());
+                tDireccion.setText(buscarMesero.getDireccion());
+                tTelefono.setText(buscarMesero.getTelefono());
+                bActualizar.setEnabled(true);
+            } else {
+                tCedula.setText("");
+                tNombre.setText("");
+                tDireccion.setText("");
+                tTelefono.setText("");
+                JOptionPane.showMessageDialog(this,
+                        nofound = mensajes.getString("option.nomesero"),
+                        bumesero = mensajes.getString("mesero.buscar"),
+                        JOptionPane.WARNING_MESSAGE);
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tCedula.setText("");
             tNombre.setText("");
             tDireccion.setText("");
             tTelefono.setText("");
-            JOptionPane.showMessageDialog(this, "El mesero no existe", "Buscar mesero", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -257,7 +267,9 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
         if (tPassActual.getText().equals(editMesero.getContraseña())) {
             editMesero.setContraseña(tPassNueva.getText());
             controladorMesero.update(editMesero);
-            JOptionPane.showMessageDialog(this, "Mesero actualizado exitosamente!", "Actualizar mesero", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    actmesero = mensajes.getString("option.actmesero"),
+                    titulo.getText(), JOptionPane.INFORMATION_MESSAGE);
             tCodigo.setText("");
             tCedula.setText("");
             tNombre.setText("");
@@ -266,7 +278,10 @@ public class VentanaEditarMesero extends javax.swing.JInternalFrame {
             tPassActual.setText("");
             tPassNueva.setText("");
         } else {
-            JOptionPane.showMessageDialog(this, "Contraseña actual incorrecta", "Cambiar contraseña", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    errorpass = mensajes.getString("option.errorpass"),
+                    pass = mensajes.getString("txt.contraseña"),
+                    JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_bActualizarActionPerformed

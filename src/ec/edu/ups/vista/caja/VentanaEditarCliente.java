@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.caja;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
@@ -22,13 +22,14 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
      * Creates new form VentanaEditarMesero
      */
     public VentanaEditarCliente(ControladorCliente controladorCliente, ResourceBundle mensajes) {
-        
+      
         this.controladorCliente=controladorCliente;
         this.mensajes=mensajes;
-        initComponents();
+          initComponents();
         cambiarIdioma(mensajes);
     }
     public void cambiarIdioma(ResourceBundle mensajes){
+        
         titulo.setText(mensajes.getString("titulo.cliente.editar"));
         bBuscar.setText(mensajes.getString("boton.buscar"));
         lNombre.setText(mensajes.getString("txt.nombre"));
@@ -38,7 +39,6 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
         lEmail.setText(mensajes.getString("txt.correo"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
         bActualizar.setText(mensajes.getString("boton.actualizar"));
-        
         
     }
     /**

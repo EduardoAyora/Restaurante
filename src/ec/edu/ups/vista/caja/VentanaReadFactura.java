@@ -3,16 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.caja;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Factura;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -46,6 +50,36 @@ public class VentanaReadFactura extends javax.swing.JInternalFrame {
         txtCorreo.setText(cliente.getCorreo());
         txtMesa.setText(Integer.toString(cliente.getMesa().getNumeroMesa()));
         llenarTabla();
+
+    }
+    
+    public void cambiarIdioma(ResourceBundle mensajes) {
+
+        lblCodigo.setText(mensajes.getString("cliente.codigo"));
+        lblNumero.setText(mensajes.getString("factura.numero"));
+        lblNombre.setText(mensajes.getString("txt.nombre"));
+        lblCedula.setText(mensajes.getString("factura.cedula"));
+        lblDireccion.setText(mensajes.getString("cliente.direccion"));
+        lblTelefono.setText(mensajes.getString("cliente.telefono"));
+        lblFecha.setText(mensajes.getString("factura.fecha"));
+        lblSubtotal.setText(mensajes.getString("txt.subtotal"));
+        lblIva.setText(mensajes.getString("txt.iva"));
+        lblTotal.setText(mensajes.getString("factura.total"));
+
+        JTableHeader tableHeader = tblDetalles.getTableHeader();
+        TableColumnModel tableColumnModel = tableHeader.getColumnModel();
+        TableColumn tableColumn;
+        tableColumn = tableColumnModel.getColumn(0);
+        tableColumn.setHeaderValue(mensajes.getString("factura.producto.codigo"));
+        tableColumn = tableColumnModel.getColumn(1);
+        tableColumn.setHeaderValue(mensajes.getString("txt.nombre.producto"));
+        tableColumn = tableColumnModel.getColumn(2);
+        tableColumn.setHeaderValue(mensajes.getString("txt.cantidad"));
+        tableColumn = tableColumnModel.getColumn(3);
+        tableColumn.setHeaderValue(mensajes.getString("producto.precio"));
+        tableColumn = tableColumnModel.getColumn(4);
+        tableColumn.setHeaderValue(mensajes.getString("txt.subtotal"));
+        tableHeader.repaint();
 
     }
 

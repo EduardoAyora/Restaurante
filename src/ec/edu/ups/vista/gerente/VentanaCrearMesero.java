@@ -3,47 +3,52 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
-import ec.edu.ups.controlador.ControladorCliente;
-import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.modelo.Mesero;
+import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author DELL
  */
-public class VentanaCrearCliente extends javax.swing.JInternalFrame {
-    
-    private ControladorCliente controladorCliente;
+public class VentanaCrearMesero extends javax.swing.JInternalFrame {
+
+    private ControladorMesero controladorMesero;
     private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String exito;
+
     /**
      * Creates new form VentanaCrearMesero
      */
-    public VentanaCrearCliente(ControladorCliente controladorCliente, ResourceBundle mensajes) {
-        
-        this.controladorCliente=controladorCliente;
-        this.mensajes=mensajes;
+    public VentanaCrearMesero(ControladorMesero controladorMesero, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesero.crear"));
+        this.controladorMesero = controladorMesero;
+        this.mensajes = mensajes;
         initComponents();
-        tCodigo.setText(Integer.toString(this.controladorCliente.getCodigo()));
-        cambiarIdioma(mensajes);
+        cambiarIdiomas(mensajes);
+        tCodigo.setText(String.valueOf(this.controladorMesero.getCod()));
+
     }
- public void cambiarIdioma(ResourceBundle mensajes){
-        titulo.setText(mensajes.getString("titulo.cliente.crear"));
-        lCodigo.setText(mensajes.getString("cliente.codigo"));
-        lNombre.setText(mensajes.getString("txt.nombre"));
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesero.crear"));
+        exito = mensajes.getString("option.exitomesero");
+        lCodigo.setText(mensajes.getString("txt.codigo"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
         lDireccion.setText(mensajes.getString("cliente.direccion"));
         lTelefono.setText(mensajes.getString("cliente.telefono"));
-        lEmail.setText(mensajes.getString("txt.correo"));
-        bCancelar.setText(mensajes.getString("boton.cancelar"));
+        lContrasena.setText(mensajes.getString("txt.contraseña"));
         bCrear.setText(mensajes.getString("boton.crear"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
-        
-        
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,26 +58,28 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titulo = new javax.swing.JLabel();
         lCodigo = new javax.swing.JLabel();
         lCedula = new javax.swing.JLabel();
         lNombre = new javax.swing.JLabel();
         lDireccion = new javax.swing.JLabel();
         lTelefono = new javax.swing.JLabel();
-        lEmail = new javax.swing.JLabel();
+        lContrasena = new javax.swing.JLabel();
         tCodigo = new javax.swing.JTextField();
         tNombre = new javax.swing.JTextField();
         tCedula = new javax.swing.JTextField();
         tTelefono = new javax.swing.JTextField();
         tDireccion = new javax.swing.JTextField();
-        tEmail = new javax.swing.JTextField();
+        tContrasena = new javax.swing.JTextField();
         bCancelar = new javax.swing.JButton();
         bCrear = new javax.swing.JButton();
 
-        titulo.setText(mensajes.getString("titulo.cliente.crear"));
-
         setClosable(true);
         setTitle(titulo.getText());
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lCodigo.setText("Código:");
 
@@ -84,15 +91,9 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
 
         lTelefono.setText("Teléfono:");
 
-        lEmail.setText("E-mail:");
+        lContrasena.setText("Contraseña:");
 
         tCodigo.setEditable(false);
-
-        tDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDireccionActionPerformed(evt);
-            }
-        });
 
         bCancelar.setText("Cancelar");
         bCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,29 +115,33 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lCodigo)
-                    .addComponent(lDireccion)
-                    .addComponent(lNombre)
-                    .addComponent(lTelefono)
-                    .addComponent(lCedula)
-                    .addComponent(lEmail))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                        .addComponent(tDireccion)
-                        .addComponent(tEmail)
-                        .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(lCodigo)
+                        .addGap(18, 18, 18)
+                        .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lContrasena)
+                            .addComponent(lDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lCedula, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(tDireccion)
+                            .addComponent(tTelefono)
+                            .addComponent(tContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bCrear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bCancelar)
-                .addGap(54, 54, 54))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,8 +168,8 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
                     .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lEmail)
-                    .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lContrasena)
+                    .addComponent(tContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCancelar)
@@ -180,36 +185,33 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
-
-    }//GEN-LAST:event_tDireccionActionPerformed
-
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
-        // TODO add your handling code here:
-        Cliente cliente=new Cliente();
-        cliente.setNombre(tNombre.getText());
-        cliente.setCedula(tCedula.getText());
-        cliente.setDireccion(tDireccion.getText());
-        cliente.setTelefono(tTelefono.getText());
-        cliente.setCorreo(tEmail.getText());
-        tNombre.setText("");
+        Mesero mesero = new Mesero();
+        mesero.setCodigo(Integer.parseInt(tCodigo.getText()));
+        mesero.setCedula(tCedula.getText());
+        mesero.setNombre(tNombre.getText());
+        mesero.setDireccion(tDireccion.getText());
+        mesero.setTelefono(tTelefono.getText());
+        mesero.setContraseña(tContrasena.getText());
+        controladorMesero.create(mesero);
+        JOptionPane.showMessageDialog(this, exito = mensajes.getString("option.exitomesero"), titulo.getText(), JOptionPane.OK_OPTION);
+        tCodigo.setText(String.valueOf(this.controladorMesero.getCod()));
         tCedula.setText("");
+        tNombre.setText("");
         tDireccion.setText("");
         tTelefono.setText("");
-        tEmail.setText("");
-        controladorCliente.create(cliente);
-        tCodigo.setText(Integer.toString(this.controladorCliente.getCodigo()));
-        JOptionPane.showMessageDialog(this, mensajes.getString("jptionp.cliente"), "Crear cliente", JOptionPane.OK_OPTION);
+        tContrasena.setText("");
     }//GEN-LAST:event_bCrearActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        // TODO add your handling code here:
-        tNombre.setText("");
-        tCedula.setText("");
-        tDireccion.setText("");
-        tTelefono.setText("");
-        tEmail.setText("");
+        this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -217,16 +219,15 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton bCrear;
     private javax.swing.JLabel lCedula;
     private javax.swing.JLabel lCodigo;
+    private javax.swing.JLabel lContrasena;
     private javax.swing.JLabel lDireccion;
-    private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lTelefono;
     private javax.swing.JTextField tCedula;
     private javax.swing.JTextField tCodigo;
+    private javax.swing.JTextField tContrasena;
     private javax.swing.JTextField tDireccion;
-    private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
-    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

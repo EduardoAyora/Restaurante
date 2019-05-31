@@ -10,6 +10,7 @@ import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Render;
+import ec.edu.ups.vista.VentanaPrincipal;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,9 +29,9 @@ public class VistaMesero extends javax.swing.JFrame {
 
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
-    private AbrirMesa abrirMesa;
+    public static AbrirMesa abrirMesa;
     private Mesero mesero;
-    private VistaMesa vistaMesa;
+    public static VistaMesa vistaMesa;
     private ResourceBundle mensajes;
 
     /**
@@ -177,6 +178,14 @@ public class VistaMesero extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void reiniciar(){
+        
+        VentanaPrincipal.usuarioMesero.vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
+        VentanaPrincipal.usuarioMesero.vistaMesero.setVisible(true);
+        this.dispose();
+        
+    }
+    
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         if (abrirMesa == null || abrirMesa.isVisible() == false) {
@@ -227,6 +236,9 @@ public class VistaMesero extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblMesasMouseClicked
 
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevo;

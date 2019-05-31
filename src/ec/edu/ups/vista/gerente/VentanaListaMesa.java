@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
@@ -22,9 +22,9 @@ import javax.swing.table.TableColumnModel;
  */
 public class VentanaListaMesa extends javax.swing.JInternalFrame {
 
-    ControladorMesa controladorMesa;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorMesa controladorMesa;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
 
     /**
      * Creates new form VentanaListaMesa
@@ -49,6 +49,7 @@ public class VentanaListaMesa extends javax.swing.JInternalFrame {
         tableColumn.setHeaderValue(mensajes.getString("txt.capacidad"));
         tableHeader.repaint();
     }
+
     public void llenarDatos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaMesero.getModel();
         List<Mesa> lista = controladorMesa.getLista();

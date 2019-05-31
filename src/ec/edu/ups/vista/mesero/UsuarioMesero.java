@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.vista.mesero;
 
+import com.sun.glass.events.KeyEvent;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorMesero;
 import ec.edu.ups.controlador.ControladorProducto;
@@ -21,7 +22,7 @@ public class UsuarioMesero extends javax.swing.JFrame {
     private ControladorMesero controladorMesero;
     private ControladorMesa controladorMesa;
     private ControladorProducto controladorProducto;
-    private VistaMesero vistaMesero;
+    public static VistaMesero vistaMesero;
     private ResourceBundle mensajes;
 
     /**
@@ -90,6 +91,12 @@ public class UsuarioMesero extends javax.swing.JFrame {
 
         lblMesero.setText("Mesero:");
 
+        txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraseñaKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,22 +145,24 @@ public class UsuarioMesero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        
-        String pass = "";
-        char[] password = txtContraseña.getPassword();
-        for (int i = 0; i < password.length; i++) {
-            pass += password[i];
-        }
-        int codigo = Integer.parseInt(txtCodigo.getText());
-        Mesero mesero = controladorMesero.read(codigo);
-        if (pass.equals(mesero.getContraseña())) {
-            JOptionPane.showMessageDialog(null, "Bienvenido", "Contraseña correcta", JOptionPane.INFORMATION_MESSAGE);
-            vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
-            vistaMesero.setVisible(true);
-            this.dispose();
+        if (txtCodigo.getText().equals("") == false) {
+            String pass = "";
+            char[] password = txtContraseña.getPassword();
+            for (int i = 0; i < password.length; i++) {
+                pass += password[i];
+            }
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            Mesero mesero = controladorMesero.read(codigo);
+            if (pass.equals(mesero.getContraseña())) {
+                JOptionPane.showMessageDialog(null, "Bienvenido", "Contraseña correcta", JOptionPane.INFORMATION_MESSAGE);
+                vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
+                vistaMesero.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "Contraseña incorrecta", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "Contraseña incorrecta", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -165,6 +174,33 @@ public class UsuarioMesero extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCodigoFocusLost
 
+    private void txtContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (txtCodigo.getText().equals("") == false) {
+                String pass = "";
+                char[] password = txtContraseña.getPassword();
+                for (int i = 0; i < password.length; i++) {
+                    pass += password[i];
+                }
+                int codigo = Integer.parseInt(txtCodigo.getText());
+                Mesero mesero = controladorMesero.read(codigo);
+                if (pass.equals(mesero.getContraseña())) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido", "Contraseña correcta", JOptionPane.INFORMATION_MESSAGE);
+                    vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
+                    vistaMesero.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "Contraseña incorrecta", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_txtContraseñaKeyPressed
+
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

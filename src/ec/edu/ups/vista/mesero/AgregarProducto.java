@@ -12,6 +12,7 @@ import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.Render;
+import ec.edu.ups.vista.VentanaPrincipal;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.swing.JButton;
@@ -148,6 +149,9 @@ public class AgregarProducto extends javax.swing.JFrame {
         return contador;
     }
 
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -308,8 +312,8 @@ public class AgregarProducto extends javax.swing.JFrame {
 
     private void btnListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListoActionPerformed
         // TODO add your handling code here:
-        VistaMesa vistaMesa = new VistaMesa(mesa, mesero, controladorMesa, controladorProducto, mensajes);
-        vistaMesa.setVisible(true);
+        VentanaPrincipal.usuarioMesero.vistaMesero.vistaMesa = new VistaMesa(mesa, mesero, controladorMesa, controladorProducto, mensajes);
+        VentanaPrincipal.usuarioMesero.vistaMesero.vistaMesa.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnListoActionPerformed
 

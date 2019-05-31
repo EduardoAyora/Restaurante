@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorMesero;
@@ -57,6 +57,7 @@ public class VistaGerente extends javax.swing.JFrame {
     }
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("gerente.gestion"));
         menMesa.setText(mensajes.getString("txt.mesa"));
         menMesero.setText(mensajes.getString("txt.mesero"));
         menProduct.setText(mensajes.getString("vista.producto"));
@@ -75,7 +76,56 @@ public class VistaGerente extends javax.swing.JFrame {
         opListMe.setText(mensajes.getString("vista.item.listar"));
         opListP.setText(mensajes.getString("vista.item.listar"));
         opListMesa.setText(mensajes.getString("vista.item.listar"));
-        titulo.setText(mensajes.getString("gerente.gestion"));
+        comprobaciones();
+    }
+
+    public void comprobaciones() {
+
+        if (vcm != null && vcm.isVisible()) {
+            vcm.cambiarIdiomas(mensajes);
+        }
+        if (vem != null && vem.isVisible()) {
+            vem.cambiarIdiomas(mensajes);
+        }
+        if (vbm != null && vbm.isVisible()) {
+            vbm.cambiarIdiomas(mensajes);
+        }
+        if (vem1 != null && vem1.isVisible()) {
+            vem1.cambiarIdiomas(mensajes);
+        }
+        if (vlm != null && vlm.isVisible()) {
+            vlm.cambiarIdiomas(mensajes);
+        }
+        if (vcp != null && vcp.isVisible()) {
+            vcp.cambiarIdiomas(mensajes);
+        }
+        if (vbp != null && vbp.isVisible()) {
+            vbp.cambiarIdiomas(mensajes);
+        }
+        if (vep != null && vep.isVisible()) {
+            vep.cambiarIdiomas(mensajes);
+        }
+        if (vep1 != null && vep1.isVisible()) {
+            vep1.cambiarIdiomas(mensajes);
+        }
+        if (vlp != null && vlp.isVisible()) {
+            vlp.cambiarIdiomas(mensajes);
+        }
+        if (vcm1 != null && vcm1.isVisible()) {
+            vcm1.cambiarIdiomas(mensajes);
+        }
+        if (vbm1 != null && vbm1.isVisible()) {
+            vbm1.cambiarIdiomas(mensajes);
+        }
+        if (vem2 != null && vem2.isVisible()) {
+            vem2.cambiarIdiomas(mensajes);
+        }
+        if (vem3 != null && vem3.isVisible()) {
+            vem3.cambiarIdiomas(mensajes);
+        }
+        if (vlm1 != null && vlm1.isVisible()) {
+            vlm1.cambiarIdiomas(mensajes);
+        }
     }
 
     /**
@@ -492,6 +542,9 @@ public class VistaGerente extends javax.swing.JFrame {
         vlm1.toFront();
     }//GEN-LAST:event_opListMesaActionPerformed
 
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane jDesktopPane1;

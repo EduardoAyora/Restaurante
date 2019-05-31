@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.controlador.ControladorMesero;
@@ -22,9 +22,9 @@ import javax.swing.table.TableColumnModel;
  */
 public class VentanaListaMesero extends javax.swing.JInternalFrame {
 
-    ControladorMesero controladorMesero;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorMesero controladorMesero;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
 
     /**
      * Creates new form VentanaListaMesero

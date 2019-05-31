@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.caja;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
@@ -38,7 +38,7 @@ public class VentanaListaCliente extends javax.swing.JInternalFrame {
         cambiarIdioma(mensajes);
     }
      public void cambiarIdioma(ResourceBundle mensajes) {
-        titulo.setText(mensajes.getString("titulo.cliente.listar"));
+        //titulo.setText(mensajes.getString("factura.lista"));
         JTableHeader tableHeader = tblCliente.getTableHeader();
         TableColumnModel tableColumnModel = tableHeader.getColumnModel();
         TableColumn tableColumn;

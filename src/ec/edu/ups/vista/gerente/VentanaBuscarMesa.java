@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
@@ -18,9 +18,10 @@ import javax.swing.JOptionPane;
  */
 public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
 
-    ControladorMesa controladorMesa;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorMesa controladorMesa;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
 
     /**
      * Creates new form VentanaBuscarMesa
@@ -35,6 +36,7 @@ public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
 
     public void cambiarIdiomas(ResourceBundle mensajes) {
         titulo.setText(mensajes.getString("mesa.buscar"));
+        nofound = mensajes.getString("option.nomesa");
         lNumero.setText(mensajes.getString("txt.numero.mesa"));
         lCapacidad.setText(mensajes.getString("txt.capacidad"));
         bBuscar.setText(mensajes.getString("boton.buscar"));
@@ -128,20 +130,23 @@ public class VentanaBuscarMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
         this.dispose();
-
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int cod = Integer.parseInt(tNumero.getText());
-        Mesa buscarMesa = controladorMesa.read(cod);
-        if (buscarMesa != null) {
-            tCapacidad.setText(String.valueOf(buscarMesa.getCapacidad()));
+        if (tNumero.getText().equals("") == false) {
+            int cod = Integer.parseInt(tNumero.getText());
+            Mesa buscarMesa = controladorMesa.read(cod);
+            if (buscarMesa != null) {
+                tCapacidad.setText(String.valueOf(buscarMesa.getCapacidad()));
+            } else {
+                tNumero.setText("");
+                tCapacidad.setText("");
+                JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
+            }
         } else {
-            tNumero.setText("");
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tCapacidad.setText("");
-            JOptionPane.showMessageDialog(this, "La mesa no existe", "Buscar mesa", JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_bBuscarActionPerformed

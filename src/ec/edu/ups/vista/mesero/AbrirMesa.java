@@ -9,6 +9,7 @@ import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
+import ec.edu.ups.vista.VentanaPrincipal;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,10 +40,19 @@ public class AbrirMesa extends javax.swing.JFrame {
         this.mensajes = mensajes;
         cambiarIdioma(mensajes);
     }
-    
-    public void cambiarIdioma(ResourceBundle mensajes){
-        
+
+    public void cambiarIdioma(ResourceBundle mensajes) {
+
         btnCancelar.setText(mensajes.getString("btn.cancelar"));
+
+    }
+    
+    public void reiniciar(){
+        
+        VentanaPrincipal.usuarioMesero.vistaMesero.abrirMesa = new AbrirMesa(mensajes);
+        VentanaPrincipal.usuarioMesero.vistaMesero.abrirMesa.setVisible(true);
+        VentanaPrincipal.usuarioMesero.vistaMesero.abrirMesa.setMesas(controladorMesa, mesero, controladorProducto);
+        this.dispose();
         
     }
 
@@ -57,7 +67,7 @@ public class AbrirMesa extends javax.swing.JFrame {
         Font fuente = new Font("arial", Font.PLAIN, 35);
         for (int i = 0; i < controladorMesa.getLista().size(); i++) {
             if (controladorMesa.getLista().get(i).isMesaAbierta()) {
-                JButton btn = new JButton(mensajes.getString("txt.mesa") + " " 
+                JButton btn = new JButton(mensajes.getString("txt.mesa") + " "
                         + Integer.toString(controladorMesa.getLista().get(i).getNumeroMesa()));
                 btn.setName(Integer.toString(i));
                 btn.setFont(fuente);
@@ -70,8 +80,8 @@ public class AbrirMesa extends javax.swing.JFrame {
                         mesa.setMesaAbierta(false);
                         mesero.getMesas().add(mesa);
                         mesa.setMesero(mesero);
-                        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
-                        vistaMesero.setVisible(true);
+                        VentanaPrincipal.usuarioMesero.vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
+                        VentanaPrincipal.usuarioMesero.vistaMesero.setVisible(true);
                         dispose();
                     }
                 });
@@ -80,6 +90,10 @@ public class AbrirMesa extends javax.swing.JFrame {
             }
         }
         panel.updateUI();
+    }
+
+    public void setMensajes(ResourceBundle mensajes) {
+        this.mensajes = mensajes;
     }
 
     /**
@@ -136,8 +150,8 @@ public class AbrirMesa extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        VistaMesero vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
-        vistaMesero.setVisible(true);
+        VentanaPrincipal.usuarioMesero.vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
+        VentanaPrincipal.usuarioMesero.vistaMesero.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

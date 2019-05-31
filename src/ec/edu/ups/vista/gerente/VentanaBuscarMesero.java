@@ -3,45 +3,49 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
-import ec.edu.ups.controlador.ControladorCliente;
-import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.controlador.ControladorMesero;
+import ec.edu.ups.modelo.Mesero;
 import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author DELL
  */
-public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
+public class VentanaBuscarMesero extends javax.swing.JInternalFrame {
 
-    private ControladorCliente controladorCliente;
+    private ControladorMesero controladorMesero;
     private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String nofound;
 
     /**
      * Creates new form VentanaBuscarMesero
      */
-    public VentanaBuscarCliente(ControladorCliente controladorCliente,ResourceBundle mensajes) {
-       
-        this.controladorCliente = controladorCliente;
-        this.mensajes=mensajes;
+    public VentanaBuscarMesero(ControladorMesero controladorMesero, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesero.buscar"));
         initComponents();
-        cambiarIdioma(mensajes);
+        this.controladorMesero = controladorMesero;
+        this.mensajes = mensajes;
+        cambiarIdiomas(mensajes);
     }
-     public void cambiarIdioma(ResourceBundle mensajes){
-        
-        titulo.setText(mensajes.getString("titulo.cliente.buscar"));   
-        lNombre.setText(mensajes.getString("txt.nombre"));
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        titulo.setText(mensajes.getString("mesero.buscar"));
+        nofound = mensajes.getString("option.nomesero");
+        lCodigo.setText(mensajes.getString("txt.codigo"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
+        lNombre.setText(mensajes.getString("txt.nombre"));
         lDireccion.setText(mensajes.getString("cliente.direccion"));
         lTelefono.setText(mensajes.getString("cliente.telefono"));
-        lEmail.setText(mensajes.getString("txt.correo"));
-        bCancelar.setText(mensajes.getString("boton.cancelar"));
         bBuscar.setText(mensajes.getString("boton.buscar"));
-        
-        
+        bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +55,8 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titulo = new javax.swing.JLabel();
+        tCodigo = new javax.swing.JTextField();
+        lCodigo = new javax.swing.JLabel();
         tCedula = new javax.swing.JTextField();
         lCedula = new javax.swing.JLabel();
         lNombre = new javax.swing.JLabel();
@@ -62,11 +67,6 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
         tNombre = new javax.swing.JTextField();
         bBuscar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
-        lEmail = new javax.swing.JLabel();
-        tEmail = new javax.swing.JTextField();
-
-        titulo.setText(mensajes.getString("titulo.cliente.buscar")
-        );
 
         setClosable(true);
         setTitle(titulo.getText());
@@ -76,6 +76,8 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        lCodigo.setText("Código:");
+
         lCedula.setText("Cédula:");
 
         lNombre.setText("Nombre:");
@@ -84,16 +86,11 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
 
         lTelefono.setText("Teléfono:");
 
-        tTelefono.setEditable(false);
-
-        tDireccion.setEditable(false);
         tDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tDireccionActionPerformed(evt);
             }
         });
-
-        tNombre.setEditable(false);
 
         bBuscar.setText("Buscar");
         bBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,10 +106,6 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        lEmail.setText("E-mail:");
-
-        tEmail.setEditable(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,42 +113,45 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(lCodigo)
+                                .addGap(18, 18, 18)
+                                .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(bBuscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lNombre, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lCedula, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(tNombre)
-                                        .addComponent(tDireccion)
-                                        .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(bBuscar))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lEmail)
-                                .addGap(18, 18, 18)
-                                .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tNombre)
+                                    .addComponent(tDireccion)
+                                    .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bCancelar)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lCodigo)
+                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCedula)
-                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bBuscar))
+                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lNombre)
@@ -168,11 +164,7 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lTelefono)
                     .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lEmail)
-                    .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bCancelar)
                 .addContainerGap())
         );
@@ -185,23 +177,36 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        tNombre.setText("");
-        tCedula.setText("");
-        tDireccion.setText("");
-        tTelefono.setText("");
-        tEmail.setText("");
-        
+
+        this.dispose();
 
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        // TODO add your handling code here:
-        String cedula = tCedula.getText();
-        Cliente cliente = controladorCliente.readCedula(cedula);
-        tNombre.setText(cliente.getNombre());
-        tDireccion.setText(cliente.getDireccion());
-        tTelefono.setText(cliente.getTelefono());
-        tEmail.setText(cliente.getCorreo());
+        if (tCodigo.getText().equals("") == false) {
+            int cod = Integer.parseInt(tCodigo.getText());
+            Mesero buscarMesero = controladorMesero.read(cod);
+            if (buscarMesero != null) {
+                tCedula.setText(buscarMesero.getCedula());
+                tNombre.setText(buscarMesero.getNombre());
+                tDireccion.setText(buscarMesero.getDireccion());
+                tTelefono.setText(buscarMesero.getTelefono());
+            } else {
+                tCodigo.setText("");
+                tCedula.setText("");
+                tNombre.setText("");
+                tDireccion.setText("");
+                tTelefono.setText("");
+                JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesero"), titulo.getText(), JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+            tCedula.setText("");
+            tNombre.setText("");
+            tDireccion.setText("");
+            tTelefono.setText("");
+        }
+
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -215,15 +220,14 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton bBuscar;
     private javax.swing.JButton bCancelar;
     private javax.swing.JLabel lCedula;
+    private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDireccion;
-    private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lTelefono;
     private javax.swing.JTextField tCedula;
+    private javax.swing.JTextField tCodigo;
     private javax.swing.JTextField tDireccion;
-    private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
-    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

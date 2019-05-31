@@ -3,47 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.caja;
 
-import ec.edu.ups.controlador.ControladorMesero;
-import ec.edu.ups.modelo.Mesero;
-import java.awt.event.KeyEvent;
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.modelo.Cliente;
 import java.util.ResourceBundle;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author DELL
  */
-public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
-
-    ControladorMesero controladorMesero;
-    ResourceBundle mensajes;
-    JLabel titulo;
-
+public class VentanaEliminarCliente extends javax.swing.JInternalFrame {
+     private ControladorCliente controladorCliente;
+     private ResourceBundle mensajes;
     /**
      * Creates new form VentanaEliminarMesero
      */
-    public VentanaEliminarMesero(ControladorMesero controladorMesero, ResourceBundle mensajes) {
-        titulo = new JLabel(mensajes.getString("mesero.eliminar"));
+    public VentanaEliminarCliente(ControladorCliente controladorCliente,ResourceBundle mensajes) {
+        
+        this.controladorCliente=controladorCliente;
+        this.mensajes=mensajes;
         initComponents();
-        this.controladorMesero = controladorMesero;
-        this.mensajes = mensajes;
-        cambiarIdiomas(mensajes);
-        bEliminar.setEnabled(false);
+        cambiarIdioma(mensajes);
     }
-
-    public void cambiarIdiomas(ResourceBundle mensajes) {
-        titulo.setText(mensajes.getString("mesero.eliminar"));
-        lCodigo.setText(mensajes.getString("txt.codigo"));
-        lCedula.setText(mensajes.getString("cliente.cedula"));
+   public void cambiarIdioma(ResourceBundle mensajes){
+        
+        titulo.setText(mensajes.getString("titulo.cliente.eliminar")); 
+        bBuscar.setText(mensajes.getString("boton.eliminar"));
         lNombre.setText(mensajes.getString("txt.nombre"));
+        lCedula.setText(mensajes.getString("cliente.cedula"));
         lDireccion.setText(mensajes.getString("cliente.direccion"));
         lTelefono.setText(mensajes.getString("cliente.telefono"));
-        bEliminar.setText(mensajes.getString("boton.eliminar"));
-        bBuscar.setText(mensajes.getString("boton.buscar"));
+        lEmail.setText(mensajes.getString("txt.correo"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
+        bEliminar.setText(mensajes.getString("boton.eliminar"));
+        
+        
+        
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,8 +52,7 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tCodigo = new javax.swing.JTextField();
-        lCodigo = new javax.swing.JLabel();
+        titulo = new javax.swing.JLabel();
         lCedula = new javax.swing.JLabel();
         tCedula = new javax.swing.JTextField();
         bBuscar = new javax.swing.JButton();
@@ -67,15 +64,13 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
         tTelefono = new javax.swing.JTextField();
         bCancelar = new javax.swing.JButton();
         bEliminar = new javax.swing.JButton();
+        lEmail = new javax.swing.JLabel();
+        tEmail = new javax.swing.JTextField();
 
+        titulo.setText(mensajes.getString("titulo.cliente.eliminar"));
+
+        setClosable(true);
         setTitle(titulo.getText());
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
-
-        lCodigo.setText("Código:");
 
         lCedula.setText("Cédula:");
 
@@ -112,54 +107,47 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
             }
         });
 
+        lEmail.setText("E-mail:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bCancelar)
+                .addGap(39, 39, 39))
             .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lDireccion)
+                    .addComponent(lNombre)
+                    .addComponent(lTelefono)
+                    .addComponent(lCedula)
+                    .addComponent(lEmail))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                        .addComponent(tDireccion)
+                        .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(lCodigo)
-                                .addGap(18, 18, 18)
-                                .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(bBuscar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lCedula, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                    .addComponent(tDireccion)
-                                    .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bCancelar)))
-                .addContainerGap())
+                        .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bBuscar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lCodigo)
-                    .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCedula)
-                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lNombre)
@@ -172,7 +160,11 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lTelefono)
                     .addComponent(tTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lEmail)
+                    .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCancelar)
                     .addComponent(bEliminar))
@@ -187,44 +179,37 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tDireccionActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-
-        this.dispose();
-
+        // TODO add your handling code here:
+        tNombre.setText("");
+        tCedula.setText("");
+        tDireccion.setText("");
+        tTelefono.setText("");
+        lEmail.setText("");
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
-        int cod = Integer.parseInt(tCodigo.getText());
-        controladorMesero.delete(cod);
-        JOptionPane.showMessageDialog(this, "Mesero eliminado exitosamente!", "Eliminar mesero", JOptionPane.YES_OPTION);
+        // TODO add your handling code here:
+          String cedula = tCedula.getText();
+        Cliente cliente = controladorCliente.readCedula(cedula);
+        int codigo = cliente.getCodigo();
+        controladorCliente.delete(codigo);
         tCedula.setText("");
         tNombre.setText("");
         tDireccion.setText("");
+        tEmail.setText("");
         tTelefono.setText("");
-
+        JOptionPane.showMessageDialog(this, "Cliente Eliminado exitosamente", "Eliminar cliente", JOptionPane.OK_OPTION);
     }//GEN-LAST:event_bEliminarActionPerformed
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_formKeyPressed
-
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int cod = Integer.parseInt(tCodigo.getText());
-        Mesero buscarMesero = controladorMesero.read(cod);
-        if (buscarMesero != null) {
-            tCedula.setText(buscarMesero.getCedula());
-            tNombre.setText(buscarMesero.getNombre());
-            tDireccion.setText(buscarMesero.getDireccion());
-            tTelefono.setText(buscarMesero.getTelefono());
-            bEliminar.setEnabled(true);
-        } else {
-            tCedula.setText("");
-            tNombre.setText("");
-            tDireccion.setText("");
-            tTelefono.setText("");
-            JOptionPane.showMessageDialog(this, "El mesero no existe", "Buscar mesero", JOptionPane.WARNING_MESSAGE);
-        }
+        // TODO add your handling code here:
+        String cedula=tCedula.getText();
+        Cliente cliente=controladorCliente.readCedula(cedula);
+        tNombre.setText(cliente.getNombre());
+        tDireccion.setText(cliente.getDireccion());
+        tTelefono.setText(cliente.getTelefono());
+        tEmail.setText(cliente.getTelefono());
+        
     }//GEN-LAST:event_bBuscarActionPerformed
 
 
@@ -233,14 +218,15 @@ public class VentanaEliminarMesero extends javax.swing.JInternalFrame {
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bEliminar;
     private javax.swing.JLabel lCedula;
-    private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lDireccion;
+    private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lTelefono;
     private javax.swing.JTextField tCedula;
-    private javax.swing.JTextField tCodigo;
     private javax.swing.JTextField tDireccion;
+    private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

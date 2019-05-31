@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.caja;
 
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.modelo.Detalle;
@@ -26,7 +26,7 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
 
     private ControladorFactura controladorFactura;
     private ResourceBundle mensajes;
-    private VentanaReadFactura ventanaReadFactura;
+    public static VentanaReadFactura ventanaReadFactura;
 
     /**
      * Creates new form ListarClientes

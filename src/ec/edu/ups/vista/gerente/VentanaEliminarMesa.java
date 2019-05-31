@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Mesa;
@@ -16,30 +16,36 @@ import javax.swing.JOptionPane;
  *
  * @author DELL
  */
-public class VentanaEditarMesa extends javax.swing.JInternalFrame {
-    
-    ControladorMesa controladorMesa;
-    ResourceBundle mensajes;
-    JLabel titulo;
+public class VentanaEliminarMesa extends javax.swing.JInternalFrame {
+
+    private ControladorMesa controladorMesa;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
+    private String bumesa;
+    private String nofound;
+    private String elimesa;
 
     /**
-     * Creates new form VentanaEditarMesa
+     * Creates new form VentanaEliminarMesa
      */
-    public VentanaEditarMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
-        titulo = new JLabel(mensajes.getString("mesa.editar"));
+    public VentanaEliminarMesa(ControladorMesa controladorMesa, ResourceBundle mensajes) {
+        titulo = new JLabel(mensajes.getString("mesa.eliminar"));
         initComponents();
         this.controladorMesa = controladorMesa;
         this.mensajes = mensajes;
         cambiarIdiomas(mensajes);
-        bActualizar.setEnabled(false);
+        bEliminar.setEnabled(false);
     }
-    
+
     public void cambiarIdiomas(ResourceBundle mensajes) {
-        titulo.setText(mensajes.getString("mesa.editar"));
+        titulo.setText(mensajes.getString("mesa.eliminar"));
+        bumesa = mensajes.getString("mesa.buscar");
+        nofound = mensajes.getString("option.nomesa");
+        elimesa = mensajes.getString("option.elimesa");
         lNumero.setText(mensajes.getString("txt.numero.mesa"));
         lCapacidad.setText(mensajes.getString("txt.capacidad"));
         bBuscar.setText(mensajes.getString("boton.buscar"));
-        bActualizar.setText(mensajes.getString("boton.actualizar"));
+        bEliminar.setText(mensajes.getString("boton.eliminar"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
     }
 
@@ -58,9 +64,8 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
         tCapacidad = new javax.swing.JTextField();
         bBuscar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
-        bActualizar = new javax.swing.JButton();
+        bEliminar = new javax.swing.JButton();
 
-        setClosable(true);
         setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -86,10 +91,10 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
             }
         });
 
-        bActualizar.setText("Actualizar");
-        bActualizar.addActionListener(new java.awt.event.ActionListener() {
+        bEliminar.setText("Eliminar");
+        bEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bActualizarActionPerformed(evt);
+                bEliminarActionPerformed(evt);
             }
         });
 
@@ -100,23 +105,23 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(bActualizar)
-                        .addGap(18, 18, 18)
-                        .addComponent(bCancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lNumero)
                             .addComponent(lCapacidad))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(bBuscar))
-                            .addComponent(tCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(tCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bCancelar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -134,7 +139,7 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCancelar)
-                    .addComponent(bActualizar))
+                    .addComponent(bEliminar))
                 .addContainerGap())
         );
 
@@ -142,45 +147,48 @@ public class VentanaEditarMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        
         this.dispose();
-
     }//GEN-LAST:event_bCancelarActionPerformed
 
+    private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
+        int cod = Integer.parseInt(tNumero.getText());
+        controladorMesa.delete(cod);
+        JOptionPane.showMessageDialog(this,
+                elimesa = mensajes.getString("option.elimesa"),
+                titulo.getText(), JOptionPane.YES_OPTION);
+        tNumero.setText("");
+        tCapacidad.setText("");
+
+    }//GEN-LAST:event_bEliminarActionPerformed
+
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE && this.isFocusOwner()) {
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             this.dispose();
         }
     }//GEN-LAST:event_formKeyPressed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        int cod = Integer.parseInt(tNumero.getText());
-        Mesa buscarMesa = controladorMesa.read(cod);
-        if (buscarMesa != null) {
-            tCapacidad.setText(String.valueOf(buscarMesa.getCapacidad()));
-            bActualizar.setEnabled(true);
+        if (tNumero.getText().equals("") == false) {
+            int cod = Integer.parseInt(tNumero.getText());
+            Mesa buscarMesa = controladorMesa.read(cod);
+            if (buscarMesa != null) {
+                tCapacidad.setText(String.valueOf(buscarMesa.getCapacidad()));
+                bEliminar.setEnabled(true);
+            } else {
+                tCapacidad.setText("");
+                JOptionPane.showMessageDialog(this, nofound = mensajes.getString("option.nomesa"), bumesa = mensajes.getString("mesa.buscar"), JOptionPane.WARNING_MESSAGE);
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
             tCapacidad.setText("");
-            JOptionPane.showMessageDialog(this, "La mesa no existe", "Buscar mesa", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
 
-    private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
-        int cod = Integer.parseInt(tNumero.getText());
-        Mesa editMesa = controladorMesa.read(cod);
-        editMesa.setNumeroMesa(Integer.parseInt(tNumero.getText()));
-        editMesa.setCapacidad(Integer.parseInt(tCapacidad.getText()));
-        controladorMesa.update(editMesa);
-        JOptionPane.showMessageDialog(this, "Mesa actualizada exitosamente!", "Actualizar mesa", JOptionPane.INFORMATION_MESSAGE);
-        tNumero.setText("");
-        tCapacidad.setText("");
-    }//GEN-LAST:event_bActualizarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bActualizar;
     private javax.swing.JButton bBuscar;
     private javax.swing.JButton bCancelar;
+    private javax.swing.JButton bEliminar;
     private javax.swing.JLabel lCapacidad;
     private javax.swing.JLabel lNumero;
     private javax.swing.JTextField tCapacidad;

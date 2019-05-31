@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.vista;
+package ec.edu.ups.vista.gerente;
 
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Producto;
@@ -22,9 +22,9 @@ import javax.swing.table.TableColumnModel;
  */
 public class VentanaListaProducto extends javax.swing.JInternalFrame {
 
-    ControladorProducto controladorProducto;
-    ResourceBundle mensajes;
-    JLabel titulo;
+    private ControladorProducto controladorProducto;
+    private ResourceBundle mensajes;
+    private JLabel titulo;
 
     /**
      * Creates new form VentanaListaProducto
