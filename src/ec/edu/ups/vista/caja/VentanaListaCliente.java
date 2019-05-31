@@ -80,12 +80,15 @@ public class VentanaListaCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         tablaCliente = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
 
+        titulo.setText(mensajes.getString("titulo.cliente.listar"));
+
         setClosable(true);
         setMaximizable(true);
-        setTitle("Lista de clientes");
+        setTitle(titulo.getText());
 
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,5 +132,6 @@ public class VentanaListaCliente extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane tablaCliente;
     private javax.swing.JTable tblCliente;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

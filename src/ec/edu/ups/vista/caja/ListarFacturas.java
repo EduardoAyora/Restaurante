@@ -79,7 +79,7 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
         tableColumn = tableColumnModel.getColumn(1);
         tableColumn.setHeaderValue(mensajes.getString("factura.fecha"));
         tableColumn = tableColumnModel.getColumn(2);
-        tableColumn.setHeaderValue(mensajes.getString("factura.cliente"));
+        tableColumn.setHeaderValue(mensajes.getString("vista.cliente"));
         tableColumn = tableColumnModel.getColumn(3);
         tableColumn.setHeaderValue(mensajes.getString("txt.subtotal"));
         tableColumn = tableColumnModel.getColumn(4);

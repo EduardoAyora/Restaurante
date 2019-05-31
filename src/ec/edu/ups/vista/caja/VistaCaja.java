@@ -38,18 +38,21 @@ public class VistaCaja extends javax.swing.JFrame {
      * Creates new form VistaCaja
      */
     public VistaCaja(ControladorFactura controladorFactura, ControladorCliente controladorCliente, ControladorMesa controladorMesa, ResourceBundle mensajes) {
-        initComponents();
-        jDesktopPane1.setBorder(new ImagenFondoCaja());
-        this.setExtendedState(VistaCaja.MAXIMIZED_BOTH);
+        
+        
         this.controladorFactura = controladorFactura;
         this.controladorCliente = controladorCliente;
         this.controladorMesa = controladorMesa;
         this.mensajes = mensajes;
+        initComponents();
+        jDesktopPane1.setBorder(new ImagenFondoCaja());
+        this.setExtendedState(VistaCaja.MAXIMIZED_BOTH);
         cambiarIdioma(mensajes);
     }
 
     public void cambiarIdioma(ResourceBundle mensajes){
         
+        titulo.setText(mensajes.getString("vista.caja.titulo")); 
         menMesero1.setText(mensajes.getString("vista.cliente"));
         menMesero2.setText(mensajes.getString("vista.factura"));
         opCrearCli.setText(mensajes.getString("vista.item.crear"));
@@ -107,6 +110,7 @@ public class VistaCaja extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menMesero1 = new javax.swing.JMenu();
@@ -119,7 +123,9 @@ public class VistaCaja extends javax.swing.JFrame {
         opCrearFac = new javax.swing.JMenuItem();
         opListFac = new javax.swing.JMenuItem();
 
-        setTitle("Gestión de Caja");
+        titulo.setText(mensajes.getString("vista.caja.titulo"));
+
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -328,5 +334,6 @@ public class VistaCaja extends javax.swing.JFrame {
     private javax.swing.JMenuItem opListFac;
     private javax.swing.JMenuItem opReadCli;
     private javax.swing.JMenuItem opUpdateCli;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

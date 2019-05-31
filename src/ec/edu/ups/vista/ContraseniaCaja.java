@@ -28,6 +28,10 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     private VentanaCrearFactura crearFactura;
     private ClaveCaja claveCaja;
     private ResourceBundle mensajes;
+    private String aprob;
+    private String deneg;
+    private String bienvenido;
+    private String errorPass;
 
     /**
      * Creates new form Contrasenia
@@ -47,11 +51,18 @@ public class ContraseniaCaja extends javax.swing.JFrame {
         cambiarIdiomas(mensajes);
 
     }
-
-    public void cambiarIdiomas(ResourceBundle mensajes) {
-        jLabel1.setText(mensajes.getString("txt.contraseña"));
+    
+    public  void cambiarIdiomas(ResourceBundle mensajes){
+        lContrasenia.setText(mensajes.getString("txt.contraseña"));
         btnIngresar.setText(mensajes.getString("boton.ingresar"));
-
+         //titulo.setText(mensajes.getString("txt.contraseña"));
+        //lContrasena.setText(mensajes.getString("txt.contraseña"));
+        btnIngresar.setText(mensajes.getString("boton.ingresar"));
+        aprob = mensajes.getString("btn.aceptar");
+        deneg = mensajes.getString("btn.aceptar");
+        bienvenido = mensajes.getString("jptionp.contrasenia");
+        errorPass = mensajes.getString("jptionp.contrasenia.error");
+        
     }
 
     /**
@@ -65,7 +76,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
 
         JpassClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lContrasenia = new javax.swing.JLabel();
 
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -86,7 +97,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Contraseña:");
+        lContrasenia.setText("Contraseña:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,7 +105,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lContrasenia)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -107,7 +118,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JpassClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(lContrasenia))
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addGap(22, 22, 22))
@@ -128,15 +139,17 @@ public class ContraseniaCaja extends javax.swing.JFrame {
 
         if (clavedef.equals(claveCaja.getClave())) {
             this.dispose();
-            JOptionPane.showMessageDialog(null, bienvenido = mensajes.getString("option.bienvenido"), aprob = mensajes.getString("option.aprobado"), JOptionPane.INFORMATION_MESSAGE);
-
+            JOptionPane.showMessageDialog(null,bienvenido = mensajes.getString("jptionp.contrasenia"), 
+                    aprob = mensajes.getString("btn.aceptar"), JOptionPane.INFORMATION_MESSAGE);
+            
             vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa, mensajes);
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
             VentanaPrincipal.vistaCaja = this.vistaCaja;
 
         } else {
-            JOptionPane.showMessageDialog(null, errorPass = mensajes.getString("option.errorpass"), deneg = mensajes.getString("option.denegado"), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, errorPass = mensajes.getString("jptionp.contrasenia.error"), 
+                    deneg = mensajes.getString("btn.aceptar"), JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnIngresarActionPerformed
@@ -172,6 +185,6 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField JpassClave;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lContrasenia;
     // End of variables declaration//GEN-END:variables
 }

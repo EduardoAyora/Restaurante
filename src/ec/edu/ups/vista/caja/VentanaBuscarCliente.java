@@ -23,15 +23,17 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaBuscarMesero
      */
-    public VentanaBuscarCliente(ControladorCliente controladorCliente, ResourceBundle mensajes) {
-        initComponents();
+    public VentanaBuscarCliente(ControladorCliente controladorCliente,ResourceBundle mensajes) {
+        
         this.controladorCliente = controladorCliente;
-        this.mensajes = mensajes;
+        this.mensajes=mensajes;
+        initComponents();
         cambiarIdioma(mensajes);
+        
     }
-
-    public void cambiarIdioma(ResourceBundle mensajes) {
-
+     public void cambiarIdioma(ResourceBundle mensajes){
+        
+        titulo.setText(mensajes.getString("titulo.cliente.buscar"));   
         lNombre.setText(mensajes.getString("txt.nombre"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
         lDireccion.setText(mensajes.getString("cliente.direccion"));
@@ -51,6 +53,7 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         tCedula = new javax.swing.JTextField();
         lCedula = new javax.swing.JLabel();
         lNombre = new javax.swing.JLabel();
@@ -64,8 +67,11 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
         lEmail = new javax.swing.JLabel();
         tEmail = new javax.swing.JTextField();
 
+        titulo.setText(mensajes.getString("titulo.cliente.buscar")
+        );
+
         setClosable(true);
-        setTitle("Buscar cliente");
+        setTitle(titulo.getText());
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -223,5 +229,6 @@ public class VentanaBuscarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

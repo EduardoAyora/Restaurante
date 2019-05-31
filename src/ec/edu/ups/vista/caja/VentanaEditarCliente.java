@@ -23,14 +23,15 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
      * Creates new form VentanaEditarMesero
      */
     public VentanaEditarCliente(ControladorCliente controladorCliente, ResourceBundle mensajes) {
-        initComponents();
-        this.controladorCliente = controladorCliente;
-        this.mensajes = mensajes;
+      
+        this.controladorCliente=controladorCliente;
+        this.mensajes=mensajes;
+          initComponents();
         cambiarIdioma(mensajes);
     }
-
-    public void cambiarIdioma(ResourceBundle mensajes) {
-
+    public void cambiarIdioma(ResourceBundle mensajes){
+        
+        titulo.setText(mensajes.getString("titulo.cliente.editar"));
         bBuscar.setText(mensajes.getString("boton.buscar"));
         lNombre.setText(mensajes.getString("txt.nombre"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
@@ -39,7 +40,7 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
         lEmail.setText(mensajes.getString("txt.correo"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
         bActualizar.setText(mensajes.getString("boton.actualizar"));
-
+        
     }
 
     /**
@@ -51,6 +52,7 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         lCedula = new javax.swing.JLabel();
         tCedula = new javax.swing.JTextField();
         bBuscar = new javax.swing.JButton();
@@ -65,8 +67,11 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
         lEmail = new javax.swing.JLabel();
         tCorreo = new javax.swing.JTextField();
 
+        titulo.setText(mensajes.getString("titulo.cliente.editar")
+        );
+
         setClosable(true);
-        setTitle("Editar cliente");
+        setTitle(titulo.getText());
 
         lCedula.setText("Cédula:");
 
@@ -233,5 +238,6 @@ public class VentanaEditarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tDireccion;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

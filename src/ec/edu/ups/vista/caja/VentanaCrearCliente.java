@@ -23,15 +23,16 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
      * Creates new form VentanaCrearMesero
      */
     public VentanaCrearCliente(ControladorCliente controladorCliente, ResourceBundle mensajes) {
-        this.mensajes = mensajes;
-        initComponents();
-        this.controladorCliente = controladorCliente;
+       
+        this.controladorCliente=controladorCliente;
+        this.mensajes=mensajes;
+         initComponents();
         tCodigo.setText(Integer.toString(this.controladorCliente.getCodigo()));
         cambiarIdioma(mensajes);
     }
-
-    public void cambiarIdioma(ResourceBundle mensajes) {
-
+ public void cambiarIdioma(ResourceBundle mensajes){
+        
+       titulo.setText(mensajes.getString("titulo.cliente.crear"));
         lCodigo.setText(mensajes.getString("cliente.codigo"));
         lNombre.setText(mensajes.getString("txt.nombre"));
         lCedula.setText(mensajes.getString("cliente.cedula"));
@@ -53,6 +54,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titulo = new javax.swing.JLabel();
         lCodigo = new javax.swing.JLabel();
         lCedula = new javax.swing.JLabel();
         lNombre = new javax.swing.JLabel();
@@ -68,8 +70,10 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         bCancelar = new javax.swing.JButton();
         bCrear = new javax.swing.JButton();
 
+        titulo.setText(mensajes.getString("titulo.cliente.crear"));
+
         setClosable(true);
-        setTitle("Crear cliente");
+        setTitle(titulo.getText());
 
         lCodigo.setText("Código:");
 
@@ -215,5 +219,6 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tEmail;
     private javax.swing.JTextField tNombre;
     private javax.swing.JTextField tTelefono;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }
