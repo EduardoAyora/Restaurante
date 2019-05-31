@@ -25,12 +25,15 @@ import javax.swing.table.TableColumnModel;
 public class VentanaReadFactura extends javax.swing.JInternalFrame {
 
     private Factura factura;
+    private ResourceBundle mensajes;
 
     /**
      * Creates new form VentanaReadFactura
      */
-    public VentanaReadFactura() {
+    public VentanaReadFactura(ResourceBundle mensajes) {
         initComponents();
+        this.mensajes = mensajes;
+        cambiarIdioma(mensajes);
     }
 
     public void setFactura(Factura factura) {
