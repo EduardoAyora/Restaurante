@@ -38,8 +38,17 @@ public class VentanaReadFactura extends javax.swing.JInternalFrame {
 
     public void setFactura(Factura factura) {
         this.factura = factura;
+        botonAnular();
     }
 
+    public void botonAnular(){
+        
+        if(!factura.isActivo()){
+            btnAnular.setEnabled(false);
+        }
+        
+    }
+    
     public void llenarDatos() {
 
         Cliente cliente = factura.getCliente();
