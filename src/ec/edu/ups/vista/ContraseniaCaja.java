@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.vista.caja.VistaCaja;
+import ec.edu.ups.vista.caja.VentanaCrearFactura;
 import com.sun.glass.events.KeyEvent;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorFactura;
@@ -45,6 +47,8 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     }
     
     public  void cambiarIdiomas(ResourceBundle mensajes){
+        JpassClave.setText(mensajes.getString("txt.contraseña"));
+        btnIngresar.setText(mensajes.getString("boton.ingresar"));
         
     }
 

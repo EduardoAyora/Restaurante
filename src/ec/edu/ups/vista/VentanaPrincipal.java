@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.vista.gerente.VistaGerente;
+import ec.edu.ups.vista.caja.VistaCaja;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorMesa;
