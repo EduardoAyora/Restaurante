@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Usuario-Pc
  */
 public class ContraseniaCaja extends javax.swing.JFrame {
-    
+
     public static VistaCaja vistaCaja;
     private ControladorFactura controladorFactura;
     private ControladorCliente controladorCliente;
@@ -28,11 +28,12 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     private VentanaCrearFactura crearFactura;
     private ClaveCaja claveCaja;
     private ResourceBundle mensajes;
+
     /**
      * Creates new form Contrasenia
      */
-    public ContraseniaCaja(ControladorFactura controladorFactura, 
-            ControladorCliente controladorCliente, 
+    public ContraseniaCaja(ControladorFactura controladorFactura,
+            ControladorCliente controladorCliente,
             ControladorMesa controladorMesa, ClaveCaja claveCaja,
             VistaCaja vistaCaja, ResourceBundle mensajes) {
         initComponents();
@@ -43,13 +44,14 @@ public class ContraseniaCaja extends javax.swing.JFrame {
         this.mensajes = mensajes;
         vistaCaja = this.vistaCaja;
         setLocationRelativeTo(null);
+        cambiarIdiomas(mensajes);
 
     }
-    
-    public  void cambiarIdiomas(ResourceBundle mensajes){
-        JpassClave.setText(mensajes.getString("txt.contraseña"));
+
+    public void cambiarIdiomas(ResourceBundle mensajes) {
+        jLabel1.setText(mensajes.getString("txt.contraseña"));
         btnIngresar.setText(mensajes.getString("boton.ingresar"));
-        
+
     }
 
     /**
@@ -116,19 +118,25 @@ public class ContraseniaCaja extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
+        String aprob;
+        String deneg;
+        String bienvenido;
+        String errorPass;
+
         char clave[] = JpassClave.getPassword();
         String clavedef = new String(clave);
-        if (clavedef.equals(claveCaja.getClave())){
+
+        if (clavedef.equals(claveCaja.getClave())) {
             this.dispose();
-            JOptionPane.showMessageDialog(null, "bienvenido", "mensaje si", JOptionPane.INFORMATION_MESSAGE);
-            
+            JOptionPane.showMessageDialog(null, bienvenido = mensajes.getString("option.bienvenido"), aprob = mensajes.getString("option.aprobado"), JOptionPane.INFORMATION_MESSAGE);
+
             vistaCaja = new VistaCaja(controladorFactura, controladorCliente, controladorMesa, mensajes);
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
             VentanaPrincipal.vistaCaja = this.vistaCaja;
-            
+
         } else {
-            JOptionPane.showMessageDialog(null, "Error de clave", "mensaje no", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, errorPass = mensajes.getString("option.errorpass"), deneg = mensajes.getString("option.denegado"), JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btnIngresarActionPerformed
