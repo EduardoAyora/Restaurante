@@ -139,9 +139,6 @@
     <Component class="javax.swing.JTextField" name="tNombre">
     </Component>
     <Component class="javax.swing.JTextField" name="tDireccion">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tDireccionActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lDireccion">
       <Properties>

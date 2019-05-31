@@ -9,20 +9,15 @@ import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorDetalle;
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorMesa;
-import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Factura;
 import ec.edu.ups.modelo.Mesa;
-import ec.edu.ups.modelo.Producto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.SortedSet;
 import javax.swing.JOptionPane;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -42,6 +37,9 @@ public class VentanaCrearFactura extends javax.swing.JInternalFrame {
     private Cliente cliente;
     private Mesa mesa;
     private ResourceBundle mensajes;
+    private String bumesa;
+    private String nofound;
+    private String actmesa;
 
     /**
      * Creates new form VentanaCrearFactura
@@ -59,6 +57,9 @@ public class VentanaCrearFactura extends javax.swing.JInternalFrame {
     }
 
     public void cambiarIdioma(ResourceBundle mensajes) {
+        bumesa = mensajes.getString("mesa.buscar");
+        nofound = mensajes.getString("option.nomesa");
+        actmesa = mensajes.getString("option.actmesa");
         titulo.setText(mensajes.getString("factura.nueva"));
         lblCodigo.setText(mensajes.getString("cliente.codigo"));
         lblNumero.setText(mensajes.getString("factura.numero"));
@@ -476,29 +477,48 @@ public class VentanaCrearFactura extends javax.swing.JInternalFrame {
         txtTotal.setText("");
     }
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
-        // TODO add your handling code here:
-        String asignacion = txtMesa.getText();
-        int numMesa = Integer.parseInt(asignacion);
-        mesa = controladorMesa.read(numMesa);
-        cliente.setMesa(mesa);
-        factura.setControladorDetalle(cliente.getMesa().getControladorDetalle());
-        llenarTabla();
+        if (txtMesa.getText().equals("") == false) {
+            String asignacion = txtMesa.getText();
+            int numMesa = Integer.parseInt(asignacion);
+            mesa = controladorMesa.read(numMesa);
+            if (mesa != null) {
+                cliente.setMesa(mesa);
+                factura.setControladorDetalle(cliente.getMesa().getControladorDetalle());
+                llenarTabla();
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        nofound = mensajes.getString("option.nomesa"),
+                        bumesa = mensajes.getString("mesa.buscar"),
+                        JOptionPane.WARNING_MESSAGE);
+                txtMesa.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        Date date = new Date();
-        cliente = controladorCliente.readCedula(txtCedula.getText());
-        factura.setCliente(cliente);
-        factura.setFecha(date);
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaTexto = formato.format(date.getTime());
-        txtCodigo.setText(Integer.toString(cliente.getCodigo()));
-        txtNombre.setText(cliente.getNombre());
-        txtFecha.setText(fechaTexto);
-        txtTelefono.setText(cliente.getTelefono());
-        txtDireccion.setText(cliente.getDireccion());
-        txtCorreo.setText(cliente.getCorreo());
+        if (txtCedula.getText().equals("") == false) {
+            Date date = new Date();
+            cliente = controladorCliente.readCedula(txtCedula.getText());
+            if (cliente != null) {
+                factura.setCliente(cliente);
+                factura.setFecha(date);
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaTexto = formato.format(date.getTime());
+                txtCodigo.setText(Integer.toString(cliente.getCodigo()));
+                txtNombre.setText(cliente.getNombre());
+                txtFecha.setText(fechaTexto);
+                txtTelefono.setText(cliente.getTelefono());
+                txtDireccion.setText(cliente.getDireccion());
+                txtCorreo.setText(cliente.getCorreo());
+            } else {
+                JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+                vaciarCajasTexto();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 

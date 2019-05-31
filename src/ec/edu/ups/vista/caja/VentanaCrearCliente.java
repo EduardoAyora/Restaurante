@@ -10,15 +10,15 @@ import ec.edu.ups.modelo.Cliente;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author DELL
  */
 public class VentanaCrearCliente extends javax.swing.JInternalFrame {
-    
+
     private ControladorCliente controladorCliente;
     private ResourceBundle mensajes;
+
     /**
      * Creates new form VentanaCrearMesero
      */
@@ -42,10 +42,9 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         bCancelar.setText(mensajes.getString("boton.cancelar"));
         bCrear.setText(mensajes.getString("boton.crear"));
         bCancelar.setText(mensajes.getString("boton.cancelar"));
-        
-        
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,12 +88,6 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         lEmail.setText("E-mail:");
 
         tCodigo.setEditable(false);
-
-        tDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tDireccionActionPerformed(evt);
-            }
-        });
 
         bCancelar.setText("Cancelar");
         bCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -182,13 +175,9 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tDireccionActionPerformed
-
-    }//GEN-LAST:event_tDireccionActionPerformed
-
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
         // TODO add your handling code here:
-        Cliente cliente=new Cliente();
+        Cliente cliente = new Cliente();
         cliente.setNombre(tNombre.getText());
         cliente.setCedula(tCedula.getText());
         cliente.setDireccion(tDireccion.getText());
@@ -211,6 +200,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         tDireccion.setText("");
         tTelefono.setText("");
         tEmail.setText("");
+        this.dispose();
     }//GEN-LAST:event_bCancelarActionPerformed
 
 

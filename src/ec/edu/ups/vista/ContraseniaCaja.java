@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Usuario-Pc
  */
 public class ContraseniaCaja extends javax.swing.JFrame {
-    
+
     public static VistaCaja vistaCaja;
     private ControladorFactura controladorFactura;
     private ControladorCliente controladorCliente;
@@ -36,8 +36,8 @@ public class ContraseniaCaja extends javax.swing.JFrame {
     /**
      * Creates new form Contrasenia
      */
-    public ContraseniaCaja(ControladorFactura controladorFactura, 
-            ControladorCliente controladorCliente, 
+    public ContraseniaCaja(ControladorFactura controladorFactura,
+            ControladorCliente controladorCliente,
             ControladorMesa controladorMesa, ClaveCaja claveCaja,
             VistaCaja vistaCaja, ResourceBundle mensajes) {
         initComponents();
@@ -129,9 +129,15 @@ public class ContraseniaCaja extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
+        String aprob;
+        String deneg;
+        String bienvenido;
+        String errorPass;
+
         char clave[] = JpassClave.getPassword();
         String clavedef = new String(clave);
-        if (clavedef.equals(claveCaja.getClave())){
+
+        if (clavedef.equals(claveCaja.getClave())) {
             this.dispose();
             JOptionPane.showMessageDialog(null,bienvenido = mensajes.getString("jptionp.contrasenia"), 
                     aprob = mensajes.getString("btn.aceptar"), JOptionPane.INFORMATION_MESSAGE);
@@ -140,7 +146,7 @@ public class ContraseniaCaja extends javax.swing.JFrame {
             vistaCaja.toFront();
             vistaCaja.setVisible(true);
             VentanaPrincipal.vistaCaja = this.vistaCaja;
-            
+
         } else {
             JOptionPane.showMessageDialog(null, errorPass = mensajes.getString("jptionp.contrasenia.error"), 
                     deneg = mensajes.getString("btn.aceptar"), JOptionPane.INFORMATION_MESSAGE);

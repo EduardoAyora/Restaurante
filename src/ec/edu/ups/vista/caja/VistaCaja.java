@@ -10,7 +10,6 @@ import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorMesa;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.ImagenFondoCaja;
-import static ec.edu.ups.vista.gerente.VistaGerente.jDesktopPane1;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
