@@ -9,15 +9,20 @@ import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorDetalle;
 import ec.edu.ups.controlador.ControladorFactura;
 import ec.edu.ups.controlador.ControladorMesa;
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Detalle;
 import ec.edu.ups.modelo.Factura;
 import ec.edu.ups.modelo.Mesa;
+import ec.edu.ups.modelo.Producto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.SortedSet;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -425,6 +430,7 @@ public class VentanaCrearFactura extends javax.swing.JInternalFrame {
         txtTotal.setText("");
     }
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+
         if (txtMesa.getText().equals("") == false) {
             String asignacion = txtMesa.getText();
             int numMesa = Integer.parseInt(asignacion);
@@ -442,33 +448,26 @@ public class VentanaCrearFactura extends javax.swing.JInternalFrame {
 
         if (txtCedula.getText().equals("") == false) {
             Date date = new Date();
-            String cedula = txtCedula.getText();
-            Cliente cliente = controladorCliente.readCedula(cedula);
+            cliente = controladorCliente.readCedula(txtCedula.getText());
+            factura.setCliente(cliente);
             if (cliente != null) {
+
                 factura.setFecha(date);
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 String fechaTexto = formato.format(date.getTime());
+                txtCodigo.setText(Integer.toString(controladorCliente.getCodigo()));
                 txtNombre.setText(cliente.getNombre());
                 txtFecha.setText(fechaTexto);
-                txtDireccion.setText(cliente.getDireccion());
                 txtTelefono.setText(cliente.getTelefono());
+                txtDireccion.setText(cliente.getDireccion());
                 txtCorreo.setText(cliente.getCorreo());
             } else {
-                txtCedula.setText("");
-                txtNombre.setText("");
-                txtFecha.setText("");
-                txtDireccion.setText("");
-                txtTelefono.setText("");
-                txtCorreo.setText("");
+                vaciarCajasTexto();
                 JOptionPane.showMessageDialog(this, "El cliente no existe", "Buscar cliente", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
-            txtNombre.setText("");
-            txtFecha.setText("");
-            txtDireccion.setText("");
-            txtTelefono.setText("");
-            txtCorreo.setText("");
+            vaciarCajasTexto();
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed

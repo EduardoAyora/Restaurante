@@ -12,6 +12,7 @@ import ec.edu.ups.modelo.Mesa;
 import ec.edu.ups.modelo.Mesero;
 import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.Render;
+import ec.edu.ups.vista.VentanaPrincipal;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.swing.JButton;
@@ -51,14 +52,14 @@ public class AgregarProducto extends javax.swing.JFrame {
         tblProductos.setRowHeight(60);
     }
 
-    public void cambiarIdioma(ResourceBundle mensajes){
-        
+    public void cambiarIdioma(ResourceBundle mensajes) {
+
         btnEntradas.setText(mensajes.getString("txt.entrada"));
         btnBebida.setText(mensajes.getString("txt.bebida"));
         btnPlato.setText(mensajes.getString("txt.plato"));
         btnPostres.setText(mensajes.getString("txt.postre"));
         btnListo.setText(mensajes.getString("txt.listo"));
-        
+
         JTableHeader tableHeader = tblProductos.getTableHeader();
         TableColumnModel tableColumnModel = tableHeader.getColumnModel();
         TableColumn tableColumn;
@@ -75,12 +76,12 @@ public class AgregarProducto extends javax.swing.JFrame {
         tableColumn = tableColumnModel.getColumn(5);
         tableColumn.setHeaderValue(mensajes.getString("txt.seleccionar"));
         tableHeader.repaint();
-        
+
     }
-    
+
     /**
-     * llenarDatos muestra los productos en la tabla separando por categoria
-     * y omitiendo los que ya han sido seleccionados.
+     * llenarDatos muestra los productos en la tabla separando por categoria y
+     * omitiendo los que ya han sido seleccionados.
      */
     public void llenarDatos() {
         tblProductos.setDefaultRenderer(Object.class, new Render());
@@ -151,6 +152,7 @@ public class AgregarProducto extends javax.swing.JFrame {
     public void setMensajes(ResourceBundle mensajes) {
         this.mensajes = mensajes;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -311,8 +313,8 @@ public class AgregarProducto extends javax.swing.JFrame {
 
     private void btnListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListoActionPerformed
         // TODO add your handling code here:
-        VistaMesa vistaMesa = new VistaMesa(mesa, mesero, controladorMesa, controladorProducto, mensajes);
-        vistaMesa.setVisible(true);
+        VentanaPrincipal.usuarioMesero.vistaMesero.vistaMesa = new VistaMesa(mesa, mesero, controladorMesa, controladorProducto, mensajes);
+        VentanaPrincipal.usuarioMesero.vistaMesero.vistaMesa.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnListoActionPerformed
 
