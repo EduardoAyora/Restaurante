@@ -145,6 +145,11 @@ public class UsuarioMesero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+
+        String aprob;
+        String deneg;
+        String bienvenido;
+        String errorPass;
         if (txtCodigo.getText().equals("") == false) {
             String pass = "";
             char[] password = txtContraseña.getPassword();
@@ -154,7 +159,7 @@ public class UsuarioMesero extends javax.swing.JFrame {
             int codigo = Integer.parseInt(txtCodigo.getText());
             Mesero mesero = controladorMesero.read(codigo);
             if (pass.equals(mesero.getContraseña())) {
-                JOptionPane.showMessageDialog(null, "Bienvenido", "Contraseña correcta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, bienvenido = mensajes.getString("option.bienvenido"), aprob = mensajes.getString("option.aprobado"), JOptionPane.INFORMATION_MESSAGE);
                 vistaMesero = new VistaMesero(mesero, controladorMesa, controladorProducto, mensajes);
                 vistaMesero.setVisible(true);
                 this.dispose();
@@ -162,7 +167,7 @@ public class UsuarioMesero extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "Contraseña incorrecta", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Error", "Valor", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, errorPass = mensajes.getString("option.errorpass"), deneg = mensajes.getString("option.denegado"), JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 

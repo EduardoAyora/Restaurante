@@ -189,7 +189,7 @@ public class ListarFacturas extends javax.swing.JInternalFrame {
                 int numDetalle = evt.getY() / tblFactura.getRowHeight();
                 Factura factura = controladorFactura.buscarPosicion(numDetalle);
                 if (ventanaReadFactura == null || ventanaReadFactura.isVisible() == false) {
-                    ventanaReadFactura = new VentanaReadFactura();
+                    ventanaReadFactura = new VentanaReadFactura(mensajes);
                     ventanaReadFactura.setFactura(factura);
                     ventanaReadFactura.llenarDatos();
                     ventanaReadFactura.setVisible(true);
